@@ -1,35 +1,40 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #f9f9f9;
-  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
 }
 
 nav {
+  background-color: #1e88e5;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3366cc;
-  color: white;
   padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
 #themeToggle {
   background: none;
   border: none;
-  font-size: 1.5rem;
   color: white;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
 #ad-space {
-  background-color: #fff8dc;
+  background-color: #1f1f1f;
   padding: 1rem;
-  margin: 1rem;
-  border: 1px dashed #ccc;
   text-align: center;
+  border: 1px dashed #444;
+  margin: 1rem auto;
+  max-width: 600px;
 }
 
 main {
@@ -37,37 +42,99 @@ main {
 }
 
 main ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
 main li {
-  margin: 10px 0;
-  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
-main a {
-  color: #3366cc;
+main li a {
+  display: block;
+  padding: 0.5rem;
+  background-color: #252525;
+  border-radius: 6px;
+  color: #00acee;
   text-decoration: none;
 }
 
+main li a:hover {
+  background-color: #333;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.share-buttons a {
+  padding: 5px 10px;
+  background-color: #444;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.share-buttons a:hover {
+  background-color: #666;
+}
+
 footer {
+  background-color: #1a1a1a;
   text-align: center;
   padding: 1rem;
-  background-color: #eee;
+  font-size: 0.9rem;
   margin-top: 2rem;
 }
-
-/* Dark Mode */
-.dark-mode {
-  background-color: #1e1e1e;
-  color: #f9f9f9;
+.project-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: auto;
 }
 
-.dark-mode nav {
-  background-color: #222;
+.project-list li {
+  background: #222;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
-.dark-mode a {
+.project-list a {
   color: #00acee;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.share-buttons img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s;
+}
+
+.share-buttons img:hover {
+  transform: scale(1.2);
+}
+
+.dark-mode {
+  background-color: #000;
+  color: #f0f0f0;
+}
+
+.dark-mode nav,
+.dark-mode footer,
+.dark-mode #ad-space,
+.dark-mode .project-list li {
+  background-color: #111;
 }
