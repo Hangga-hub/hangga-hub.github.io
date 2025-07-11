@@ -1,101 +1,33 @@
-:root {
-  --bg: #121212;
-  --fg: #f0f0f0;
-  --primary: #1e88e5;
-  --secondary: #1565c0;
-  --panel: #252525;
-  --hover: #333;
-}
-
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: #121212;
+  color: #f0f0f0;
 }
 
-/* Navbar */
 nav {
-  background-color: var(--primary);
-  padding: 1rem 2rem;
+  background-color: #1e88e5;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-nav h1 a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
+  padding: 1rem 2rem;
 }
 
 nav a {
-  color: white;
   text-decoration: none;
+  color: white;
   font-weight: bold;
 }
 
-#themeToggle,
-#menuToggle {
+#themeToggle {
   background: none;
   border: none;
-  font-size: 1.5rem;
   color: white;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
-#menuToggle {
-  display: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 15px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-  padding: 6px 10px;
-  font-size: 0.95rem;
-  border-radius: 5px;
-}
-
-.nav-links li a.active {
-  background-color: var(--secondary);
-  font-weight: bold;
-}
-
-/* Mobile Menu */
-@media (max-width: 600px) {
-  #menuToggle {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 2rem;
-    background-color: var(--primary);
-    padding: 1rem;
-    border-radius: 6px;
-    z-index: 100;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-}
-
-/* Ad Box */
 #ad-space {
   background-color: #1f1f1f;
   padding: 1rem;
@@ -105,11 +37,52 @@ nav a {
   max-width: 600px;
 }
 
-/* Main Content */
 main {
   padding: 2rem;
 }
 
+main ul {
+  list-style: none;
+  padding: 0;
+}
+
+main li {
+  margin-bottom: 1.2rem;
+}
+
+main li a {
+  display: block;
+  padding: 0.5rem;
+  background-color: #252525;
+  border-radius: 6px;
+  color: #00acee;
+  text-decoration: none;
+}
+
+main li a:hover {
+  background-color: #333;
+}
+
+.share-buttons a {
+  padding: 5px 10px;
+  background-color: #444;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.share-buttons a:hover {
+  background-color: #666;
+}
+
+footer {
+  background-color: #1a1a1a;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
 .project-list {
   list-style: none;
   padding: 0;
@@ -124,7 +97,7 @@ main {
   border-radius: 8px;
 }
 
-.project-list li a {
+.project-list a {
   color: #00acee;
   font-weight: bold;
   text-decoration: none;
@@ -132,13 +105,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-.project-list li a:hover {
-  background-color: var(--hover);
-  padding: 0.5rem;
-  border-radius: 5px;
-}
-
-/* Share Buttons */
 .share-buttons {
   display: flex;
   gap: 10px;
@@ -156,19 +122,9 @@ main {
   transform: scale(1.2);
 }
 
-/* Footer */
-footer {
-  background-color: #1a1a1a;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  margin-top: 2rem;
-}
-
-/* Dark Mode */
 .dark-mode {
   background-color: #000;
-  color: var(--fg);
+  color: #f0f0f0;
 }
 
 .dark-mode nav,
@@ -176,4 +132,75 @@ footer {
 .dark-mode #ad-space,
 .dark-mode .project-list li {
   background-color: #111;
+}
+
+
+
+nav {
+  background-color: #1e88e5;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+nav h1 a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#menuToggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.nav-links li a.active {
+  background-color: #1565c0;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  #menuToggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 2rem;
+    flex-direction: column;
+    background-color: #1e88e5;
+    padding: 1rem;
+    border-radius: 6px;
+    z-index: 100;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
 }
