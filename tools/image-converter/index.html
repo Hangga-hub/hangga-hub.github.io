@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Converter - Convert JPG, PNG, WebP & More | Hangga's Tool Hub</title>
+    <link rel="icon" href="https://hangga-hub.github.io/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
+
+    <meta name="description" content="Free online image converter by Hangga's Tool Hub. Convert JPG to PNG, PNG to JPG, WebP to JPG/PNG, and more. Fast, secure, and easy to use." />
+    <meta name="keywords" content="image converter, convert image, jpg to png, png to jpg, webp converter, convert webp, online image tool, image format converter, hangga tools" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="Image Converter - Convert JPG, PNG, WebP & More | Hangga's Tool Hub" />
+    <meta property="og:description" content="Convert your images between popular formats like JPG, PNG, and WebP instantly and securely in your browser." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" /> <meta property="og:url" content="https://hangga-hub.github.io/image-converter" />
+    <meta name="robots" content="index,follow" />
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <section id="ad-space" class="container mt-4">
+        <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        <p class="text-sm text-gray-400">Consider placing relevant image-related ads (e.g., stock photos, graphic design software).</p>
+    </section>
+
+    <main class="container tool-image-converter">
+        <h2>🖼️ Image Converter</h2>
+        <p>Convert images between popular formats like JPG, PNG, and WebP. Your files are processed securely in your browser.</p>
+
+        <div class="input-section">
+            <label for="imageUpload" class="block text-sm font-bold mb-2">Upload Image:</label>
+            <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/webp, image/gif, image/bmp, image/tiff" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer" />
+            <p id="fileNameDisplay" class="text-xs text-gray-400 mt-1"></p>
+        </div>
+
+        <div class="options-section mt-6">
+            <label for="outputFormat" class="block text-sm font-bold mb-2">Convert To:</label>
+            <select id="outputFormat" class="w-full p-2 rounded-md bg-transparent border border-accent text-accent">
+                <option value="image/jpeg">JPG</option>
+                <option value="image/png">PNG</option>
+                <option value="image/webp">WebP</option>
+            </select>
+
+            <label for="qualitySlider" class="block text-sm font-bold mt-4 mb-2">Quality (for JPG/WebP): <span id="qualityValue">80</span>%</label>
+            <input type="range" id="qualitySlider" min="10" max="100" value="80" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pulse" />
+        </div>
+
+        <div class="button-group mt-6">
+            <button id="convertBtn" class="flex-1 mr-2">Convert Image</button>
+            <a id="downloadLink" download="converted-image" class="button flex-1 ml-2 hidden text-center flex items-center justify-center">Download Image</a>
+        </div>
+
+        <div id="loadingIndicator" class="hidden text-center mt-4">
+            <div class="spinner"></div>
+            <p class="text-accent">Converting...</p>
+        </div>
+
+        <div id="resultSection" class="hidden mt-6 converted-preview-container">
+            <h3>Converted Image Preview:</h3>
+            <canvas id="imageCanvas" class="hidden"></canvas>
+            <img id="convertedImagePreview" class="max-w-full h-auto rounded-lg border border-gray-700 mx-auto preview-image" alt="Converted Image" />
+            <p id="errorMessage" class="text-red-500 text-center mt-4 hidden"></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="https://hangga-hub.github.io/script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

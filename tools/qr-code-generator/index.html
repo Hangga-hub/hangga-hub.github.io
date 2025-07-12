@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Generator – Hangga Tools</title>
+  <meta name="description" content="Create and download QR codes for any text or URL instantly with our free QR Code Generator." />
+  <meta name="keywords" content="QR code generator, create QR code, download QR, free QR code" />
+  <link rel="canonical" href="https://hangga-hub.github.io/qr-code-generator" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "QR Code Generator",
+    "url": "https://hangga-hub.github.io/qr-code-generator",
+    "applicationCategory": "Utilities",
+    "description": "Generate and download QR codes from text or URLs."
+  }
+  </script>
+  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
+  <!-- Use the official jsDelivr build of QRCode -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    .button-row { display: flex; gap: 1rem; margin: 1rem 0; }
+    #qrcode { text-align: center; margin: 1rem 0; }
+    #qrcode canvas { max-width: 100%; height: auto; }
+    #ad-space { margin: 1rem 0; padding: 1rem; background: var(--panel-light); text-align: center; }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container tool-qr">
+    <h2>🔳 QR Code Generator</h2>
+
+    <!-- Ad placeholder -->
+    <div id="ad-space">Here</div>
+
+    <label for="textInput">Text or URL</label>
+    <input id="textInput" type="text" placeholder="Enter text or URL" />
+
+    <div class="button-row">
+      <button id="generateBtn">Generate QR Code</button>
+      <button id="downloadBtn">Download PNG</button>
+    </div>
+
+    <div id="qrcode"></div>
+
+    <div class="share-buttons">
+      <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/qr-code-generator" target="_blank">
+        <img src="https://cdn.simpleicons.org/x/white" alt="Share on X" />
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/qr-code-generator" target="_blank">
+        <img src="https://cdn.simpleicons.org/facebook/white" alt="Share on Facebook" />
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/qr-code-generator" target="_blank">
+        <img src="https://cdn.simpleicons.org/linkedin/white" alt="Share on LinkedIn" />
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/qr-code-generator">GitHub</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

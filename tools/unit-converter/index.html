@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Converter – Hangga Tools</title>
+  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
+  <link rel="icon" href="https://hangga-hub.github.io/favicon.ico" type="image/x-icon" />
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Convert various units quickly and easily with Hangga's Unit Converter. Supports length, weight, temperature, and more." />
+  <meta name="keywords" content="unit converter, length conversion, weight conversion, temperature conversion, Hangga, tools" />
+  <meta name="author" content="Hangga" />
+  <meta property="og:title" content="Unit Converter – Hangga Tools" />
+  <meta property="og:description" content="Convert units effortlessly with Hangga's Unit Converter. Fast, reliable, and easy-to-use." />
+  <meta property="og:image" content="https://hangga-hub.github.io/og-unit-converter.png" />
+  <meta property="og:url" content="https://hangga-hub.github.io/unit-converter" />
+  <meta name="robots" content="index,follow" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <section id="ad-space">
+    <p>[Ad – Dev tools, browser extensions, productivity software]</p>
+  </section>
+  
+  <main class="container tool-converter">
+    <h2>📏 Unit Converter</h2>
+
+    <label for="category">Conversion Type</label>
+    <select id="category">
+      <option value="length">📏 Length</option>
+      <option value="weight">⚖️ Weight</option>
+      <option value="temperature">🌡️ Temperature</option>
+      <option value="speed">🧭 Speed</option>
+      <option value="time">🕑 Time</option>
+      <option value="area">📐 Area</option>
+      <option value="volume">🧪 Volume</option>
+    </select>
+
+    <label for="fromUnit">From Unit</label>
+    <select id="fromUnit"></select>
+
+    <label for="toUnit">To Unit</label>
+    <select id="toUnit"></select>
+
+    <label for="inputValue">Value</label>
+    <input type="number" id="inputValue" placeholder="Enter value" />
+
+    <button onclick="convertUnit()">Convert</button>
+
+    <div id="result"></div>
+
+    <div class="share-buttons">
+      <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/unit-converter" target="_blank">
+        <img src="https://cdn.simpleicons.org/x/white" alt="Share on X" />
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/unit-converter" target="_blank">
+        <img src="https://cdn.simpleicons.org/facebook/white" alt="Share on Facebook" />
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/unit-converter" target="_blank">
+        <img src="https://cdn.simpleicons.org/linkedin/white" alt="Share on LinkedIn" />
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/unit-converter">GitHub</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

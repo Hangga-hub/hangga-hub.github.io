@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loan Calculator – Hangga Tools</title>
+  <meta name="description" content="Calculate your monthly loan payments, total cost, and interest with our easy-to-use loan calculator.">
+  <meta name="keywords" content="loan calculator, mortgage calculator, loan payment, amortization, finance tool">
+  <link rel="canonical" href="https://hangga-hub.github.io/loan-calculator" />
+  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebApplication",
+    "name": "Loan Calculator",
+    "url": "https://hangga-hub.github.io/loan-calculator",
+    "applicationCategory": "Finance",
+    "description": "Calculate your monthly loan payments, total cost, and interest for different loan scenarios."
+  }
+  </script>
+  <style>
+    .button-row { display: flex; gap: 1rem; margin: 1rem 0; }
+    #result p { margin: 0.5rem 0; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main class="container tool-loan">
+    <h2>💰 Loan Calculator</h2>
+
+    <!-- Ad placeholder -->
+    <div id="ad-space">Ad Here</div>
+
+    <label for="loanAmount">Loan Amount</label>
+    <input id="loanAmount" type="number" placeholder="e.g., 250000" />
+
+    <label for="interestRate">Annual Interest Rate (%)</label>
+    <input id="interestRate" type="number" step="0.01" placeholder="e.g., 3.5" />
+
+    <label for="loanTerm">Loan Term (years)</label>
+    <input id="loanTerm" type="number" placeholder="e.g., 30" />
+
+    <div class="button-row">
+      <button id="calculateBtn">Calculate</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <div id="result">
+      <p id="monthlyPayment">Monthly Payment: $0.00</p>
+      <p id="totalPayment">Total Payment: $0.00</p>
+      <p id="totalInterest">Total Interest: $0.00</p>
+    </div>
+
+    <div class="share-buttons">
+      <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/loan-calculator" target="_blank">
+        <img src="https://cdn.simpleicons.org/x/white" alt="Share on X" />
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/loan-calculator" target="_blank">
+        <img src="https://cdn.simpleicons.org/facebook/white" alt="Share on Facebook" />
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/loan-calculator" target="_blank">
+        <img src="https://cdn.simpleicons.org/linkedin/white" alt="Share on LinkedIn" />
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/loan-calculator">GitHub</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
