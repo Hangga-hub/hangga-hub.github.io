@@ -63,7 +63,6 @@ body {
 
 /* Main Content Area */
 main {
-    flex-grow: 1;
     max-width: var(--max-content-width);
     margin: calc(var(--navbar-height) + 60px) auto 60px auto;
     padding: 0 32px;
@@ -116,28 +115,60 @@ main {
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Even smaller min width for more cards per row */
-    gap: 12px; /* Smaller gap for denser layout */
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 32px; /* Add gap between cards */
     padding: 0;
     list-style: none;
-    width: 100%;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: start;
+}
+
+@media (max-width: 1200px) {
+    .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1050px;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 900px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        gap: 14px;
+    }
 }
 
 .tool-card {
-    background: var(--cyber-panel);
-    border: 2px solid var(--cyber-border);
-    border-radius: 20px;
-    box-shadow: 0 0 40px 6px var(--cyber-neon-cyan), 0 0 12px 3px var(--cyber-neon-pink);
-    padding: 0.8rem 0.5rem 0.7rem 0.5rem;
+    background: rgba(30, 30, 40, 0.85); /* Less vibrant, darker panel */
+    border: 2px solid #222a38; /* Subtle border */
+    border-radius: 18px;
+    box-shadow: 0 0 12px 2px #222a38, 0 0 4px 1px #444; /* Softer shadow, less neon */
+    padding: 0.5rem 2.2rem 0.5rem 2.2rem; /* More horizontal padding for wider cards */
+    max-width: 420px; /* Wider cards */
+    min-width: 320px;
+    width: 100%;
+    margin: 0;
+    color: #e0e0e0;
+    /* New styles for uniform card size */
+    min-height: 380px; /* Increased height for more content space */
+    height: 380px; /* Fixed height for all cards */
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
-    min-width: 0;
-    max-width: 220px; /* Reduce max width for more cards per row */
-    margin: 0 auto;
-    width: 100%;
-    transition: box-shadow 0.3s, border-color 0.3s;
 }
 
 .tool-card:hover {
@@ -151,15 +182,15 @@ main {
 }
 
 .tool-card .tool-icon {
-    font-size: 3.8rem;
-    margin-bottom: 18px;
+    font-size: 2rem;
+    margin-bottom: 8px;
     color: var(--accent);
-    text-shadow: 0 0 18px var(--cyber-neon-cyan), 0 0 6px var(--cyber-neon-pink);
+    text-shadow: 0 0 12px var(--cyber-neon-cyan), 0 0 4px var(--cyber-neon-pink);
 }
 
 .tool-card h3 {
-    font-size: 1.7rem;
-    margin-bottom: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
     margin-top: 0;
     letter-spacing: 1px;
 }
@@ -179,8 +210,8 @@ main {
 }
 
 .tool-card p {
-    font-size: 1.08rem;
-    margin-bottom: 24px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
     flex-grow: 1;
     color: #fff;
     text-shadow: 0 0 7px var(--cyber-neon-cyan);
@@ -193,10 +224,10 @@ main {
     color: #0a0a0a;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 0 12px var(--cyber-neon-pink);
-    padding: 14px 24px;
-    font-size: 1.08rem;
+    padding: 7px 20px;
+    font-size: 0.92rem;
     transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
     margin-top: auto; /* Push button to the bottom */
 }
@@ -215,9 +246,9 @@ main {
 /* 📣 Share Icons within cards */
 .share-buttons {
     display: flex;
-    gap: 16px;
-    margin-top: 32px;
-    padding-top: 18px;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 6px;
     border-top: 1px solid rgba(255,255,255,0.12);
     width: 100%; /* Take full width */
     justify-content: flex-end; /* Align to right */
@@ -346,6 +377,9 @@ footer {
     padding: 1.5rem; /* More padding */
     font-size: 0.9rem; /* Slightly larger font */
     margin-top: 60px; /* More space above footer */
+    text-align: center;
+    width: 100%;
+    display: block;
 }
 
 footer a {
@@ -376,9 +410,19 @@ nav.sticky {
     justify-content: space-between;
     background-color: var(--panel);
     backdrop-filter: blur(10px); /* Slightly stronger blur */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.6); /* Stronger shadow */
+    box-shadow: 0 0 32px 8px var(--cyber-neon-cyan), 0 0 16px 4px var(--cyber-neon-pink), 0 2px 12px rgba(0,0,0,0.7);
+    animation: navbarGlow 2.5s infinite alternate;
     z-index: 1000;
     border-bottom: 1px solid var(--accent);
+}
+
+@keyframes navbarGlow {
+    0% {
+        box-shadow: 0 0 32px 8px var(--cyber-neon-cyan), 0 0 16px 4px var(--cyber-neon-pink), 0 2px 12px rgba(0,0,0,0.7);
+    }
+    100% {
+        box-shadow: 0 0 48px 16px var(--cyber-neon-pink), 0 0 24px 8px var(--cyber-neon-cyan), 0 2px 18px rgba(0,0,0,0.8);
+    }
 }
 
 nav.sticky h1 a {
@@ -408,18 +452,21 @@ nav.sticky .nav-links {
 }
 
 nav.sticky .nav-links li a {
-    color: var(--text);
+    color: var(--accent);
     text-decoration: none;
-    padding: 0.6rem 0.8rem; /* More padding */
+    padding: 0.6rem 0.8rem;
     border-bottom: 2px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
+    transition: border-color 0.2s, color 0.2s, text-shadow 0.2s;
+    text-shadow: 0 0 18px var(--cyber-neon-cyan), 0 0 8px var(--cyber-neon-pink), 0 0 4px var(--cyber-neon-yellow);
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 nav.sticky .nav-links li a:hover,
 nav.sticky .nav-links li a.active {
     border-color: var(--accent);
-    color: var(--accent);
-    text-shadow: 0 0 5px var(--accent);
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 32px var(--cyber-neon-cyan), 0 0 16px var(--cyber-neon-pink), 0 0 8px var(--cyber-neon-yellow);
 }
 
 /* --- Dropdown Specific Styles --- */
@@ -574,12 +621,12 @@ nav.sticky .dropdown-content li a:hover {
         padding: 0 16px;
     }
     .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 8px;
     }
     .tool-card {
         max-width: 100%;
-        padding: 0.6rem;
+        padding: 0.8rem;
     }
 }
 @media (max-width: 600px) {
