@@ -233,3 +233,18 @@ body[data-category="temperature"] {
   --accent: #ff2b88;
 }
 
+.swatch-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid #444;
+  box-shadow: 0 0 6px rgba(255,255,255,0.2);
+}
