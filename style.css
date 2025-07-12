@@ -222,3 +222,13 @@ nav h1 a {
     justify-content: center;
   }
 }
+
+body[data-category="length"] {
+  --accent: #00c3ff;
+}
+body[data-category="weight"] {
+  --accent: #ffaa00;
+}
+body[data-category="temperature"] {
+  --accent: #ff2b88;
+}
