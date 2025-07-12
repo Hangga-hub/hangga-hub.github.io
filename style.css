@@ -357,9 +357,39 @@ body[data-category="temperature"] {
     box-shadow: 0 0 6px rgba(255,255,255,0.2);
 }
 
-/* Make sure .hidden is effective everywhere */
+/* Ensure a consistent box-model across all elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Fundamental layout for html and body to prevent overflow */
+html, body {
+    width: 100%;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar caused by overflowing elements */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    /* Add your existing background/font styles here */
+}
+
+main {
+    flex-grow: 1; /* Allow main content to take up available space */
+    width: 100%;
+    max-width: 900px; /* Adjust as needed, but give it a max-width */
+    margin: 20px auto; /* Center the main content with vertical margin */
+    padding: 15px; /* Add some padding inside the main content area */
+}
+
+
+/* Make sure .hidden is effective everywhere, using !important for robustness */
 .hidden {
     display: none !important;
+    visibility: hidden !important; /* Add visibility hidden as extra measure */
 }
 
 /* More specific and stronger rules for the converted image preview */
@@ -367,16 +397,16 @@ body[data-category="temperature"] {
     max-width: 100% !important; /* Force max-width */
     height: auto !important;    /* Maintain aspect ratio */
     display: block !important;
-    box-sizing: border-box;     /* Include padding/border in element's total width/height */
-    margin: 1rem auto;
+    margin: 1rem auto !important; /* Center image and provide spacing */
     border: 1px solid var(--accent); /* Add a border to easily see its boundaries */
+    box-sizing: border-box; /* Crucial for including padding/border in total width */
 }
 
 /* Also ensure its parent container helps constrain it */
 .tool-image-converter .converted-preview-container {
     max-width: 100%;
     overflow: hidden; /* Hide anything that spills over */
-    padding: 10px; /* Give it some breathing room */
+    padding: 10px; /* Give it some breathing room inside its container */
     box-sizing: border-box;
     border: 1px dashed var(--border); /* Debugging border for container */
 }
@@ -387,9 +417,9 @@ body[data-category="temperature"] {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border-left-color: var(--accent); /* Use your accent color */
+    border-left-color: var(--accent);
     animation: spin 1s ease infinite;
-    margin: 0 auto; /* Center the spinner */
+    margin: 0 auto;
     display: inline-block; /* Ensure it's not block level by default */
 }
 
