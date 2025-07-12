@@ -130,8 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const navbarContainer = document.getElementById("navbar");
             if (navbarContainer) {
                 navbarContainer.innerHTML = html; // Inject the navbar HTML
-                // Immediately initialize interactions after injection
-                initializeNavbarInteractions();
+                // Delay initialization to ensure DOM is ready
+                setTimeout(() => {
+                    initializeNavbarInteractions();
+                }, 50);
             } else {
                 console.error("Error: Navbar container (#navbar) not found in index.html. Cannot inject navbar.");
             }

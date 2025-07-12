@@ -40,14 +40,13 @@ body {
     font-family: var(--font-body); /* Use Inter for readability */
     background: var(--bg);
     background-image:
-        radial-gradient(circle at top right, #1a1a1a 0%, transparent 50%), /* Subtle gradient */
-        repeating-linear-gradient(45deg, #111 0px, #0a0a0a 2px, #111 4px); /* Original pattern */
+        repeating-linear-gradient(45deg, #111 0px, #0a0a0a 2px, #111 4px);
     color: var(--text);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.7; /* Increased line height for better readability */
-    padding-top: var(--navbar-height); /* Push page content below fixed navbar */
+    padding-top: calc(var(--navbar-height) + 16px); /* Increased top padding to prevent cropping */
     overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
 
@@ -55,7 +54,7 @@ body {
 main {
     flex-grow: 1;
     max-width: var(--max-content-width); /* Use new max-width */
-    margin: 40px auto; /* More vertical space around content */
+    margin: calc(var(--navbar-height) + 40px) auto 40px auto; /* Ensure enough space below navbar */
     padding: 0 25px; /* Generous horizontal padding */
     width: 100%; /* Ensure it takes full width up to max-width */
 }
