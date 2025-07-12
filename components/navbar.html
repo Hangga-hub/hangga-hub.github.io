@@ -21,18 +21,18 @@
   z-index: 1000;       /* high enough to clear any other layers */
   background-color: var(--panel);    /* or whatever opaque bg you use */
   backdrop-filter: blur(10px);        /* optional glass effect */
-}
+  }
 
 /* If your main .container is also positioned/z-indexed, lower it */
-.main, .container {
-  position: relative;
-  z-index: 1;
-}
+  .main, .container {
+    position: relative;
+    z-index: 1;
+  }
 
-/* And make sure your body/content isn’t hiding overflow */
-body, html {
-  overflow-x: hidden;
-}
+  /* And make sure your body/content isn’t hiding overflow */
+  body, html {
+    overflow-x: hidden;
+  }
 
 </style>
 
