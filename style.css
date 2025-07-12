@@ -1,40 +1,223 @@
 /* ──────────────────────────────────────────────────────
    Global Variables and Base Styles
 ────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap');
 
 :root {
     --bg: #0a0a0a;
     --text: #eee;
-    --accent: #00ffff;
-    --pulse: #ff00cc;
-    --panel: rgba(30, 30, 30, 0.8);
-    --glass: rgba(255, 255, 255, 0.05);
-    --border: #333;
-    --max-width: 640px;
-    --font: 'Orbitron', sans-serif;
-    --navbar-height: 60px; /* Define navbar height as a variable */
+    --accent: #00ffff; /* Neon cyan */
+    --pulse: #ff00cc; /* Neon magenta */
+    --panel: rgba(30, 30, 30, 0.8); /* Dark semi-transparent for panels */
+    --glass: rgba(255, 255, 255, 0.05); /* Very subtle white for inner glow */
+    --border: #333; /* Dark grey border */
+    --max-content-width: 1200px; /* Increased max width for more spacious feel */
+    --font-heading: 'Orbitron', sans-serif; /* For headings and bold elements */
+    --font-body: 'Inter', sans-serif; /* For body text, more readable */
+    --navbar-height: 70px; /* Slightly taller for better spacing */
     --accent-hover: #008888; /* A slightly darker shade for hover effects */
+    --button-bg: var(--pulse);
+    --button-text: #000;
 }
 
 /* 🧱 Base Layout */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    font-family: var(--font);
+    font-family: var(--font-body); /* Use Inter for readability */
     background: var(--bg);
     background-image:
-        radial-gradient(circle at top right, #111 0%, transparent 50%),
-        repeating-linear-gradient(45deg, #111 0px, #0a0a0a 2px, #111 4px);
+        radial-gradient(circle at top right, #1a1a1a 0%, transparent 50%), /* Subtle gradient */
+        repeating-linear-gradient(45deg, #111 0px, #0a0a0a 2px, #111 4px); /* Original pattern */
     color: var(--text);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    line-height: 1.6;
+    line-height: 1.7; /* Increased line height for better readability */
     padding-top: var(--navbar-height); /* Push page content below fixed navbar */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
 
-/* 🔮 Neon Container */
-.container {
+/* Main Content Area */
+main {
+    flex-grow: 1;
+    max-width: var(--max-content-width); /* Use new max-width */
+    margin: 40px auto; /* More vertical space around content */
+    padding: 0 25px; /* Generous horizontal padding */
+    width: 100%; /* Ensure it takes full width up to max-width */
+}
+
+/* 🔮 Hero Section */
+#hero {
+    text-align: center;
+    padding: 80px 20px; /* More padding for spacious feel */
+    margin-bottom: 60px; /* Space before featured tools */
+    animation: fadeIn 1s ease-out;
+}
+
+#hero h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem; /* Larger heading */
+    color: var(--accent);
+    text-shadow: 0 0 15px var(--accent);
+    margin-bottom: 15px;
+}
+
+#hero .subtitle {
+    font-size: 1.3rem;
+    color: var(--text);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ──────────────────────────────────────────────────────
+   Tool Cards & Grid Layout
+────────────────────────────────────────────────────── */
+#featured-tools h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem; /* Consistent heading size */
+    color: var(--pulse);
+    text-align: center;
+    margin-bottom: 50px; /* More space below heading */
+    text-shadow: 0 0 10px var(--pulse);
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between cards */
+    padding: 0;
+    list-style: none; /* Ensure no list bullets */
+}
+
+.tool-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px; /* More padding inside cards */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1), inset 0 0 8px rgba(0, 255, 255, 0.05); /* Subtle glow */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(8px); /* Apply glass effect to cards */
+}
+
+.tool-card:hover {
+    transform: translateY(-8px); /* Lift on hover */
+    border-color: var(--accent);
+    box-shadow: 0 0 25px var(--pulse), inset 0 0 10px var(--pulse); /* Stronger glow on hover */
+}
+
+.tool-card .tool-icon {
+    font-size: 3.5rem; /* Larger icon size */
+    color: var(--accent);
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px var(--accent);
+}
+
+.tool-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.tool-card h3 a {
+    color: var(--text); /* Tool name color */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.tool-card h3 a:hover {
+    color: var(--accent); /* Hover effect for tool name */
+}
+
+.tool-card p {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 20px; /* More space before button */
+    flex-grow: 1; /* Allow description to take available space */
+}
+
+.tool-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 20px; /* Generous padding */
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: auto; /* Push button to the bottom */
+}
+
+.tool-button:hover {
+    background-color: var(--accent); /* Change button color on hover */
+    transform: scale(1.03);
+    box-shadow: 0 0 15px var(--pulse);
+}
+
+.tool-button i {
+    margin-left: 8px;
+    font-size: 1.1rem;
+}
+
+/* 📣 Share Icons within cards */
+.share-buttons {
+    display: flex;
+    gap: 12px; /* More space between icons */
+    margin-top: 25px; /* More space from button */
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+    width: 100%; /* Take full width */
+    justify-content: flex-end; /* Align to right */
+}
+
+.share-buttons i {
+    font-size: 28px; /* Larger icon size */
+    color: var(--text); /* Default icon color */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Subtle glow */
+    transition: color 0.2s, transform 0.2s, text-shadow 0.2s;
+}
+
+.share-buttons a:hover i {
+    color: var(--accent); /* Color change on hover */
+    transform: translateY(-3px); /* Slight lift */
+    text-shadow: 0 0 15px var(--pulse); /* Stronger glow on hover */
+}
+
+/* ──────────────────────────────────────────────────────
+   Ad Spot
+────────────────────────────────────────────────────── */
+.ad-banner {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px; /* Generous padding */
+    text-align: center;
+    margin-top: 60px; /* Ample space above ad */
+    box-shadow: inset 0 0 15px rgba(255, 255, 0, 0.1), 0 0 20px rgba(255, 255, 0, 0.2); /* Subtle gold glow for ads */
+    backdrop-filter: blur(8px);
+}
+
+.ad-banner p {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────
+   Remaining Global Styles (Adjusted)
+────────────────────────────────────────────────────── */
+
+/* 🔮 Neon Container - This class is no longer used in index.html, can be removed if not needed elsewhere */
+/* .container {
     max-width: var(--max-width);
     margin: 2rem auto;
     background: var(--panel);
@@ -51,9 +234,9 @@ body {
     0% { box-shadow: 0 0 10px var(--accent); }
     50% { box-shadow: 0 0 20px var(--pulse); }
     100% { box-shadow: 0 0 10px var(--accent); }
-}
+} */
 
-/* 🔧 Form Fields */
+/* 🔧 Form Fields (Assuming these are for individual tool pages, keep as is) */
 input,
 textarea {
     background: transparent;
@@ -80,7 +263,7 @@ textarea {
     resize: vertical;
 }
 
-/* 💾 Buttons */
+/* 💾 Buttons (Generic, use .tool-button for specific tool action) */
 button {
     background-color: var(--pulse);
     color: #000;
@@ -98,24 +281,6 @@ button:hover {
     box-shadow: 0 0 12px var(--accent);
 }
 
-/* 📣 Share Icons */
-.share-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    margin-top: 1rem;
-}
-
-.share-buttons img {
-    width: 24px;
-    height: 24px;
-    filter: drop-shadow(0 0 5px var(--pulse));
-    transition: transform 0.2s ease;
-}
-
-.share-buttons img:hover {
-    transform: scale(1.3) rotate(-4deg);
-}
 
 /* ⚡ Result Output */
 #result {
@@ -133,14 +298,25 @@ footer {
     background-color: #111;
     color: var(--text);
     text-align: center;
-    padding: 1rem;
-    font-size: 0.85rem;
+    padding: 1.5rem; /* More padding */
+    font-size: 0.9rem; /* Slightly larger font */
     border-top: 1px solid var(--border);
-    margin-top: auto;
+    margin-top: 60px; /* More space above footer */
 }
 
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--pulse);
+}
+
+
 /* ──────────────────────────────────────────────────────
-   Navbar Styling
+   Navbar Styling (Minimal Changes, as it's handled by JS)
 ────────────────────────────────────────────────────── */
 nav.sticky {
     position: fixed;
@@ -148,48 +324,47 @@ nav.sticky {
     left: 0;
     right: 0;
     height: var(--navbar-height);
-    padding: 0 1.5rem;
+    padding: 0 25px; /* Match main content padding */
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: var(--panel);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px); /* Slightly stronger blur */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.6); /* Stronger shadow */
     z-index: 1000;
     border-bottom: 1px solid var(--accent);
 }
 
-/* Brand link */
 nav.sticky h1 a {
     color: var(--accent);
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.4rem; /* Slightly larger brand name */
+    font-family: var(--font-heading);
+    text-shadow: 0 0 8px var(--accent);
 }
 
-/* Menu toggle (hamburger) */
 nav.sticky #menuToggle {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Larger hamburger icon */
     background: none;
     border: none;
     color: var(--accent);
     cursor: pointer;
-    display: none; /* Hidden by default on desktop */
+    display: none;
 }
 
-/* Nav links (main row) */
 nav.sticky .nav-links {
     display: flex;
-    gap: 1rem; /* Space between main nav items */
+    gap: 1.5rem; /* More space between nav items */
     list-style: none;
     margin: 0;
     padding: 0;
-    position: relative; /* Crucial for absolute positioning of dropdowns */
+    position: relative;
 }
 
 nav.sticky .nav-links li a {
     color: var(--text);
     text-decoration: none;
-    padding: 0.4rem;
+    padding: 0.6rem 0.8rem; /* More padding */
     border-bottom: 2px solid transparent;
     transition: border-color 0.2s, color 0.2s;
 }
@@ -197,49 +372,45 @@ nav.sticky .nav-links li a {
 nav.sticky .nav-links li a:hover,
 nav.sticky .nav-links li a.active {
     border-color: var(--accent);
-    color: var(--accent); /* Keep text color consistent with accent */
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
 }
 
 /* --- Dropdown Specific Styles --- */
-
-/* Dropdown container within main nav */
 nav.sticky .nav-links li.dropdown {
-    position: relative; /* Parent for dropdown-content */
+    position: relative;
 }
 
-/* Dropdown menu (hidden by default) */
 nav.sticky .dropdown-content {
-    display: none; /* THIS IS KEY: Hides the dropdown by default */
+    display: none;
     position: absolute;
-    top: 100%; /* Positions it right below the parent dropdown link */
+    top: 100%;
     left: 0;
-    background: var(--panel); /* Same as navbar background */
-    min-width: 180px;
-    margin: 0.25rem 0; /* Small gap from parent */
-    padding: 0.5rem 0;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    z-index: 1001; /* Ensure it's above other content */
-    list-style: none; /* Remove list item bullets from dropdown */
-    /* For desktop, we want it to display as a block or flex column when visible */
-    flex-direction: column; 
-}
-
-nav.sticky .dropdown-content li {
-    margin: 0; /* No extra margin on dropdown items */
+    background: var(--panel);
+    min-width: 200px; /* Slightly wider dropdown */
+    margin: 0.5rem 0; /* More gap */
+    padding: 0.75rem 0; /* More padding */
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7); /* Stronger shadow */
+    z-index: 1001;
+    list-style: none;
+    flex-direction: column;
+    border: 1px solid var(--accent); /* Neon border for dropdown */
+    backdrop-filter: blur(12px);
 }
 
 nav.sticky .dropdown-content li a {
-    display: block; /* Make dropdown links fill their container */
-    padding: 0.5rem 1rem;
+    display: block;
+    padding: 0.75rem 1.2rem; /* More padding */
     color: var(--text);
     text-decoration: none;
-    transition: background 0.2s;
-    border-bottom: none; /* No border for dropdown links */
+    transition: background 0.2s, color 0.2s;
+    border-bottom: none;
 }
 
 nav.sticky .dropdown-content li a:hover {
-    background: var(--accent-hover); /* Hover background for dropdown items */
+    background: var(--accent-hover);
+    color: white; /* Ensure good contrast */
 }
 
 /* ──────────────────────────────────────────────────────
@@ -247,7 +418,7 @@ nav.sticky .dropdown-content li a:hover {
 ────────────────────────────────────────────────────── */
 @media (min-width: 769px) {
     nav.sticky .dropdown:hover .dropdown-content {
-        display: flex; /* Show dropdown content on hover as a column layout */
+        display: flex;
     }
 }
 
@@ -255,60 +426,124 @@ nav.sticky .dropdown-content li a:hover {
    Mobile Responsive Menu
 ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-    /* Show hamburger icon */
     nav.sticky #menuToggle {
         display: block;
     }
 
-    /* Mobile nav links: hidden off-canvas by default */
     nav.sticky .nav-links {
         position: fixed;
-        top: var(--navbar-height); /* Below the fixed navbar */
+        top: var(--navbar-height);
         right: 0;
-        flex-direction: column; /* Stack links vertically */
+        flex-direction: column;
         background-color: var(--panel);
-        width: 220px;
-        max-width: 80%;
-        height: calc(100vh - var(--navbar-height)); /* Full height below navbar */
-        padding: 1rem;
-        transform: translateX(100%); /* Start off-screen */
+        width: 250px; /* Wider mobile menu */
+        max-width: 90%;
+        height: calc(100vh - var(--navbar-height));
+        padding: 2rem 1.5rem; /* More padding */
+        transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
-        box-shadow: 0 0 8px var(--accent); /* Shadow for mobile menu */
+        box-shadow: -5px 0 15px var(--accent); /* Shadow on the left */
+        overflow-y: auto; /* Enable scrolling if menu is long */
     }
 
-    /* Slide in when `.show` class is added by JS */
     nav.sticky .nav-links.show {
         transform: translateX(0);
     }
 
-    /* Adjust spacing for mobile links */
     nav.sticky .nav-links li {
-        margin: 0.5rem 0;
+        margin: 0.8rem 0; /* More vertical space between items */
     }
 
-    /* Mobile dropdown specific styles */
     nav.sticky .dropdown-content {
-        position: static; /* Remove absolute positioning in mobile menu */
-        box-shadow: none; /* No shadow needed as it's part of the main mobile menu */
-        padding-left: 1rem; /* Indent dropdown items for better hierarchy */
-        background: transparent; /* No background, it blends with mobile menu */
-        display: none; /* Hidden by default, shown by JS toggle */
+        position: static;
+        box-shadow: none;
+        padding-left: 1.5rem; /* More indent */
+        background: transparent;
+        border: none; /* No border for mobile dropdown */
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
 
-    /* Mobile: Display dropdown content when parent has 'open' class */
     nav.sticky .dropdown.open .dropdown-content {
-        display: flex; /* Show dropdown items as a column when toggled */
+        display: flex;
     }
 
-    /* Ensure dropdown button links don't have border-bottom on mobile */
     nav.sticky .dropdown .dropbtn {
         border-bottom: none;
     }
+
+    /* Adjust main content padding for smaller screens */
+    main {
+        padding: 0 15px;
+        margin: 30px auto;
+    }
+
+    #hero {
+        padding: 60px 15px;
+        margin-bottom: 40px;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    #hero .subtitle {
+        font-size: 1.1rem;
+    }
+
+    #featured-tools h2 {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .tool-card .tool-icon {
+        font-size: 3rem;
+    }
+
+    .tool-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .share-buttons {
+        justify-content: center; /* Center share buttons on mobile */
+    }
+
+    .ad-banner {
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    footer {
+        padding: 1rem;
+        margin-top: 40px;
+    }
 }
 
+/* ──────────────────────────────────────────────────────
+   Animations and Utility Classes
+────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Hide utility (keep for specific elements if needed) */
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
 
 /* ──────────────────────────────────────────────────────
-   Tool Layouts & Dynamic Accents
+   Tool Specific Overrides (Keep these if individual tool pages use them)
 ────────────────────────────────────────────────────── */
 .tool-json textarea {
     height: 280px;
@@ -320,98 +555,25 @@ nav.sticky .dropdown-content li a:hover {
     margin-right: 0.5rem;
 }
 
-@media (max-width: 600px) {
-    .tool-json textarea,
-    .tool-bmi input {
-        width: 100%;
-    }
-
-    .share-buttons {
-        justify-content: center;
-    }
-}
-
-body[data-category="length"] {
-    --accent: #00c3ff;
-}
-body[data-category="weight"] {
-    --accent: #ffaa00;
-}
-body[data-category="temperature"] {
-    --accent: #ff2b88;
-}
-
-.swatch-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-.swatch {
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 2px solid #444;
-    box-shadow: 0 0 6px rgba(255,255,255,0.2);
-}
-
-/* Ensure a consistent box-model across all elements */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-/* Fundamental layout for html and body to prevent overflow */
-html, body {
-    width: 100%;
-    min-height: 100vh; /* Ensure body takes at least full viewport height */
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scrollbar caused by overflowing elements */
-}
-
-body {
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    /* Add your existing background/font styles here */
-}
-
-main {
-    flex-grow: 1; /* Allow main content to take up available space */
-    width: 100%;
-    max-width: 900px; /* Adjust as needed, but give it a max-width */
-    margin: 20px auto; /* Center the main content with vertical margin */
-    padding: 15px; /* Add some padding inside the main content area */
-}
-
-
-/* Make sure .hidden is effective everywhere, using !important for robustness */
-.hidden {
-    display: none !important;
-    visibility: hidden !important; /* Add visibility hidden as extra measure */
-}
-
 /* More specific and stronger rules for the converted image preview */
 .tool-image-converter .preview-image {
-    max-width: 100% !important; /* Force max-width */
-    height: auto !important;    /* Maintain aspect ratio */
+    max-width: 100% !important;
+    height: auto !important;
     display: block !important;
-    margin: 1rem auto !important; /* Center image and provide spacing */
-    border: 1px solid var(--accent); /* Add a border to easily see its boundaries */
-    box-sizing: border-box; /* Crucial for including padding/border in total width */
+    margin: 1rem auto !important;
+    border: 1px solid var(--accent);
+    box-sizing: border-box;
 }
 
-/* Also ensure its parent container helps constrain it */
 .tool-image-converter .converted-preview-container {
     max-width: 100%;
-    overflow: hidden; /* Hide anything that spills over */
-    padding: 10px; /* Give it some breathing room inside its container */
+    overflow: hidden;
+    padding: 10px;
     box-sizing: border-box;
-    border: 1px dashed var(--border); /* Debugging border for container */
+    border: 1px dashed var(--border);
 }
 
-/* Double check spinner animation */
+/* Spinner (keep as is) */
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     width: 36px;
@@ -420,10 +582,15 @@ main {
     border-left-color: var(--accent);
     animation: spin 1s ease infinite;
     margin: 0 auto;
-    display: inline-block; /* Ensure it's not block level by default */
+    display: inline-block;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Dynamic accent colors - still valid if you use data-category on body for tool pages */
+body[data-category="length"] { --accent: #00c3ff; }
+body[data-category="weight"] { --accent: #ffaa00; }
+body[data-category="temperature"] { --accent: #ff2b88; }
