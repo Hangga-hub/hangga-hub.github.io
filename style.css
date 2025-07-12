@@ -31,6 +31,17 @@
 }
 
 /* 🧱 Base Layout */
+html, body {
+    width: 100vw;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: auto !important;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -46,17 +57,18 @@ body {
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.7; /* Increased line height for better readability */
-    padding-top: calc(var(--navbar-height) + 16px); /* Increased top padding to prevent cropping */
-    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    padding-top: calc(var(--navbar-height) + 16px); /* Extra space for navbar */
+    overflow-x: auto !important;
 }
 
 /* Main Content Area */
 main {
     flex-grow: 1;
-    max-width: var(--max-content-width); /* Use new max-width */
-    margin: calc(var(--navbar-height) + 40px) auto 40px auto; /* Ensure enough space below navbar */
-    padding: 0 25px; /* Generous horizontal padding */
-    width: 100%; /* Ensure it takes full width up to max-width */
+    max-width: var(--max-content-width);
+    margin: calc(var(--navbar-height) + 40px) auto 40px auto;
+    padding: 0 25px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* 🔮 Hero Section */
