@@ -1,20 +1,25 @@
 // Inject shared navbar
 document.addEventListener("DOMContentLoaded", () => {
   fetch("https://hangga-hub.github.io/components/navbar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("navbar").innerHTML = html;
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("navbar").innerHTML = html;
 
-      document.getElementById("menuToggle")?.addEventListener("click", () => {
-        document.querySelector(".nav-links")?.classList.toggle("show");
-      });
-
-      document.querySelectorAll(".nav-links a").forEach(link => {
-        if (window.location.href.includes(link.href)) {
-          link.classList.add("active");
-        }
-      });
+    // Hook up mobile menu toggle
+    const toggle = document.getElementById("menuToggle");
+    const links  = document.querySelector(".nav-links");
+    toggle?.addEventListener("click", () => {
+      links.classList.toggle("show");
     });
+
+    // Active link highlight (optional)
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      if (window.location.href.includes(link.href)) {
+        link.classList.add("active");
+      }
+    });
+  });
+
 
   setupUnitOptions();
 });

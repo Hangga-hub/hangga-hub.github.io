@@ -1,6 +1,6 @@
 <nav class="sticky">
   <h1><a href="https://hangga-hub.github.io/">🛠 Hangga Tools</a></h1>
-  <button id="menuToggle">☰</button>
+  <button id="menuToggle" aria-label="Toggle menu">☰</button>
   <ul class="nav-links">
     <li><a href="https://hangga-hub.github.io/">Home</a></li>
     <li><a href="https://hangga-hub.github.io/bmi-calculator">BMI Calculator</a></li>
@@ -13,9 +13,16 @@
 
 
 <style>
-/*──────────────────────────────────────────────────────
-  Fixed Navbar on Top
-──────────────────────────────────────────────────────*/
+/* ──────────────────────────────────────────────────────
+   1. Push page content below the navbar
+────────────────────────────────────────────────────── */
+body {
+  padding-top: 60px; /* equals navbar height */
+}
+
+/* ──────────────────────────────────────────────────────
+   2. Fixed navbar
+────────────────────────────────────────────────────── */
 nav.sticky {
   position: fixed;
   top: 0;
@@ -26,7 +33,7 @@ nav.sticky {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--panel, rgba(20,20,20,0.9));
+  background-color: var(--panel, rgba(20,20,20,0.95));
   backdrop-filter: blur(8px);
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);
   z-index: 1000;
@@ -39,7 +46,9 @@ nav.sticky h1 a {
   font-size: 1.2rem;
 }
 
-/* Toggle button (hidden on desktop) */
+/* ──────────────────────────────────────────────────────
+   3. Menu toggle (hidden on desktop)
+────────────────────────────────────────────────────── */
 nav.sticky #menuToggle {
   font-size: 1.5rem;
   background: none;
@@ -49,7 +58,9 @@ nav.sticky #menuToggle {
   display: none;
 }
 
-/* Link list (desktop) */
+/* ──────────────────────────────────────────────────────
+   4. Desktop nav links
+────────────────────────────────────────────────────── */
 nav.sticky .nav-links {
   display: flex;
   gap: 1rem;
@@ -71,37 +82,40 @@ nav.sticky .nav-links li a.active {
   border-color: var(--accent, #00ffff);
 }
 
-/* Push all content below the navbar */
-main.container {
-  padding-top: 70px; /* should be >= nav height */
-  position: relative;
-  z-index: 1;
-}
-
-/*──────────────────────────────────────────────────────
-  Mobile Responsive Menu
-──────────────────────────────────────────────────────*/
-@media (max-width: 600px) {
+/* ──────────────────────────────────────────────────────
+   5. Mobile responsive menu
+────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* show hamburger */
   nav.sticky #menuToggle {
     display: block;
   }
 
+  /* hide links off-canvas */
   nav.sticky .nav-links {
-    position: absolute;
+    position: fixed;
     top: 60px;
-    right: 1.5rem;
+    right: 0;
     flex-direction: column;
-    background-color: var(--panel, rgba(20,20,20,0.9));
+    background-color: var(--panel, rgba(20,20,20,0.95));
+    width: 200px;
+    max-width: 80%;
+    height: calc(100vh - 60px);
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    display: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
   }
 
+  /* slide in when `.show` is toggled */
   nav.sticky .nav-links.show {
-    display: flex;
+    transform: translateX(0);
+  }
+
+  nav.sticky .nav-links li {
+    margin: 0.5rem 0;
   }
 }
+
 
 </style>
 
