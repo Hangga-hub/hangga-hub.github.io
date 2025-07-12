@@ -149,33 +149,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-    // Ensure navbar interactions are always initialized after injection
-    function reinitNavbar() {
-      // Try to call the function from script.js if available
-      if (window.initializeNavbarInteractions) {
-        window.initializeNavbarInteractions();
-      }
-      // Fallback: manually re-attach dropdown click listeners if needed
-      document.querySelectorAll('.dropdown .dropbtn').forEach(btn => {
-        btn.onclick = function(e) {
-          if (window.innerWidth <= 768) {
-            e.preventDefault();
-            var parentDropdown = this.parentElement;
-            document.querySelectorAll('.dropdown.open').forEach(openDropdown => {
-              if (openDropdown !== parentDropdown) {
-                openDropdown.classList.remove('open');
-              }
-            });
-            parentDropdown.classList.toggle('open');
-          }
-        };
-      });
-    }
-    document.addEventListener("DOMContentLoaded", reinitNavbar);
-    window.addEventListener("pageshow", reinitNavbar);
-    window.addEventListener("focus", reinitNavbar);
-    window.addEventListener("popstate", reinitNavbar);
-    </script>
+   
 </body>
 </html>
