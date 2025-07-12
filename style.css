@@ -204,3 +204,57 @@ nav h1 a {
     display: flex;
   }
 }
+
+/* 🔧 Layout for JSON Validator */
+.tool-json textarea {
+  height: 280px;
+}
+
+.tool-json button {
+  margin-top: 0.8rem;
+}
+
+.tool-json #result {
+  margin-top: 1rem;
+  border-left: 4px solid #66bb6a;
+  padding-left: 1rem;
+}
+
+/* 🧮 Layout for BMI Calculator */
+.tool-bmi input[type="number"] {
+  max-width: 200px;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.tool-bmi button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.tool-bmi #result {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #ffc107;
+  background-color: #1b1b1b;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 500px) {
+  .tool-json textarea,
+  .tool-bmi input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .tool-json button,
+  .tool-bmi button {
+    width: 100%;
+  }
+
+  .share-buttons {
+    justify-content: center;
+  }
+}
