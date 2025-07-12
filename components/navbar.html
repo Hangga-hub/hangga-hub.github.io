@@ -1,123 +1,26 @@
 <nav class="sticky">
-  <h1><a href="https://hangga-hub.github.io/">🛠 Hangga Tools</a></h1>
-  <button id="menuToggle" aria-label="Toggle menu">☰</button>
-  <ul class="nav-links">
-    <li><a href="https://hangga-hub.github.io/">Home</a></li>
-    <li><a href="https://hangga-hub.github.io/bmi-calculator">BMI Calculator</a></li>
-    <li><a href="https://hangga-hub.github.io/json-validator">JSON Validator</a></li>
-    <li><a href="https://hangga-hub.github.io/unit-converter">Unit Converter</a></li>
-    <li><a href="https://hangga-hub.github.io/color-picker">Color Picker</a></li>
-    <li><a href="https://hangga-hub.github.io/loan-calculator">Loan Calculator</a></li>
-    <li><a href="https://hangga-hub.github.io/qr-code-generator">QR Code Generator</a></li>
-    <li><a href="https://hangga-hub.github.io/csv-json-converter">CSV ⇄ JSON Converter</a></li>
-  </ul>
+    <h1><a href="https://hangga-hub.github.io/">🛠 Hangga Tools</a></h1>
+    <button id="menuToggle" aria-label="Toggle menu">☰</button>
+
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Converters ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="https://hangga-hub.github.io/json-validator">JSON Validator</a></li>
+                <li><a href="https://hangga-hub.github.io/unit-converter">Unit Converter</a></li>
+                <li><a href="https://hangga-hub.github.io/csv-json-converter">CSV ⇄ JSON Converter</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Calculators ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="https://hangga-hub.github.io/bmi-calculator">BMI Calculator</a></li>
+                <li><a href="https://hangga-hub.github.io/loan-calculator">Loan Calculator</a></li>
+            </ul>
+        </li>
+
+        <li><a href="https://hangga-hub.github.io/color-picker">Color Picker</a></li>
+        <li><a href="https://hangga-hub.github.io/qr-code-generator">QR Code Generator</a></li>
+        </ul>
 </nav>
-
-
-<style>
-/* ──────────────────────────────────────────────────────
-   1. Push page content below the navbar
-────────────────────────────────────────────────────── */
-body {
-  padding-top: 60px; /* equals navbar height */
-}
-
-/* ──────────────────────────────────────────────────────
-   2. Fixed navbar
-────────────────────────────────────────────────────── */
-nav.sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  padding: 0 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--panel, rgba(20,20,20,0.95));
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-  z-index: 1000;
-}
-
-/* Brand link */
-nav.sticky h1 a {
-  color: var(--accent, #00ffff);
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-
-/* ──────────────────────────────────────────────────────
-   3. Menu toggle (hidden on desktop)
-────────────────────────────────────────────────────── */
-nav.sticky #menuToggle {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--accent, #00ffff);
-  cursor: pointer;
-  display: none;
-}
-
-/* ──────────────────────────────────────────────────────
-   4. Desktop nav links
-────────────────────────────────────────────────────── */
-nav.sticky .nav-links {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav.sticky .nav-links li a {
-  color: var(--text, #eee);
-  text-decoration: none;
-  padding: 0.4rem;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s;
-}
-
-nav.sticky .nav-links li a:hover,
-nav.sticky .nav-links li a.active {
-  border-color: var(--accent, #00ffff);
-}
-
-/* ──────────────────────────────────────────────────────
-   5. Mobile responsive menu
-────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  /* show hamburger */
-  nav.sticky #menuToggle {
-    display: block;
-  }
-
-  /* hide links off-canvas */
-  nav.sticky .nav-links {
-    position: fixed;
-    top: 60px;
-    right: 0;
-    flex-direction: column;
-    background-color: var(--panel, rgba(20,20,20,0.95));
-    width: 200px;
-    max-width: 80%;
-    height: calc(100vh - 60px);
-    padding: 1rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* slide in when `.show` is toggled */
-  nav.sticky .nav-links.show {
-    transform: translateX(0);
-  }
-
-  nav.sticky .nav-links li {
-    margin: 0.5rem 0;
-  }
-}
-
-
-</style>
-
