@@ -556,6 +556,74 @@ nav.sticky .dropdown-content li a:hover {
 }
 
 /* ──────────────────────────────────────────────────────
+   Responsive Adjustments for All Devices
+────────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+    main {
+        max-width: 1000px;
+    }
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+    }
+}
+@media (max-width: 900px) {
+    main {
+        max-width: 700px;
+        padding: 0 10px;
+    }
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 18px;
+    }
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+    #featured-tools h2 {
+        font-size: 1.3rem;
+    }
+}
+@media (max-width: 600px) {
+    main {
+        max-width: 100vw;
+        padding: 0 4vw;
+        margin: 20px auto;
+    }
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .tool-card {
+        padding: 12px 8px;
+        font-size: 0.98rem;
+    }
+    #hero {
+        padding: 30px 4vw;
+        margin-bottom: 20px;
+    }
+    #hero h1 {
+        font-size: 1.3rem;
+    }
+    #hero .subtitle {
+        font-size: 0.95rem;
+    }
+    #featured-tools h2 {
+        font-size: 1.1rem;
+        margin-bottom: 18px;
+    }
+    .ad-banner {
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 0.95rem;
+    }
+    footer {
+        padding: 0.7rem;
+        font-size: 0.8rem;
+        margin-top: 20px;
+    }
+}
+
+/* ──────────────────────────────────────────────────────
    Animations and Utility Classes
 ────────────────────────────────────────────────────── */
 @keyframes fadeIn {
