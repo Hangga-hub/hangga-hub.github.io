@@ -13,8 +13,26 @@
 </nav>
 
 <style>
-  .sticky {
-    z-index: 100;
-  }
+  nav.sticky {
+  position: sticky;    /* or use `fixed` if you want it always on-screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;       /* high enough to clear any other layers */
+  background-color: var(--panel);    /* or whatever opaque bg you use */
+  backdrop-filter: blur(10px);        /* optional glass effect */
+}
+
+/* If your main .container is also positioned/z-indexed, lower it */
+.main, .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* And make sure your body/content isn’t hiding overflow */
+body, html {
+  overflow-x: hidden;
+}
+
 </style>
 
