@@ -1,38 +1,107 @@
 <nav class="sticky">
-  <h1><a href="https://hangga-hub.github.io/">&#x1F6E0; Hangga Tools</a></h1>
-  <button id="menuToggle">&#x2630;</button>
+  <h1><a href="https://hangga-hub.github.io/">🛠 Hangga Tools</a></h1>
+  <button id="menuToggle">☰</button>
   <ul class="nav-links">
     <li><a href="https://hangga-hub.github.io/">Home</a></li>
     <li><a href="https://hangga-hub.github.io/bmi-calculator">BMI Calculator</a></li>
     <li><a href="https://hangga-hub.github.io/json-validator">JSON Validator</a></li>
     <li><a href="https://hangga-hub.github.io/unit-converter">Unit Converter</a></li>
     <li><a href="https://hangga-hub.github.io/color-picker">Color Picker</a></li>
-    <li><a href="https://hangga-hub.github.io/loan-calculator">Loan Calculator</a></li>  
-    <!-- Add more tools here -->
+    <li><a href="https://hangga-hub.github.io/loan-calculator">Loan Calculator</a></li>
   </ul>
 </nav>
 
+
 <style>
-  nav.sticky {
-  position: fixed;    /* or use `fixed` if you want it always on-screen */
+/*──────────────────────────────────────────────────────
+  Fixed Navbar on Top
+──────────────────────────────────────────────────────*/
+nav.sticky {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 1000;       /* high enough to clear any other layers */
-  background-color: var(--panel);    /* or whatever opaque bg you use */
-  backdrop-filter: blur(10px);        /* optional glass effect */
+  right: 0;
+  height: 60px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--panel, rgba(20,20,20,0.9));
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+/* Brand link */
+nav.sticky h1 a {
+  color: var(--accent, #00ffff);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Toggle button (hidden on desktop) */
+nav.sticky #menuToggle {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--accent, #00ffff);
+  cursor: pointer;
+  display: none;
+}
+
+/* Link list (desktop) */
+nav.sticky .nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav.sticky .nav-links li a {
+  color: var(--text, #eee);
+  text-decoration: none;
+  padding: 0.4rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+nav.sticky .nav-links li a:hover,
+nav.sticky .nav-links li a.active {
+  border-color: var(--accent, #00ffff);
+}
+
+/* Push all content below the navbar */
+main.container {
+  padding-top: 70px; /* should be >= nav height */
+  position: relative;
+  z-index: 1;
+}
+
+/*──────────────────────────────────────────────────────
+  Mobile Responsive Menu
+──────────────────────────────────────────────────────*/
+@media (max-width: 600px) {
+  nav.sticky #menuToggle {
+    display: block;
   }
 
-/* If your main .container is also positioned/z-indexed, lower it */
-  .main, .container {
-    position: relative;
-    z-index: 1;
+  nav.sticky .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 1.5rem;
+    flex-direction: column;
+    background-color: var(--panel, rgba(20,20,20,0.9));
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    display: none;
   }
 
-  /* And make sure your body/content isn’t hiding overflow */
-  body, html {
-    overflow-x: hidden;
+  nav.sticky .nav-links.show {
+    display: flex;
   }
+}
 
 </style>
 
