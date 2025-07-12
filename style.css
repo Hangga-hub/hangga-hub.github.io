@@ -356,3 +356,44 @@ body[data-category="temperature"] {
     border: 2px solid #444;
     box-shadow: 0 0 6px rgba(255,255,255,0.2);
 }
+
+/* Make sure .hidden is effective everywhere */
+.hidden {
+    display: none !important;
+}
+
+/* More specific and stronger rules for the converted image preview */
+.tool-image-converter .preview-image {
+    max-width: 100% !important; /* Force max-width */
+    height: auto !important;    /* Maintain aspect ratio */
+    display: block !important;
+    box-sizing: border-box;     /* Include padding/border in element's total width/height */
+    margin: 1rem auto;
+    border: 1px solid var(--accent); /* Add a border to easily see its boundaries */
+}
+
+/* Also ensure its parent container helps constrain it */
+.tool-image-converter .converted-preview-container {
+    max-width: 100%;
+    overflow: hidden; /* Hide anything that spills over */
+    padding: 10px; /* Give it some breathing room */
+    box-sizing: border-box;
+    border: 1px dashed var(--border); /* Debugging border for container */
+}
+
+/* Double check spinner animation */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--accent); /* Use your accent color */
+    animation: spin 1s ease infinite;
+    margin: 0 auto; /* Center the spinner */
+    display: inline-block; /* Ensure it's not block level by default */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
