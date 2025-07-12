@@ -65,8 +65,8 @@ body {
 main {
     flex-grow: 1;
     max-width: var(--max-content-width);
-    margin: calc(var(--navbar-height) + 40px) auto 40px auto;
-    padding: 0 25px;
+    margin: calc(var(--navbar-height) + 60px) auto 60px auto;
+    padding: 0 32px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -74,43 +74,50 @@ main {
 /* 🔮 Hero Section */
 #hero {
     text-align: center;
-    padding: 80px 20px; /* More padding for spacious feel */
-    margin-bottom: 60px; /* Space before featured tools */
+    padding: 110px 24px 48px 24px;
+    margin-bottom: 70px;
     animation: fadeIn 1s ease-out;
 }
 
 #hero h1 {
     font-family: var(--font-heading);
-    font-size: 3.5rem; /* Larger heading */
+    font-size: 3.8rem;
     color: var(--accent);
-    text-shadow: 0 0 15px var(--accent);
-    margin-bottom: 15px;
+    text-shadow: 0 0 18px var(--accent);
+    margin-bottom: 22px;
+    letter-spacing: 2px;
 }
 
 #hero .subtitle {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     color: var(--text);
     max-width: 700px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.7;
+    padding-bottom: 8px;
 }
 
 /* ──────────────────────────────────────────────────────
    Tool Cards & Grid Layout
 ────────────────────────────────────────────────────── */
+#featured-tools {
+    margin-bottom: 60px;
+}
+
 #featured-tools h2 {
     font-family: var(--font-heading);
-    font-size: 2.2rem; /* Consistent heading size */
+    font-size: 2.4rem;
     color: var(--pulse);
     text-align: center;
-    margin-bottom: 50px; /* More space below heading */
-    text-shadow: 0 0 10px var(--pulse);
+    margin-bottom: 56px;
+    text-shadow: 0 0 12px var(--pulse);
+    letter-spacing: 1.5px;
 }
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* More flexible for desktop */
-    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Even smaller min width for more cards per row */
+    gap: 12px; /* Smaller gap for denser layout */
     padding: 0;
     list-style: none;
     width: 100%;
@@ -120,14 +127,14 @@ main {
 .tool-card {
     background: var(--cyber-panel);
     border: 2px solid var(--cyber-border);
-    border-radius: 16px;
-    box-shadow: 0 0 32px 4px var(--cyber-neon-cyan), 0 0 8px 2px var(--cyber-neon-pink);
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 0 40px 6px var(--cyber-neon-cyan), 0 0 12px 3px var(--cyber-neon-pink);
+    padding: 0.8rem 0.5rem 0.7rem 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     min-width: 0;
-    max-width: 480px;
+    max-width: 220px; /* Reduce max width for more cards per row */
     margin: 0 auto;
     width: 100%;
     transition: box-shadow 0.3s, border-color 0.3s;
@@ -144,17 +151,17 @@ main {
 }
 
 .tool-card .tool-icon {
-    font-size: 3.5rem; /* Larger icon size */
+    font-size: 3.8rem;
+    margin-bottom: 18px;
     color: var(--accent);
-    text-shadow: 0 0 16px var(--cyber-neon-cyan), 0 0 4px var(--cyber-neon-pink);
-    margin-bottom: 15px;
+    text-shadow: 0 0 18px var(--cyber-neon-cyan), 0 0 6px var(--cyber-neon-pink);
 }
 
 .tool-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.7rem;
+    margin-bottom: 12px;
     margin-top: 0;
-    margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .tool-card h3 a {
@@ -172,11 +179,11 @@ main {
 }
 
 .tool-card p {
+    font-size: 1.08rem;
+    margin-bottom: 24px;
+    flex-grow: 1;
     color: #fff;
-    text-shadow: 0 0 6px var(--cyber-neon-cyan);
-    font-size: 1rem;
-    margin-bottom: 20px; /* More space before button */
-    flex-grow: 1; /* Allow description to take available space */
+    text-shadow: 0 0 7px var(--cyber-neon-cyan);
 }
 
 .tool-button {
@@ -186,9 +193,10 @@ main {
     color: #0a0a0a;
     font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 12px var(--cyber-neon-pink);
-    padding: 12px 20px; /* Generous padding */
+    padding: 14px 24px;
+    font-size: 1.08rem;
     transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
     margin-top: auto; /* Push button to the bottom */
 }
@@ -207,10 +215,10 @@ main {
 /* 📣 Share Icons within cards */
 .share-buttons {
     display: flex;
-    gap: 12px; /* More space between icons */
-    margin-top: 25px; /* More space from button */
-    padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
     width: 100%; /* Take full width */
     justify-content: flex-end; /* Align to right */
 }
@@ -558,6 +566,42 @@ nav.sticky .dropdown-content li a:hover {
     footer {
         padding: 1rem;
         margin-top: 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    main {
+        padding: 0 16px;
+    }
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 8px;
+    }
+    .tool-card {
+        max-width: 100%;
+        padding: 0.6rem;
+    }
+}
+@media (max-width: 600px) {
+    #hero {
+        padding: 80px 10px 32px 10px;
+        margin-bottom: 36px;
+    }
+    #hero h1 {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+    }
+    #featured-tools h2 {
+        font-size: 1.3rem;
+        margin-bottom: 28px;
+    }
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .tool-card {
+        padding: 1rem;
+        max-width: 100%;
     }
 }
 
