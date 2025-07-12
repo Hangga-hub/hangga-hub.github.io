@@ -109,32 +109,27 @@ main {
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Space between cards */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* More flexible for desktop */
+    gap: 32px;
     padding: 0;
-    list-style: none; /* Ensure no list bullets */
+    list-style: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .tool-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 25px; /* More padding inside cards */
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1), inset 0 0 8px rgba(0, 255, 255, 0.05); /* Subtle glow */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align content to the left */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(8px); /* Apply glass effect to cards */
-
-    /* --- Cyberpunk Neon Theme Enhancements --- */
     background: var(--cyber-panel);
     border: 2px solid var(--cyber-border);
     border-radius: 16px;
     box-shadow: 0 0 32px 4px var(--cyber-neon-cyan), 0 0 8px 2px var(--cyber-neon-pink);
     padding: 2rem 1.5rem 1.5rem 1.5rem;
-    position: relative;
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
     transition: box-shadow 0.3s, border-color 0.3s;
 }
 
@@ -584,8 +579,8 @@ nav.sticky .dropdown-content li a:hover {
         padding: 0 10px;
     }
     .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
     }
     #hero h1 {
         font-size: 2.2rem;
@@ -602,11 +597,11 @@ nav.sticky .dropdown-content li a:hover {
     }
     .tools-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 16px;
     }
     .tool-card {
-        padding: 12px 8px;
-        font-size: 0.98rem;
+        padding: 1rem;
+        max-width: 100%;
     }
     #hero {
         padding: 30px 4vw;

@@ -21,9 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Dropdown Toggle for Mobile (Tap to open/close)
+        // Dropdown Toggle for Mobile and Desktop
         document.querySelectorAll(".dropdown .dropbtn").forEach(btn => {
-            // Remove any existing listeners to prevent duplicates
             btn.removeEventListener("click", handleDropdownClick);
             btn.removeEventListener("touchstart", handleDropdownClick);
             btn.addEventListener("click", handleDropdownClick);
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Handler for dropdown button clicks (supports both click and touch)
         function handleDropdownClick(e) {
-            // Only activate this JS for mobile widths (<= 768px)
+            // Mobile: toggle dropdown on click/touch
             if (window.innerWidth <= 768) {
                 e.preventDefault();
                 const parentDropdown = this.parentElement;
@@ -43,6 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 parentDropdown.classList.toggle("open");
             }
+        }
+
+        // Desktop: show dropdown on hover
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.addEventListener('mouseenter', () => {
+                    dropdown.classList.add('open');
+                });
+                dropdown.addEventListener('mouseleave', () => {
+                    dropdown.classList.remove('open');
+                });
+            });
         }
 
         // Close mobile menu and dropdowns when clicking outside
