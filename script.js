@@ -23,28 +23,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Dropdown Toggle for Mobile (Tap to open/close)
         document.querySelectorAll(".dropdown .dropbtn").forEach(btn => {
-            // Remove any existing listeners to prevent duplicates if called multiple times
-            // This is a safety measure in case this function is accidentally called more than once
+            // Remove any existing listeners to prevent duplicates
             btn.removeEventListener("click", handleDropdownClick);
+            btn.removeEventListener("touchstart", handleDropdownClick);
             btn.addEventListener("click", handleDropdownClick);
+            btn.addEventListener("touchstart", handleDropdownClick);
         });
 
-        // Handler for dropdown button clicks
+        // Handler for dropdown button clicks (supports both click and touch)
         function handleDropdownClick(e) {
-            // Only activate this JS for mobile widths (less than or equal to 768px)
+            // Only activate this JS for mobile widths (<= 768px)
             if (window.innerWidth <= 768) {
-                e.preventDefault(); // Prevent default link behavior for dropdown button
-
-                const parentDropdown = this.parentElement; // The <li> with class "dropdown"
-
-                // Close any other open dropdowns *before* toggling the current one
+                e.preventDefault();
+                const parentDropdown = this.parentElement;
                 document.querySelectorAll(".dropdown.open").forEach(openDropdown => {
-                    if (openDropdown !== parentDropdown) { // Don't close the current one
+                    if (openDropdown !== parentDropdown) {
                         openDropdown.classList.remove("open");
                     }
                 });
-
-                // Toggle the 'open' class on the current dropdown
                 parentDropdown.classList.toggle("open");
             }
         }
