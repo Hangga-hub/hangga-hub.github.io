@@ -18,6 +18,16 @@
     --accent-hover: #008888; /* A slightly darker shade for hover effects */
     --button-bg: var(--pulse);
     --button-text: #000;
+
+    /* --- Cyberpunk Neon Theme Enhancements --- */
+    --cyber-bg: linear-gradient(135deg, #0a0a0a 60%, #1a0033 100%);
+    --cyber-neon-cyan: #00fff7;
+    --cyber-neon-pink: #ff00cc;
+    --cyber-neon-yellow: #fff700;
+    --cyber-panel: rgba(30, 30, 40, 0.92);
+    --cyber-glass: rgba(255, 255, 255, 0.07);
+    --cyber-border: #00fff7;
+    --cyber-font: 'Orbitron', 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 /* 🧱 Base Layout */
@@ -105,19 +115,33 @@ main {
     align-items: flex-start; /* Align content to the left */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     backdrop-filter: blur(8px); /* Apply glass effect to cards */
+
+    /* --- Cyberpunk Neon Theme Enhancements --- */
+    background: var(--cyber-panel);
+    border: 2px solid var(--cyber-border);
+    border-radius: 16px;
+    box-shadow: 0 0 32px 4px var(--cyber-neon-cyan), 0 0 8px 2px var(--cyber-neon-pink);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.3s, border-color 0.3s;
 }
 
 .tool-card:hover {
     transform: translateY(-8px); /* Lift on hover */
     border-color: var(--accent);
     box-shadow: 0 0 25px var(--pulse), inset 0 0 10px var(--pulse); /* Stronger glow on hover */
+
+    /* --- Cyberpunk Neon Theme Enhancements --- */
+    box-shadow: 0 0 48px 8px var(--cyber-neon-pink), 0 0 16px 4px var(--cyber-neon-cyan);
+    border-color: var(--cyber-neon-pink);
 }
 
 .tool-card .tool-icon {
     font-size: 3.5rem; /* Larger icon size */
     color: var(--accent);
+    text-shadow: 0 0 16px var(--cyber-neon-cyan), 0 0 4px var(--cyber-neon-pink);
     margin-bottom: 15px;
-    text-shadow: 0 0 10px var(--accent);
 }
 
 .tool-card h3 {
@@ -128,18 +152,23 @@ main {
 }
 
 .tool-card h3 a {
-    color: var(--text); /* Tool name color */
-    text-decoration: none;
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 8px var(--cyber-neon-yellow);
+    font-family: var(--cyber-font);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
     transition: color 0.2s;
 }
 
 .tool-card h3 a:hover {
-    color: var(--accent); /* Hover effect for tool name */
+    color: var(--cyber-neon-pink);
+    text-shadow: 0 0 12px var(--cyber-neon-pink);
 }
 
 .tool-card p {
+    color: #fff;
+    text-shadow: 0 0 6px var(--cyber-neon-cyan);
     font-size: 1rem;
-    color: var(--text);
     margin-bottom: 20px; /* More space before button */
     flex-grow: 1; /* Allow description to take available space */
 }
@@ -147,20 +176,21 @@ main {
 .tool-button {
     display: inline-flex;
     align-items: center;
-    background-color: var(--button-bg);
-    color: var(--button-text);
+    background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+    color: #0a0a0a;
     font-weight: bold;
-    text-decoration: none;
-    padding: 12px 20px; /* Generous padding */
+    border: none;
     border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 12px var(--cyber-neon-pink);
+    padding: 12px 20px; /* Generous padding */
+    transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
     margin-top: auto; /* Push button to the bottom */
 }
 
 .tool-button:hover {
-    background-color: var(--accent); /* Change button color on hover */
+    background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+    box-shadow: 0 0 24px var(--cyber-neon-cyan);
     transform: scale(1.03);
-    box-shadow: 0 0 15px var(--pulse);
 }
 
 .tool-button i {
@@ -180,16 +210,15 @@ main {
 }
 
 .share-buttons i {
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 12px var(--cyber-neon-yellow), 0 0 4px var(--cyber-neon-pink);
     font-size: 28px; /* Larger icon size */
-    color: var(--text); /* Default icon color */
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Subtle glow */
-    transition: color 0.2s, transform 0.2s, text-shadow 0.2s;
+    transition: color 0.2s, text-shadow 0.2s;
 }
 
 .share-buttons a:hover i {
-    color: var(--accent); /* Color change on hover */
-    transform: translateY(-3px); /* Slight lift */
-    text-shadow: 0 0 15px var(--pulse); /* Stronger glow on hover */
+    color: var(--cyber-neon-pink);
+    text-shadow: 0 0 18px var(--cyber-neon-pink), 0 0 8px var(--cyber-neon-cyan);
 }
 
 /* ──────────────────────────────────────────────────────
@@ -197,12 +226,13 @@ main {
 ────────────────────────────────────────────────────── */
 .ad-banner {
     background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    border: 2px solid var(--cyber-neon-yellow);
+    box-shadow: 0 0 24px var(--cyber-neon-yellow);
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 8px var(--cyber-neon-yellow);
     padding: 30px; /* Generous padding */
     text-align: center;
     margin-top: 60px; /* Ample space above ad */
-    box-shadow: inset 0 0 15px rgba(255, 255, 0, 0.1), 0 0 20px rgba(255, 255, 0, 0.2); /* Subtle gold glow for ads */
     backdrop-filter: blur(8px);
 }
 
@@ -295,23 +325,25 @@ button:hover {
 
 /* 🧾 Footer */
 footer {
-    background-color: #111;
-    color: var(--text);
-    text-align: center;
+    background: #18181b;
+    color: var(--cyber-neon-cyan);
+    text-shadow: 0 0 8px var(--cyber-neon-pink);
+    border-top: 2px solid var(--cyber-neon-cyan);
     padding: 1.5rem; /* More padding */
     font-size: 0.9rem; /* Slightly larger font */
-    border-top: 1px solid var(--border);
     margin-top: 60px; /* More space above footer */
 }
 
 footer a {
-    color: var(--accent);
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 8px var(--cyber-neon-yellow);
     text-decoration: none;
     transition: color 0.2s;
 }
 
 footer a:hover {
-    color: var(--pulse);
+    color: var(--cyber-neon-pink);
+    text-shadow: 0 0 12px var(--cyber-neon-pink);
 }
 
 
