@@ -17,75 +17,36 @@
     "description": "Convert CSV data to JSON and JSON data to CSV quickly."
   }
   </script>
-  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css"/>
-  <style>
-    .converter {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    textarea {
-      width: 100%;
-      height: 200px;
-      padding: 0.5rem;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-family: monospace;
-      resize: vertical;
-    }
-    .button-row {
-      display: flex;
-      gap: 1rem;
-    }
-    button {
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--accent);
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-    button:hover {
-      background-color: var(--accent-hover);
-    }
-    #errorMessage {
-      color: #e74c3c;
-      font-weight: bold;
-    }
-    #ad-space {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: var(--panel-light);
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
+  <link rel="icon" href="https://hangga-hub.github.io/favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <div id="navbar"></div>
 
-  <main class="container tool-csvjson">
-    <h2>📑 CSV ⇄ JSON Converter</h2>
+  <section id="ad-space">
+    <p>[Ad – Data tools, cloud services, or productivity software]</p>
+  </section>
 
-    <div id="ad-space">Here</div>
+  <main class="container tool-page">
+    <h2 class="tool-title">📑 CSV ⇄ JSON Converter</h2>
 
-    <div class="converter">
-      <label for="inputData">Input (CSV or JSON)</label>
-      <textarea id="inputData" placeholder="Paste CSV or JSON here"></textarea>
+    <div class="tool-converter">
+      <label class="neon-label" for="inputData">Input (CSV or JSON)</label>
+      <textarea id="inputData" class="neon-textarea" placeholder="Paste CSV or JSON here"></textarea>
 
-      <div class="button-row">
-        <button id="toJsonBtn">CSV → JSON</button>
-        <button id="toCsvBtn">JSON → CSV</button>
-        <button id="clearBtn">Clear</button>
+      <div class="tool-button-row">
+        <button id="toJsonBtn" class="tool-button">CSV → JSON</button>
+        <button id="toCsvBtn" class="tool-button">JSON → CSV</button>
+        <button id="clearBtn" class="tool-button">Clear</button>
       </div>
 
-      <label for="outputData">Output</label>
-      <textarea id="outputData" readonly placeholder="Result appears here"></textarea>
+      <label class="neon-label" for="outputData">Output</label>
+      <textarea id="outputData" class="neon-textarea" readonly placeholder="Result appears here"></textarea>
 
-      <div id="errorMessage"></div>
+      <div id="errorMessage" class="tool-error-message"></div>
     </div>
 
-    <div class="share-buttons">
+    <div class="share-buttons neon-share tool-share">
       <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/csv-json-converter" target="_blank">
         <img src="https://cdn.simpleicons.org/x/white" alt="Share on X"/>
       </a>

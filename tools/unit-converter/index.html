@@ -23,12 +23,12 @@
   <section id="ad-space">
     <p>[Ad – Dev tools, browser extensions, productivity software]</p>
   </section>
-  
-  <main class="container tool-converter">
-    <h2>📏 Unit Converter</h2>
 
-    <label for="category">Conversion Type</label>
-    <select id="category">
+  <main class="container tool-converter">
+    <h2 class="tool-title">📏 Unit Converter</h2>
+
+    <label class="tool-label" for="category">Conversion Type</label>
+    <select id="category" class="tool-select">
       <option value="length">📏 Length</option>
       <option value="weight">⚖️ Weight</option>
       <option value="temperature">🌡️ Temperature</option>
@@ -38,20 +38,20 @@
       <option value="volume">🧪 Volume</option>
     </select>
 
-    <label for="fromUnit">From Unit</label>
-    <select id="fromUnit"></select>
+    <label class="tool-label" for="fromUnit">From Unit</label>
+    <select id="fromUnit" class="tool-select"></select>
 
-    <label for="toUnit">To Unit</label>
-    <select id="toUnit"></select>
+    <label class="tool-label" for="toUnit">To Unit</label>
+    <select id="toUnit" class="tool-select"></select>
 
-    <label for="inputValue">Value</label>
-    <input type="number" id="inputValue" placeholder="Enter value" />
+    <label class="tool-label" for="inputValue">Value</label>
+    <input type="number" id="inputValue" class="tool-input" placeholder="Enter value" />
 
-    <button onclick="convertUnit()">Convert</button>
+    <button onclick="convertUnit()" class="tool-button">Convert</button>
 
-    <div id="result"></div>
+    <div id="result" class="tool-result"></div>
 
-    <div class="share-buttons">
+    <div class="share-buttons tool-share">
       <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/unit-converter" target="_blank">
         <img src="https://cdn.simpleicons.org/x/white" alt="Share on X" />
       </a>

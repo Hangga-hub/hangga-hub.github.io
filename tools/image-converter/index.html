@@ -18,48 +18,48 @@
 <body>
     <div id="navbar"></div>
 
-    <section id="ad-space" class="container mt-4">
+    <section id="ad-space" class="container tool-ad-space">
         <p>[Ad Spot — Feature affiliate banners or services here]</p>
-        <p class="text-sm text-gray-400">Consider placing relevant image-related ads (e.g., stock photos, graphic design software).</p>
+        <p class="ad-note">Consider placing relevant image-related ads (e.g., stock photos, graphic design software).</p>
     </section>
 
-    <main class="container tool-image-converter">
-        <h2>🖼️ Image Converter</h2>
+    <main class="container tool-page">
+        <h2 class="tool-title">🖼️ Image Converter</h2>
         <p>Convert images between popular formats like JPG, PNG, and WebP. Your files are processed securely in your browser.</p>
 
-        <div class="input-section">
-            <label for="imageUpload" class="block text-sm font-bold mb-2">Upload Image:</label>
-            <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/webp, image/gif, image/bmp, image/tiff" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer" />
-            <p id="fileNameDisplay" class="text-xs text-gray-400 mt-1"></p>
+        <div class="tool-converter">
+            <label for="imageUpload" class="neon-label">Upload Image:</label>
+            <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/webp, image/gif, image/bmp, image/tiff" class="neon-file-input" />
+            <p id="fileNameDisplay" class="file-name-display"></p>
         </div>
 
-        <div class="options-section mt-6">
-            <label for="outputFormat" class="block text-sm font-bold mb-2">Convert To:</label>
-            <select id="outputFormat" class="w-full p-2 rounded-md bg-transparent border border-accent text-accent">
+        <div class="tool-options-section">
+            <label for="outputFormat" class="neon-label">Convert To:</label>
+            <select id="outputFormat" class="neon-select">
                 <option value="image/jpeg">JPG</option>
                 <option value="image/png">PNG</option>
                 <option value="image/webp">WebP</option>
             </select>
 
-            <label for="qualitySlider" class="block text-sm font-bold mt-4 mb-2">Quality (for JPG/WebP): <span id="qualityValue">80</span>%</label>
-            <input type="range" id="qualitySlider" min="10" max="100" value="80" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pulse" />
+            <label for="qualitySlider" class="neon-label">Quality (for JPG/WebP): <span id="qualityValue">80</span>%</label>
+            <input type="range" id="qualitySlider" min="10" max="100" value="80" class="neon-slider" />
         </div>
 
-        <div class="button-group mt-6">
-            <button id="convertBtn" class="flex-1 mr-2">Convert Image</button>
-            <a id="downloadLink" download="converted-image" class="button flex-1 ml-2 hidden text-center flex items-center justify-center">Download Image</a>
+        <div class="tool-button-row">
+            <button id="convertBtn" class="tool-button">Convert Image</button>
+            <a id="downloadLink" download="converted-image" class="tool-button hidden">Download Image</a>
         </div>
 
-        <div id="loadingIndicator" class="hidden text-center mt-4">
-            <div class="spinner"></div>
-            <p class="text-accent">Converting...</p>
+        <div id="loadingIndicator" class="tool-loading-indicator hidden">
+            <div class="tool-spinner"></div>
+            <p>Converting...</p>
         </div>
 
-        <div id="resultSection" class="hidden mt-6 converted-preview-container">
+        <div id="resultSection" class="tool-result-section hidden">
             <h3>Converted Image Preview:</h3>
             <canvas id="imageCanvas" class="hidden"></canvas>
-            <img id="convertedImagePreview" class="max-w-full h-auto rounded-lg border border-gray-700 mx-auto preview-image" alt="Converted Image" />
-            <p id="errorMessage" class="text-red-500 text-center mt-4 hidden"></p>
+            <img id="convertedImagePreview" class="tool-preview-image" alt="Converted Image" />
+            <p id="errorMessage" class="tool-error-message hidden"></p>
         </div>
     </main>
 

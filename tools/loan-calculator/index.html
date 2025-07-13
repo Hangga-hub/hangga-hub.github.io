@@ -18,35 +18,34 @@
     "description": "Calculate your monthly loan payments, total cost, and interest for different loan scenarios."
   }
   </script>
-  <style>
-    .button-row { display: flex; gap: 1rem; margin: 1rem 0; }
-    #result p { margin: 0.5rem 0; font-weight: bold; }
-  </style>
 </head>
 <body>
   <div id="navbar"></div>
 
-  <main class="container tool-loan">
-    <h2>💰 Loan Calculator</h2>
+  <main class="container tool-page">
+    <h2 class="tool-title">💰 Loan Calculator</h2>
 
     <!-- Ad placeholder -->
-    <div id="ad-space">Ad Here</div>
+    <section id="ad-space">
+      <p>[Ad – Financial services, investment platforms, or budgeting tools]</p>
+    </section>
 
-    <label for="loanAmount">Loan Amount</label>
-    <input id="loanAmount" type="number" placeholder="e.g., 250000" />
+    <div class="tool-converter">
+      <label class="neon-label" for="loanAmount">Loan Amount</label>
+      <input id="loanAmount" class="neon-input" type="number" placeholder="e.g., 250000" />
 
-    <label for="interestRate">Annual Interest Rate (%)</label>
-    <input id="interestRate" type="number" step="0.01" placeholder="e.g., 3.5" />
+      <label class="neon-label" for="interestRate">Annual Interest Rate (%)</label>
+      <input id="interestRate" class="neon-input" type="number" step="0.01" placeholder="e.g., 3.5" />
 
-    <label for="loanTerm">Loan Term (years)</label>
-    <input id="loanTerm" type="number" placeholder="e.g., 30" />
+      <label class="neon-label" for="loanTerm">Loan Term (years)</label>
+      <input id="loanTerm" class="neon-input" type="number" placeholder="e.g., 30" />
 
-    <div class="button-row">
-      <button id="calculateBtn">Calculate</button>
-      <button id="resetBtn">Reset</button>
+      <div class="tool-button-row">
+        <button id="calculateBtn" class="tool-button">Calculate</button>
+        <button id="resetBtn" class="tool-button">Reset</button>
+      </div>
     </div>
-
-    <div id="result">
+    <div id="result" class="neon-result tool-result">
       <p id="monthlyPayment">Monthly Payment: $0.00</p>
       <p id="totalPayment">Total Payment: $0.00</p>
       <p id="totalInterest">Total Interest: $0.00</p>
@@ -54,7 +53,7 @@
 
     <div class="share-buttons">
       <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/loan-calculator" target="_blank">
-        <img src="https://cdn.simpleicons.org/x/white" alt="Share on X" />
+        <img src="https://cdn.simpleicons.org/x/white" alt="Share on X"/>
       </a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/loan-calculator" target="_blank">
         <img src="https://cdn.simpleicons.org/facebook/white" alt="Share on Facebook" />
