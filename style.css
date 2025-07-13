@@ -492,6 +492,40 @@ nav.sticky .dropdown-content li a:hover {
     #menuToggle {
         display: block; /* Show hamburger menu */
     }
+    /* Add to your existing style.css */
+
+/* Style for the dynamically created Home Button on sub-pages */
+.mobile-home-btn {
+    display: none; /* Hidden by default, shown by JS/CSS media query */
+    background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+    color: #0a0a0a;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--cyber-neon-pink);
+    padding: 8px 15px; 
+    font-size: 0.95rem; 
+    text-decoration: none;
+    transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
+    margin-left: auto; /* Push it to the right in the flex container (nav) */
+    white-space: nowrap; 
+}
+
+.mobile-home-btn:hover {
+    background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+    box-shadow: 0 0 28px var(--cyber-neon-cyan);
+    transform: scale(1.05);
+}
+
+/* Ensure the main nav links are hidden when the mobile menu is NOT "show" */
+/* This is needed for standard mobile view on the homepage if the nav is not toggled open */
+@media (max-width: 768px) {
+    nav.sticky .nav-links:not(.show) {
+        /* We set this to display: none; for the collapsed state on mobile */
+        /* Note: When the JS hides .nav-links on sub-pages, it uses .style.display = 'none' directly */
+        display: none; 
+    }
+}
     nav.sticky .nav-links {
         position: fixed;
         top: var(--navbar-height);

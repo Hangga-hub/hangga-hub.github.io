@@ -3,25 +3,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navbarPath = "https://hangga-hub.github.io/components/navbar.html";
     const navbarContainer = document.getElementById("navbar");
+    
+    // Determine if the current page is the homepage.
+    // We check if the pathname is "/" or "/index.html" (normalized).
+    const isHomePage = window.location.pathname === "/" || window.location.pathname === "/index.html" || window.location.pathname === "/index.html/";
+    
+    // Determine if the user is on a mobile device based on the viewport width (matching your CSS breakpoint).
+    const isMobile = window.innerWidth <= 768;
 
     if (!navbarContainer) {
         console.error("Error: Navbar container (#navbar) not found. Cannot load navigation.");
-        return; // Exit if the container isn't there
+        return; 
     }
 
     // --- Function to initialize all navbar interactions ---
-    // This function will be called *after* the navbar HTML is injected.
+    // This is called after the navbar HTML is injected.
     const initializeNavbarInteractions = () => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.querySelector(".nav-links");
         const dropdowns = document.querySelectorAll(".dropdown");
         const dropbtns = document.querySelectorAll(".dropdown .dropbtn");
+        const navSticky = document.querySelector("nav.sticky");
 
-        // --- 1. Mobile Menu Toggle (Hamburger Icon) ---
-        // Ensure listeners are applied only once, even if this function is called multiple times
+        // --- 1. Simplify Navbar for Mobile Sub-Pages ---
+        if (!isHomePage && isMobile) {
+            
+            // Remove the existing mobile home button if already added (useful on resize)
+            let existingHomeBtn = navSticky.querySelector('.mobile-home-btn');
+            if (existingHomeBtn) {
+                existingHomeBtn.remove();
+            }
+
+            // Hide the complex nav elements via CSS display
+            if (menuToggle) {
+                menuToggle.style.display = 'none';
+            }
+            if (navLinks) {
+                navLinks.style.display = 'none';
+            }
+
+            // Create and append Home button
+            const homeBtn = document.createElement('a');
+            homeBtn.href = "https://hangga-hub.github.io/"; // Your home page URL
+            homeBtn.textContent = "Home";
+            homeBtn.classList.add('mobile-home-btn');
+            
+            if (navSticky) {
+                // We add a specific style here to ensure the button is positioned correctly
+                homeBtn.style.display = 'block'; // Make sure the JS shows it
+                navSticky.appendChild(homeBtn);
+            }
+
+            // Clean up mobile menu and dropdown listeners for sub-pages
+            // We specifically remove these listeners to prevent any conflict/freezing on sub-pages.
+            if (menuToggle) {
+                menuToggle.removeEventListener("click", toggleMobileMenu);
+            }
+            dropbtns.forEach(btn => {
+                btn.removeEventListener("click", handleDropdownToggle);
+                btn.removeEventListener("touchstart", handleDropdownToggle);
+            });
+            dropdowns.forEach(d => d.classList.remove("open")); // Close any open dropdowns
+
+            // Exit the function early for simple sub-page mobile view
+            return; 
+        }
+
+        // --- 2. Standard Navbar Initialization (Home Page & All Desktop Views) ---
+
+        // Ensure elements are visible (in case they were hidden by the mobile sub-page logic on resize)
+        if (menuToggle) {
+            menuToggle.style.display = ''; // Reset display style
+        }
+        if (navLinks) {
+            navLinks.style.display = ''; // Reset display style
+        }
+        
+        // Remove the dynamically added mobile home button if present
+        let homeBtn = navSticky.querySelector('.mobile-home-btn');
+        if (homeBtn) {
+            homeBtn.remove();
+        }
+
+        // 2a. Mobile Menu Toggle (Hamburger Icon)
         if (menuToggle && navLinks) {
-            // Remove existing listener to prevent duplicates if initializeNavbarInteractions is called multiple times
-            menuToggle.removeEventListener("click", toggleMobileMenu);
+            // Remove previous listener and re-add for robustness
+            menuToggle.removeEventListener("click", toggleMobileMenu); 
             menuToggle.addEventListener("click", toggleMobileMenu);
         }
 
@@ -29,52 +96,43 @@ document.addEventListener("DOMContentLoaded", () => {
             if (navLinks) {
                 navLinks.classList.toggle("show");
             }
-            // Close any open dropdowns when main menu is toggled
             dropdowns.forEach(openDropdown => {
                 openDropdown.classList.remove("open");
             });
         }
 
-        // --- 2. Dropdown Toggle for Mobile and Desktop ---
+        // 2b. Dropdown Toggle for Mobile (Home Page) and Desktop
         dropbtns.forEach(btn => {
-            // Remove previous listeners to prevent accumulation
             btn.removeEventListener("click", handleDropdownToggle);
-            btn.removeEventListener("touchstart", handleDropdownToggle); // Use touchstart for faster response on mobile
+            btn.removeEventListener("touchstart", handleDropdownToggle);
 
-            // Add new listeners
             btn.addEventListener("click", handleDropdownToggle);
             btn.addEventListener("touchstart", handleDropdownToggle);
         });
 
         function handleDropdownToggle(event) {
-            // Check if it's a mobile screen based on your CSS breakpoint (768px)
-            const isMobile = window.innerWidth <= 768;
+            // Re-check mobile status dynamically on interaction
+            const currentIsMobile = window.innerWidth <= 768; 
 
-            if (isMobile) {
-                // For mobile, prevent default link behavior to handle dropdown toggle ourselves
-                event.preventDefault(); 
-                event.stopPropagation(); // Stop propagation to prevent document click from immediately closing
+            if (currentIsMobile) { 
+                event.preventDefault();
+                event.stopPropagation();
 
-                const parentDropdown = this.closest(".dropdown"); // 'this' refers to the clicked dropbtn
+                const parentDropdown = this.closest(".dropdown");
 
-                // Close other open dropdowns
                 dropdowns.forEach(otherDropdown => {
                     if (otherDropdown !== parentDropdown && otherDropdown.classList.contains("open")) {
                         otherDropdown.classList.remove("open");
                     }
                 });
 
-                // Toggle the current dropdown
                 if (parentDropdown) {
                     parentDropdown.classList.toggle("open");
                 }
             }
-            // For desktop, CSS :hover handles it, so we don't need JS for click.
-            // If there's a click on desktop, it acts as a normal link.
         }
 
-        // --- 3. Desktop: show dropdown on hover (CSS handles most, but JS fallback can ensure) ---
-        // Only apply hover listeners if on desktop
+        // 2c. Desktop: show dropdown on hover (JS fallback/reinforcement)
         if (window.innerWidth > 768) {
             dropdowns.forEach(dropdown => {
                 dropdown.removeEventListener('mouseenter', handleMouseEnter);
@@ -93,9 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.classList.remove('open');
         }
 
-
-        // --- 4. Close mobile menu and dropdowns when clicking outside ---
-        // We use event delegation on the document, so this needs to be robust
+        // 2d. Close mobile menu and dropdowns when clicking outside
         document.removeEventListener("click", handleOutsideClick); // Ensure only one listener
         document.addEventListener("click", handleOutsideClick);
 
@@ -104,66 +160,40 @@ document.addEventListener("DOMContentLoaded", () => {
             const isClickOnToggle = menuToggle && menuToggle.contains(event.target);
             const isClickOnDropdownContent = event.target.closest('.dropdown-content');
 
-            // If clicked outside the main mobile menu AND not on the toggle button
-            // AND not inside an already open dropdown content area (to allow clicks within dropdown)
             if (!isClickInsideNav && !isClickOnToggle && !isClickOnDropdownContent) {
                 if (navLinks && navLinks.classList.contains("show")) {
-                    navLinks.classList.remove("show"); // Close mobile menu
+                    navLinks.classList.remove("show");
                 }
-                // Also close any open dropdowns if clicked outside
                 dropdowns.forEach(openDropdown => {
                     openDropdown.classList.remove("open");
                 });
             }
         }
         
-        // --- 5. Highlight Active Nav Link ---
+        // 2e. Highlight Active Nav Link (always applies)
         highlightActiveNavLink();
-
-        // --- 6. Handle window resize (for switching between mobile/desktop views) ---
-        window.removeEventListener('resize', handleResize); // Prevent duplicates
-        window.addEventListener('resize', handleResize);
-
-        function handleResize() {
-            // On resize, if it becomes desktop view, close mobile menu and all dropdowns
-            if (window.innerWidth > 768) {
-                if (navLinks && navLinks.classList.contains("show")) {
-                    navLinks.classList.remove("show");
-                }
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove("open");
-                });
-            }
-            // Re-initialize all interactions to correctly apply hover/click logic based on new width
-            // This might seem redundant, but it ensures all listeners are correctly re-bound
-            // according to the current window size, especially for hover vs click/touch.
-            initializeNavbarInteractions(); 
-        }
     }; // End of initializeNavbarInteractions function
 
-    // --- Highlight Active Nav Link (moved outside, can be called independently) ---
+
+    // --- Highlight Active Nav Link (can be called independently) ---
     const highlightActiveNavLink = () => {
-        const currentPathname = window.location.pathname;
+        const currentPathname = window.location.pathname.endsWith('/') && window.location.pathname.length > 1
+            ? window.location.pathname.slice(0, -1)
+            : window.location.pathname;
+
+        // Note: We select all links within the injected nav links (which should exist by now)
         const allLinks = document.querySelectorAll(".nav-links a");
         
         allLinks.forEach(link => {
             const linkUrl = new URL(link.href);
-            const linkPathname = linkUrl.pathname;
-            
-            // Normalize paths: remove trailing slash unless it's the root "/"
-            const normalizedCurrentPath = currentPathname.endsWith('/') && currentPathname.length > 1
-                ? currentPathname.slice(0, -1)
-                : currentPathname;
-            const normalizedLinkPath = linkPathname.endsWith('/') && linkPathname.length > 1
-                ? linkPathname.slice(0, -1)
-                : linkPathname;
+            const linkPathname = linkUrl.pathname.endsWith('/') && linkUrl.pathname.length > 1
+                ? linkUrl.pathname.slice(0, -1)
+                : linkUrl.pathname;
             
             link.classList.remove("active");
 
-            // Check for exact match (after normalization)
-            if (normalizedCurrentPath === normalizedLinkPath) {
+            if (currentPathname === linkPathname) {
                 link.classList.add("active");
-                // If it's a dropdown item, also highlight its parent dropdown button
                 const parentDropdown = link.closest(".dropdown");
                 if (parentDropdown) {
                     const dropbtn = parentDropdown.querySelector(".dropbtn");
@@ -175,8 +205,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
+    // --- Handle window resize (for switching between mobile/desktop views) ---
+    // We re-call the initialization logic on resize to adapt the layout and listeners
+    window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
+
+    function handleResize() {
+        // Re-calculate mobile status
+        const isCurrentlyMobile = window.innerWidth <= 768;
+        
+        // Re-initialize the navbar interactions. 
+        // This ensures the correct behavior (simple vs. complex) based on the new window size.
+        initializeNavbarInteractions(); 
+    }
+
     // --- Fetch and Inject Navbar (Main Execution Flow) ---
-    // This is the primary part that runs on DOMContentLoaded
     fetch(navbarPath)
         .then(response => {
             if (!response.ok) {
@@ -186,7 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(html => {
             navbarContainer.innerHTML = html; // Inject the navbar HTML
-            // IMPORTANT: Call initialization *after* HTML is in the DOM
+            
+            // Call initialization *after* HTML is in the DOM
             initializeNavbarInteractions(); 
         })
         .catch(error => {
