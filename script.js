@@ -1,40 +1,30 @@
 // Ensure all scripts run after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-
-    // --- 1. Function to initialize navbar interactions ---
-    // Encapsulate the logic to be callable after injection
-    const initializeNavbarInteractions = () => {
+    // --- 1. Event Listeners (using delegation for efficiency) ---
+    // Listen for clicks on the entire document to handle clicks on the navbar and dropdowns.
+    document.addEventListener("click", (event) => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.querySelector(".nav-links");
 
-        if (!menuToggle || !navLinks) {
-            console.error("Navbar elements (menuToggle or navLinks) not found after injection.");
-            return; // Exit if essential elements are missing
-        }
-
-        // Mobile Menu Toggle (Hamburger Icon)
-        menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("show");
-            // Close any open dropdowns when main menu is toggled
+        // Handle the mobile menu toggle
+        if (menuToggle && menuToggle.contains(event.target)) {
+            if (navLinks) {
+                navLinks.classList.toggle("show");
+            }
+            // Close any open dropdowns when the main menu is toggled
             document.querySelectorAll(".dropdown.open").forEach(openDropdown => {
                 openDropdown.classList.remove("open");
             });
-        });
+            event.stopPropagation(); // Stop propagation to prevent immediate closing
+            return;
+        }
 
-        // Dropdown Toggle for Mobile and Desktop
-        document.querySelectorAll(".dropdown .dropbtn").forEach(btn => {
-            btn.removeEventListener("click", handleDropdownClick);
-            btn.removeEventListener("touchstart", handleDropdownClick);
-            btn.addEventListener("click", handleDropdownClick);
-            btn.addEventListener("touchstart", handleDropdownClick);
-        });
-
-        // Handler for dropdown button clicks (supports both click and touch)
-        function handleDropdownClick(e) {
-            // Mobile: toggle dropdown on click/touch
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const parentDropdown = this.parentElement;
+        // Handle the dropdown toggle
+        const dropdownBtn = event.target.closest(".dropbtn");
+        if (dropdownBtn) {
+            const parentDropdown = dropdownBtn.closest(".dropdown");
+            if (parentDropdown) {
+                // Close other dropdowns
                 document.querySelectorAll(".dropdown.open").forEach(openDropdown => {
                     if (openDropdown !== parentDropdown) {
                         openDropdown.classList.remove("open");
@@ -42,64 +32,73 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 parentDropdown.classList.toggle("open");
             }
+            event.preventDefault(); // Prevent default link behavior for dropdown button
+            return;
         }
 
-        // Desktop: show dropdown on hover
-        if (window.innerWidth > 768) {
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-                dropdown.addEventListener('mouseenter', () => {
-                    dropdown.classList.add('open');
-                });
-                dropdown.addEventListener('mouseleave', () => {
-                    dropdown.classList.remove('open');
-                });
+        // Handle clicks outside the navbar and dropdowns to close them
+        const isClickInsideNav = navLinks && navLinks.contains(event.target);
+        if (!isClickInsideNav) {
+            if (navLinks && navLinks.classList.contains("show")) {
+                navLinks.classList.remove("show"); // Close mobile menu
+            }
+            document.querySelectorAll(".dropdown.open").forEach(openDropdown => {
+                openDropdown.classList.remove("open"); // Close any open dropdowns
             });
         }
+    });
 
-        // Close mobile menu and dropdowns when clicking outside
-        document.removeEventListener("click", handleOutsideClick); // Remove old listener
-        document.addEventListener("click", handleOutsideClick); // Add new listener
+    // Handle desktop hover functionality
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.addEventListener("mouseenter", () => {
+            dropdown.classList.add("open");
+        });
+        dropdown.addEventListener("mouseleave", () => {
+            dropdown.classList.remove("open");
+        });
+    });
 
-        function handleOutsideClick(event) {
-            // Ensure navLinks and menuToggle still exist (safety check)
-            if (!navLinks || !menuToggle) return;
+    // --- 2. Function to load and initialize navbar ---
+    const loadNavbar = () => {
+        const navbarContainer = document.getElementById("navbar");
+        const navbarPath = "https://hangga-hub.github.io/components/navbar.html";
 
-            const isClickInsideNav = navLinks.contains(event.target) || menuToggle.contains(event.target);
-            const isDropdownClick = event.target.closest('.dropdown');
-
-            // If clicked outside the main menu area AND not on a dropdown item/button itself
-            if (!isClickInsideNav && !isDropdownClick) {
-                if (navLinks.classList.contains("show")) {
-                    navLinks.classList.remove("show"); // Close mobile menu
-                }
-                document.querySelectorAll(".dropdown.open").forEach(openDropdown => {
-                    openDropdown.classList.remove("open"); // Close any open dropdowns
-                });
-            }
+        if (!navbarContainer) {
+            console.error("Error: Navbar container (#navbar) not found.");
+            return;
         }
 
-        // Highlight Active Nav Link
-        const currentPathname = window.location.pathname; // e.g., "/bmi-calculator" or "/"
-        
-        document.querySelectorAll(".nav-links a").forEach(link => {
-            // Get the pathname part of the link's href
-            const linkPathname = new URL(link.href).pathname;
+        fetch(navbarPath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                navbarContainer.innerHTML = html;
+                highlightActiveNavLink(); // Highlight the current link after injection
+            })
+            .catch(error => {
+                console.error("Failed to load navbar:", error);
+                navbarContainer.innerHTML = "<nav class='error-nav'><p>Error loading navigation. Please try again.</p></nav>";
+            });
+    };
 
-            // Normalize paths: remove trailing slash unless it's the root "/"
-            const normalizedCurrentPath = currentPathname.endsWith('/') && currentPathname.length > 1
-                ? currentPathname.slice(0, -1)
-                : currentPathname;
-            const normalizedLinkPath = linkPathname.endsWith('/') && linkPathname.length > 1
-                ? linkPathname.slice(0, -1)
-                : linkPathname;
+    // --- 3. Highlight the active nav link ---
+    const highlightActiveNavLink = () => {
+        const currentPathname = window.location.pathname;
+        const allLinks = document.querySelectorAll(".nav-links a");
+        
+        allLinks.forEach(link => {
+            const linkPathname = new URL(link.href).pathname;
+            const normalizedCurrentPath = currentPathname.endsWith('/') && currentPathname.length > 1 ? currentPathname.slice(0, -1) : currentPathname;
+            const normalizedLinkPath = linkPathname.endsWith('/') && linkPathname.length > 1 ? linkPathname.slice(0, -1) : linkPathname;
             
-            // Remove 'active' class from all links first to ensure only one is active
             link.classList.remove("active");
 
-            // Check for exact match (after normalization)
             if (normalizedCurrentPath === normalizedLinkPath) {
                 link.classList.add("active");
-                // If it's a dropdown item, also highlight its parent dropdown button
                 const parentDropdown = link.closest(".dropdown");
                 if (parentDropdown) {
                     const dropbtn = parentDropdown.querySelector(".dropbtn");
@@ -109,52 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
-
-        // Add a listener for window resize to handle switching between mobile/desktop views
-        // This ensures the menu state is reset if user resizes from mobile to desktop
-        window.removeEventListener('resize', handleResize); // Prevent duplicate listeners
-        window.addEventListener('resize', handleResize);
-
-        function handleResize() {
-            if (window.innerWidth > 768) { // If desktop view
-                if (navLinks.classList.contains("show")) {
-                    navLinks.classList.remove("show"); // Hide mobile menu
-                }
-                document.querySelectorAll(".dropdown.open").forEach(openDropdown => {
-                    openDropdown.classList.remove("open"); // Close any open dropdowns
-                });
-            }
-        }
     };
 
-    // --- 2. Fetch and Inject Navbar ---
-    const navbarPath = "https://hangga-hub.github.io/components/navbar.html";
-
-    fetch(navbarPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status} fetching ${navbarPath}`);
-            }
-            return response.text();
-        })
-        .then(html => {
-            const navbarContainer = document.getElementById("navbar");
-            if (navbarContainer) {
-                navbarContainer.innerHTML = html; // Inject the navbar HTML
-                // Delay initialization to ensure DOM is ready
-                setTimeout(() => {
-                    initializeNavbarInteractions();
-                }, 50);
-            } else {
-                console.error("Error: Navbar container (#navbar) not found in index.html. Cannot inject navbar.");
-            }
-        })
-        .catch(error => {
-            console.error("Failed to load or inject navbar:", error);
-            // Fallback: If navbar fails to load, consider a static placeholder or message
-            const navbarContainer = document.getElementById("navbar");
-            if (navbarContainer) {
-                navbarContainer.innerHTML = "<nav class='error-nav'><p>Error loading navigation. Please try again.</p></nav>";
-            }
-        });
+    // --- 4. Call the main function to start the process ---
+    loadNavbar();
 });
