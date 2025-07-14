@@ -6,7 +6,6 @@
   <title>BMI Calculator – Hangga Tools</title>
   <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
   <link rel="icon" href="https://hangga-hub.github.io/favicon.ico" type="image/x-icon" />
-  
   <!-- SEO Meta Tags -->
   <meta name="description" content="Calculate your Body Mass Index with Hangga's stylish and fast BMI Calculator. Stay healthy and fit with this responsive tool." />
   <meta name="keywords" content="BMI calculator, Body Mass Index, health calculator, fitness tool, Hangga tools" />
@@ -19,64 +18,49 @@
 </head>
 <body>
   <div id="navbar"></div>
-
-
   <section id="ad-space">
     <p>[Ad – Fitness gear, nutrition plans or health tools]</p>
   </section>
-
-  <main class="container tool">
-    <h2 class="tool-title">🧮 BMI Calculator</h2>
-    <form id="bmiForm" autocomplete="off" class="tool-form">
-      <div class="form-group-inline">
+  <main class="container tool-bmi cyberpunk-panel">
+    <h2 class="neon-title">🧮 BMI Calculator</h2>
+    <form id="bmiForm" autocomplete="off">
+      <div style="display: flex; gap: 0.7rem; flex-wrap: wrap; align-items: center; justify-content: space-between;">
         <label class="neon-label" for="gender">Gender</label>
-        <select id="gender" class="neon-select form-field-flex">
+        <select id="gender" class="neon-select">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
- </select>
+        </select>
         <label class="neon-label" for="age">Age</label>
-        <input type="number" id="age" class="neon-input form-field-flex" min="1" max="120" placeholder="e.g. 25" />
+        <input type="number" id="age" class="neon-input" min="1" max="120" placeholder="e.g. 25" />
       </div>
-      <div class="form-group-inline">
+      <div style="display: flex; gap: 0.7rem; align-items: center; justify-content: space-between;">
         <label class="neon-label" for="unitToggle">Units</label>
-        <select id="unitToggle" class="neon-select form-field-flex">
+        <select id="unitToggle" class="neon-select">
           <option value="metric">Metric (kg/cm)</option>
           <option value="imperial">Imperial (lb/in)</option>
         </select>
       </div>
-      <div id="metricFields" class="form-group">
+      <div id="metricFields" style="display: block;">
         <label class="neon-label" for="weight">Weight (kg)</label>
         <input type="number" id="weight" class="neon-input" placeholder="e.g. 70" />
         <label class="neon-label" for="height">Height (cm)</label>
         <input type="number" id="height" class="neon-input" placeholder="e.g. 170" />
       </div>
-      <div id="imperialFields" class="form-group">
+      <div id="imperialFields" style="display: none;">
         <label class="neon-label" for="weightLb">Weight (lb)</label>
         <input type="number" id="weightLb" class="neon-input" placeholder="e.g. 154" />
         <label class="neon-label" for="heightIn">Height (in)</label>
         <input type="number" id="heightIn" class="neon-input" placeholder="e.g. 67" />
       </div>
-      <button type="button" onclick="calculateBMI()" class="tool-button form-button">Calculate</button>
+      <button type="button" onclick="calculateBMI()" class="tool-button">Calculate</button>
     </form>
-    <div id="result" class="neon-result tool-result"></div>
-    <div class="share-buttons neon-share tool-share">
-      <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/bmi-calculator" target="_blank">
-        <img src="https://cdn.simpleicons.org/x/white" alt="Share on X" />
-      </a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/bmi-calculator" target="_blank">
-        <img src="https://cdn.simpleicons.org/facebook/white" alt="Share on Facebook" />
-      </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/bmi-calculator" target="_blank">
-        <img src="https://cdn.simpleicons.org/linkedin/white" alt="Share on LinkedIn" />
-      </a>
-    </div>
+    <div id="result" class="neon-result"></div>
+  
   </main>
-
   <footer>
     <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/bmi-calculator">GitHub</a></p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
