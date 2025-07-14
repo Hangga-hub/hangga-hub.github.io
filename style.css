@@ -1668,3 +1668,218 @@ input[type="range"]::-moz-range-thumb:active {
         height: 40px; /* Ensure color picker is not too small */
     }
 }
+
+/* ──────────────────────────────────────────────────────
+    NEW: JPG/PNG to PDF Converter Styles
+────────────────────────────────────────────────────── */
+.tool-image-to-pdf {
+    /* Inherits most styles from .tool-card */
+}
+
+.image-previews-container {
+    margin-top: var(--spacing-md);
+    background: rgba(40, 40, 40, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.image-previews-container h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.image-previews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Flexible grid for thumbnails */
+    gap: 15px; /* Space between thumbnails */
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    min-height: 120px; /* Ensure visibility even with no images */
+}
+
+.image-preview-item {
+    position: relative;
+    width: 100px; /* Fixed width for consistency */
+    height: 100px; /* Fixed height for consistency */
+    border: 2px solid var(--pulse);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: grab; /* Indicates draggable */
+    box-shadow: 0 0 10px rgba(255, 0, 204, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* For centering image */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview-item.dragging {
+    opacity: 0.7;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent);
+    cursor: grabbing;
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the item area */
+    display: block;
+}
+
+.image-preview-item .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--pulse);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.2s, transform 0.2s, background-color 0.2s;
+    z-index: 10; /* Ensure it's above the image */
+    box-shadow: 0 0 8px rgba(255, 0, 204, 0.6);
+}
+
+.image-preview-item .delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+/* PDF Settings Section */
+.pdf-settings {
+    background: rgba(40, 40, 40, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.pdf-settings h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.pdf-settings .input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.pdf-settings .input-group label {
+    flex-basis: 150px; /* Wider label for settings */
+    min-width: 100px;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.pdf-settings .input-group input[type="text"],
+.pdf-settings .input-group input[type="number"],
+.pdf-settings .input-group select {
+    flex-grow: 1;
+    max-width: 300px; /* Wider inputs for settings */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pdf-settings .input-group input:focus,
+.pdf-settings .input-group select:focus {
+    outline: none;
+    border-color: var(--pulse);
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.pdf-settings .input-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2300ffff' d='M12 15l-5-5h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+/* Buttons for PDF tool */
+.tool-image-to-pdf .tool-button {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    padding: 15px 25px;
+}
+
+.tool-image-to-pdf .secondary-button {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: none;
+    margin-top: 15px;
+}
+
+.tool-image-to-pdf .secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    color: var(--accent);
+    transform: scale(1.02);
+}
+
+/* Responsive adjustments for JPG/PNG to PDF tool */
+@media (max-width: 768px) {
+    .image-previews-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller thumbnails on mobile */
+        gap: 10px;
+    }
+    .image-preview-item {
+        width: 80px;
+        height: 80px;
+    }
+    .image-preview-item .delete-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+    .pdf-settings .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .pdf-settings .input-group label,
+    .pdf-settings .input-group input,
+    .pdf-settings .input-group select {
+        width: 100%;
+        max-width: unset;
+    }
+}
