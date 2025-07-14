@@ -147,7 +147,17 @@ document.addEventListener("DOMContentLoaded", () => {
             this.classList.add('open');
         }
 
-        function handleMouseLeave() {
+        function handleMouseLeave(event) {
+            // Only close dropdown if mouse is not moving into dropdown-content
+            const dropdownContent = this.querySelector('.dropdown-content');
+            if (dropdownContent) {
+                // Check if mouse is moving into dropdown-content
+                const related = event.relatedTarget;
+                if (dropdownContent.contains(related)) {
+                    // Don't close if moving into dropdown-content
+                    return;
+                }
+            }
             this.classList.remove('open');
         }
 
