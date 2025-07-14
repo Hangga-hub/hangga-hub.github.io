@@ -9,7 +9,7 @@
     --accent: #00ffff; /* Primary accent color */
     --pulse: #ff00cc; /* Secondary accent color, often for glowing */
     --panel: rgba(15, 15, 20, 0.95); /* Slightly darker, more opaque panel background */
-    --max-content-width: 1400px;
+    --max-content-width: 1400px; /* This variable is used for .tools-grid, but main's max-width is now higher */
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Inter', sans-serif;
     --navbar-height: 70px;
@@ -64,7 +64,7 @@ body {
 
 /* Main Content Area */
 main {
-    max-width: 1200px; /* Keep this max-width, as the grid will adapt */
+    max-width: 1600px; /* Increased max-width for more horizontal space */
     margin: var(--spacing-lg) auto;
     padding: 0 var(--spacing-md);
     width: 100%;
@@ -120,12 +120,12 @@ main {
 
 .tools-grid {
     display: grid;
-    /* Adjusted minmax to allow more items per row */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Aim for 4+ columns on large screens */
+    /* Adjusted minmax to allow for 3-4 columns comfortably */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-md);
     padding: 0;
     list-style: none;
-    max-width: var(--max-content-width);
+    max-width: var(--max-content-width); /* This will be 1400px, but main's max-width is 1600px */
     margin: 0 auto;
     box-sizing: border-box;
     justify-content: center;
@@ -490,11 +490,11 @@ nav.sticky .dropdown-content li a:hover {
 ────────────────────────────────────────────────────── */
 @media (max-width: 1400px) {
     main {
-        max-width: 1200px;
+        max-width: 1200px; /* Re-apply max-width for main for this breakpoint */
     }
     .tools-grid {
-        /* Adjusted minmax for 3-4 columns on larger screens */
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        /* Keep this minmax for 3-4 columns on larger screens within 1200px main */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: var(--spacing-md);
     }
 }
@@ -504,8 +504,7 @@ nav.sticky .dropdown-content li a:hover {
         padding: 0 var(--spacing-sm);
     }
     .tools-grid {
-        /* Adjusted minmax for 2-3 columns on tablets */
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Likely 2-3 columns on tablets */
         gap: var(--spacing-md);
     }
     #hero h1 {
