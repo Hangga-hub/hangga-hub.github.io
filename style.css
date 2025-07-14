@@ -9,7 +9,7 @@
     --accent: #00ffff; /* Primary accent color */
     --pulse: #ff00cc; /* Secondary accent color, often for glowing */
     --panel: rgba(15, 15, 20, 0.95); /* Slightly darker, more opaque panel background */
-    --max-content-width: 1200px;
+    --max-content-width: 1400px;
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Inter', sans-serif;
     --navbar-height: 70px;
@@ -462,9 +462,9 @@ nav.sticky .dropdown-content li a:hover {
 /* ──────────────────────────────────────────────────────
     Responsive Adjustments
 ────────────────────────────────────────────────────── */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
     main {
-        max-width: 1000px;
+        max-width: 1200px;
     }
     .tools-grid {
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
