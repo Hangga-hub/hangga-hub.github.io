@@ -5,62 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Color Picker – Hangga Tools</title>
   <meta name="description" content="A fast and easy-to-use color picker tool with HEX, RGB, and HSL support. Random color generator, color harmonies, gradient builder, and a history of recently used colors." />
-  <meta name="keywords" content="color picker, color picker tool, hex to rgb, rgb to hex, hex to hsl, hsl to hex, color harmonies, gradient builder, Hangga tools" />
+  <meta name="keywords" content="color picker, color picker tool, hex to rgb, rgb to hex, hex to hsl, hsl to hex, color harmonies, gradient builder" />
   <meta name="author" content="Hangga" />
-  <meta property="og:title" content="Color Picker – Hangga Tools" />
+  <meta property="og:title" content="Color Picker" />
   <meta property="og:description" content="A fast and easy-to-use color picker tool with HEX, RGB, and HSL support. Random color generator, color harmonies, gradient builder, and a history of recently used colors." />
   <meta property="og:image" content="https://hangga-hub.github.io/og-color-picker.png" />
   <meta property="og:url" content="https://hangga-hub.github.io/color-picker" />
   <meta name="robots" content="index,follow" />
   <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
+
 </head>
 <body>
   <div id="navbar"></div>
-
   <section id="ad-space">
     <p>[Ad Spot — Feature affiliate banners or services here]</p>
   </section>
-
-
-  <main class="container tool-color tool-panel">
-    <h2 class="tool-title">🎨 Color Picker</h2>
-
-    <label class="neon-label" for="hexInput">HEX</label>
-    <input id="hexInput" class="neon-input" type="text" placeholder="#ff00cc" />
-
-    <label class="neon-label" for="rgbInput">RGB</label>
-    <input id="rgbInput" class="neon-input" type="text" placeholder="rgb(255, 0, 204)" />
-
-    <label class="neon-label" for="hslInput">HSL</label>
-    <input id="hslInput" class="neon-input" type="text" placeholder="hsl(315, 100%, 50%)" />
-
-    <div class="tool-button-row">
-      <button id="randomBtn" class="tool-button">🎲 Random Color</button>
-      <button id="copyBtn" class="tool-button">📋 Copy HEX</button>
+  <main class="container tool-color">
+    <h2>🎨 Color Picker</h2>
+    <label for="hexInput">HEX</label>
+    <input id="hexInput" type="text" placeholder="#ff00cc" />
+    <label for="rgbInput">RGB</label>
+    <input id="rgbInput" type="text" placeholder="rgb(255, 0, 204)" />
+    <label for="hslInput">HSL</label>
+    <input id="hslInput" type="text" placeholder="hsl(315, 100%, 50%)" />
+    <div class="button-row">
+      <button id="randomBtn">🎲 Random Color</button>
+      <button id="copyBtn">📋 Copy HEX</button>
     </div>
-
-    <div id="colorPreview" class="tool-preview-box">#ff00cc</div>
-
-    <h3 class="tool-subtitle">🔁 Recent Colors</h3>
-    <div id="colorHistory" class="tool-swatch-row"></div>
-
-    <h3 class="tool-subtitle">🎨 Suggested Harmonies</h3>
-    <div id="paletteGrid" class="tool-swatch-row"></div>
-
-    <h3 class="tool-subtitle">🧪 Gradient Builder</h3>
-    <div class="tool-gradient-builder">
-      <input id="gradientStart" class="neon-input" type="text" placeholder="#ff00cc" />
-      <input id="gradientEnd" class="neon-input" type="text" placeholder="#00fff7" />
-      <button id="previewGradientBtn" class="tool-button">🎨 Preview Gradient</button>
+    <div id="colorPreview" class="preview-box">#ff00cc</div>
+    <h3>🔁 Recent Colors</h3>
+    <div id="colorHistory" class="swatch-row"></div>
+    <h3>🎨 Suggested Harmonies</h3>
+    <div id="paletteGrid" class="swatch-row"></div>
+    <h3>🧪 Gradient Builder</h3>
+    <div class="gradient-builder">
+      <input id="gradientStart" type="text" placeholder="#ff00cc" />
+      <input id="gradientEnd"   type="text" placeholder="#00fff7" />
+      <button id="previewGradientBtn">🎨 Preview Gradient</button>
     </div>
-    <div id="gradientPreview" class="tool-preview-box">Gradient</div>
+    <div id="gradientPreview" class="preview-box">Gradient</div>
     <pre id="gradientCSS"></pre>
   </main>
-
   <footer>
     <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/color-picker">GitHub</a></p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>

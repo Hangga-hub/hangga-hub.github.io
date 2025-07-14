@@ -1184,3 +1184,80 @@ font-weight: bold;
 letter-spacing: 0.5px;
 text-align: center;
 }
+/* ──────────────────────────────────────────────────────
+    color picker tool styles
+───────────────────────────────────────────────────────── */
+
+label {
+display: block;
+margin-top: 1rem;
+font-weight: bold;
+color: #0af0e4;
+}
+
+input[type="text"] {
+width: 100%;
+padding: 0.9rem;
+border-radius: 4px;
+border: 2px solid var(--border);
+margin-top: 0.5rem;
+box-sizing: border-box;
+}
+
+.button-row {
+display: flex;
+gap: 1rem;
+margin: 1rem 0;
+}
+
+
+.swatch-row {
+display: flex;
+gap: 0.5rem;
+flex-wrap: wrap;
+margin: 0.5rem 0;
+}
+
+.swatch {
+width: 32px;
+height: 32px;
+border-radius: 4px;
+cursor: pointer;
+border: 2px solid var(--border);
+box-shadow: 0 0 6px rgba(255,255,255,0.2);
+}
+
+.preview-box {
+width: 100%;
+height: 100px;
+margin: 1rem 0;
+border-radius: 6px;
+border: 2px solid var(--border);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+}
+
+.gradient-builder {
+margin-bottom: 1rem;
+}
+
+.gradient-builder input {
+width: calc(50% - 8px);
+margin-right: 4px;
+padding: 0.5rem;
+border-radius: 4px;
+border: 1px solid var(--border);
+}
+
+#gradientCSS {
+background-color: white;
+padding: 1rem;
+border-radius: 6px;
+border: 2px solid var(--border);
+margin-top: 0.5rem;
+font-size: 0.9rem;
+white-space: pre-wrap;
+word-break: break-all;
+}
