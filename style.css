@@ -215,6 +215,31 @@ main {
     transform: scale(1.05); /* More pronounced lift on hover */
 }
 
+.container.tool-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem 2.5rem;
+    background-color: #23232b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    border: 2px solid #00ffe7;
+}
+
+.tool-converter {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #18181b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border: 2px solid #00ffe7;
+    position: relative;
+    z-index: 1;
+}
+
 /* --- Share Buttons --- */
 .share-buttons {
     display: flex;
