@@ -4,8 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>QR Code Generator – Hangga Tools</title>
+  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
+  <link rel="icon" href="https://hangga-hub.github.io/favicon.ico" type="image/x-icon" />
+
   <meta name="description" content="Create and download QR codes for any text or URL instantly with our free QR Code Generator." />
   <meta name="keywords" content="QR code generator, create QR code, download QR, free QR code" />
+  <meta name="author" content="Hangga" />
+  <meta property="og:title" content="QR Code Generator – Hangga Tools" />
+  <meta property="og:description" content="Generate and download QR codes from text or URLs with Hangga's free QR Code Generator." />
+  <meta property="og:image" content="https://hangga-hub.github.io/og-qr-code-generator.png" /> <meta property="og:url" content="https://hangga-hub.github.io/qr-code-generator" />
+  <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://hangga-hub.github.io/qr-code-generator" />
   <script type="application/ld+json">
   {
@@ -17,47 +25,77 @@
     "description": "Generate and download QR codes from text or URLs."
   }
   </script>
-  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
-  <!-- Use the official jsDelivr build of QRCode -->
+
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
 
 </head>
 <body>
   <div id="navbar"></div>
+  <main>
+    <section id="ad-space" style="text-align:center;margin-bottom:1rem;">
+      <p style="font-size:0.95rem;color:#888;">[Ad – Dev tools, browser extensions, productivity software]</p>
+    </section>
+    <div class="tool-converter-card">
+      <h2>🔳 QR Code Generator</h2>
 
-  <main class="container tool-qr">
-    <h2>🔳 QR Code Generator</h2>
+      <label for="textInput">Text or URL</label>
+      <input id="textInput" type="text" placeholder="Enter text or URL" />
 
-    <!-- Ad placeholder -->
-    <div id="ad-space">Here</div>
+      <div class="button-row">
+        <button id="generateBtn">Generate QR Code</button>
+        <button id="downloadBtn">Download PNG</button>
+      </div>
 
-    <label for="textInput">Text or URL</label>
-    <input id="textInput" type="text" placeholder="Enter text or URL" />
+      <div id="qrcode"></div>
 
-    <div class="button-row">
-      <button id="generateBtn">Generate QR Code</button>
-      <button id="downloadBtn">Download PNG</button>
-    </div>
-
-    <div id="qrcode"></div>
-
-    <div class="share-buttons">
-      <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/qr-code-generator" target="_blank">
-        <img src="https://cdn.simpleicons.org/x/white" alt="Share on X" />
-      </a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/qr-code-generator" target="_blank">
-        <img src="https://cdn.simpleicons.org/facebook/white" alt="Share on Facebook" />
-      </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/qr-code-generator" target="_blank">
-        <img src="https://cdn.simpleicons.org/linkedin/white" alt="Share on LinkedIn" />
-      </a>
+      
     </div>
   </main>
-
-  <footer>
-    <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/qr-code-generator">GitHub</a></p>
+  <footer style="text-align:center;margin-top:2rem;font-size:0.95rem;color:#888;">
+    <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/" style="color: inherit; text-decoration: underline;">GitHub</a></p>
   </footer>
-
   <script src="script.js"></script>
+  <script>
+    const textInput = document.getElementById('textInput');
+    const generateBtn = document.getElementById('generateBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const qrcodeContainer = document.getElementById('qrcode');
+
+    generateBtn.addEventListener('click', () => {
+      const text = textInput.value;
+      if (text) {
+        qrcodeContainer.innerHTML = ''; // Clear previous QR code
+        new QRCode(qrcodeContainer, {
+          text: text,
+          width: 256,
+          height: 256,
+          colorDark : "#000000",
+          colorLight : "#ffffff",
+          correctLevel : QRCode.CorrectLevel.H
+        });
+      } else {
+        qrcodeContainer.innerHTML = '<span class="result-error">Please enter text or a URL to generate a QR code.</span>';
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      const qrCanvas = qrcodeContainer.querySelector('canvas');
+      if (qrCanvas) {
+        const image = qrCanvas.toDataURL("image/png");
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'qrcode_hanggatools.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        // Optionally display an error if no QR code is generated yet
+        if (!qrcodeContainer.querySelector('.result-error')) {
+          qrcodeContainer.innerHTML = '<span class="result-error">Generate a QR code first before downloading.</span>';
+        }
+      }
+    });
+  </script>
 </body>
 </html>
