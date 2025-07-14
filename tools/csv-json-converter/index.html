@@ -19,33 +19,29 @@
   </script>
   <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
   <link rel="icon" href="https://hangga-hub.github.io/favicon.ico" type="image/x-icon" />
+
 </head>
 <body>
-  <div id="navbar"></div>
-
+  <div id="navbar">
+    <!-- You can add your navigation bar content here -->
+  </div>
   <section id="ad-space">
     <p>[Ad – Data tools, cloud services, or productivity software]</p>
   </section>
-
   <main class="container tool-page">
     <h2 class="tool-title">📑 CSV ⇄ JSON Converter</h2>
-
     <div class="tool-converter">
       <label class="neon-label" for="inputData">Input (CSV or JSON)</label>
       <textarea id="inputData" class="neon-textarea" placeholder="Paste CSV or JSON here"></textarea>
-
       <div class="tool-button-row">
         <button id="toJsonBtn" class="tool-button">CSV → JSON</button>
         <button id="toCsvBtn" class="tool-button">JSON → CSV</button>
         <button id="clearBtn" class="tool-button">Clear</button>
       </div>
-
       <label class="neon-label" for="outputData">Output</label>
       <textarea id="outputData" class="neon-textarea" readonly placeholder="Result appears here"></textarea>
-
       <div id="errorMessage" class="tool-error-message"></div>
     </div>
-
     <div class="share-buttons neon-share tool-share">
       <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/csv-json-converter" target="_blank">
         <img src="https://cdn.simpleicons.org/x/white" alt="Share on X"/>
@@ -58,11 +54,9 @@
       </a>
     </div>
   </main>
-
   <footer>
     <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub/csv-json-converter">GitHub</a></p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>

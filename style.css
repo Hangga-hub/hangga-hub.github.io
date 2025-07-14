@@ -20,6 +20,7 @@
     overflow-x: hidden;
 }
 /* Removed duplicate and conflicting body, container, button, result, share-buttons, and footer styles. Only one set of definitions for each remains above. */
+.container{
     text-align: center;
     color: var(--cyber-neon-yellow);
     text-shadow: 0 0 20px var(--cyber-neon-yellow), 0 0 8px var(--cyber-neon-cyan); /* Stronger glow */
