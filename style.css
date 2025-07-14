@@ -748,3 +748,117 @@ nav.sticky .dropdown-content li a:hover {
 body[data-category="length"] { --accent: #00c3ff; }
 body[data-category="weight"] { --accent: #ffaa00; }
 body[data-category="temperature"] { --accent: #ff2b88; }
+body[data-category="time"] { --accent: #ff6f00; }
+body[data-category="speed"] { --accent: #ff00cc; }
+body[data-category="area"] { --accent: #00c3ff; }
+body[data-category="volume"] { --accent: #ffaa00; }
+body[data-category="angle"] { --accent: #ff2b88; }
+body[data-category="data"] { --accent: #ff6f00; }
+body[data-category="currency"] { --accent: #ff00cc; }
+body[data-category="force"] { --accent: #00c3ff; }
+body[data-category="energy"] { --accent: #ff2b88; }
+body[data-category="pressure"] { --accent: #ff6f00; }
+body[data-category="power"] { --accent: #ff00cc; }
+body[data-category="mass"] { --accent: #00c3ff; }
+body[data-category="frequency"] { --accent: #ffaa00; }
+
+
+/* ──────────────────────────────────────────────────────
+    Tool Converter Card Styles
+────────────────────────────────────────────────────── */
+.tool-converter-card {
+    max-width: 420px;
+    margin: 2rem auto;
+    background: #18181b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    padding: 2rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border: 2px solid #00ffe7;
+    position: relative;
+    z-index: 1;
+}
+.tool-converter-card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.7rem;
+    text-align: center;
+    color: #00ffe7;
+    text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
+    letter-spacing: 1px;
+}
+.tool-converter-card label {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: #ff00cc;
+    text-shadow: 0 0 4px #ff00cc;
+}
+.tool-converter-card select,
+.tool-converter-card input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1.5px solid #00ffe7;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    background: #23232b;
+    color: #fff;
+    box-shadow: 0 0 8px #00ffe7 inset;
+    outline: none;
+    transition: border 0.2s;
+}
+.tool-converter-card select:focus,
+.tool-converter-card input:focus {
+    border: 1.5px solid #ff00cc;
+    box-shadow: 0 0 12px #ff00cc inset;
+}
+.result-card, .result-temp {
+    display: block;
+    background: #23232b;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 600;
+    color: #00ffe7;
+    box-shadow: 0 0 16px #ff00cc, 0 0 8px #00ffe7;
+    border: 1.5px solid #ff00cc;
+    text-shadow: 0 0 6px #00ffe7, 0 0 2px #ff00cc;
+}
+.result-error {
+    color: #ff00cc;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    margin-top: 0.5rem;
+    text-shadow: 0 0 6px #ff00cc;
+}
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.share-buttons img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    filter: drop-shadow(0 0 6px #00ffe7) drop-shadow(0 0 2px #ff00cc);
+}
+.share-buttons img:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px #ff00cc) drop-shadow(0 0 6px #00ffe7);
+}
+body {
+    background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
+    min-height: 100vh;
+    font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+}
+footer {
+    color: #00ffe7 !important;
+    text-shadow: 0 0 6px #ff00cc;
+}

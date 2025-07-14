@@ -39,17 +39,18 @@ const units = {
     lb: 0.453592,
     ton: 1000
   },
-  speed: {
-    'm/s': 1,
-    'km/h': 0.277778,
-    mph: 0.44704,
-    knots: 0.514444
-  },
+  temperature: {}, // handled separately
   time: {
     sec: 1,
     min: 60,
     hr: 3600,
     day: 86400
+  },
+  speed: {
+    'm/s': 1,
+    'km/h': 0.277778,
+    mph: 0.44704,
+    knots: 0.514444
   },
   area: {
     'cm²': 0.0001,
@@ -68,7 +69,46 @@ const units = {
     'ft³': 28.3168,
     gallon: 3.78541
   },
-  temperature: {} // handled separately
+  angle: {
+    deg: 1,
+    rad: 57.2958,
+    grad: 0.9
+  },
+  data: {
+    bit: 1,
+    byte: 8,
+    KB: 8192,
+    MB: 8388608,
+    GB: 8589934592,
+    TB: 8796093022208
+  },
+ 
+  energy: {
+    J: 1,
+    kJ: 1000,
+    cal: 4.184,
+    Wh: 3600,
+    kWh: 3600000
+  },
+  pressure: {
+    Pa: 1,
+    kPa: 1000,
+    bar: 100000,
+    atm: 101325,
+    psi: 6894.76
+  },
+  power: {
+    W: 1,
+    kW: 1000,
+    MW: 1000000,
+    hp: 745.7
+  },
+  frequency: {
+    Hz: 1,
+    kHz: 1000,
+    MHz: 1000000,
+    GHz: 1000000000
+  }
 };
 
 function setupUnitOptions() {
@@ -77,7 +117,7 @@ function setupUnitOptions() {
   updateUnits(); // Initial
 
   // Add event listeners for conversion
-  document.getElementById("convertBtn")?.addEventListener("click", convertUnit);
+  document.querySelector(".tool-button")?.addEventListener("click", convertUnit);
   document.getElementById("inputValue")?.addEventListener("input", convertUnit);
   document.getElementById("fromUnit")?.addEventListener("change", convertUnit);
   document.getElementById("toUnit")?.addEventListener("change", convertUnit);
@@ -99,12 +139,18 @@ function updateUnits() {
       from.innerHTML += `<option value="${u}">${u}</option>`;
       to.innerHTML += `<option value="${u}">${u}</option>`;
     });
-  } else {
-    Object.keys(units[type]).forEach(u => {
-      from.innerHTML += `<option value="${u}">${u}</option>`;
-      to.innerHTML += `<option value="${u}">${u}</option>`;
-    });
+    return;
   }
+  if (!units[type] || Object.keys(units[type]).length === 0) {
+    from.innerHTML = '';
+    to.innerHTML = '';
+    document.getElementById("result").innerHTML = `<span class="result-error">Conversion for this category is not supported yet.</span>`;
+    return;
+  }
+  Object.keys(units[type]).forEach(u => {
+    from.innerHTML += `<option value="${u}">${u}</option>`;
+    to.innerHTML += `<option value="${u}">${u}</option>`;
+  });
 }
 
 function formatNumber(num) {
@@ -135,7 +181,11 @@ function convertUnit() {
     result.innerHTML = `<span class="result-temp">🌡️ <b>${formatNumber(val)}</b> ${from} = <b>${formatNumber(converted)}</b> ${to}</span>`;
     return;
   }
-
+  
+  if (!units[type] || !units[type][from] || !units[type][to]) {
+    result.innerHTML = `<span class="result-error">Conversion for this category is not supported yet.</span>`;
+    return;
+  }
   const base = val * units[type][from];
   const converted = base / units[type][to];
   result.innerHTML = `<span class="result-card">🧮 <b>${formatNumber(val)}</b> ${from} = <b>${formatNumber(converted)}</b> ${to}</span>`;
