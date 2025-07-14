@@ -752,7 +752,6 @@ body[data-category="time"] { --accent: #ff6f00; }
 body[data-category="speed"] { --accent: #ff00cc; }
 body[data-category="area"] { --accent: #00c3ff; }
 body[data-category="volume"] { --accent: #ffaa00; }
-body[data-category="angle"] { --accent: #ff2b88; }
 body[data-category="data"] { --accent: #ff6f00; }
 body[data-category="currency"] { --accent: #ff00cc; }
 body[data-category="energy"] { --accent: #ff2b88; }

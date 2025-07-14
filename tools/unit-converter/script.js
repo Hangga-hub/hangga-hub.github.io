@@ -39,18 +39,17 @@ const units = {
     lb: 0.453592,
     ton: 1000
   },
-  temperature: {}, // handled separately
-  time: {
-    sec: 1,
-    min: 60,
-    hr: 3600,
-    day: 86400
-  },
   speed: {
     'm/s': 1,
     'km/h': 0.277778,
     mph: 0.44704,
     knots: 0.514444
+  },
+  time: {
+    sec: 1,
+    min: 60,
+    hr: 3600,
+    day: 86400
   },
   area: {
     'cm²': 0.0001,
@@ -61,6 +60,46 @@ const units = {
     acre: 4046.86,
     ha: 10000
   },
+  pressure: {
+    Pa: 1,
+    kPa: 1000,
+    MPa: 1e6,
+    bar: 1e5,
+    psi: 6894.76,
+    atm: 101325
+  },
+  data: {
+    bit: 0.125,
+    byte: 1,
+    KiB: 1024,
+    MiB: 1048576,
+    GiB: 1073741824,
+    TiB: 1099511627776,
+    KB: 1000,
+    MB: 1000000,
+    GB: 1000000000,
+    TB: 1000000000000
+  },
+  energy: {
+    J: 1,
+    kJ: 1000,
+    MJ: 1e6,
+    GJ: 1e9,
+    cal: 4.184,
+    kcal: 4184,
+    Wh: 3600,
+    kWh: 3600000
+  },
+  power: {
+    W: 1,
+    kW: 1000,
+    MW: 1e6,
+    GW: 1e9,
+    'BTU/s': 0.293071,
+    'BTU/min': 17.5845,
+    'BTU/hr': 1055.06,
+    HP: 745.7
+  },
   volume: {
     ml: 0.001,
     l: 1,
@@ -69,46 +108,7 @@ const units = {
     'ft³': 28.3168,
     gallon: 3.78541
   },
-  angle: {
-    deg: 1,
-    rad: 57.2958,
-    grad: 0.9
-  },
-  data: {
-    bit: 1,
-    byte: 8,
-    KB: 8192,
-    MB: 8388608,
-    GB: 8589934592,
-    TB: 8796093022208
-  },
- 
-  energy: {
-    J: 1,
-    kJ: 1000,
-    cal: 4.184,
-    Wh: 3600,
-    kWh: 3600000
-  },
-  pressure: {
-    Pa: 1,
-    kPa: 1000,
-    bar: 100000,
-    atm: 101325,
-    psi: 6894.76
-  },
-  power: {
-    W: 1,
-    kW: 1000,
-    MW: 1000000,
-    hp: 745.7
-  },
-  frequency: {
-    Hz: 1,
-    kHz: 1000,
-    MHz: 1000000,
-    GHz: 1000000000
-  }
+  temperature: {} // handled separately
 };
 
 function setupUnitOptions() {
@@ -139,18 +139,12 @@ function updateUnits() {
       from.innerHTML += `<option value="${u}">${u}</option>`;
       to.innerHTML += `<option value="${u}">${u}</option>`;
     });
-    return;
+  } else {
+    Object.keys(units[type]).forEach(u => {
+      from.innerHTML += `<option value="${u}">${u}</option>`;
+      to.innerHTML += `<option value="${u}">${u}</option>`;
+    });
   }
-  if (!units[type] || Object.keys(units[type]).length === 0) {
-    from.innerHTML = '';
-    to.innerHTML = '';
-    document.getElementById("result").innerHTML = `<span class="result-error">Conversion for this category is not supported yet.</span>`;
-    return;
-  }
-  Object.keys(units[type]).forEach(u => {
-    from.innerHTML += `<option value="${u}">${u}</option>`;
-    to.innerHTML += `<option value="${u}">${u}</option>`;
-  });
 }
 
 function formatNumber(num) {
@@ -181,11 +175,7 @@ function convertUnit() {
     result.innerHTML = `<span class="result-temp">🌡️ <b>${formatNumber(val)}</b> ${from} = <b>${formatNumber(converted)}</b> ${to}</span>`;
     return;
   }
-  
-  if (!units[type] || !units[type][from] || !units[type][to]) {
-    result.innerHTML = `<span class="result-error">Conversion for this category is not supported yet.</span>`;
-    return;
-  }
+
   const base = val * units[type][from];
   const converted = base / units[type][to];
   result.innerHTML = `<span class="result-card">🧮 <b>${formatNumber(val)}</b> ${from} = <b>${formatNumber(converted)}</b> ${to}</span>`;
