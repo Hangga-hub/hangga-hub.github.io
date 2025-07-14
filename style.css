@@ -64,7 +64,7 @@ body {
 
 /* Main Content Area */
 main {
-    max-width: var(--max-content-width);
+    max-width: 1200px;
     margin: var(--spacing-lg) auto;
     padding: 0 var(--spacing-md);
     width: 100%;
