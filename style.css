@@ -226,14 +226,14 @@ main {
     justify-content: flex-end;
 }
 
-.share-buttons i {
+.share-buttons a {
     color: var(--cyber-neon-yellow);
     text-shadow: 0 0 15px var(--cyber-neon-yellow), 0 0 5px var(--cyber-neon-pink); /* Stronger glow */
     font-size: 32px; /* Larger share icons */
     transition: color 0.2s, text-shadow 0.2s;
 }
 
-.share-buttons a:hover i {
+.share-buttons a:hover {
     color: var(--cyber-neon-pink);
     text-shadow: 0 0 20px var(--cyber-neon-pink), 0 0 10px var(--cyber-neon-cyan);
 }
@@ -760,7 +760,7 @@ body[data-category="power"] { --accent: #ff00cc; }
 body[data-category="frequency"] { --accent: #ffaa00; }
 
 /* ──────────────────────────────────────────────────────
-    Tool Converter Styles (General for simple converters)
+    Tool Converter Styles
 ────────────────────────────────────────────────────── */
 .tool-converter {
     max-width: 420px;
@@ -826,7 +826,7 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     gap: 0.5rem;
     justify-content: center;
 }
-.tool-button { /* This is a general button style, overridden by .tool-button in main grid */
+.tool-button {
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     background-color: #ff00cc;
@@ -839,20 +839,19 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     background-color: #ff6b8e;
     transform: scale(1.05);
 }
-/* This body style seems to be a remnant from a specific tool page, it should be removed or moved to specific tool CSS */
-/* body {
+body {
     background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
     min-height: 100vh;
     font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
     letter-spacing: 0.5px;
-} */
-/* footer {
+}
+footer {
     color: #00ffe7 !important;
     text-shadow: 0 0 6px #ff00cc;
-} */
+}
 
 /* ──────────────────────────────────────────────────────
-    QR Code Generator Styles (Specific to QR tool)
+    QR Code Generator Styles
 ────────────────────────────────────────────────────── */
     /* Reusing .tool-converter-card styles for consistency */
 .tool-converter-card {
@@ -922,34 +921,33 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     margin-top: 0.5rem;
     text-shadow: 0 0 6px #ff00cc;
 }
-.share-buttons { /* This seems to be a duplicate, the general .share-buttons is preferred */
+.share-buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
 }
-.share-buttons img { /* This seems to be a duplicate, the general .share-buttons i is preferred */
+.share-buttons img {
     width: 28px;
     height: 28px;
     opacity: 0.85;
     transition: opacity 0.2s;
     filter: drop-shadow(0 0 6px #00ffe7) drop-shadow(0 0 2px #ff00cc);
 }
-.share-buttons img:hover { /* This seems to be a duplicate, the general .share-buttons a:hover i is preferred */
+.share-buttons img:hover {
     opacity: 1;
     filter: drop-shadow(0 0 12px #ff00cc) drop-shadow(0 0 6px #00ffe7);
 }
-/* This body style seems to be a remnant from a specific tool page, it should be removed or moved to specific tool CSS */
-/* body {
+body {
     background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
     min-height: 100vh;
     font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
     letter-spacing: 0.5px;
-} */
-/* footer {
+}
+footer {
     color: #00ffe7 !important;
     text-shadow: 0 0 6px #ff00cc;
-} */
+}
 /* Specific styles for the QR Code Generator buttons and output */
 .tool-converter-card .button-row {
     display: flex;
@@ -991,15 +989,15 @@ body[data-category="frequency"] { --accent: #ffaa00; }
 }
 
 /* ──────────────────────────────────────────────────────
-    General Styles for All Tools (These seem to be duplicates/overrides from global styles)
+    General Styles for All Tools
 ───────────────────────────────────────────────────────── */
-/* body {
+body {
     background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
     min-height: 100vh;
     font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
     letter-spacing: 0.5px;
-} */
-/* .container {
+}
+.container {
     max-width: 600px;
     margin: 2rem auto;
     padding: 1rem;
@@ -1007,15 +1005,15 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     border-radius: 18px;
     box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
     border: 2px solid #00ffe7;
-} */
-/* h2 {
+}
+h2 {
     margin-bottom: 1rem;
     text-align: center;
     color: #00ffe7;
     text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
     letter-spacing: 1px;
-} */
-/* textarea {
+}
+textarea {
     width: 100%;
     height: 150px;
     padding: 1rem;
@@ -1028,12 +1026,12 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     box-shadow: 0 0 8px #00ffe7 inset;
     outline: none;
     transition: border 0.2s;
-} */
-/* textarea:focus {
+}
+textarea:focus {
     border: 1.5px solid #ff00cc;
     box-shadow: 0 0 12px #ff00cc inset;
-} */
-/* button {
+}
+button {
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     background-color: #ff00cc;
@@ -1041,12 +1039,12 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
-} */
-/* button:hover {
+}
+button:hover {
     background-color: #ff6b8e;
     transform: scale(1.05);
-} */
-/* .result {
+}
+.result {
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 10px;
@@ -1054,40 +1052,40 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     color: #00ffe7;
     text-shadow: 0 0 6px #ff00cc, 0 0 2px #ff00cc;
     border: 1.5px solid #ff00cc;
-} */
-/* .result.error {
+}
+.result.error {
     background-color: #3a0842;
     color: red;
-} */
-/* .share-buttons {
+}
+.share-buttons {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-} */
-/* .share-buttons img {
+}
+.share-buttons img {
     width: 32px;
     height: 32px;
     margin: 0 8px;
-} */
-/* footer {
+}
+footer {
     color: #00ffe7 !important;
     text-shadow: 0 0 6px #ff00cc;
     text-align: center;
     padding-top: 1rem;
-} */
+}
 
 /* ──────────────────────────────────────────────────────
     Specific Styles for Image Converter Tool
 ───────────────────────────────────────────────────────── */
 
     
-/* body {
+body {
 background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
 min-height: 100vh;
 font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
 letter-spacing: 0.5px;
-} */
-/* .container {
+}
+.container {
 max-width: 800px;
 margin: 2rem auto;
 padding: 1rem;
@@ -1095,7 +1093,7 @@ background-color: #23232b;
 border-radius: 18px;
 box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
 border: 2px solid #00ffe7;
-} */
+}
 .tool-ad-space {
 margin-bottom: 1.5rem;
 }
@@ -1134,11 +1132,11 @@ margin-left: 1rem;
 color: white;
 margin-bottom: 1rem;
 }
-/* .tool-button-row {
+.tool-button-row {
 display: flex;
 justify-content: space-between;
-} */
-/* .tool-button {
+}
+.tool-button {
 padding: 1rem 2rem;
 border-radius: 8px;
 background-color: #00ffe7;
@@ -1147,14 +1145,14 @@ text-decoration: none;
 font-weight: bold;
 letter-spacing: 0.5px;
 transition: background-color 0.3s, transform 0.2s;
-} */
-/* .tool-button:hover {
+}
+.tool-button:hover {
 background-color: #ff00cc;
 transform: scale(1.05);
-} */
-/* .hidden {
+}
+.hidden {
 display: none;
-} */
+}
 .tool-loading-indicator {
 margin-bottom: 1rem;
 text-align: center;
@@ -1167,10 +1165,10 @@ height: 30px;
 border-radius: 50%;
 animation: spin 1s linear infinite;
 }
-/* @keyframes spin {
+@keyframes spin {
 0% { transform: rotate(0deg); }
 100% { transform: rotate(360deg); }
-} */
+}
 .tool-result-section {
 margin-top: 2rem;
 }
@@ -1190,14 +1188,14 @@ text-align: center;
     color picker tool styles
 ───────────────────────────────────────────────────────── */
 
-label { /* This is a duplicate, general label style is preferred */
+label {
 display: block;
 margin-top: 1rem;
 font-weight: bold;
 color: #0af0e4;
 }
 
-input[type="text"] { /* This is a duplicate, general input style is preferred */
+input[type="text"] {
 width: 100%;
 padding: 0.9rem;
 border-radius: 4px;
@@ -1206,11 +1204,11 @@ margin-top: 0.5rem;
 box-sizing: border-box;
 }
 
-/* .button-row {
+.button-row {
 display: flex;
 gap: 1rem;
 margin: 1rem 0;
-} */
+}
 
 
 .swatch-row {
@@ -1267,7 +1265,7 @@ word-break: break-all;
 /* ──────────────────────────────────────────────────────
     Bmi Calculator Styles
 ───────────────────────────────────────────────────────── */
-/* .container {
+.container {
     flex: 1;
     padding: 2rem;
     max-width: 400px;
@@ -1275,10 +1273,10 @@ word-break: break-all;
     border-radius: 18px;
     box-shadow: 0 0 32px 4px #00fff7, 0 0 8px 2px #ff00cc;
     background-color: rgba(30, 30, 39, 0.9);
-} */
+}
 
 
-/* input[type="number"], select {
+input[type="number"], select {
     width: calc(100% - 22px);
     padding: 0.7rem;
     border-radius: 6px;
@@ -1286,13 +1284,15 @@ word-break: break-all;
     background-color: #2c3e50;
     color: white;
     font-size: 0.9rem;
-} */
+}
 
-/* .neon-select {
+.neon-select {
     width: 100%;
-} */
+}
 
-/* --- NEW: Image Resizer Specific Styles --- */
+/* ──────────────────────────────────────────────────────
+    Image Resizer Styles
+───────────────────────────────────────────────────────── */
 .tool-image-resizer {
     /* No special background/border needed, .tool-card handles it */
 }
