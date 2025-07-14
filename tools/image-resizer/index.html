@@ -59,6 +59,19 @@
                         <input type="checkbox" id="lockAspect" checked>
                         <span class="checkmark"></span> Lock Aspect Ratio
                     </label>
+                    <div class="input-group">
+                        <label>Crop:</label>
+                        <input type="number" id="cropX" min="0" placeholder="X (px)" style="width:80px;" />
+                        <input type="number" id="cropY" min="0" placeholder="Y (px)" style="width:80px;" />
+                        <input type="number" id="cropW" min="1" placeholder="W (px)" style="width:80px;" />
+                        <input type="number" id="cropH" min="1" placeholder="H (px)" style="width:80px;" />
+                        <button id="resetCropBtn" type="button" class="tool-button secondary-button" style="padding:0.3rem 0.7rem; font-size:0.9rem;">Reset Crop</button>
+                    </div>
+                    <div class="input-group">
+                        <label>Flip:</label>
+                        <button id="flipHBtn" type="button" class="tool-button secondary-button" style="padding:0.3rem 0.7rem; font-size:0.9rem;">Flip Horizontal</button>
+                        <button id="flipVBtn" type="button" class="tool-button secondary-button" style="padding:0.3rem 0.7rem; font-size:0.9rem;">Flip Vertical</button>
+                    </div>
                 </div>
 
                 <div class="output-settings">

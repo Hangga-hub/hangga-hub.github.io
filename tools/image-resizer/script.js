@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let originalWidth = 0;
     let originalHeight = 0;
     let currentUnit = 'px'; // 'px' or '%'
+    // Crop and flip state
+    let cropX = 0, cropY = 0, cropW = 0, cropH = 0;
+    let flipH = false, flipV = false;
 
     // --- Helper Functions ---
 
@@ -69,31 +72,33 @@ document.addEventListener('DOMContentLoaded', () => {
         originalImage = null;
         originalWidth = 0;
         originalHeight = 0;
-        imageInput.value = ''; // Clear file input
+        imageInput.value = '';
         dropZone.classList.remove('hidden');
         imageControls.classList.add('hidden');
         resizeAndDownloadBtn.classList.add('hidden');
         resetBtn.classList.add('hidden');
         imagePreview.classList.add('hidden');
-        updatePreviewInfo(0, 0, 0); // Clear preview info
-        
-        // Reset default values for inputs/settings
+        updatePreviewInfo(0, 0, 0);
         widthInput.value = '';
         heightInput.value = '';
         lockAspectCheckbox.checked = true;
-        
-        // Reset unit toggles to 'px'
         unitToggles.forEach(toggle => {
             if (toggle.dataset.unit === 'px') toggle.classList.add('active');
             else toggle.classList.remove('active');
         });
         currentUnit = 'px';
-
         outputFormatSelect.value = 'image/jpeg';
         qualitySlider.value = 80;
         qualityValueSpan.textContent = '80';
-        backgroundColorGroup.style.display = 'none'; // Hide background color for non-JPG
+        backgroundColorGroup.style.display = 'none';
         backgroundColorInput.value = '#ffffff';
+        // Reset crop and flip
+        cropX = 0; cropY = 0; cropW = 0; cropH = 0;
+        flipH = false; flipV = false;
+        if (document.getElementById('cropX')) document.getElementById('cropX').value = '';
+        if (document.getElementById('cropY')) document.getElementById('cropY').value = '';
+        if (document.getElementById('cropW')) document.getElementById('cropW').value = '';
+        if (document.getElementById('cropH')) document.getElementById('cropH').value = '';
     }
 
     /**
@@ -129,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 reject('Invalid file type');
                 return;
             }
-
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
@@ -137,20 +141,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     originalImage = img;
                     originalWidth = img.width;
                     originalHeight = img.height;
-
                     originalDimsSpan.textContent = `${originalWidth}x${originalHeight}px`;
                     originalFileSizeSpan.textContent = formatBytes(file.size);
-
-                    // Set initial dimensions to original width/height
                     widthInput.value = originalWidth;
                     heightInput.value = originalHeight;
-                    
+                    // Set crop defaults
+                    cropX = 0; cropY = 0; cropW = originalWidth; cropH = originalHeight;
+                    if (document.getElementById('cropX')) document.getElementById('cropX').value = cropX;
+                    if (document.getElementById('cropY')) document.getElementById('cropY').value = cropY;
+                    if (document.getElementById('cropW')) document.getElementById('cropW').value = cropW;
+                    if (document.getElementById('cropH')) document.getElementById('cropH').value = cropH;
                     dropZone.classList.add('hidden');
                     imageControls.classList.remove('hidden');
                     resizeAndDownloadBtn.classList.remove('hidden');
                     resetBtn.classList.remove('hidden');
-                    
-                    // Immediately generate a preview with current settings
                     renderPreview();
                     resolve();
                 };
@@ -179,63 +183,80 @@ document.addEventListener('DOMContentLoaded', () => {
             updatePreviewInfo(0, 0, 0);
             return;
         }
-
         let targetWidth = parseFloat(widthInput.value);
         let targetHeight = parseFloat(heightInput.value);
-
         // Handle percentage resizing
         if (currentUnit === '%') {
             if (isNaN(targetWidth) || targetWidth <= 0) targetWidth = 100;
             if (isNaN(targetHeight) || targetHeight <= 0) targetHeight = 100;
-
             targetWidth = originalWidth * (targetWidth / 100);
             targetHeight = originalHeight * (targetHeight / 100);
         }
-
         // Handle aspect ratio lock
         if (lockAspectCheckbox.checked) {
             if (isNaN(targetWidth) && isNaN(targetHeight)) {
                 targetWidth = originalWidth;
                 targetHeight = originalHeight;
-            } else if (isNaN(targetWidth) || targetWidth <= 0) { // Only height is valid
+            } else if (isNaN(targetWidth) || targetWidth <= 0) {
                 targetWidth = (targetHeight / originalHeight) * originalWidth;
-            } else if (isNaN(targetHeight) || targetHeight <= 0) { // Only width is valid
+            } else if (isNaN(targetHeight) || targetHeight <= 0) {
                 targetHeight = (targetWidth / originalWidth) * originalHeight;
-            } else { // Both width and height provided, but aspect ratio locked
-                // Prioritize width and adjust height
+            } else {
                 targetHeight = (targetWidth / originalWidth) * originalHeight;
             }
-            // Update input fields to reflect calculated dimensions
             widthInput.value = Math.round(targetWidth);
             heightInput.value = Math.round(targetHeight);
-        } else { // Aspect ratio not locked
-             if (isNaN(targetWidth) || targetWidth <= 0) targetWidth = originalWidth;
-             if (isNaN(targetHeight) || targetHeight <= 0) targetHeight = originalHeight;
+        } else {
+            if (isNaN(targetWidth) || targetWidth <= 0) targetWidth = originalWidth;
+            if (isNaN(targetHeight) || targetHeight <= 0) targetHeight = originalHeight;
         }
-
-        // Ensure dimensions are positive integers
         targetWidth = Math.max(1, Math.round(targetWidth));
         targetHeight = Math.max(1, Math.round(targetHeight));
-
+        // Crop values
+        let cropXVal = parseInt(document.getElementById('cropX')?.value) || 0;
+        let cropYVal = parseInt(document.getElementById('cropY')?.value) || 0;
+        let cropWVal = parseInt(document.getElementById('cropW')?.value) || originalWidth;
+        let cropHVal = parseInt(document.getElementById('cropH')?.value) || originalHeight;
+        cropX = Math.max(0, cropXVal);
+        cropY = Math.max(0, cropYVal);
+        cropW = Math.max(1, cropWVal);
+        cropH = Math.max(1, cropHVal);
+        // Clamp crop to image bounds
+        if (cropX + cropW > originalWidth) cropW = originalWidth - cropX;
+        if (cropY + cropH > originalHeight) cropH = originalHeight - cropY;
+        // Canvas for crop
+        const cropCanvas = document.createElement('canvas');
+        cropCanvas.width = cropW;
+        cropCanvas.height = cropH;
+        const cropCtx = cropCanvas.getContext('2d');
+        cropCtx.drawImage(originalImage, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+        // Canvas for resize/flip
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = targetWidth;
         canvas.height = targetHeight;
-
+        // Flip logic
+        ctx.save();
+        if (flipH) {
+            ctx.translate(canvas.width, 0);
+            ctx.scale(-1, 1);
+        }
+        if (flipV) {
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+        }
         // Draw image (handle background for transparent images to JPG)
         if (outputFormatSelect.value === 'image/jpeg') {
             ctx.fillStyle = backgroundColorInput.value;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
-        ctx.drawImage(originalImage, 0, 0, targetWidth, targetHeight);
-
+        ctx.drawImage(cropCanvas, 0, 0, cropCanvas.width, cropCanvas.height, 0, 0, canvas.width, canvas.height);
+        ctx.restore();
         // Get image data URL and update preview
         const quality = parseFloat(qualitySlider.value) / 100;
         const dataUrl = canvas.toDataURL(outputFormatSelect.value, quality);
         imagePreview.src = dataUrl;
         imagePreview.classList.remove('hidden');
-
-        // Update preview info (file size requires converting to Blob)
         canvas.toBlob(blob => {
             updatePreviewInfo(targetWidth, targetHeight, blob ? blob.size : 0);
         }, outputFormatSelect.value, quality);
@@ -249,16 +270,12 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Please upload an image first!');
             return;
         }
-
-        // Re-calculate dimensions for final output, ensuring consistency
         let targetWidth = parseFloat(widthInput.value);
         let targetHeight = parseFloat(heightInput.value);
-
         if (currentUnit === '%') {
             targetWidth = originalWidth * (targetWidth / 100);
             targetHeight = originalHeight * (targetHeight / 100);
         }
-
         if (lockAspectCheckbox.checked) {
             if (isNaN(targetWidth) && isNaN(targetHeight)) {
                 targetWidth = originalWidth;
@@ -271,29 +288,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetHeight = (targetWidth / originalWidth) * originalHeight;
             }
         } else {
-             if (isNaN(targetWidth) || targetWidth <= 0) targetWidth = originalWidth;
-             if (isNaN(targetHeight) || targetHeight <= 0) targetHeight = originalHeight;
+            if (isNaN(targetWidth) || targetWidth <= 0) targetWidth = originalWidth;
+            if (isNaN(targetHeight) || targetHeight <= 0) targetHeight = originalHeight;
         }
-
         targetWidth = Math.max(1, Math.round(targetWidth));
         targetHeight = Math.max(1, Math.round(targetHeight));
-
+        // Crop values
+        let cropXVal = parseInt(document.getElementById('cropX')?.value) || 0;
+        let cropYVal = parseInt(document.getElementById('cropY')?.value) || 0;
+        let cropWVal = parseInt(document.getElementById('cropW')?.value) || originalWidth;
+        let cropHVal = parseInt(document.getElementById('cropH')?.value) || originalHeight;
+        cropX = Math.max(0, cropXVal);
+        cropY = Math.max(0, cropYVal);
+        cropW = Math.max(1, cropWVal);
+        cropH = Math.max(1, cropHVal);
+        if (cropX + cropW > originalWidth) cropW = originalWidth - cropX;
+        if (cropY + cropH > originalHeight) cropH = originalHeight - cropY;
+        // Canvas for crop
+        const cropCanvas = document.createElement('canvas');
+        cropCanvas.width = cropW;
+        cropCanvas.height = cropH;
+        const cropCtx = cropCanvas.getContext('2d');
+        cropCtx.drawImage(originalImage, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+        // Canvas for resize/flip
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = targetWidth;
         canvas.height = targetHeight;
-
+        ctx.save();
+        if (flipH) {
+            ctx.translate(canvas.width, 0);
+            ctx.scale(-1, 1);
+        }
+        if (flipV) {
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+        }
         if (outputFormatSelect.value === 'image/jpeg') {
             ctx.fillStyle = backgroundColorInput.value;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
-        ctx.drawImage(originalImage, 0, 0, targetWidth, targetHeight);
-
+        ctx.drawImage(cropCanvas, 0, 0, cropCanvas.width, cropCanvas.height, 0, 0, canvas.width, canvas.height);
+        ctx.restore();
         const quality = parseFloat(qualitySlider.value) / 100;
         const format = outputFormatSelect.value;
         const extension = format.split('/')[1] === 'jpeg' ? 'jpg' : format.split('/')[1];
         const filename = `hangga_resized.${extension}`;
-
         canvas.toBlob(function(blob) {
             if (!blob) {
                 alert('Failed to generate image for download.');
@@ -306,9 +346,30 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url); // Clean up the object URL
+            URL.revokeObjectURL(url);
         }, format, quality);
     }
+    // Crop and flip controls
+    if (document.getElementById('cropX')) document.getElementById('cropX').addEventListener('input', renderPreview);
+    if (document.getElementById('cropY')) document.getElementById('cropY').addEventListener('input', renderPreview);
+    if (document.getElementById('cropW')) document.getElementById('cropW').addEventListener('input', renderPreview);
+    if (document.getElementById('cropH')) document.getElementById('cropH').addEventListener('input', renderPreview);
+    if (document.getElementById('resetCropBtn')) document.getElementById('resetCropBtn').addEventListener('click', () => {
+        cropX = 0; cropY = 0; cropW = originalWidth; cropH = originalHeight;
+        document.getElementById('cropX').value = cropX;
+        document.getElementById('cropY').value = cropY;
+        document.getElementById('cropW').value = cropW;
+        document.getElementById('cropH').value = cropH;
+        renderPreview();
+    });
+    if (document.getElementById('flipHBtn')) document.getElementById('flipHBtn').addEventListener('click', () => {
+        flipH = !flipH;
+        renderPreview();
+    });
+    if (document.getElementById('flipVBtn')) document.getElementById('flipVBtn').addEventListener('click', () => {
+        flipV = !flipV;
+        renderPreview();
+    });
 
 
     // --- Event Listeners ---
