@@ -14,13 +14,76 @@
     --font-body: 'Inter', sans-serif;
     --navbar-height: 70px;
     --accent-hover: #008888;
+    --button-bg: var(--pulse);
+    --button-text: #000;
+
+    /* Cyberpunk Neon Palette - Refined */
+    --cyber-neon-cyan: #00fff7;
+    --cyber-neon-pink: #ff00cc;
+    --cyber-neon-yellow: #ffdd00; /* Brighter yellow */
+    --cyber-panel-border: rgba(0, 255, 247, 0.6); /* Softer border glow */
+    --cyber-panel-shadow-cyan: rgba(0, 255, 247, 0.4);
+    --cyber-panel-shadow-pink: rgba(255, 0, 204, 0.4);
+    --cyber-panel-bg: rgba(30, 30, 40, 0.92); /* Matches previous panel */
+
+    /* Spacing variables for consistency and readability */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 32px;
+    --spacing-lg: 60px;
+    --spacing-xl: 90px;
+}
+
+html, body {
     width: 100vw;
     min-width: 0;
     box-sizing: border-box;
     overflow-x: hidden;
 }
-/* Removed duplicate and conflicting body, container, button, result, share-buttons, and footer styles. Only one set of definitions for each remains above. */
-.container{
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    background-image: repeating-linear-gradient(45deg, #111 0px, #0a0a0a 2px, #111 4px);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.7;
+    padding-top: var(--navbar-height); /* Set padding top to navbar height directly */
+}
+
+/* Main Content Area */
+main {
+    max-width: var(--max-content-width);
+    margin: var(--spacing-lg) auto;
+    padding: 0 var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+/* --- Hero Section --- */
+#hero {
+    padding: var(--spacing-xl) 0 var(--spacing-sm) 0;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#hero h1 {
+    font-size: 2.8rem; /* Slightly larger for impact */
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
     text-align: center;
     color: var(--cyber-neon-yellow);
     text-shadow: 0 0 20px var(--cyber-neon-yellow), 0 0 8px var(--cyber-neon-cyan); /* Stronger glow */
