@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://hangga-hub.github.io/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/bmi-calculator/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/json-validator/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/unit-converter/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/color-picker/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/loan-calculator/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/qr-code-generator/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/csv-json-converter/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://hangga-hub.github.io/tools/image-converter/</loc>
+  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
