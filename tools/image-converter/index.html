@@ -25,10 +25,10 @@
         <h2 class="tool-title">🖼️ Image Converter</h2>
         <p>Convert images between popular formats like JPG, PNG, and WebP. Your files are processed securely in your browser.</p>
         <div class="tool-converter">
-            <label for="imageUpload" class="neon-label">Upload Image:</label>
+            <label for="imageUpload" class="neon-label">Upload Image(s):</label>
             <div id="dropArea" class="drop-area">
-                <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/webp, image/gif, image/bmp, image/tiff" class="neon-file-input" />
-                <p id="dropText">Drag & drop image here or click to select</p>
+                <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/webp, image/gif, image/bmp, image/tiff" class="neon-file-input" multiple />
+                <p id="dropText">Drag & drop image(s) here or click to select</p>
             </div>
             <p id="fileNameDisplay" class="file-name-display"></p>
         </div>

@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Dynamically load JSZip if not present
+    function loadJSZip(callback) {
+        if (window.JSZip) return callback();
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
+        script.onload = callback;
+        document.head.appendChild(script);
+    }
     const imageUpload = document.getElementById('imageUpload');
     const fileNameDisplay = document.getElementById('fileNameDisplay');
     const outputFormat = document.getElementById('outputFormat');
@@ -12,7 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const convertedImagePreview = document.getElementById('convertedImagePreview');
     const errorMessage = document.getElementById('errorMessage');
 
-    let originalImage = null;
+    // Bulk download container
+    let bulkDownloadContainer = document.getElementById('bulkDownloadContainer');
+    if (!bulkDownloadContainer) {
+        bulkDownloadContainer = document.createElement('div');
+        bulkDownloadContainer.id = 'bulkDownloadContainer';
+        bulkDownloadContainer.style.marginTop = '1.5rem';
+        bulkDownloadContainer.style.display = 'none';
+        resultSection.parentNode.insertBefore(bulkDownloadContainer, resultSection.nextSibling);
+    }
+
+    let originalImages = [];
     let conversionTimeoutId = null;
 
     // --- Debugging Helper ---
@@ -34,117 +52,164 @@ document.addEventListener('DOMContentLoaded', () => {
 
     imageUpload.addEventListener('change', (event) => {
         logState('File input changed: Starting process');
-        const file = event.target.files[0];
-        if (!file) {
+        const files = Array.from(event.target.files);
+        if (!files.length) {
             fileNameDisplay.textContent = '';
-            originalImage = null;
+            originalImages = [];
             hideAllResultsAndMessages();
             logState('File input changed: No file selected, UI reset');
             return;
         }
 
-        fileNameDisplay.textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
-        hideAllResultsAndMessages(); // Hide all previous results, errors, and loading indicators
+        fileNameDisplay.textContent = `Selected: ${files.length} file(s)`;
+        hideAllResultsAndMessages();
 
-        if (!file.type.startsWith('image/')) {
-            showError('Please upload a valid image file (JPG, PNG, WebP, GIF, BMP, TIFF).');
-            originalImage = null;
-            logState('File input changed: Invalid file type');
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onloadstart = () => {
-            showLoading();
-            logState('FileReader: Load start');
-        };
-        reader.onload = (e) => {
-            const img = new Image();
-            img.onload = () => {
-                originalImage = img;
-                hideLoading();
-                logState('Image loaded successfully from FileReader');
+        originalImages = [];
+        let loadedCount = 0;
+        let errorOccurred = false;
+        showLoading();
+        files.forEach((file, idx) => {
+            if (!file.type.startsWith('image/')) {
+                showError('Please upload only valid image files (JPG, PNG, WebP, GIF, BMP, TIFF).');
+                errorOccurred = true;
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    originalImages[idx] = { img, file };
+                    loadedCount++;
+                    if (loadedCount === files.length && !errorOccurred) {
+                        hideLoading();
+                        logState('All images loaded successfully');
+                    }
+                };
+                img.onerror = () => {
+                    showError('Could not load one of the images. It might be corrupted or an unsupported format.');
+                    errorOccurred = true;
+                    hideLoading();
+                    logState('Image failed to load from FileReader');
+                };
+                img.src = e.target.result;
             };
-            img.onerror = () => {
-                showError('Could not load image. It might be corrupted or an unsupported format.');
-                originalImage = null;
+            reader.onerror = () => {
+                showError('Error reading one of the files. Please try again.');
+                errorOccurred = true;
                 hideLoading();
-                logState('Image failed to load from FileReader');
+                logState('FileReader: Error reading file');
             };
-            img.src = e.target.result;
-        };
-        reader.onerror = () => {
-            showError('Error reading file. Please try again.');
-            originalImage = null;
-            hideLoading();
-            logState('FileReader: Error reading file');
-        };
-        reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
+        });
     });
 
     convertBtn.addEventListener('click', () => {
         logState('Convert button clicked: Starting conversion');
-        if (!originalImage) {
-            showError('Please upload an image first.');
-            logState('Convert button clicked: No image uploaded');
+        if (!originalImages.length) {
+            showError('Please upload image(s) first.');
+            logState('Convert button clicked: No images uploaded');
             return;
         }
 
         showLoading();
-        hideAllResultsAndMessages(); // Hide all previous results, errors, and loading indicators again
+        hideAllResultsAndMessages();
 
         if (conversionTimeoutId) {
             clearTimeout(conversionTimeoutId);
         }
         conversionTimeoutId = setTimeout(() => {
-            showError('Conversion timed out (max 30 seconds). The image may be too large or there was an internal error.');
+            showError('Conversion timed out (max 30 seconds). The image(s) may be too large or there was an internal error.');
             hideLoading();
             logState('Conversion Timeout triggered');
-        }, 30000); // 30-second timeout
+        }, 30000);
 
         const format = outputFormat.value;
         const quality = parseFloat(qualitySlider.value) / 100;
 
-        imageCanvas.width = originalImage.naturalWidth;
-        imageCanvas.height = originalImage.naturalHeight;
+        // Bulk conversion logic
+        let convertedLinks = [];
+        let errorOccurred = false;
+        let completedCount = 0;
 
-        const ctx = imageCanvas.getContext('2d');
-        ctx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
-        ctx.drawImage(originalImage, 0, 0);
-
-        try {
-            const convertedDataUrl = imageCanvas.toDataURL(format, quality);
-
-            convertedImagePreview.src = convertedDataUrl;
-            convertedImagePreview.classList.remove('hidden');
-            convertedImagePreview.style.display = ''; // Ensure display is not 'none'
-
-            const baseFileName = imageUpload.files[0].name.split('.').slice(0, -1).join('.');
-            let newExtension;
-            if (format === 'image/jpeg') {
-                newExtension = 'jpg';
-            } else {
-                newExtension = format.split('/')[1];
+        originalImages.forEach(({ img, file }, idx) => {
+            imageCanvas.width = img.naturalWidth;
+            imageCanvas.height = img.naturalHeight;
+            const ctx = imageCanvas.getContext('2d');
+            ctx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
+            ctx.drawImage(img, 0, 0);
+            try {
+                const convertedDataUrl = imageCanvas.toDataURL(format, quality);
+                let baseFileName = file.name.split('.').slice(0, -1).join('.') || 'converted-image';
+                let newExtension = format === 'image/jpeg' ? 'jpg' : format.split('/')[1];
+                // For single image, show preview as before
+                if (originalImages.length === 1) {
+                    convertedImagePreview.src = convertedDataUrl;
+                    convertedImagePreview.classList.remove('hidden');
+                    convertedImagePreview.style.display = '';
+                    downloadLink.href = convertedDataUrl;
+                    downloadLink.download = `${baseFileName}.${newExtension}`;
+                    downloadLink.classList.remove('hidden');
+                    downloadLink.style.display = '';
+                    resultSection.classList.remove('hidden');
+                    resultSection.style.display = '';
+                } else {
+                    // For bulk, add to download links
+                    convertedLinks.push({
+                        url: convertedDataUrl,
+                        name: `${baseFileName}.${newExtension}`
+                    });
+                }
+                completedCount++;
+                if (completedCount === originalImages.length && !errorOccurred) {
+                    if (originalImages.length > 1) {
+                        // Add ZIP download button
+                        bulkDownloadContainer.innerHTML = '<h3>Converted Images:</h3>' +
+                            convertedLinks.map(link => `<a href="${link.url}" download="${link.name}" class="tool-button" style="margin:0.5rem 0.5rem 0 0;">${link.name}</a>`).join('') +
+                            `<button id="downloadZipBtn" class="tool-button" style="margin:0.5rem 0 0 0; background:#00c3ff; color:#18181b;">Download All as ZIP</button>`;
+                        bulkDownloadContainer.style.display = '';
+                        // Attach ZIP download handler
+                        document.getElementById('downloadZipBtn').onclick = function() {
+                            loadJSZip(() => {
+                                const zip = new JSZip();
+                                let addCount = 0;
+                                convertedLinks.forEach(link => {
+                                    // Remove data URL prefix
+                                    const base64Data = link.url.split(',')[1];
+                                    let mime = link.url.split(';')[0].replace('data:', '');
+                                    zip.file(link.name, base64Data, {base64: true});
+                                    addCount++;
+                                    if (addCount === convertedLinks.length) {
+                                        zip.generateAsync({type: 'blob'}).then(function(content) {
+                                            const zipUrl = URL.createObjectURL(content);
+                                            const a = document.createElement('a');
+                                            a.href = zipUrl;
+                                            a.download = 'converted-images.zip';
+                                            document.body.appendChild(a);
+                                            a.click();
+                                            setTimeout(() => {
+                                                document.body.removeChild(a);
+                                                URL.revokeObjectURL(zipUrl);
+                                            }, 1000);
+                                        });
+                                    }
+                                });
+                            });
+                        };
+                    } else {
+                        bulkDownloadContainer.style.display = 'none';
+                    }
+                    clearTimeout(conversionTimeoutId);
+                    hideLoading();
+                    logState('Bulk conversion successful');
+                }
+            } catch (error) {
+                errorOccurred = true;
+                showError('Error during conversion. Please try a different format or image.');
+                clearTimeout(conversionTimeoutId);
+                hideLoading();
+                logState('Bulk conversion failed with error');
             }
-
-            downloadLink.href = convertedDataUrl;
-            downloadLink.download = `${baseFileName}.${newExtension}`;
-            downloadLink.classList.remove('hidden');
-            downloadLink.style.display = ''; // Ensure display is not 'none'
-
-            resultSection.classList.remove('hidden');
-            resultSection.style.display = ''; // Ensure display is not 'none'
-
-            clearTimeout(conversionTimeoutId); // Clear the timeout on success
-            hideLoading();
-            logState('Conversion successful');
-        } catch (error) {
-            console.error('Image conversion error:', error);
-            showError('Error during conversion. Please try a different format or image.');
-            clearTimeout(conversionTimeoutId); // Clear the timeout on error
-            hideLoading();
-            logState('Conversion failed with error');
-        }
+        });
     });
 
     // --- Helper Functions for UI State Management ---
@@ -178,25 +243,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function hideAllResultsAndMessages(keepErrorVisible = false) {
         resultSection.classList.add('hidden');
-        resultSection.style.display = 'none'; // Force hide
-
+        resultSection.style.display = 'none';
         convertedImagePreview.classList.add('hidden');
         convertedImagePreview.src = '';
-        convertedImagePreview.style.display = 'none'; // Force hide
-
+        convertedImagePreview.style.display = 'none';
         imageCanvas.classList.add('hidden');
-        imageCanvas.style.display = 'none'; // Force hide
-
+        imageCanvas.style.display = 'none';
         downloadLink.classList.add('hidden');
-        downloadLink.style.display = 'none'; // Force hide
-
+        downloadLink.style.display = 'none';
         loadingIndicator.classList.add('hidden');
-        loadingIndicator.style.display = 'none'; // Force hide
-
+        loadingIndicator.style.display = 'none';
+        bulkDownloadContainer.style.display = 'none';
+        bulkDownloadContainer.innerHTML = '';
         if (!keepErrorVisible) {
             errorMessage.classList.add('hidden');
             errorMessage.textContent = '';
-            errorMessage.style.display = 'none'; // Force hide
+            errorMessage.style.display = 'none';
         }
         logState('hideAllResultsAndMessages called');
     }
