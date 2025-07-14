@@ -226,14 +226,14 @@ main {
     justify-content: flex-end;
 }
 
-.share-buttons a {
+.share-buttons i {
     color: var(--cyber-neon-yellow);
     text-shadow: 0 0 15px var(--cyber-neon-yellow), 0 0 5px var(--cyber-neon-pink); /* Stronger glow */
     font-size: 32px; /* Larger share icons */
     transition: color 0.2s, text-shadow 0.2s;
 }
 
-.share-buttons a:hover {
+.share-buttons a:hover i {
     color: var(--cyber-neon-pink);
     text-shadow: 0 0 20px var(--cyber-neon-pink), 0 0 10px var(--cyber-neon-cyan);
 }
@@ -760,7 +760,7 @@ body[data-category="power"] { --accent: #ff00cc; }
 body[data-category="frequency"] { --accent: #ffaa00; }
 
 /* ──────────────────────────────────────────────────────
-    Tool Converter Styles
+    Tool Converter Styles (General for simple converters)
 ────────────────────────────────────────────────────── */
 .tool-converter {
     max-width: 420px;
@@ -826,7 +826,7 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     gap: 0.5rem;
     justify-content: center;
 }
-.tool-button {
+.tool-button { /* This is a general button style, overridden by .tool-button in main grid */
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     background-color: #ff00cc;
@@ -839,19 +839,20 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     background-color: #ff6b8e;
     transform: scale(1.05);
 }
-body {
+/* This body style seems to be a remnant from a specific tool page, it should be removed or moved to specific tool CSS */
+/* body {
     background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
     min-height: 100vh;
     font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
     letter-spacing: 0.5px;
-}
-footer {
+} */
+/* footer {
     color: #00ffe7 !important;
     text-shadow: 0 0 6px #ff00cc;
-}
+} */
 
 /* ──────────────────────────────────────────────────────
-    QR Code Generator Styles
+    QR Code Generator Styles (Specific to QR tool)
 ────────────────────────────────────────────────────── */
     /* Reusing .tool-converter-card styles for consistency */
 .tool-converter-card {
@@ -921,33 +922,34 @@ footer {
     margin-top: 0.5rem;
     text-shadow: 0 0 6px #ff00cc;
 }
-.share-buttons {
+.share-buttons { /* This seems to be a duplicate, the general .share-buttons is preferred */
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
 }
-.share-buttons img {
+.share-buttons img { /* This seems to be a duplicate, the general .share-buttons i is preferred */
     width: 28px;
     height: 28px;
     opacity: 0.85;
     transition: opacity 0.2s;
     filter: drop-shadow(0 0 6px #00ffe7) drop-shadow(0 0 2px #ff00cc);
 }
-.share-buttons img:hover {
+.share-buttons img:hover { /* This seems to be a duplicate, the general .share-buttons a:hover i is preferred */
     opacity: 1;
     filter: drop-shadow(0 0 12px #ff00cc) drop-shadow(0 0 6px #00ffe7);
 }
-body {
+/* This body style seems to be a remnant from a specific tool page, it should be removed or moved to specific tool CSS */
+/* body {
     background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
     min-height: 100vh;
     font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
     letter-spacing: 0.5px;
-}
-footer {
+} */
+/* footer {
     color: #00ffe7 !important;
     text-shadow: 0 0 6px #ff00cc;
-}
+} */
 /* Specific styles for the QR Code Generator buttons and output */
 .tool-converter-card .button-row {
     display: flex;
@@ -989,15 +991,15 @@ footer {
 }
 
 /* ──────────────────────────────────────────────────────
-    General Styles for All Tools
+    General Styles for All Tools (These seem to be duplicates/overrides from global styles)
 ───────────────────────────────────────────────────────── */
-body {
+/* body {
     background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
     min-height: 100vh;
     font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
     letter-spacing: 0.5px;
-}
-.container {
+} */
+/* .container {
     max-width: 600px;
     margin: 2rem auto;
     padding: 1rem;
@@ -1005,15 +1007,15 @@ body {
     border-radius: 18px;
     box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
     border: 2px solid #00ffe7;
-}
-h2 {
+} */
+/* h2 {
     margin-bottom: 1rem;
     text-align: center;
     color: #00ffe7;
     text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
     letter-spacing: 1px;
-}
-textarea {
+} */
+/* textarea {
     width: 100%;
     height: 150px;
     padding: 1rem;
@@ -1026,12 +1028,12 @@ textarea {
     box-shadow: 0 0 8px #00ffe7 inset;
     outline: none;
     transition: border 0.2s;
-}
-textarea:focus {
+} */
+/* textarea:focus {
     border: 1.5px solid #ff00cc;
     box-shadow: 0 0 12px #ff00cc inset;
-}
-button {
+} */
+/* button {
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     background-color: #ff00cc;
@@ -1039,12 +1041,12 @@ button {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
-}
-button:hover {
+} */
+/* button:hover {
     background-color: #ff6b8e;
     transform: scale(1.05);
-}
-.result {
+} */
+/* .result {
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 10px;
@@ -1052,40 +1054,40 @@ button:hover {
     color: #00ffe7;
     text-shadow: 0 0 6px #ff00cc, 0 0 2px #ff00cc;
     border: 1.5px solid #ff00cc;
-}
-.result.error {
+} */
+/* .result.error {
     background-color: #3a0842;
     color: red;
-}
-.share-buttons {
+} */
+/* .share-buttons {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-}
-.share-buttons img {
+} */
+/* .share-buttons img {
     width: 32px;
     height: 32px;
     margin: 0 8px;
-}
-footer {
+} */
+/* footer {
     color: #00ffe7 !important;
     text-shadow: 0 0 6px #ff00cc;
     text-align: center;
     padding-top: 1rem;
-}
+} */
 
 /* ──────────────────────────────────────────────────────
     Specific Styles for Image Converter Tool
 ───────────────────────────────────────────────────────── */
 
     
-body {
+/* body {
 background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
 min-height: 100vh;
 font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
 letter-spacing: 0.5px;
-}
-.container {
+} */
+/* .container {
 max-width: 800px;
 margin: 2rem auto;
 padding: 1rem;
@@ -1093,7 +1095,7 @@ background-color: #23232b;
 border-radius: 18px;
 box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
 border: 2px solid #00ffe7;
-}
+} */
 .tool-ad-space {
 margin-bottom: 1.5rem;
 }
@@ -1132,11 +1134,11 @@ margin-left: 1rem;
 color: white;
 margin-bottom: 1rem;
 }
-.tool-button-row {
+/* .tool-button-row {
 display: flex;
 justify-content: space-between;
-}
-.tool-button {
+} */
+/* .tool-button {
 padding: 1rem 2rem;
 border-radius: 8px;
 background-color: #00ffe7;
@@ -1145,14 +1147,14 @@ text-decoration: none;
 font-weight: bold;
 letter-spacing: 0.5px;
 transition: background-color 0.3s, transform 0.2s;
-}
-.tool-button:hover {
+} */
+/* .tool-button:hover {
 background-color: #ff00cc;
 transform: scale(1.05);
-}
-.hidden {
+} */
+/* .hidden {
 display: none;
-}
+} */
 .tool-loading-indicator {
 margin-bottom: 1rem;
 text-align: center;
@@ -1165,10 +1167,10 @@ height: 30px;
 border-radius: 50%;
 animation: spin 1s linear infinite;
 }
-@keyframes spin {
+/* @keyframes spin {
 0% { transform: rotate(0deg); }
 100% { transform: rotate(360deg); }
-}
+} */
 .tool-result-section {
 margin-top: 2rem;
 }
@@ -1188,14 +1190,14 @@ text-align: center;
     color picker tool styles
 ───────────────────────────────────────────────────────── */
 
-label {
+label { /* This is a duplicate, general label style is preferred */
 display: block;
 margin-top: 1rem;
 font-weight: bold;
 color: #0af0e4;
 }
 
-input[type="text"] {
+input[type="text"] { /* This is a duplicate, general input style is preferred */
 width: 100%;
 padding: 0.9rem;
 border-radius: 4px;
@@ -1204,11 +1206,11 @@ margin-top: 0.5rem;
 box-sizing: border-box;
 }
 
-.button-row {
+/* .button-row {
 display: flex;
 gap: 1rem;
 margin: 1rem 0;
-}
+} */
 
 
 .swatch-row {
@@ -1265,7 +1267,7 @@ word-break: break-all;
 /* ──────────────────────────────────────────────────────
     Bmi Calculator Styles
 ───────────────────────────────────────────────────────── */
-.container {
+/* .container {
     flex: 1;
     padding: 2rem;
     max-width: 400px;
@@ -1273,10 +1275,10 @@ word-break: break-all;
     border-radius: 18px;
     box-shadow: 0 0 32px 4px #00fff7, 0 0 8px 2px #ff00cc;
     background-color: rgba(30, 30, 39, 0.9);
-}
+} */
 
 
-input[type="number"], select {
+/* input[type="number"], select {
     width: calc(100% - 22px);
     padding: 0.7rem;
     border-radius: 6px;
@@ -1284,8 +1286,359 @@ input[type="number"], select {
     background-color: #2c3e50;
     color: white;
     font-size: 0.9rem;
+} */
+
+/* .neon-select {
+    width: 100%;
+} */
+
+/* --- NEW: Image Resizer Specific Styles --- */
+.tool-image-resizer {
+    /* No special background/border needed, .tool-card handles it */
 }
 
-.neon-select {
+/* File Drop Zone */
+.file-drop-zone {
+    border: 2px dashed var(--accent);
+    border-radius: 12px;
+    padding: 40px 20px; /* More padding for spaciousness */
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(0, 255, 255, 0.05); /* Very subtle accent background */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px; /* Space before controls */
+}
+
+.file-drop-zone:hover,
+.file-drop-zone.drag-over {
+    background-color: rgba(0, 255, 255, 0.15);
+    border-color: var(--pulse);
+    box-shadow: 0 0 15px rgba(255, 0, 204, 0.3);
+}
+
+.file-drop-zone p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.file-drop-zone p i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.file-drop-zone .upload-btn {
+    background-color: var(--pulse);
+    color: var(--button-text);
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.file-drop-zone .upload-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+/* Hidden input for actual file selection */
+#imageInput {
+    display: none;
+}
+
+/* Image Controls Section */
+#imageControls {
+    background: rgba(40, 40, 40, 0.7); /* Slightly darker panel */
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+#imageControls h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.original-info {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+.original-info span {
+    font-weight: bold;
+    color: var(--pulse);
+}
+
+/* Input Groups for Dimensions and Output Settings */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between elements in a row */
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.input-group label {
+    flex-basis: 120px; /* Fixed width for labels */
+    min-width: 80px; /* Ensure label doesn't get too small */
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.input-group input[type="number"],
+.input-group select,
+.input-group input[type="color"] {
+    flex-grow: 1; /* Allow input/select to take remaining space */
+    max-width: 250px; /* Max width for single inputs */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.input-group input[type="number"]:focus,
+.input-group select:focus,
+.input-group input[type="color"]:focus {
+    outline: none;
+    border-color: var(--pulse);
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.input-group select {
+    appearance: none; /* Remove default arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2300ffff' d='M12 15l-5-5h10z'/%3E%3C/svg%3E"); /* Custom neon arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.unit-toggle {
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--accent);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.unit-toggle.active {
+    background-color: var(--accent);
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.unit-toggle:hover:not(.active) {
+    background-color: rgba(0, 255, 255, 0.25);
+    box-shadow: 0 0 5px var(--accent);
+}
+
+/* Quality Slider */
+input[type="range"] {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    height: 8px;
+    background: linear-gradient(to right, var(--pulse), var(--accent)); /* Neon gradient track */
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    margin-left: 0; /* Override default input margin */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pulse);
+    cursor: grab;
+    border: 2px solid var(--text);
+    box-shadow: 0 0 8px var(--pulse);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pulse);
+    cursor: grab;
+    border: 2px solid var(--text);
+    box-shadow: 0 0 8px var(--pulse);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:active,
+input[type="range"]::-moz-range-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* Checkbox Toggle */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+    color: var(--text);
+    margin-top: 15px; /* Space from dimensions */
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #333;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #555;
+    border-color: var(--pulse);
+    box-shadow: 0 0 8px rgba(255, 0, 204, 0.2);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--button-text);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Preview Area */
+.preview-area {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.preview-area #imagePreview {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--pulse);
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--pulse);
+    margin-bottom: 20px;
+}
+
+.preview-info {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin: 5px 0;
+}
+
+/* Buttons at the bottom of the card */
+.tool-image-resizer .tool-button {
     width: 100%;
+    margin-top: 20px; /* Space from controls or preview */
+    font-size: 1.1rem;
+    padding: 15px 25px;
+}
+
+.tool-image-resizer .secondary-button {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: none;
+    margin-top: 15px; /* Slightly less margin than primary button */
+}
+
+.tool-image-resizer .secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    color: var(--accent);
+    transform: scale(1.02);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .file-drop-zone {
+        padding: 30px 15px;
+    }
+    .file-drop-zone p i {
+        font-size: 2rem;
+    }
+    #imageControls {
+        padding: 20px;
+    }
+    .input-group {
+        flex-direction: column; /* Stack inputs vertically */
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .input-group label,
+    .input-group input,
+    .input-group select,
+    .input-group .unit-toggle {
+        width: 100%; /* Full width for stacked elements */
+        max-width: unset;
+    }
+    .unit-toggle {
+        text-align: center;
+    }
+    .input-group input[type="color"] {
+        height: 40px; /* Ensure color picker is not too small */
+    }
 }
