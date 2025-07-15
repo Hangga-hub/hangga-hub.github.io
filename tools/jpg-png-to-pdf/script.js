@@ -1,4 +1,4 @@
-// tools/jpg-png-to-pdf/script.js
+// tools/jpg-png-to-pdf.js
 
 // Ensure jsPDF is loaded before this script runs
 // window.jsPDF is available globally after the CDN script loads
