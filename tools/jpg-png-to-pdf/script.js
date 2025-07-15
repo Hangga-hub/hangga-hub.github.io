@@ -8,7 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!document.querySelector('.tool-image-to-pdf')) {
         return;
     }
-
+fetch("https://hangga-hub.github.io/components/navbar.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("navbar").innerHTML = html;
+      const toggle = document.getElementById("menuToggle");
+      const links  = document.querySelector(".nav-links");
+      toggle?.addEventListener("click", () => links.classList.toggle("show"));
+      document.querySelectorAll(".nav-links a")
+        .forEach(link => {
+          if (window.location.href.includes(link.href)) {
+            link.classList.add("active");
+          }
+        });
+    });
     // Get DOM elements
     const dropZone = document.getElementById('dropZone');
     const imageInput = document.getElementById('imageInput');
