@@ -20,14 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageSizeSelect = document.getElementById('pageSize');
     const orientationSelect = document.getElementById('orientation');
     const imageMarginInput = document.getElementById('imageMargin');
-    const imageScalingSelect = document.getElementById('imageScaling'); // New
-    const pdfImageQualitySlider = document.getElementById('pdfImageQuality'); // New
-    const pdfImageQualityValueSpan = document.getElementById('pdfImageQualityValue'); // New
     const convertToPdfBtn = document.getElementById('convertToPdfBtn');
     const resetBtn = document.getElementById('resetBtn');
-    const conversionProgress = document.getElementById('conversionProgress'); // New
-    const progressBar = conversionProgress.querySelector('.progress-bar'); // New
-    const progressText = conversionProgress.querySelector('#progressText'); // New
 
     let uploadedImages = []; // Array to store image data (dataURL and original file)
     let draggedItem = null; // For drag-and-drop reordering
@@ -53,18 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         pdfSettings.classList.add('hidden');
         convertToPdfBtn.classList.add('hidden');
         resetBtn.classList.add('hidden');
-        conversionProgress.classList.add('hidden'); // Hide progress bar
-        progressBar.style.width = '0%';
-        progressText.textContent = '0/0 Images Processed';
 
         // Reset settings to default
         outputFilenameInput.value = 'document.pdf';
         pageSizeSelect.value = 'a4';
         orientationSelect.value = 'portrait';
         imageMarginInput.value = '10';
-        imageScalingSelect.value = 'fit'; // Default scaling
-        pdfImageQualitySlider.value = 0.8; // Default quality
-        pdfImageQualityValueSpan.textContent = '0.8';
     }
 
     /**
@@ -114,8 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.appendChild(deleteBtn);
         imagePreviewsGrid.appendChild(item);
 
-        // Store dataURL, original file, and a reference to the HTML element
-        uploadedImages.push({ dataURL, file, element: item }); 
+        uploadedImages.push({ dataURL, file, element: item }); // Store dataURL, file, and element reference
 
         updateVisibility();
     }
@@ -127,15 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     async function handleFiles(files) {
         for (const file of files) {
             if (file.type.startsWith('image/jpeg') || file.type.startsWith('image/png')) {
-                // Check for duplicates before adding
-                const isDuplicate = uploadedImages.some(imgData => 
-                    imgData.file.name === file.name && imgData.file.size === file.size
-                );
-                if (isDuplicate) {
-                    console.warn(`Skipping duplicate file: ${file.name}`);
-                    continue;
-                }
-
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     addImageToPreview(e.target.result, file);
@@ -161,16 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         convertToPdfBtn.disabled = true;
         convertToPdfBtn.innerHTML = 'Converting... <span class="spinner"></span>';
-        conversionProgress.classList.remove('hidden'); // Show progress bar
 
         const outputFilename = outputFilenameInput.value || 'document.pdf';
         const pageSize = pageSizeSelect.value;
         const orientation = orientationSelect.value;
         const imageMargin = parseFloat(imageMarginInput.value); // in mm
-        const imageScaling = imageScalingSelect.value; // 'fit', 'fill', 'original'
-        const pdfImageQuality = parseFloat(pdfImageQualitySlider.value); // 0.0 to 1.0
 
         // Initialize jsPDF
+        // Default units are 'mm'
         const doc = new window.jspdf.jsPDF({
             orientation: orientation,
             unit: 'mm',
@@ -191,72 +167,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const availableWidth = pageWidth - (imageMargin * 2);
         const availableHeight = pageHeight - (imageMargin * 2);
 
-        // Process images in their current order in the DOM (reflecting user reorder)
-        // Ensure uploadedImages array is in sync with DOM order
-        const currentOrderedImages = Array.from(imagePreviewsGrid.children).map(item => {
-            const imgElement = item.querySelector('img');
-            return uploadedImages.find(imgData => imgData.dataURL === imgElement.src);
-        }).filter(Boolean); // Filter out any nulls if an image somehow wasn't found
+        // Process images in their current order in the DOM
+        const imageElements = Array.from(imagePreviewsGrid.children).map(item => item.querySelector('img'));
 
-        for (let i = 0; i < currentOrderedImages.length; i++) {
-            const imgData = currentOrderedImages[i];
-            const img = new Image();
-            img.src = imgData.dataURL;
-
-            // Wait for image to load to get natural dimensions
-            await new Promise(resolve => {
-                img.onload = resolve;
-                img.onerror = resolve; // Resolve even on error to prevent blocking
-            });
-
-            if (!img.naturalWidth || !img.naturalHeight) {
-                console.warn(`Could not load dimensions for image: ${imgData.file.name}. Skipping.`);
-                continue;
-            }
-
+        for (let i = 0; i < imageElements.length; i++) {
+            const img = imageElements[i];
             const imgWidth = img.naturalWidth;
             const imgHeight = img.naturalHeight;
 
-            let finalImgWidth, finalImgHeight;
-            const imgAspectRatio = imgWidth / imgHeight;
-            const pageAspectRatio = availableWidth / availableHeight;
+            // Calculate image dimensions to fit within available area while maintaining aspect ratio
+            const aspectRatio = imgWidth / imgHeight;
+            let finalImgWidth = availableWidth;
+            let finalImgHeight = availableHeight;
 
-            if (imageScaling === 'fit') {
-                // Fit to page, maintain aspect ratio
-                if (imgAspectRatio > pageAspectRatio) {
-                    finalImgWidth = availableWidth;
-                    finalImgHeight = availableWidth / imgAspectRatio;
+            if (imgWidth > availableWidth || imgHeight > availableHeight) {
+                if (aspectRatio > (availableWidth / availableHeight)) {
+                    finalImgHeight = availableWidth / aspectRatio;
                 } else {
-                    finalImgHeight = availableHeight;
-                    finalImgWidth = availableHeight * imgAspectRatio;
+                    finalImgWidth = availableHeight * aspectRatio;
                 }
-            } else if (imageScaling === 'fill') {
-                // Fill page, crop if necessary
-                if (imgAspectRatio > pageAspectRatio) {
-                    finalImgHeight = availableHeight;
-                    finalImgWidth = availableHeight * imgAspectRatio;
-                } else {
-                    finalImgWidth = availableWidth;
-                    finalImgHeight = availableWidth / imgAspectRatio;
-                }
-            } else { // 'original'
-                // Use original size, may clip
+            } else {
+                // If image is smaller than available area, use its natural size
+                // or scale up if desired (currently scaling down only)
                 finalImgWidth = imgWidth;
                 finalImgHeight = imgHeight;
             }
-
-            // Ensure image dimensions are within available space if 'fit' or 'fill'
-            // For 'original', it might exceed, which is expected by the user choosing 'original'
-            if (imageScaling !== 'original') {
-                if (finalImgWidth > availableWidth) {
-                    finalImgWidth = availableWidth;
-                    finalImgHeight = availableWidth / imgAspectRatio;
-                }
-                if (finalImgHeight > availableHeight) {
-                    finalImgHeight = availableHeight;
-                    finalImgWidth = availableHeight * imgAspectRatio;
-                }
+            // Ensure image fits within the available space
+            if (finalImgWidth > availableWidth) {
+                finalImgWidth = availableWidth;
+                finalImgHeight = availableWidth / aspectRatio;
             }
+            if (finalImgHeight > availableHeight) {
+                finalImgHeight = availableHeight;
+                finalImgWidth = availableHeight * aspectRatio;
+            }
+
 
             // Center the image on the page
             const x = imageMargin + (availableWidth - finalImgWidth) / 2;
@@ -265,14 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i > 0) {
                 doc.addPage(); // Add a new page for each subsequent image
             }
-            
-            // Add image to PDF with specified quality
-            doc.addImage(img.src, 'JPEG', x, y, finalImgWidth, finalImgHeight, null, null, pdfImageQuality);
-
-            // Update progress bar
-            const progress = ((i + 1) / currentOrderedImages.length) * 100;
-            progressBar.style.width = `${progress}%`;
-            progressText.textContent = `${i + 1}/${currentOrderedImages.length} Images Processed`;
+            doc.addImage(img.src, 'JPEG', x, y, finalImgWidth, finalImgHeight);
         }
 
         // Save the PDF
@@ -280,9 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         convertToPdfBtn.disabled = false;
         convertToPdfBtn.innerHTML = 'Convert to PDF <i class="ri-file-pdf-line"></i>';
-        conversionProgress.classList.add('hidden'); // Hide progress bar after conversion
-        progressBar.style.width = '0%'; // Reset progress bar
-        progressText.textContent = '0/0 Images Processed';
     }
 
 
@@ -394,11 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.dataTransfer.files.length > 0) {
             handleFiles(e.dataTransfer.files);
         }
-    });
-
-    // Update quality value display
-    pdfImageQualitySlider.addEventListener('input', () => {
-        pdfImageQualityValueSpan.textContent = pdfImageQualitySlider.value;
     });
 
     // Convert to PDF button
