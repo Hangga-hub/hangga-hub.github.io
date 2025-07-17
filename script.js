@@ -1,47 +1,27 @@
-// Ensure all scripts run after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
+// script.js
 
-    const navbarPath = "https://hangga-hub.github.io/components/navbar.html";
-    const navbarContainer = document.getElementById("navbar");
-    
-    // Determine if the current page is the homepage.
-    // We check if the pathname is "/" or "/index.html" (normalized).
-    const isHomePage = window.location.pathname === "/" || window.location.pathname === "/index.html" || window.location.pathname === "/index.html/";
-    
-    // Determine if the user is on a mobile device based on the viewport width (matching your CSS breakpoint).
-    const isMobile = window.innerWidth <= 768;
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarDiv = document.querySelector('nav.sticky'); // Select the nav element directly
 
-    if (!navbarContainer) {
-        console.error("Error: Navbar container (#navbar) not found. Cannot load navigation.");
-        return; 
-    }
-fetch("https://hangga-hub.github.io/components/navbar.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("navbar").innerHTML = html;
-      document.getElementById("menuToggle")?.addEventListener("click", () => {
-        document.querySelector(".nav-links")?.classList.toggle("show");
-      });
-      document.querySelectorAll(".nav-links a").forEach(link => {
-        if (window.location.href.includes(link.href)) {
-          link.classList.add("active");
-        }
-      });
-    });
+    // Define the base URL for your tools. This assumes your tools are in a 'tools' folder
+    // directly under your main domain/repo root.
+    const baseUrl = window.location.origin; // e.g., "https://hangga-hub.github.io"
+
     // --- Function to initialize all navbar interactions ---
-    // This is called after the navbar HTML is injected.
     const initializeNavbarInteractions = () => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.querySelector(".nav-links");
         const dropdowns = document.querySelectorAll(".dropdown");
         const dropbtns = document.querySelectorAll(".dropdown .dropbtn");
-        const navSticky = document.querySelector("nav.sticky");
+        
+        // Determine if the current page is a sub-page (e.g., /tools/tool-name/index.html)
+        const currentPathname = window.location.pathname;
+        const isToolSubPage = /\/tools\/[^\/]+\/?(index\.html)?$/.test(currentPathname);
 
         // --- 1. Simplify Navbar for Mobile Sub-Pages ---
-        if (!isHomePage && isMobile) {
-            
+        if (isToolSubPage && window.innerWidth <= 768) { // Check if on a tool sub-page AND mobile
             // Remove the existing mobile home button if already added (useful on resize)
-            let existingHomeBtn = navSticky.querySelector('.mobile-home-btn');
+            let existingHomeBtn = navbarDiv.querySelector('.mobile-home-btn');
             if (existingHomeBtn) {
                 existingHomeBtn.remove();
             }
@@ -56,18 +36,17 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
 
             // Create and append Home button
             const homeBtn = document.createElement('a');
-            homeBtn.href = "https://hangga-hub.github.io/"; // Your home page URL
+            homeBtn.href = baseUrl + "/"; // Link to the absolute home page URL
             homeBtn.textContent = "Home";
             homeBtn.classList.add('mobile-home-btn');
             
-            if (navSticky) {
+            if (navbarDiv) {
                 // We add a specific style here to ensure the button is positioned correctly
                 homeBtn.style.display = 'block'; // Make sure the JS shows it
-                navSticky.appendChild(homeBtn);
+                navbarDiv.appendChild(homeBtn);
             }
 
             // Clean up mobile menu and dropdown listeners for sub-pages
-            // We specifically remove these listeners to prevent any conflict/freezing on sub-pages.
             if (menuToggle) {
                 menuToggle.removeEventListener("click", toggleMobileMenu);
             }
@@ -92,7 +71,7 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
         }
         
         // Remove the dynamically added mobile home button if present
-        let homeBtn = navSticky.querySelector('.mobile-home-btn');
+        let homeBtn = navbarDiv.querySelector('.mobile-home-btn');
         if (homeBtn) {
             homeBtn.remove();
         }
@@ -108,6 +87,7 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
             if (navLinks) {
                 navLinks.classList.toggle("show");
             }
+            // Close all dropdowns when toggling the main menu
             dropdowns.forEach(openDropdown => {
                 openDropdown.classList.remove("open");
             });
@@ -128,7 +108,7 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
 
             if (currentIsMobile) { 
                 event.preventDefault();
-                event.stopPropagation();
+                event.stopPropagation(); // Stop event from bubbling up to document click listener immediately
 
                 const parentDropdown = this.closest(".dropdown");
 
@@ -160,29 +140,26 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
         }
 
         function handleMouseLeave(event) {
-            // Only close dropdown if mouse is not moving into dropdown-content
             const dropdownContent = this.querySelector('.dropdown-content');
-            if (dropdownContent) {
-                // Check if mouse is moving into dropdown-content
-                const related = event.relatedTarget;
-                if (dropdownContent.contains(related)) {
-                    // Don't close if moving into dropdown-content
-                    return;
-                }
+            // Only close dropdown if mouse is not moving into dropdown-content
+            // or if it's moving completely outside the dropdown area
+            if (dropdownContent && !dropdownContent.contains(event.relatedTarget)) {
+                this.classList.remove('open');
+            } else if (!dropdownContent) { // If there's no dropdown content, just close on leave
+                this.classList.remove('open');
             }
-            this.classList.remove('open');
         }
+
 
         // 2d. Close mobile menu and dropdowns when clicking outside
         document.removeEventListener("click", handleOutsideClick); // Ensure only one listener
         document.addEventListener("click", handleOutsideClick);
 
         function handleOutsideClick(event) {
-            const isClickInsideNav = navLinks && navLinks.contains(event.target);
-            const isClickOnToggle = menuToggle && menuToggle.contains(event.target);
-            const isClickOnDropdownContent = event.target.closest('.dropdown-content');
-
-            if (!isClickInsideNav && !isClickOnToggle && !isClickOnDropdownContent) {
+            // Check if the click is outside the main nav area (including toggle and nav links)
+            const isClickInsideNav = navbarDiv && navbarDiv.contains(event.target);
+            
+            if (!isClickInsideNav) {
                 if (navLinks && navLinks.classList.contains("show")) {
                     navLinks.classList.remove("show");
                 }
@@ -199,19 +176,33 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
 
     // --- Highlight Active Nav Link (can be called independently) ---
     const highlightActiveNavLink = () => {
-        const currentPathname = window.location.pathname.endsWith('/') && window.location.pathname.length > 1
-            ? window.location.pathname.slice(0, -1)
-            : window.location.pathname;
+        // Normalize current pathname: remove trailing slash and 'index.html' if present
+        let currentPathname = window.location.pathname;
+        if (currentPathname.endsWith('/')) {
+            currentPathname = currentPathname.slice(0, -1);
+        }
+        if (currentPathname.endsWith('/index.html')) {
+            currentPathname = currentPathname.replace('/index.html', '');
+        }
+        // Handle root path specifically, so it matches '/'
+        if (currentPathname === '') {
+            currentPathname = '/';
+        }
 
-        // Note: We select all links within the injected nav links (which should exist by now)
-        const allLinks = document.querySelectorAll(".nav-links a");
+        const allLinks = document.querySelectorAll("nav.sticky a"); // Select all links within the navbar
         
         allLinks.forEach(link => {
-            const linkUrl = new URL(link.href);
-            const linkPathname = linkUrl.pathname.endsWith('/') && linkUrl.pathname.length > 1
-                ? linkUrl.pathname.slice(0, -1)
-                : linkUrl.pathname;
-            
+            let linkPathname = new URL(link.href).pathname;
+            if (linkPathname.endsWith('/')) {
+                linkPathname = linkPathname.slice(0, -1);
+            }
+            if (linkPathname.endsWith('/index.html')) {
+                linkPathname = linkPathname.replace('/index.html', '');
+            }
+            if (linkPathname === '') {
+                linkPathname = '/';
+            }
+
             link.classList.remove("active");
 
             if (currentPathname === linkPathname) {
@@ -220,7 +211,7 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
                 if (parentDropdown) {
                     const dropbtn = parentDropdown.querySelector(".dropbtn");
                     if (dropbtn) {
-                        dropbtn.classList.add("active");
+                        dropbtn.classList.add("active"); // Also highlight the dropdown button
                     }
                 }
             }
@@ -228,35 +219,13 @@ fetch("https://hangga-hub.github.io/components/navbar.html")
     };
 
     // --- Handle window resize (for switching between mobile/desktop views) ---
-    // We re-call the initialization logic on resize to adapt the layout and listeners
     window.removeEventListener('resize', handleResize);
     window.addEventListener('resize', handleResize);
 
     function handleResize() {
-        // Re-calculate mobile status
-        const isCurrentlyMobile = window.innerWidth <= 768;
-        
-        // Re-initialize the navbar interactions. 
-        // This ensures the correct behavior (simple vs. complex) based on the new window size.
         initializeNavbarInteractions(); 
     }
 
-    // --- Fetch and Inject Navbar (Main Execution Flow) ---
-    fetch(navbarPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status} fetching ${navbarPath}`);
-            }
-            return response.text();
-        })
-        .then(html => {
-            navbarContainer.innerHTML = html; // Inject the navbar HTML
-            
-            // Call initialization *after* HTML is in the DOM
-            initializeNavbarInteractions(); 
-        })
-        .catch(error => {
-            console.error("Failed to load or inject navbar:", error);
-            navbarContainer.innerHTML = "<nav class='error-nav'><p>Error loading navigation. Please try again.</p></nav>";
-        });
+    // Initial call to set up navbar interactions when DOM is ready
+    initializeNavbarInteractions(); 
 });
