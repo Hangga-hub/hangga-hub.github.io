@@ -523,22 +523,22 @@ footer a:hover {
 ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
     nav.sticky {
+        /* Ensure title and toggle are always on one line */
+        flex-direction: row; /* Explicitly set to row for mobile top bar */
+        justify-content: space-between;
+        align-items: center;
         padding: 10px 15px;
-        /* Keep display: flex and justify-content: space-between from global styles */
-        align-items: center; /* Align title and toggle vertically */
-        /* Remove flex-direction: column; to keep title and toggle on one line */
+        flex-wrap: nowrap; /* Prevent wrapping of title and toggle */
+        overflow: hidden; /* Hide anything that overflows horizontally */
     }
 
     nav.sticky h1 {
         font-size: 1.5rem;
-        /* Remove width: 100%; and text-align: center; from mobile media query */
-        margin-right: var(--spacing-sm); /* Maintain space between title and toggle */
-        margin-bottom: 0; /* Ensure no extra margin if on same line */
-        display: block; /* Always show title */
-        flex-grow: 1; /* Allow title to take available space */
+        margin: 0; /* Remove specific margins, let flexbox handle spacing */
+        flex-shrink: 0; /* Prevent shrinking */
+        flex-grow: 0; /* Prevent growing to take all space */
+        /* No max-width needed, flex-grow: 0 should be enough */
     }
-
-    /* Removed nav.sticky.active h1 rule as title is always visible */
 
     #menuToggle {
         display: block; /* Show toggle button on mobile */
@@ -549,42 +549,37 @@ footer a:hover {
     }
 
     .nav-links {
-        flex-direction: column;
-        position: static; /* Change from absolute to static for normal flow */
+        /* Position the menu off-screen when hidden */
+        position: fixed; /* Use fixed to ensure it's always in viewport */
+        top: var(--navbar-height); /* Position below the main navbar */
+        left: -100%; /* Start off-screen to the left */
         width: 100%;
+        height: calc(100vh - var(--navbar-height)); /* Take full height below navbar */
         background-color: var(--panel);
         border-top: 1px solid var(--cyber-panel-border);
         box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        display: none; /* Hidden by default */
         padding: 10px 0;
-        z-index: 999;
+        z-index: 998;
+        flex-direction: column; /* Stack links vertically */
         align-items: center; /* Center links when stacked */
-        justify-content: center; /* Center links when stacked */
-        margin-top: 10px; /* Space between top row (title/toggle) and menu items */
+        transition: left 0.3s ease-out; /* Transition 'left' property */
+        opacity: 1; /* Keep opacity at 1 for sliding effect, manage visibility via 'left' */
+        pointer-events: auto; /* Keep pointer events active, as it will be off-screen */
+        overflow-y: auto;
+        /* When hidden, ensure it doesn't take up space or allow interaction */
+        visibility: hidden; /* Hide completely when not active */
     }
 
     /* When the entire nav is active (menu opened), show the nav links */
     nav.sticky.active .nav-links {
-        display: flex; /* Show when active */
+        left: 0; /* Slide into view */
+        visibility: visible; /* Make visible */
     }
 
-    .nav-links li {
-        width: 100%;
-        text-align: center;
-    }
-
-    .nav-links li a {
-        padding: 12px 0;
-        margin: 0;
-        border-radius: 0;
-    }
-
-    .nav-links li a:hover {
-        background-color: rgba(0, 255, 247, 0.1);
-    }
-
-    .dropdown-content {
-        position: static; /* Remove absolute positioning for mobile */
+    /* Ensure dropdown content is hidden by default on mobile unless explicitly opened */
+    nav.sticky .dropdown-content {
+        display: none; /* Hide dropdown content by default on mobile */
+        position: static; /* Make it flow normally within the menu */
         width: 100%;
         box-shadow: none;
         border: none;
@@ -597,16 +592,10 @@ footer a:hover {
         transform: none;
     }
 
-    .dropdown-content li a {
-        padding-left: 40px; /* Indent dropdown items */
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: flex; /* Ensure dropdown content shows on tap/hover */
+    /* Only show dropdown content when its parent dropdown has the 'open' class */
+    nav.sticky .dropdown.open .dropdown-content {
+        display: flex; /* Show dropdown content when parent is open */
         flex-direction: column;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
     }
 }
 
@@ -759,7 +748,7 @@ footer a:hover {
 }
 
 .pdf-settings .input-group input[type="text"],
-.pdf-settings .input-group input[type="number"],
+.pdf-settings .input[type="number"],
 .pdf-settings .input-group select {
     flex-grow: 1;
     max-width: 250px;
@@ -2094,31 +2083,22 @@ input[type="range"]::-moz-range-thumb:active {
 
 .image-preview-item {
     position: relative;
-    width: 100px; /* Fixed width for consistency */
-    height: 100px; /* Fixed height for consistency */
-    border: 2px solid var(--pulse);
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--cyber-neon-cyan);
     border-radius: 8px;
     overflow: hidden;
-    cursor: grab; /* Indicates draggable */
-    box-shadow: 0 0 10px rgba(255, 0, 204, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex; /* For centering image */
+    display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.image-preview-item.dragging {
-    opacity: 0.7;
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--accent);
-    cursor: grabbing;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 255, 247, 0.4);
 }
 
 .image-preview-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover the item area */
-    display: block;
+    object-fit: cover;
 }
 
 .image-preview-item .delete-btn {
@@ -2237,34 +2217,6 @@ input[type="range"]::-moz-range-thumb:active {
     box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
     color: var(--accent);
     transform: scale(1.02);
-}
-
-/* Responsive adjustments for JPG/PNG to PDF tool */
-@media (max-width: 768px) {
-    .image-previews-grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller thumbnails on mobile */
-        gap: 10px;
-    }
-    .image-preview-item {
-        width: 80px;
-        height: 80px;
-    }
-    .image-preview-item .delete-btn {
-        width: 20px;
-        height: 20px;
-        font-size: 0.8rem;
-    }
-    .pdf-settings .input-group {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .pdf-settings .input-group label,
-    .pdf-settings .input-group input,
-    .pdf-settings .input-group select {
-        width: 100%;
-        max-width: unset;
-    }
 }
 
 /* Progress Bar Styles */
