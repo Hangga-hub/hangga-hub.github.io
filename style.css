@@ -22,7 +22,7 @@
     --cyber-neon-pink: #ff00cc;
     --cyber-neon-yellow: #ffdd00; /* Brighter yellow */
     --cyber-panel-border: rgba(0, 255, 247, 0.6); /* Softer border glow */
-    --cyber-panel-shadow-cyan: rgba(0, 255, 247, 0.4);
+    --cyber-panel-shadow-cyan: rgba(0, 255, 247, 0.171);
     --cyber-panel-shadow-pink: rgba(255, 0, 204, 0.4);
     --cyber-panel-bg: rgba(30, 30, 40, 0.92); /* Matches previous panel */
 
@@ -38,7 +38,7 @@ html, body {
     width: 100vw;
     min-width: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Ensures no horizontal scrollbar */
 }
 
 *, *::before, *::after {
@@ -59,7 +59,8 @@ body {
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.7;
-    padding-top: var(--navbar-height); /* Set padding top to navbar height directly */
+    /* padding-top will be handled by JavaScript for dynamic navbar height */
+    padding-top: var(--navbar-height); /* Initial padding, adjust with JS for dynamic height */
 }
 
 a {
@@ -80,17 +81,19 @@ nav.sticky {
     top: 0;
     left: 0;
     right: 0;
-    height: var(--navbar-height);
+    min-height: var(--navbar-height); /* Ensures a minimum height */
+    height: auto; /* Allows height to adjust based on content */
     padding: 0 var(--spacing-md); /* Consistent horizontal padding */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Distributes space between title and nav links */
     background-color: var(--panel); /* Use refined panel color */
     backdrop-filter: blur(12px); /* Slightly stronger blur */
     box-shadow: 0 0 40px 8px var(--cyber-neon-cyan), 0 0 20px 4px var(--cyber-neon-pink), 0 4px 15px rgba(0,0,0,0.8); /* Enhanced shadow */
     animation: navbarGlow 2.5s infinite alternate;
     z-index: 1000;
     border-bottom: 2px solid var(--accent); /* Thicker bottom border */
+    flex-wrap: wrap; /* Allows items to wrap to the next line if they don't fit */
 }
 
 @keyframes navbarGlow {
@@ -104,6 +107,8 @@ nav.sticky {
 
 nav.sticky h1 { /* Style for the site title in the navbar */
     margin: 0;
+    flex-shrink: 0; /* Prevents the title from shrinking too much */
+    margin-right: var(--spacing-sm); /* Add some space to the right of the title */
 }
 
 nav.sticky h1 a {
@@ -146,6 +151,9 @@ nav.sticky .nav-links {
     padding: 0;
     position: relative;
     align-items: center;
+    flex-grow: 1; /* Allows nav links to take available space */
+    justify-content: flex-end; /* Aligns links to the right */
+    flex-wrap: wrap; /* Allows individual links to wrap within the nav-links container */
 }
 
 nav.sticky .nav-links li a {
@@ -159,6 +167,7 @@ nav.sticky .nav-links li a {
     background: none;
     outline: none;
     border-radius: 8px; /* Slightly more rounded corners */
+    white-space: nowrap; /* Prevent text wrapping within a link */
 }
 
 nav.sticky .nav-links li a:hover,
@@ -251,7 +260,6 @@ nav.sticky .dropdown-content li a:hover {
     Main Content Layout
 ────────────────────────────────────────────────────── */
 main {
-    /* Adjusted max-width for "tighter" feel and always center */
     max-width: 900px; /* Tighter content area */
     margin: 30px auto 50px auto; /* Adjusted top margin for better spacing below subtitle */
     padding: 20px; /* Padding inside the main container */
@@ -516,17 +524,35 @@ footer a:hover {
 @media (max-width: 768px) {
     nav.sticky {
         padding: 10px 15px;
+        /* Ensure items stack correctly on mobile */
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start when stacked */
     }
 
     nav.sticky h1 {
         font-size: 1.5rem;
+        width: 100%; /* Take full width on mobile */
+        text-align: center; /* Center the title on mobile */
+        margin-right: 0; /* Remove right margin on mobile */
+        margin-bottom: 10px; /* Add some space below the title */
+        display: none; /* Hide title by default on mobile */
+    }
+
+    /* When the entire nav is active (menu opened), show the title */
+    nav.sticky.active h1 {
+        display: block; /* Show title when menu is active */
+    }
+
+    #menuToggle {
+        display: block; /* Show toggle button on mobile */
+        position: absolute; /* Position toggle button */
+        top: 15px; /* Adjust as needed */
+        right: 15px; /* Adjust as needed */
     }
 
     .nav-links {
         flex-direction: column;
-        position: absolute;
-        top: var(--navbar-height);
-        left: 0;
+        position: static; /* Change from absolute to static for normal flow */
         width: 100%;
         background-color: var(--panel);
         border-top: 1px solid var(--cyber-panel-border);
@@ -534,9 +560,12 @@ footer a:hover {
         display: none; /* Hidden by default */
         padding: 10px 0;
         z-index: 999;
+        align-items: center; /* Center links when stacked */
+        justify-content: center; /* Center links when stacked */
     }
 
-    .nav-links.active {
+    /* When the entire nav is active (menu opened), show the nav links */
+    nav.sticky.active .nav-links {
         display: flex; /* Show when active */
     }
 
@@ -580,11 +609,75 @@ footer a:hover {
         visibility: visible;
         transform: none;
     }
+}
 
-    #menuToggle {
-        display: block; /* Show toggle button on mobile */
+/* ──────────────────────────────────────────────────────
+    Main Content Layout - Mobile Adjustments
+────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    main {
+        padding: 15px; /* Slightly reduced padding for smaller screens */
+        margin-top: calc(var(--navbar-height) + 15px); /* Adjust top margin based on potential expanded navbar */
+    }
+
+    #hero h1 {
+        font-size: 2.2rem; /* Smaller font size for hero heading */
+    }
+
+    .subtitle {
+        font-size: 1rem; /* Smaller font size for subtitle */
+        margin: 10px auto 30px auto; /* Reduced bottom margin */
+    }
+
+    #featured-tools h2 {
+        font-size: 2rem; /* Smaller font size for featured tools heading */
+        margin-bottom: var(--spacing-md); /* Adjusted spacing */
+    }
+
+    .tool-card {
+        min-height: 250px; /* Slightly reduced min-height for cards on mobile */
+        padding: var(--spacing-sm); /* Reduced padding inside cards */
+    }
+
+    .tool-card h3 {
+        font-size: 1.4rem; /* Smaller title for tool cards */
+    }
+
+    .tool-card p {
+        font-size: 0.9rem; /* Smaller description text for tool cards */
+    }
+
+    .tool-icon {
+        font-size: 2.5rem; /* Smaller icon size */
+    }
+
+    .tool-button {
+        padding: 10px 20px; /* Smaller padding for buttons */
+        font-size: 0.95rem; /* Smaller font size for buttons */
+    }
+
+    .share-buttons {
+        margin-top: 20px;
+        padding-top: 15px;
+        gap: 10px;
+    }
+
+    .share-buttons a {
+        font-size: 1.5rem; /* Smaller share icons */
+    }
+
+    .ad-banner {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    footer {
+        padding: 20px 15px;
+        margin-top: 30px;
+        font-size: 0.8rem;
     }
 }
+
 
 /* ──────────────────────────────────────────────────────
     JPG/PNG to PDF Tool Specific Styles
