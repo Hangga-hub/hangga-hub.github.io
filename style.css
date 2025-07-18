@@ -1978,3 +1978,102 @@ input[type="range"]::-moz-range-thumb:active {
         font-size: 2.2rem;
     }
 }
+
+/* ====== IMPROVEMENTS: Padding, Spacing and Button Consistency ====== */
+/* Increased padding and spacing for all primary buttons */
+.tool-button, 
+.tool-converter-card button, 
+button.primary {
+    padding: 16px 36px !important;
+    margin: 1.8rem 0 1.2rem 0 !important;
+    letter-spacing: 0.8px;
+}
+
+/* Add space above/below input groups */
+.input-group {
+    margin: 1.5rem 0 !important;
+}
+
+/* Increase textarea/input spacing */
+textarea, 
+input[type="text"], 
+input[type="number"], 
+.neon-file-input, 
+.neon-select {
+    margin: 1.2rem 0 1.8rem 0 !important;
+    padding: 1.2rem !important;
+}
+
+/* Consistent button colors */
+.tool-button, 
+.tool-converter-card button, 
+button.primary {
+    background: linear-gradient(90deg, #ff00cc 0%, #00fff7 100%) !important;
+    color: #000 !important;
+    box-shadow: 0 0 25px rgba(255, 0, 204, 0.6) !important;
+}
+
+.tool-button:hover, 
+.tool-converter-card button:hover, 
+button.primary:hover {
+    background: linear-gradient(90deg, #00fff7 0%, #ff00cc 100%) !important;
+    box-shadow: 0 0 35px rgba(0, 255, 247, 0.8) !important;
+}
+
+/* Secondary button consistency */
+.secondary-button, 
+button.secondary {
+    background: rgba(30, 30, 40, 0.7) !important;
+    border: 2px solid #00fff7 !important;
+    color: #00fff7 !important;
+    padding: 14px 28px !important;
+    margin: 1rem 0 !important;
+}
+
+/* Form element spacing */
+.tool-converter, 
+.tool-converter-card {
+    gap: 2rem !important;
+}
+
+/* Increase spacing between label-input groups */
+label + input, 
+label + textarea, 
+label + select {
+    margin-top: 0.8rem !important;
+}
+
+/* Result area spacing */
+.neon-result, 
+.result-card, 
+.result-temp {
+    margin: 2rem 0 !important;
+    padding: 1.5rem !important;
+}
+
+/* Image Converter improvements */
+.tool-image-converter .button-row {
+    margin: 2.2rem 0 !important;
+}
+
+/* QR Code Generator spacing */
+#qrcode {
+    margin: 2.5rem 0 1.8rem 0 !important;
+    padding: 1.8rem !important;
+}
+
+/* Color Picker swatch spacing */
+.swatch-row {
+    margin: 1.2rem 0 1.8rem 0 !important;
+    gap: 0.8rem !important;
+}
+
+/* BMI Calculator input spacing */
+.tool-bmi .input-group {
+    margin: 1.8rem 0 !important;
+}
+
+/* PDF Converter spacing */
+.pdf-settings .input-group {
+    margin: 1.5rem 0 !important;
+}
