@@ -32,10 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Construct the absolute URL to navbar.html
-    // This should now correctly form: https://your-username.github.io/your-repo-name/components/navbar.html
     const navbarPath = window.location.origin + basePath + "/components/navbar.html";
 
-    console.log("Attempting to fetch navbar from:", navbarPath); // Crucial for debugging!
+    console.log("Attempting to fetch navbar from:", navbarPath);
 
     // --- Function to initialize all navbar interactions ---
     const initializeNavbarInteractions = () => {
@@ -46,91 +45,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 1. Mobile Menu Toggle (Hamburger Icon)
         if (menuToggle && navLinks) {
-            menuToggle.removeEventListener("click", toggleMobileMenu); // Prevent duplicate listeners
-            menuToggle.addEventListener("click", toggleMobileMenu);
-        }
-
-        function toggleMobileMenu() {
-            if (navLinks) {
+            menuToggle.addEventListener("click", (e) => {
+                e.stopPropagation();
                 navLinks.classList.toggle("show");
-            }
-            // Close all dropdowns when toggling the main menu
-            dropdowns.forEach(openDropdown => {
-                openDropdown.classList.remove("open");
+                
+                // Update aria-expanded for accessibility
+                const isExpanded = navLinks.classList.contains("show");
+                menuToggle.setAttribute("aria-expanded", isExpanded);
+                
+                // Close all dropdowns when toggling the main menu
+                dropdowns.forEach(openDropdown => {
+                    openDropdown.classList.remove("open");
+                });
             });
         }
 
-        // 2. Dropdown Toggle for Mobile (and Desktop hover fallback)
+        // 2. Dropdown Toggle for Mobile
         dropbtns.forEach(btn => {
-            btn.removeEventListener("click", handleDropdownToggle); // Prevent duplicate listeners
-            btn.removeEventListener("touchstart", handleDropdownToggle); // For touch devices
+            btn.addEventListener("click", (e) => {
+                const currentIsMobile = window.innerWidth <= 768;
+                const parentDropdown = btn.closest(".dropdown");
 
-            btn.addEventListener("click", handleDropdownToggle);
-            btn.addEventListener("touchstart", handleDropdownToggle);
+                if (currentIsMobile) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Close other dropdowns first
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== parentDropdown) {
+                            otherDropdown.classList.remove("open");
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    if (parentDropdown) {
+                        parentDropdown.classList.toggle("open");
+                    }
+                }
+            });
         });
 
-        function handleDropdownToggle(event) {
-            const currentIsMobile = window.innerWidth <= 768;
-
-            if (currentIsMobile) {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const parentDropdown = this.closest(".dropdown");
-
-                dropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== parentDropdown && otherDropdown.classList.contains("open")) {
-                        otherDropdown.classList.remove("open");
-                    }
-                });
-
-                if (parentDropdown) {
-                    parentDropdown.classList.toggle("open");
-                }
-            }
-        }
-
-        // 3. Desktop: show dropdown on hover (JS fallback/reinforcement)
-        if (window.innerWidth > 768) {
-            dropdowns.forEach(dropdown => {
-                dropdown.removeEventListener('mouseenter', handleMouseEnter); // Prevent duplicate listeners
-                dropdown.removeEventListener('mouseleave', handleMouseLeave); // Prevent duplicate listeners
-
-                dropdown.addEventListener('mouseenter', handleMouseEnter);
-                dropdown.addEventListener('mouseleave', handleMouseLeave);
-            });
-        }
-
-        function handleMouseEnter() {
-            this.classList.add('open');
-        }
-
-        function handleMouseLeave(event) {
-            const dropdownContent = this.querySelector('.dropdown-content');
-            if (dropdownContent && !dropdownContent.contains(event.relatedTarget)) {
-                this.classList.remove('open');
-            } else if (!dropdownContent) {
-                this.classList.remove('open');
-            }
-        }
-
-        // 4. Close mobile menu and dropdowns when clicking outside
-        document.removeEventListener("click", handleOutsideClick); // Ensure only one listener
-        document.addEventListener("click", handleOutsideClick);
-
-        function handleOutsideClick(event) {
-            const navbarNav = document.querySelector('nav.sticky'); // Get reference to the actual nav element
-            const isClickInsideNav = navbarNav && navbarNav.contains(event.target);
+        // 3. Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            const navbarNav = document.querySelector('nav.sticky');
+            const isClickInsideNav = navbarNav && navbarNav.contains(e.target);
 
             if (!isClickInsideNav) {
                 if (navLinks && navLinks.classList.contains("show")) {
                     navLinks.classList.remove("show");
+                    menuToggle.setAttribute("aria-expanded", "false");
                 }
                 dropdowns.forEach(openDropdown => {
                     openDropdown.classList.remove("open");
                 });
             }
-        }
+        });
+
+        // 4. Handle window resize
+        const handleResize = () => {
+            if (window.innerWidth > 768) {
+                // Desktop view - ensure menu is visible and reset states
+                if (navLinks) navLinks.classList.remove("show");
+                dropdowns.forEach(dropdown => dropdown.classList.remove("open"));
+                menuToggle.setAttribute("aria-expanded", "false");
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initialize on load
 
         // 5. Highlight Active Nav Link
         highlightActiveNavLink();
@@ -185,14 +167,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // --- Handle window resize (for switching between mobile/desktop views) ---
-    window.removeEventListener('resize', initializeNavbarInteractions); // Remove previous to prevent duplicates
     window.addEventListener('resize', initializeNavbarInteractions);
 
     // --- Fetch and Inject Navbar (Main Execution Flow) ---
     fetch(navbarPath)
         .then(response => {
             if (!response.ok) {
-                // Log more details about the failed response
                 console.error(`HTTP error! Status: ${response.status}, URL: ${response.url}`);
                 throw new Error(`HTTP error! status: ${response.status} fetching ${navbarPath}`);
             }

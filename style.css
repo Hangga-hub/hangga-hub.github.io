@@ -22,7 +22,7 @@
     --cyber-neon-pink: #ff00cc;
     --cyber-neon-yellow: #ffdd00; /* Brighter yellow */
     --cyber-panel-border: rgba(0, 255, 247, 0.6); /* Softer border glow */
-    --cyber-panel-shadow-cyan: rgba(0, 255, 247, 0.171);
+    --cyber-panel-shadow-cyan: rgba(0, 255, 247, 0.4);
     --cyber-panel-shadow-pink: rgba(255, 0, 204, 0.4);
     --cyber-panel-bg: rgba(30, 30, 40, 0.92); /* Matches previous panel */
 
@@ -38,7 +38,7 @@ html, body {
     width: 100vw;
     min-width: 0;
     box-sizing: border-box;
-    overflow-x: hidden; /* Ensures no horizontal scrollbar */
+    overflow-x: hidden;
 }
 
 *, *::before, *::after {
@@ -59,981 +59,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     line-height: 1.7;
-    /* padding-top will be handled by JavaScript for dynamic navbar height */
-    padding-top: var(--navbar-height); /* Initial padding, adjust with JS for dynamic height */
+    padding-top: var(--navbar-height); /* Set padding top to navbar height directly */
 }
 
-a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--accent-hover);
-}
-
-/* ──────────────────────────────────────────────────────
-    Navbar Styles
-────────────────────────────────────────────────────── */
-nav.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    min-height: var(--navbar-height); /* Ensures a minimum height */
-    height: auto; /* Allows height to adjust based on content */
-    padding: 0 var(--spacing-md); /* Consistent horizontal padding */
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Distributes space between title and nav links */
-    background-color: var(--panel); /* Use refined panel color */
-    backdrop-filter: blur(12px); /* Slightly stronger blur */
-    box-shadow: 0 0 40px 8px var(--cyber-neon-cyan), 0 0 20px 4px var(--cyber-neon-pink), 0 4px 15px rgba(0,0,0,0.8); /* Enhanced shadow */
-    animation: navbarGlow 2.5s infinite alternate;
-    z-index: 1000;
-    border-bottom: 2px solid var(--accent); /* Thicker bottom border */
-    flex-wrap: wrap; /* Allows items to wrap to the next line if they don't fit */
-}
-
-@keyframes navbarGlow {
-    from {
-        box-shadow: 0 0 35px 7px var(--cyber-neon-cyan), 0 0 18px 3.5px var(--cyber-neon-pink), 0 4px 12px rgba(0,0,0,0.7);
-    }
-    to {
-        box-shadow: 0 0 45px 9px var(--cyber-neon-pink), 0 0 22px 4.5px var(--cyber-neon-cyan), 0 4px 18px rgba(0,0,0,0.8);
-    }
-}
-
-nav.sticky h1 { /* Style for the site title in the navbar */
-    margin: 0;
-    flex-shrink: 0; /* Prevents the title from shrinking too much */
-    margin-right: var(--spacing-sm); /* Add some space to the right of the title */
-}
-
-nav.sticky h1 a {
-    font-family: var(--font-heading);
-    font-size: 1.8rem; /* Larger site title */
-    color: var(--cyber-neon-yellow);
-    text-decoration: none;
-    text-shadow: 0 0 15px var(--cyber-neon-yellow), 0 0 8px var(--cyber-neon-cyan);
-    transition: text-shadow 0.3s ease, color 0.3s ease;
-}
-
-nav.sticky h1 a:hover {
-    color: var(--cyber-neon-pink);
-    text-shadow: 0 0 25px var(--cyber-neon-pink), 0 0 12px var(--cyber-neon-cyan);
-}
-
-#menuToggle {
-    display: none; /* Hidden by default for desktop */
-    background: none;
-    border: none;
-    color: var(--accent);
-    font-size: 2rem; /* Larger toggle icon */
-    cursor: pointer;
-    z-index: 1001;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#menuToggle:hover {
-    background-color: rgba(0, 255, 247, 0.1);
-    color: var(--cyber-neon-pink);
-}
-
-nav.sticky .nav-links {
-    display: flex;
-    gap: var(--spacing-sm); /* Adjusted gap for main nav links */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    align-items: center;
-    flex-grow: 1; /* Allows nav links to take available space */
-    justify-content: flex-end; /* Aligns links to the right */
-    flex-wrap: wrap; /* Allows individual links to wrap within the nav-links container */
-}
-
-nav.sticky .nav-links li a {
-    color: var(--accent);
-    text-shadow: 0 0 12px var(--cyber-neon-cyan), 0 0 5px var(--cyber-neon-pink); /* Refined glow */
-    font-weight: 600;
-    letter-spacing: 0.8px; /* Slightly less letter spacing for readability */
-    transition: border-color 0.2s, color 0.2s, text-shadow 0.2s, background 0.3s;
-    padding: 0.7rem 1.2rem; /* More generous padding for links */
-    border-bottom: 2px solid transparent;
-    background: none;
-    outline: none;
-    border-radius: 8px; /* Slightly more rounded corners */
-    white-space: nowrap; /* Prevent text wrapping within a link */
-}
-
-nav.sticky .nav-links li a:hover,
-nav.sticky .nav-links li a.active {
-    border-color: var(--cyber-neon-pink); /* Hover border color */
-    color: var(--cyber-neon-yellow);
-    text-shadow: 0 0 25px var(--cyber-neon-cyan), 0 0 12px var(--cyber-neon-pink), 0 0 6px var(--cyber-neon-yellow); /* Stronger hover glow */
-    background: rgba(0,255,247,0.15); /* More visible hover background */
-}
-
-nav.sticky .dropdown {
-    position: relative;
-}
-
-nav.sticky .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--panel);
-    min-width: 220px; /* Slightly wider dropdown */
-    margin-top: var(--spacing-xs); /* Space between dropdown and parent link */
-    padding: var(--spacing-xs) 0;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 6px 15px rgba(0,0,0,0.8), 0 0 10px var(--cyber-neon-cyan); /* Enhanced shadow */
-    z-index: 1001;
-    list-style: none;
-    flex-direction: column;
-    border: 1px solid var(--cyber-neon-cyan);
-    backdrop-filter: blur(15px); /* Stronger blur for dropdown */
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none; /* Prevent interaction when hidden */
-}
-
-/* For desktop: Show dropdown on hover */
-@media (min-width: 769px) {
-    nav.sticky .dropdown:hover .dropdown-content {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-    }
-}
-
-nav.sticky .dropdown.open .dropdown-content { /* For mobile: Controlled by JS toggle */
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-nav.sticky .dropdown .dropbtn {
-    display: flex; /* Make it a flex container to align icon */
-    align-items: center;
-    justify-content: space-between; /* Space out text and arrow */
-    width: 100%; /* Ensure button takes full width */
-    border-bottom: none;
-    font-size: 1.1rem;
-    padding: 0.7rem 1.2rem;
-    color: var(--cyber-neon-cyan);
-    text-shadow: 0 0 14px var(--cyber-neon-cyan);
-    background: none;
-    outline: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-nav.sticky .dropdown-content li a {
-    display: block;
-    padding: 0.8rem 1.5rem; /* More padding for dropdown items */
-    color: var(--text);
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s, text-shadow 0.2s;
-    border-bottom: none;
-    background: none;
-    outline: none;
-    border-radius: 6px;
-    white-space: nowrap; /* Prevent text wrapping */
-}
-
-nav.sticky .dropdown-content li a:hover {
-    background: rgba(0, 255, 247, 0.2); /* Stronger hover for dropdown items */
-    color: var(--cyber-neon-yellow);
-    text-shadow: 0 0 18px var(--cyber-neon-pink);
-}
-
-/* ──────────────────────────────────────────────────────
-    Main Content Layout
-────────────────────────────────────────────────────── */
-main {
-    max-width: 900px; /* Tighter content area */
-    margin: 30px auto 50px auto; /* Adjusted top margin for better spacing below subtitle */
-    padding: 20px; /* Padding inside the main container */
-    position: relative;
-    z-index: 1;
-    flex-grow: 1; /* Allows main content to grow and push footer down */
-}
-
-.tool-page {
-    /* Specific styling for individual tool pages if needed, often just inherited from main */
-}
-
-.tool-section {
-    margin-bottom: 60px;
-}
-
-.tool-header {
-    text-align: center; /* Ensures tool title and icon are centered */
-    margin-bottom: 0; /* Remove default margin-bottom, use subtitle margin-bottom */
-}
-
-.tool-header .tool-icon {
-    font-size: 4rem;
-    color: var(--cyber-neon-cyan);
-    text-shadow: var(--cyber-glow-soft);
-    margin-bottom: 15px;
-}
-
-.tool-header h1 {
-    font-family: var(--font-heading);
-    font-size: 2.8rem;
-    color: var(--text);
-    text-shadow: var(--cyber-glow-soft);
-    margin-bottom: 10px;
-}
-
-.tool-header .subtitle {
-    font-size: 1.2rem;
-    color: rgba(238, 238, 238, 0.7);
-    max-width: 800px;
-    margin: 10px auto 40px auto; /* Increased bottom margin to make it "lower from subtitle" */
-}
-
-.tool-card {
-    background-color: var(--panel);
-    border: 1px solid var(--cyber-panel-border);
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0, 255, 247, 0.3);
-    overflow: hidden;
-    margin-top: 0; /* Margin handled by subtitle's margin-bottom */
-}
-
-.tool-card .panel-header {
-    background-color: rgba(0, 255, 247, 0.1); /* Lighter accent background */
-    border-bottom: 1px solid var(--cyber-panel-border);
-    padding: 15px 25px;
-    text-align: center; /* Centered the panel header text */
-}
-
-.tool-card .panel-header h2 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--cyber-neon-cyan);
-    text-shadow: 0 0 5px rgba(0, 255, 247, 0.5);
-}
-
-.tool-card .panel-content {
-    padding: 20px; /* This padding is fine, textarea will fill 100% of this padded area */
-}
-
-/* ──────────────────────────────────────────────────────
-    General Form & Button Styles
-────────────────────────────────────────────────────── */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text);
-    opacity: 0.9;
-}
-
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group select,
-.form-group textarea {
-    width: 100%; /* Ensures textareas are full width of their parent .form-group */
-    padding: 12px;
-    border: 1px solid var(--cyber-panel-border);
-    border-radius: 8px;
-    background-color: rgba(15, 15, 20, 0.7);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.1);
-    resize: vertical; /* Allow vertical resizing for textareas */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input[type="text"]:focus,
-.form-group input[type="number"]:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--cyber-neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 255, 247, 0.4), inset 0 0 10px rgba(0, 255, 247, 0.2);
-}
-
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    justify-content: center; /* Centered buttons */
-}
-
-.button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.button-primary {
-    background-color: var(--cyber-neon-cyan);
-    color: var(--bg);
-    border: 1px solid var(--cyber-neon-cyan);
-    text-shadow: 0 0 5px rgba(0,0,0,0.2);
-}
-
-.button-primary:hover {
-    background-color: var(--accent-hover);
-    box-shadow: 0 6px 20px rgba(0, 255, 247, 0.4);
-    transform: translateY(-2px);
-}
-
-.button-secondary {
-    background-color: transparent;
-    color: var(--cyber-neon-pink);
-    border: 1px solid var(--cyber-neon-pink);
-    box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
-}
-
-.button-secondary:hover {
-    background-color: rgba(255, 0, 204, 0.1);
-    box-shadow: 0 0 15px rgba(255, 0, 204, 0.5);
-    transform: translateY(-2px);
-}
-
-/* ──────────────────────────────────────────────────────
-    Share Buttons
-────────────────────────────────────────────────────── */
-.share-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px dashed rgba(238, 238, 238, 0.1);
-}
-
-.share-buttons a {
-    font-size: 1.8rem;
-    color: rgba(238, 238, 238, 0.6);
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.share-buttons a:hover {
-    color: var(--cyber-neon-cyan);
-    transform: scale(1.1);
-}
-
-/* ──────────────────────────────────────────────────────
-    Ad Banner
-────────────────────────────────────────────────────── */
-.ad-banner {
-    background-color: rgba(255, 255, 0, 0.1); /* Yellowish tint for ads */
-    border: 1px dashed var(--cyber-neon-yellow);
-    padding: 20px;
-    text-align: center;
-    color: var(--cyber-neon-yellow);
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    border-radius: 10px;
-    margin-top: 40px;
-    box-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
-}
-
-/* ──────────────────────────────────────────────────────
-    Footer
-────────────────────────────────────────────────────── */
-footer {
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 50px;
-    border-top: 1px solid rgba(238, 238, 238, 0.1);
-    color: rgba(238, 238, 238, 0.6);
-    font-size: 0.9rem;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-footer a {
-    color: var(--cyber-neon-pink);
-}
-
-footer a:hover {
-    color: var(--pulse);
-    text-decoration: underline;
-}
-
-/* ──────────────────────────────────────────────────────
-    Message Box (for alerts/feedback)
-────────────────────────────────────────────────────── */
-.message-box {
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.95rem;
-    opacity: 0; /* Start hidden */
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-}
-
-.message-box.info {
-    background-color: rgba(0, 123, 255, 0.2);
-    border: 1px solid rgba(0, 123, 255, 0.5);
-    color: #87ceeb; /* Light blue */
-}
-
-.message-box.success {
-    background-color: rgba(40, 167, 69, 0.2);
-    border: 1px solid rgba(40, 167, 69, 0.5);
-    color: #90ee90; /* Light green */
-}
-
-.message-box.error {
-    background-color: rgba(220, 53, 69, 0.2);
-    border: 1px solid rgba(220, 53, 69, 0.5);
-    color: #ff6347; /* Tomato red */
-}
-
-.message-box[style*="display: block"] {
-    opacity: 1; /* Show when display is block */
-}
-
-
-/* ──────────────────────────────────────────────────────
-    Responsive Navbar
-────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-    nav.sticky {
-        /* Ensure title and toggle are always on one line */
-        flex-direction: row; /* Explicitly set to row for mobile top bar */
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        flex-wrap: nowrap; /* Prevent wrapping of title and toggle */
-        overflow: hidden; /* Hide anything that overflows horizontally */
-    }
-
-    nav.sticky h1 {
-        font-size: 1.5rem;
-        margin: 0; /* Remove specific margins, let flexbox handle spacing */
-        flex-shrink: 0; /* Prevent shrinking */
-        flex-grow: 0; /* Prevent growing to take all space */
-        /* No max-width needed, flex-grow: 0 should be enough */
-    }
-
-    #menuToggle {
-        display: block; /* Show toggle button on mobile */
-        position: static; /* Make it participate in flex layout */
-        margin-left: auto; /* Push to the right */
-        top: unset; /* Remove absolute positioning properties */
-        right: unset; /* Remove absolute positioning properties */
-    }
-
-    .nav-links {
-        /* Position the menu off-screen when hidden */
-        position: fixed; /* Use fixed to ensure it's always in viewport */
-        top: var(--navbar-height); /* Position below the main navbar */
-        left: -100%; /* Start off-screen to the left */
-        width: 100%;
-        height: calc(100vh - var(--navbar-height)); /* Take full height below navbar */
-        background-color: var(--panel);
-        border-top: 1px solid var(--cyber-panel-border);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        padding: 10px 0;
-        z-index: 998;
-        flex-direction: column; /* Stack links vertically */
-        align-items: center; /* Center links when stacked */
-        transition: left 0.3s ease-out; /* Transition 'left' property */
-        opacity: 1; /* Keep opacity at 1 for sliding effect, manage visibility via 'left' */
-        pointer-events: auto; /* Keep pointer events active, as it will be off-screen */
-        overflow-y: auto;
-        /* When hidden, ensure it doesn't take up space or allow interaction */
-        visibility: hidden; /* Hide completely when not active */
-    }
-
-    /* When the entire nav is active (menu opened), show the nav links */
-    nav.sticky.active .nav-links {
-        left: 0; /* Slide into view */
-        visibility: visible; /* Make visible */
-    }
-
-    /* Ensure dropdown content is hidden by default on mobile unless explicitly opened */
-    nav.sticky .dropdown-content {
-        display: none; /* Hide dropdown content by default on mobile */
-        position: static; /* Make it flow normally within the menu */
-        width: 100%;
-        box-shadow: none;
-        border: none;
-        border-top: 1px solid rgba(238, 238, 238, 0.1);
-        border-radius: 0;
-        padding: 0;
-        margin-top: 5px;
-        opacity: 1; /* Always visible when parent dropdown is active */
-        visibility: visible;
-        transform: none;
-    }
-
-    /* Only show dropdown content when its parent dropdown has the 'open' class */
-    nav.sticky .dropdown.open .dropdown-content {
-        display: flex; /* Show dropdown content when parent is open */
-        flex-direction: column;
-    }
-}
-
-/* ──────────────────────────────────────────────────────
-    Main Content Layout - Mobile Adjustments
-────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-    main {
-        padding: 15px; /* Slightly reduced padding for smaller screens */
-        margin-top: calc(var(--navbar-height) + 15px); /* Adjust top margin based on potential expanded navbar */
-    }
-
-    #hero h1 {
-        font-size: 2.2rem; /* Smaller font size for hero heading */
-    }
-
-    .subtitle {
-        font-size: 1rem; /* Smaller font size for subtitle */
-        margin: 10px auto 30px auto; /* Reduced bottom margin */
-    }
-
-    #featured-tools h2 {
-        font-size: 2rem; /* Smaller font size for featured tools heading */
-        margin-bottom: var(--spacing-md); /* Adjusted spacing */
-    }
-
-    .tool-card {
-        min-height: 250px; /* Slightly reduced min-height for cards on mobile */
-        padding: var(--spacing-sm); /* Reduced padding inside cards */
-    }
-
-    .tool-card h3 {
-        font-size: 1.4rem; /* Smaller title for tool cards */
-    }
-
-    .tool-card p {
-        font-size: 0.9rem; /* Smaller description text for tool cards */
-    }
-
-    .tool-icon {
-        font-size: 2.5rem; /* Smaller icon size */
-    }
-
-    .tool-button {
-        padding: 10px 20px; /* Smaller padding for buttons */
-        font-size: 0.95rem; /* Smaller font size for buttons */
-    }
-
-    .share-buttons {
-        margin-top: 20px;
-        padding-top: 15px;
-        gap: 10px;
-    }
-
-    .share-buttons a {
-        font-size: 1.5rem; /* Smaller share icons */
-    }
-
-    .ad-banner {
-        padding: 15px;
-        font-size: 1rem;
-    }
-
-    footer {
-        padding: 20px 15px;
-        margin-top: 30px;
-        font-size: 0.8rem;
-    }
-}
-
-
-/* ──────────────────────────────────────────────────────
-    JPG/PNG to PDF Tool Specific Styles
-────────────────────────────────────────────────────── */
-.image-previews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 15px;
-    padding: 20px;
-    background-color: rgba(25, 25, 30, 0.7);
-    border-radius: 10px;
-    border: 1px solid rgba(0, 255, 247, 0.2);
-    margin-bottom: 20px;
-}
-
-.image-preview-item {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--cyber-neon-cyan);
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 10px rgba(0, 255, 247, 0.4);
-}
-
-.image-preview-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.image-preview-item .delete-btn {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background-color: var(--pulse);
-    color: var(--button-text);
-    border: 2px solid var(--bg);
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.image-preview-item .delete-btn:hover {
-    background-color: darken(var(--pulse), 10%);
-    transform: scale(1.1);
-}
-
-.pdf-settings {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: rgba(25, 25, 30, 0.7);
-    border-radius: 10px;
-    border: 1px solid rgba(0, 255, 247, 0.2);
-    box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
-}
-
-.pdf-settings .input-group {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 15px;
-}
-
-.pdf-settings .input-group label {
-    flex-shrink: 0;
-    width: 120px;
-    text-align: right;
-}
-
-.pdf-settings .input-group input[type="text"],
-.pdf-settings .input[type="number"],
-.pdf-settings .input-group select {
-    flex-grow: 1;
-    max-width: 250px;
-}
-
-/* Progress Bar Styles */
-.conversion-progress {
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.progress-bar-container {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-.progress-bar {
-    height: 20px;
-    width: 0%;
-    background-color: var(--cyber-neon-cyan);
-    border-radius: 5px;
-    text-align: center;
-    line-height: 20px;
-    color: var(--bg);
-    font-size: 0.8rem;
-    transition: width 0.3s ease-in-out;
-    box-shadow: 0 0 8px var(--cyber-neon-cyan);
-}
-
-/* Responsive adjustments for JPG/PNG to PDF tool */
-@media (max-width: 768px) {
-    .image-previews-grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller thumbnails on mobile */
-        gap: 10px;
-    }
-    .image-preview-item {
-        width: 80px;
-        height: 80px;
-    }
-    .image-preview-item .delete-btn {
-        width: 20px;
-        height: 20px;
-        font-size: 0.8rem;
-    }
-    .pdf-settings .input-group {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .pdf-settings .input-group label,
-    .pdf-settings .input-group input,
-    .pdf-settings .input-group select {
-        width: 100%;
-        max-width: unset;
-    }
-}
-
-/* ──────────────────────────────────────────────────────
-    Word & Character Counter Specific Styles (Final Layout)
-────────────────────────────────────────────────────── */
-
-/* Apply Grid to the main panel content area */
-.tool-page .panel-content.grid-layout {
-    display: grid;
-    /* Define grid areas for explicit placement */
-    grid-template-areas:
-        "textarea-area"
-        "stats-area" /* Stats section before buttons for screenshot similarity */
-        "buttons-area"
-        "message-area"
-        "share-area";
-    grid-template-columns: 1fr; /* Single column for main areas */
-    gap: 25px; /* Consistent spacing between major sections */
-    align-items: start; /* Align content to the top of their cells */
-    padding: 20px; /* Adjusted from 25px to give textarea more relative width */
-    max-width: 900px; /* Constrain overall width similar to screenshot */
-    margin: 0 auto; /* Center the panel content within the tool-card */
-}
-
-/* Assign grid areas */
-.tool-page .textarea-container {
-    grid-area: textarea-area;
-    width: 100%;
-    text-align: left;
-    margin-bottom: 0; /* Managed by grid gap */
-}
-
-.tool-page .textarea-container label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text);
-    font-size: 0.95rem;
-    opacity: 0.7;
-}
-
-.tool-page textarea {
-    width: 100%;
-    height: 150px; /* Fixed height similar to screenshot */
-    box-sizing: border-box;
-    padding: 15px;
-    border: 1px solid var(--cyber-panel-border);
-    border-radius: 8px;
-    background-color: rgba(15, 15, 20, 0.7);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.1);
-    resize: vertical;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tool-page textarea:focus {
-    outline: none;
-    border-color: var(--cyber-neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 255, 247, 0.4), inset 0 0 10px rgba(0, 255, 247, 0.2);
-}
-
-/* New container for the two rows of stats */
-.tool-page .stats-section {
-    grid-area: stats-area;
-    width: 100%; /* Take full width of parent grid-layout */
-    display: flex;
-    flex-direction: column; /* Stack the two rows vertically */
-    gap: 15px; /* Space between the two rows of stats */
-    background-color: rgba(15, 15, 20, 0.9); /* Background for the whole stats block */
-    border: 1px solid var(--cyber-panel-border);
-    border-radius: 12px;
-    padding: 20px; /* Padding inside the stats section */
-    box-shadow: 0 0 15px rgba(0, 255, 247, 0.2);
-}
-
-/* Each row within the stats section will be a grid */
-.tool-page .results-grid-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Exactly 4 columns */
-    gap: 15px; /* Space between items in a row */
-    width: 100%; /* Ensure it spans the full width */
-}
-
-.tool-page .result-item {
-    background-color: rgba(25, 25, 30, 0.8); /* Slightly darker background for each item */
-    padding: 15px 10px; /* Reduced padding for compactness */
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid rgba(0, 255, 247, 0.3); /* Subtle border */
-    box-shadow: 0 0 8px rgba(0, 255, 247, 0.15);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100px; /* Ensure consistent height for items */
-}
-
-.tool-page .result-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 255, 247, 0.4);
-    background-color: rgba(20, 20, 25, 0.95);
-}
-
-.tool-page .result-item h3 {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--text);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    opacity: 0.8;
-}
-
-.tool-page .result-item .result-value {
-    font-family: var(--font-heading);
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--cyber-neon-cyan);
-    text-shadow: 0 0 12px var(--cyber-neon-cyan), 0 0 25px rgba(0, 255, 247, 0.6);
-    margin: 0;
-    line-height: 1;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-/* Animation for value updates - more subtle pulse */
-@keyframes pulseEffect {
-    0% {
-        transform: scale(1);
-        color: var(--cyber-neon-cyan);
-        text-shadow: 0 0 12px var(--cyber-neon-cyan);
-    }
-    50% {
-        transform: scale(1.03);
-        color: var(--pulse);
-        text-shadow: 0 0 18px var(--pulse), 0 0 30px rgba(255, 0, 204, 0.7);
-    }
-    100% {
-        transform: scale(1);
-        color: var(--cyber-neon-cyan);
-        text-shadow: 0 0 12px var(--cyber-neon-cyan);
-    }
-}
-
-.result-value.animate-pulse-effect {
-    animation: pulseEffect 0.4s ease-out;
-}
-
-/* Button group styling */
-.tool-page .button-group.horizontal-buttons {
-    grid-area: buttons-area; /* Assign to its grid area */
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center; /* Center buttons horizontally */
-    margin-bottom: 0; /* Managed by grid gap */
-}
-
-.tool-page .message-box {
-    grid-area: message-area;
-    margin-top: 0; /* Managed by grid gap */
-}
-
-.tool-page .share-buttons {
-    grid-area: share-area;
-    margin-top: 0; /* Managed by grid gap */
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .tool-page .results-grid-row {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
-    }
-    .tool-page .result-item {
-        padding: 12px 8px;
-        min-height: 90px;
-    }
-    .tool-page .result-item h3 {
-        font-size: 0.85rem;
-    }
-    .tool-page .result-item .result-value {
-        font-size: 2.2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .tool-page .results-grid-row {
-        grid-template-columns: 1fr; /* Stack on mobile */
-    }
-    .tool-page .result-item {
-        padding: 10px 5px;
-        min-height: 80px;
-    }
-    .tool-page .result-item h3 {
-        font-size: 0.8rem;
-    }
-    .tool-page .result-item .result-value {
-        font-size: 1.8rem;
-    }
-    .tool-page .button-group.horizontal-buttons {
-        flex-direction: column;
-        align-items: center; /* Center stacked buttons */
-    }
-    .tool-page .button-group.horizontal-buttons .button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .tool-page .results-grid-row {
-        grid-template-columns: 1fr; /* Stack items on very small screens */
-        gap: 15px;
-    }
-    .tool-page .result-item {
-        min-height: 90px;
-    }
-    .tool-page .result-item .result-value {
-        font-size: 2.2rem;
-    }
-}
-
-/* ──────────────────────────────────────────────────────
-    Home Page Specific Styles
-────────────────────────────────────────────────────── */
 /* Main Content Area */
 main {
     max-width: 1000px; /* Increased max-width for more horizontal space */
@@ -1069,8 +97,8 @@ main {
     line-height: 1.5;
     color: var(--cyber-neon-cyan);
     text-shadow: 0 0 10px var(--cyber-neon-cyan); /* Stronger glow */
-    max-width: 800px; /* Wider subtitle */
-    margin: 10px auto 40px auto; /* Increased bottom margin for "lower from subtitle" */
+    max-width: 600px; /* Wider subtitle */
+    margin: 10px auto 30px auto;
     font-family: var(--font-body);
 }
 
@@ -1199,7 +227,7 @@ main {
 }
 
 .tool-converter {
-    max-width: 900px; /* Adjusted to match main content width */
+    max-width: 900px;
     margin: 2rem auto;
     background: #18181b;
     border-radius: 18px;
@@ -1212,16 +240,568 @@ main {
     position: relative;
     z-index: 1;
 }
-/* Ensure elements inside .tool-converter are centered if they are flex items */
-.tool-converter .button-group,
-.tool-converter .share-buttons {
-    justify-content: center;
+
+/* --- Share Buttons --- */
+.share-buttons {
+    display: flex;
+    gap: var(--spacing-sm); /* Increased gap for share icons */
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-xs);
+    border-top: 1px solid rgba(255,255,255,0.1); /* Lighter border */
+    width: 100%;
+    justify-content: flex-end;
 }
 
+.share-buttons a {
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 15px var(--cyber-neon-yellow), 0 0 5px var(--cyber-neon-pink); /* Stronger glow */
+    font-size: 32px; /* Larger share icons */
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.share-buttons a:hover {
+    color: var(--cyber-neon-pink);
+    text-shadow: 0 0 20px var(--cyber-neon-pink), 0 0 10px var(--cyber-neon-cyan);
+}
+
+/* --- Ad Banner --- */
+.ad-banner {
+    background: var(--panel);
+    border: 2px solid var(--cyber-neon-yellow);
+    box-shadow: 0 0 28px var(--cyber-neon-yellow); /* Stronger ad banner glow */
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 10px var(--cyber-neon-yellow);
+    padding: var(--spacing-lg); /* More padding for ad banner */
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    backdrop-filter: blur(8px);
+    border-radius: 12px; /* Rounded corners for ad banner */
+}
+
+.ad-banner p {
+    font-size: 1.2rem; /* Larger ad text */
+    color: var(--text);
+    margin: 0;
+}
+
+/* --- Footer --- */
+footer {
+    background: #18181b;
+    color: var(--cyber-neon-cyan);
+    text-shadow: 0 0 10px var(--cyber-neon-pink); /* Stronger footer glow */
+    border-top: 2px solid var(--cyber-neon-cyan);
+    padding: var(--spacing-md); /* More padding for footer */
+    font-size: 1rem; /* Slightly larger footer text */
+    margin-top: var(--spacing-lg);
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+footer a {
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 10px var(--cyber-neon-yellow);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--cyber-neon-pink);
+    text-shadow: 0 0 14px var(--cyber-neon-pink);
+}
+
+/* ──────────────────────────────────────────────────────
+    Navbar Improvements
+────────────────────────────────────────────────────── */
+nav.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-height);
+    padding: 0 var(--spacing-md); /* Consistent horizontal padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--panel); /* Use refined panel color */
+    backdrop-filter: blur(12px); /* Slightly stronger blur */
+    box-shadow: 0 0 40px 8px var(--cyber-neon-cyan), 0 0 20px 4px var(--cyber-neon-pink), 0 4px 15px rgba(0,0,0,0.8); /* Enhanced shadow */
+    animation: navbarGlow 2.5s infinite alternate;
+    z-index: 1000;
+    border-bottom: 2px solid var(--accent); /* Thicker bottom border */
+}
+
+@keyframes navbarGlow {
+    from {
+        box-shadow: 0 0 35px 7px var(--cyber-neon-cyan), 0 0 18px 3.5px var(--cyber-neon-pink), 0 4px 12px rgba(0,0,0,0.7);
+    }
+    to {
+        box-shadow: 0 0 45px 9px var(--cyber-neon-pink), 0 0 22px 4.5px var(--cyber-neon-cyan), 0 4px 18px rgba(0,0,0,0.8);
+    }
+}
+
+nav.sticky h1 { /* Style for the site title in the navbar */
+    margin: 0;
+}
+
+nav.sticky h1 a {
+    font-family: var(--font-heading);
+    font-size: 1.8rem; /* Larger site title */
+    color: var(--cyber-neon-yellow);
+    text-decoration: none;
+    text-shadow: 0 0 15px var(--cyber-neon-yellow), 0 0 8px var(--cyber-neon-cyan);
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+nav.sticky h1 a:hover {
+    color: var(--cyber-neon-pink);
+    text-shadow: 0 0 25px var(--cyber-neon-pink), 0 0 12px var(--cyber-neon-cyan);
+}
+
+#menuToggle {
+    display: none; /* Hidden by default for desktop */
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 2rem; /* Larger toggle icon */
+    cursor: pointer;
+    z-index: 1001;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#menuToggle:hover {
+    background-color: rgba(0, 255, 247, 0.1);
+    color: var(--cyber-neon-pink);
+}
+
+nav.sticky .nav-links {
+    display: flex;
+    gap: var(--spacing-sm); /* Adjusted gap for main nav links */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    align-items: center;
+}
+
+nav.sticky .nav-links li a {
+    color: var(--accent);
+    text-shadow: 0 0 12px var(--cyber-neon-cyan), 0 0 5px var(--cyber-neon-pink); /* Refined glow */
+    font-weight: 600;
+    letter-spacing: 0.8px; /* Slightly less letter spacing for readability */
+    transition: border-color 0.2s, color 0.2s, text-shadow 0.2s, background 0.3s;
+    padding: 0.7rem 1.2rem; /* More generous padding for links */
+    border-bottom: 2px solid transparent;
+    background: none;
+    outline: none;
+    border-radius: 8px; /* Slightly more rounded corners */
+}
+
+nav.sticky .nav-links li a:hover,
+nav.sticky .nav-links li a.active {
+    border-color: var(--cyber-neon-pink); /* Hover border color */
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 25px var(--cyber-neon-cyan), 0 0 12px var(--cyber-neon-pink), 0 0 6px var(--cyber-neon-yellow); /* Stronger hover glow */
+    background: rgba(0,255,247,0.15); /* More visible hover background */
+}
+
+nav.sticky .dropdown {
+    position: relative;
+}
+
+nav.sticky .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--panel);
+    min-width: 220px; /* Slightly wider dropdown */
+    margin-top: var(--spacing-xs); /* Space between dropdown and parent link */
+    padding: var(--spacing-xs) 0;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.8), 0 0 10px var(--cyber-neon-cyan); /* Enhanced shadow */
+    z-index: 1001;
+    list-style: none;
+    flex-direction: column;
+    border: 1px solid var(--cyber-neon-cyan);
+    backdrop-filter: blur(15px); /* Stronger blur for dropdown */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* For desktop: Show dropdown on hover */
+@media (min-width: 769px) {
+    nav.sticky .dropdown:hover .dropdown-content {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+}
+
+nav.sticky .dropdown.open .dropdown-content { /* For mobile: Controlled by JS toggle */
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+nav.sticky .dropdown .dropbtn {
+    display: flex; /* Make it a flex container to align icon */
+    align-items: center;
+    justify-content: space-between; /* Space out text and arrow */
+    width: 100%; /* Ensure button takes full width */
+    border-bottom: none;
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+    color: var(--cyber-neon-cyan);
+    text-shadow: 0 0 14px var(--cyber-neon-cyan);
+    background: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+nav.sticky .dropdown-content li a {
+    display: block;
+    padding: 0.8rem 1.5rem; /* More padding for dropdown items */
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, text-shadow 0.2s;
+    border-bottom: none;
+    background: none;
+    outline: none;
+    border-radius: 6px;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+nav.sticky .dropdown-content li a:hover {
+    background: rgba(0, 255, 247, 0.2); /* Stronger hover for dropdown items */
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 18px var(--cyber-neon-pink);
+}
+
+/* ──────────────────────────────────────────────────────
+    Responsive Adjustments
+────────────────────────────────────────────────────── */
+@media (max-width: 1400px) {
+    main {
+        max-width: 1200px; /* Re-apply max-width for main for this breakpoint */
+    }
+    .tools-grid {
+        /* Keep this minmax for 3-4 columns on larger screens within 1200px main */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-md);
+    }
+}
+@media (max-width: 900px) {
+    main {
+        max-width: 700px;
+        padding: 0 var(--spacing-sm);
+    }
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Likely 2-3 columns on tablets */
+        gap: var(--spacing-md);
+    }
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+    #featured-tools h2 {
+        font-size: 1.8rem;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    /* Mobile specific Navbar */
+    #menuToggle {
+        display: block; /* Show hamburger menu */
+    }
+    /* Style for the dynamically created Home Button on sub-pages */
+    .mobile-home-btn {
+        display: none; /* Hidden by default, shown by JS/CSS media query */
+        background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+        color: #0a0a0a;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 15px var(--cyber-neon-pink);
+        padding: 8px 15px; 
+        font-size: 0.95rem; 
+        text-decoration: none;
+        transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
+        margin-left: auto; /* Push it to the right in the flex container (nav) */
+        white-space: nowrap; 
+    }
+
+    .mobile-home-btn:hover {
+        background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+        box-shadow: 0 0 28px var(--cyber-neon-cyan);
+        transform: scale(1.05);
+    }
+
+    /* Ensure the main nav links are hidden when the mobile menu is NOT "show" */
+    @media (max-width: 768px) {
+        nav.sticky .nav-links:not(.show) {
+            display: none; 
+        }
+    }
+    nav.sticky .nav-links {
+        position: fixed;
+        top: var(--navbar-height);
+        right: 0;
+        flex-direction: column;
+        background-color: var(--panel);
+        width: 280px; /* Wider mobile menu */
+        max-width: 90%;
+        height: calc(100vh - var(--navbar-height));
+        padding: var(--spacing-md) var(--spacing-sm); /* Adjusted padding */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -5px 0 20px var(--accent); /* Stronger shadow */
+        overflow-y: auto;
+        align-items: flex-start;
+        border-left: 2px solid var(--accent); /* Border on mobile menu */
+    }
+    nav.sticky .nav-links.show {
+        transform: translateX(0);
+    }
+    nav.sticky .nav-links li {
+        margin: var(--spacing-sm) 0; /* More vertical space between nav items */
+        width: 100%;
+    }
+    nav.sticky .dropdown-content {
+        position: static; /* Stack dropdown items vertically */
+        box-shadow: none;
+        background: transparent;
+        border: none;
+        padding-left: var(--spacing-md); /* Indent dropdown items */
+        padding-top: var(--spacing-xs);
+        padding-bottom: var(--spacing-xs);
+        min-width: 0;
+        border-radius: 0;
+        opacity: 1; /* Always visible when dropdown is open on mobile */
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    nav.sticky .dropdown .dropbtn {
+        width: 100%;
+        text-align: left;
+        justify-content: flex-start; /* Align text to left */
+    }
+    nav.sticky .dropdown .dropbtn .ri-arrow-down-s-line {
+        margin-left: auto; /* Push arrow to the right */
+        transform: rotate(0deg); /* Initial state for mobile dropdown arrow */
+        transition: transform 0.3s ease;
+    }
+    nav.sticky .dropdown.open .dropbtn .ri-arrow-down-s-line {
+        transform: rotate(180deg); /* Rotate arrow when dropdown is open */
+    }
+}
+@media (max-width: 600px) {
+    body {
+        padding-top: var(--navbar-height);
+    }
+    main {
+        padding: 0 var(--spacing-sm);
+        margin: var(--spacing-md) auto;
+    }
+    .tools-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        gap: var(--spacing-sm);
+    }
+    .tool-card {
+        padding: var(--spacing-sm);
+    }
+    #hero {
+        padding: var(--spacing-md) var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+    }
+    #hero h1 {
+        font-size: 1.8rem;
+    }
+    #hero .subtitle {
+        font-size: 1rem;
+    }
+    #featured-tools h2 {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-md);
+    }
+    .ad-banner {
+        padding: var(--spacing-sm);
+        margin-top: var(--spacing-md);
+        font-size: 0.95rem;
+    }
+    footer {
+        padding: var(--spacing-sm);
+        font-size: 0.8rem;
+        margin-top: var(--spacing-md);
+    }
+}
+@media (max-width: 480px) {
+    html, body {
+        font-size: 14px;
+        overflow-x: hidden;
+    }
+    main {
+        padding: 0 var(--spacing-xs);
+        margin: var(--spacing-sm) auto;
+    }
+    .tool-card {
+        padding: var(--spacing-xs);
+    }
+    #hero h1 {
+        font-size: 1.6rem;
+    }
+    #hero .subtitle {
+        font-size: 0.9rem;
+    }
+    #featured-tools h2 {
+        font-size: 1.2rem;
+    }
+    /* Consolidate common element styles for small screens */
+    .container, .tool-card, .cyberpunk-panel { /* Assuming .cyberpunk-panel might be used on tool pages */
+        padding: var(--spacing-sm) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 0 16px 2px #00fff7, 0 0 4px 1px #ff00cc;
+    }
+    .neon-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.7rem !important;
+    }
+    .neon-label, label {
+        font-size: 0.98rem !important;
+    }
+    .neon-input, .neon-select, input, select {
+        font-size: 1rem !important;
+        padding: 0.4rem !important;
+        min-width: 0 !important;
+    }
+    .tool-button, button {
+        font-size: 1rem !important;
+        padding: 0.6rem 1rem !important;
+    }
+    .neon-result, #result {
+        font-size: 1rem !important;
+        padding: 0.7rem !important;
+        margin-top: 0.7rem !important;
+    }
+    .share-buttons, .neon-share {
+        gap: 0.7rem !important;
+        margin-top: 0.7rem !important;
+    }
+    .ad-banner {
+        padding: 8px !important;
+        font-size: 0.9rem !important;
+    }
+    footer {
+        padding: 0.5rem !important;
+        font-size: 0.75rem !important;
+        margin-top: 10px !important;
+    }
+}
+
+/* ──────────────────────────────────────────────────────
+    Animations and Utility Classes
+────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* ──────────────────────────────────────────────────────
+    Tool Specific Overrides (Keep these if individual tool pages use them)
+────────────────────────────────────────────────────── */
+.tool-json textarea {
+    height: 280px;
+}
+
+.tool-bmi input[type="number"] {
+    max-width: 180px;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.tool-image-converter .preview-image {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 1rem auto !important;
+    border: 1px solid var(--accent);
+    box-sizing: border-box;
+}
+
+.tool-image-converter .converted-preview-container {
+    max-width: 100%;
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px dashed var(--border);
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: var(--accent);
+    animation: spin 1s ease infinite;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+body[data-category="length"] { --accent: #00c3ff; }
+body[data-category="weight"] { --accent: #ffaa00; }
+body[data-category="temperature"] { --accent: #ff2b88; }
+body[data-category="time"] { --accent: #ff6f00; }
+body[data-category="speed"] { --accent: #ff00cc; }
+body[data-category="area"] { --accent: #00c3ff; }
+body[data-category="volume"] { --accent: #ffaa00; }
+body[data-category="data"] { --accent: #ff6f00; }
+body[data-category="currency"] { --accent: #ff00cc; }
+body[data-category="energy"] { --accent: #ff2b88; }
+body[data-category="pressure"] { --accent: #ff6f00; }
+body[data-category="power"] { --accent: #ff00cc; }
+body[data-category="frequency"] { --accent: #ffaa00; }
+
+/* ──────────────────────────────────────────────────────
+    Tool Converter Styles
+────────────────────────────────────────────────────── */
+.tool-converter {
+    max-width: 420px;
+    margin: 2rem auto;
+    background: #18181b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    padding: 2rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border: 2px solid #00ffe7;
+    position: relative;
+    z-index: 1;
+}
 .tool-converter h2 {
     margin-bottom: 0.5rem;
     font-size: 1.7rem;
-    text-align: center; /* Centered */
+    text-align: center;
     color: #00ffe7;
     text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
     letter-spacing: 1px;
@@ -1266,7 +846,7 @@ main {
 .tool-button-row {
     display: flex;
     gap: 0.5rem;
-    justify-content: center; /* Centered */
+    justify-content: center;
 }
 .tool-button {
     padding: 0.75rem 1.5rem;
@@ -1287,7 +867,7 @@ main {
 ────────────────────────────────────────────────────── */
     /* Reusing .tool-converter-card styles for consistency */
 .tool-converter-card {
-    max-width: 900px; /* Adjusted to match main content width */
+    max-width: 420px;
     margin: 2rem auto;
     background: #18181b;
     border-radius: 18px;
@@ -1303,7 +883,7 @@ main {
 .tool-converter-card h2 {
     margin-bottom: 0.5rem;
     font-size: 1.7rem;
-    text-align: center; /* Centered */
+    text-align: center;
     color: #00ffe7;
     text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
     letter-spacing: 1px;
@@ -1374,7 +954,7 @@ main {
 /* Specific styles for the QR Code Generator buttons and output */
 .tool-converter-card .button-row {
     display: flex;
-    justify-content: center; /* Centered */
+    justify-content: space-between;
     gap: 1rem;
     margin-top: 0.5rem;
 }
@@ -1416,7 +996,7 @@ main {
 ───────────────────────────────────────────────────────── */
 /* Removed duplicated body and footer styles here */
 .container {
-    max-width: 900px; /* Adjusted to match main content width */
+    max-width: 600px;
     margin: 2rem auto;
     padding: 1rem;
     background-color: #23232b;
@@ -1426,7 +1006,7 @@ main {
 }
 h2 {
     margin-bottom: 1rem;
-    text-align: center; /* Centered */
+    text-align: center;
     color: #00ffe7;
     text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
     letter-spacing: 1px;
@@ -1530,7 +1110,7 @@ margin-bottom: 1rem;
 }
 .tool-button-row {
 display: flex;
-justify-content: center; /* Centered */
+justify-content: space-between;
 }
 .tool-button {
 padding: 1rem 2rem;
@@ -1604,7 +1184,6 @@ box-sizing: border-box;
 display: flex;
 gap: 1rem;
 margin: 1rem 0;
-justify-content: center; /* Centered */
 }
 
 
@@ -1613,7 +1192,6 @@ display: flex;
 gap: 0.5rem;
 flex-wrap: wrap;
 margin: 0.5rem 0;
-justify-content: center; /* Centered */
 }
 
 .swatch {
@@ -1666,7 +1244,7 @@ word-break: break-all;
 .container {
     flex: 1;
     padding: 2rem;
-    max-width: 900px; /* Adjusted to match main content width */
+    max-width: 400px;
     margin: 2rem auto;
     border-radius: 18px;
     box-shadow: 0 0 32px 4px #00fff7, 0 0 8px 2px #ff00cc;
@@ -1675,7 +1253,7 @@ word-break: break-all;
 
 
 input[type="number"], select {
-    width: 100%; /* Ensure full width */
+    width: calc(100% - 22px);
     padding: 0.7rem;
     border-radius: 6px;
     border: none;
@@ -1709,7 +1287,7 @@ input[type="number"], select {
 
 .file-drop-zone:hover,
 .file-drop-zone.drag-over {
-    background-color: rgba(0, 255, 247, 0.15);
+    background-color: rgba(0, 255, 255, 0.15);
     border-color: var(--pulse);
     box-shadow: 0 0 15px rgba(255, 0, 204, 0.3);
 }
@@ -1753,7 +1331,7 @@ input[type="number"], select {
 /* Image Controls Section */
 #imageControls {
     background: rgba(40, 40, 40, 0.7); /* Slightly darker panel */
-    border: 1px solid var(--cyber-panel-border);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 25px;
     margin-bottom: 30px;
@@ -1996,7 +1574,7 @@ input[type="range"]::-moz-range-thumb:active {
 
 .tool-image-resizer .secondary-button {
     background-color: transparent;
-    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    border: 1px solid var(--border);
     color: var(--text);
     box-shadow: none;
     margin-top: 15px; /* Slightly less margin than primary button */
@@ -2051,7 +1629,7 @@ input[type="range"]::-moz-range-thumb:active {
 .image-previews-container {
     margin-top: var(--spacing-md);
     background: rgba(40, 40, 40, 0.7);
-    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 30px;
@@ -2083,22 +1661,31 @@ input[type="range"]::-moz-range-thumb:active {
 
 .image-preview-item {
     position: relative;
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--cyber-neon-cyan);
+    width: 100px; /* Fixed width for consistency */
+    height: 100px; /* Fixed height for consistency */
+    border: 2px solid var(--pulse);
     border-radius: 8px;
     overflow: hidden;
-    display: flex;
+    cursor: grab; /* Indicates draggable */
+    box-shadow: 0 0 10px rgba(255, 0, 204, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* For centering image */
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 10px rgba(0, 255, 247, 0.4);
+}
+
+.image-preview-item.dragging {
+    opacity: 0.7;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent);
+    cursor: grabbing;
 }
 
 .image-preview-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Cover the item area */
+    display: block;
 }
 
 .image-preview-item .delete-btn {
@@ -2132,7 +1719,7 @@ input[type="range"]::-moz-range-thumb:active {
 /* PDF Settings Section */
 .pdf-settings {
     background: rgba(40, 40, 40, 0.7);
-    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 25px;
     margin-bottom: 30px;
@@ -2205,7 +1792,7 @@ input[type="range"]::-moz-range-thumb:active {
 
 .tool-image-to-pdf .secondary-button {
     background-color: transparent;
-    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    border: 1px solid var(--border);
     color: var(--text);
     box-shadow: none;
     margin-top: 15px;
@@ -2217,6 +1804,34 @@ input[type="range"]::-moz-range-thumb:active {
     box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
     color: var(--accent);
     transform: scale(1.02);
+}
+
+/* Responsive adjustments for JPG/PNG to PDF tool */
+@media (max-width: 768px) {
+    .image-previews-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller thumbnails on mobile */
+        gap: 10px;
+    }
+    .image-preview-item {
+        width: 80px;
+        height: 80px;
+    }
+    .image-preview-item .delete-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+    .pdf-settings .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .pdf-settings .input-group label,
+    .pdf-settings .input-group input,
+    .pdf-settings .input-group select {
+        width: 100%;
+        max-width: unset;
+    }
 }
 
 /* Progress Bar Styles */
@@ -2250,4 +1865,225 @@ input[type="range"]::-moz-range-thumb:active {
     font-size: 0.9rem;
     color: var(--text);
     margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────
+    Word & Character Counter Specific Styles (Final Layout)
+────────────────────────────────────────────────────── */
+
+/* Apply Grid to the main panel content area */
+.tool-page .panel-content.grid-layout {
+    display: grid;
+    /* Define grid areas for explicit placement */
+    grid-template-areas:
+        "textarea-area"
+        "buttons-area"
+        "stats-area"
+        "message-area"
+        "share-area";
+    grid-template-columns: 1fr; /* Single column for main areas */
+    gap: 25px; /* Consistent spacing between major sections */
+    align-items: start; /* Align content to the top of their cells */
+    padding: 20px; /* Add padding to the panel content itself */
+    max-width: 900px; /* Constrain overall width similar to screenshot */
+    margin: 0 auto; /* Center the panel content within the tool-card */
+}
+
+/* Assign grid areas */
+.tool-page .textarea-container {
+    grid-area: textarea-area;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0; /* Managed by grid gap */
+}
+
+.tool-page .textarea-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+.tool-page textarea {
+    width: 100%;
+    height: 150px; /* Fixed height similar to screenshot */
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid var(--cyber-panel-border);
+    border-radius: 8px;
+    background-color: rgba(15, 15, 20, 0.7);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.1);
+    resize: vertical;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-page textarea:focus {
+    outline: none;
+    border-color: var(--cyber-neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 247, 0.4), inset 0 0 10px rgba(0, 255, 247, 0.2);
+}
+
+/* New container for the two rows of stats */
+.tool-page .stats-section {
+    grid-area: stats-area;
+    width: 100%; /* Take full width of parent grid-layout */
+    display: flex;
+    flex-direction: column; /* Stack the two rows vertically */
+    gap: 15px; /* Space between the two rows of stats */
+    background-color: rgba(15, 15, 20, 0.9); /* Background for the whole stats block */
+    border: 1px solid var(--cyber-panel-border);
+    border-radius: 12px;
+    padding: 20px; /* Padding inside the stats section */
+    box-shadow: 0 0 15px rgba(0, 255, 247, 0.2);
+}
+
+/* Each row within the stats section will be a grid */
+.tool-page .results-grid-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Exactly 4 columns */
+    gap: 15px; /* Space between items in a row */
+    width: 100%; /* Ensure it spans the full width */
+}
+
+.tool-page .result-item {
+    background-color: rgba(25, 25, 30, 0.8); /* Slightly darker background for each item */
+    padding: 15px 10px; /* Reduced padding for compactness */
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(0, 255, 247, 0.3); /* Subtle border */
+    box-shadow: 0 0 8px rgba(0, 255, 247, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px; /* Ensure consistent height for items */
+}
+
+.tool-page .result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 255, 247, 0.4);
+    background-color: rgba(20, 20, 25, 0.95);
+}
+
+.tool-page .result-item h3 {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+}
+
+.tool-page .result-item .result-value {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--cyber-neon-cyan);
+    text-shadow: 0 0 12px var(--cyber-neon-cyan), 0 0 25px rgba(0, 255, 247, 0.6);
+    margin: 0;
+    line-height: 1;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Animation for value updates - more subtle pulse */
+@keyframes pulseEffect {
+    0% {
+        transform: scale(1);
+        color: var(--cyber-neon-cyan);
+        text-shadow: 0 0 12px var(--cyber-neon-cyan);
+    }
+    50% {
+        transform: scale(1.03);
+        color: var(--pulse);
+        text-shadow: 0 0 18px var(--pulse), 0 0 30px rgba(255, 0, 204, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        color: var(--cyber-neon-cyan);
+        text-shadow: 0 0 12px var(--cyber-neon-cyan);
+    }
+}
+
+.result-value.animate-pulse-effect {
+    animation: pulseEffect 0.4s ease-out;
+}
+
+/* Button group styling */
+.tool-page .button-group.horizontal-buttons {
+    grid-area: buttons-area; /* Assign to its grid area */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center; /* Center buttons horizontally */
+    margin-bottom: 0; /* Managed by grid gap */
+}
+
+.tool-page .message-box {
+    grid-area: message-area;
+    margin-top: 0; /* Managed by grid gap */
+}
+
+.tool-page .share-buttons {
+    grid-area: share-area;
+    margin-top: 0; /* Managed by grid gap */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .tool-page .results-grid-row {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+    .tool-page .result-item {
+        padding: 12px 8px;
+        min-height: 90px;
+    }
+    .tool-page .result-item h3 {
+        font-size: 0.85rem;
+    }
+    .tool-page .result-item .result-value {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tool-page .results-grid-row {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+    .tool-page .result-item {
+        padding: 10px 5px;
+        min-height: 80px;
+    }
+    .tool-page .result-item h3 {
+        font-size: 0.8rem;
+    }
+    .tool-page .result-item .result-value {
+        font-size: 1.8rem;
+    }
+    .tool-page .button-group.horizontal-buttons {
+        flex-direction: column;
+        align-items: center; /* Center stacked buttons */
+    }
+    .tool-page .button-group.horizontal-buttons .button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .tool-page .results-grid-row {
+        grid-template-columns: 1fr; /* Stack items on very small screens */
+        gap: 15px;
+    }
+    .tool-page .result-item {
+        min-height: 90px;
+    }
+    .tool-page .result-item .result-value {
+        font-size: 2.2rem;
+    }
 }
