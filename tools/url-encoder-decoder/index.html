@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Encoder/Decoder - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Encode and decode URLs instantly with Hangga's free online URL Encoder/Decoder. Perfect for web development and data handling." />
+    <meta name="keywords" content="url encode, url decode, url converter, online url encoder, free url tool, hangga tools, web development, data encoding" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="URL Encoder/Decoder - Hangga's Tool Hub" />
+    <meta property="og:description" content="Encode and decode URLs instantly with Hangga's free online URL Encoder/Decoder. Perfect for web development and data handling." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/url-encoder-decoder/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="url-encoder-decoder" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-link-m"></i></div>
+                <h1>URL Encoder/Decoder</h1>
+                <p class="subtitle">Encode and decode URL components quickly and easily.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Convert URL</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label for="inputText">Input URL/Text:</label>
+                        <textarea id="inputText" rows="10" placeholder="Enter URL or text to encode/decode..."></textarea>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="encodeBtn" class="button button-primary">Encode URL</button>
+                        <button id="decodeBtn" class="button button-primary">Decode URL</button>
+                        <button id="clearBtn" class="button button-secondary">Clear All</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outputText">Output URL/Text:</label>
+                        <textarea id="outputText" rows="10" readonly placeholder="Encoded/Decoded output will appear here..."></textarea>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="copyInputBtn" class="button button-secondary">Copy Input</button>
+                        <button id="copyOutputBtn" class="button button-secondary">Copy Output</button>
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/url-encoder-decoder/index.html&text=Encode%20or%20decode%20URLs%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/url-encoder-decoder/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/url-encoder-decoder/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

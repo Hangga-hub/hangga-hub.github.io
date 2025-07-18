@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UUID/GUID Generator - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Generate universally unique identifiers (UUIDs/GUIDs) instantly with Hangga's free online tool. Supports UUID v4 for random IDs." />
+    <meta name="keywords" content="uuid generator, guid generator, unique id, random id, online tool, free uuid tool, hangga tools, identifier, v4 uuid" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="UUID/GUID Generator - Hangga's Tool Hub" />
+    <meta property="og:description" content="Generate universally unique identifiers (UUIDs/GUIDs) instantly with Hangga's free online tool. Supports UUID v4 for random IDs." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/uuid-guid-generator/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="uuid-guid-generator" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-fingerprint-line"></i></div>
+                <h1>UUID/GUID Generator</h1>
+                <p class="subtitle">Generate universally unique identifiers (UUIDs/GUIDs) instantly.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Generate Unique IDs</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label for="numUuids">Number of UUIDs to Generate:</label>
+                        <input type="number" id="numUuids" value="1" min="1" max="100" />
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="generateBtn" class="button button-primary">Generate UUID(s)</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="generatedUuids">Generated UUID(s):</label>
+                        <textarea id="generatedUuids" rows="10" readonly placeholder="Your generated UUIDs will appear here..."></textarea>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="copyUuidsBtn" class="button button-secondary">Copy UUID(s)</button>
+                        <button id="clearBtn" class="button button-secondary">Clear All</button>
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/uuid-guid-generator/index.html&text=Generate%20UUIDs%20easily%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/uuid-guid-generator/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/uuid-guid-generator/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

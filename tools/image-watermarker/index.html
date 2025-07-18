@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Watermarker - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Add text watermarks to your images instantly with Hangga's free online Image Watermarker. Customize text, color, size, and position." />
+    <meta name="keywords" content="image watermarker, add watermark, text watermark, online image tool, free image tool, hangga tools, photo editor, image branding" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="Image Watermarker - Hangga's Tool Hub" />
+    <meta property="og:description" content="Add text watermarks to your images instantly with Hangga's free online Image Watermarker. Customize text, color, size, and position." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/image-watermarker/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+    <!-- JSZip for creating ZIP files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        /* Specific styles for Image Watermarker */
+        #imageCanvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            box-shadow: 0 0 15px var(--accent);
+            background-color: #fff; /* Ensure white background for transparent areas */
+        }
+
+        .watermark-controls {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(25, 25, 30, 0.7);
+            border-radius: 10px;
+            border: 1px solid var(--cyber-panel-border);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
+        }
+
+        .watermark-controls h4 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        /* Adjust input group for better alignment in controls */
+        .watermark-controls .input-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .watermark-controls .input-group label {
+            flex-basis: 120px; /* Consistent label width */
+            min-width: 80px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .watermark-controls .input-group input[type="text"],
+        .watermark-controls .input-group input[type="number"],
+        .watermark-controls .input-group input[type="color"],
+        .watermark-controls .input-group select,
+        .watermark-controls .input-group input[type="range"] {
+            flex-grow: 1;
+            max-width: 250px; /* Max width for single inputs */
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .watermark-controls .input-group input:focus,
+        .watermark-controls .input-group select:focus,
+        .watermark-controls .input-group input[type="range"]:focus {
+            outline: none;
+            border-color: var(--pulse);
+            box-shadow: 0 0 10px var(--pulse);
+        }
+
+        .watermark-controls .input-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2300ffff' d='M12 15l-5-5h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Image Previews Grid */
+        #imagePreviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(25, 25, 30, 0.7);
+            border-radius: 10px;
+            border: 1px solid var(--cyber-panel-border);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
+            max-height: 300px; /* Limit height and add scroll */
+            overflow-y: auto;
+        }
+
+        .image-preview-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--pulse);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 0 0 8px rgba(255, 0, 204, 0.3);
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensure image fits within bounds */
+        }
+
+        .image-preview-item .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .image-preview-item .delete-btn:hover {
+            background-color: rgba(255, 0, 0, 1);
+        }
+
+        /* Loading indicator */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 255, 247, 0.3);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .watermark-controls .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .watermark-controls .input-group label,
+            .watermark-controls .input-group input,
+            .watermark-controls .input-group select,
+            .watermark-controls .input-group input[type="range"] {
+                width: 100%;
+                max-width: unset;
+            }
+            #imagePreviews {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 10px;
+            }
+            .image-preview-item {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="image-watermarker" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-gallery-upload-line"></i></div>
+                <h1>Image Watermarker</h1>
+                <p class="subtitle">Add text watermarks to multiple images and download them.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Watermark Your Images</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label for="imageUpload">Upload Images (JPG, PNG, GIF):</label>
+                        <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/gif" multiple class="hidden" />
+                        <button id="uploadBtn" class="button button-primary">
+                            <i class="ri-upload-cloud-line"></i> Choose Images
+                        </button>
+                        <p id="fileNameDisplay" style="margin-top: 10px; color: rgba(238,238,238,0.7); font-size: 0.9rem;"></p>
+                    </div>
+
+                    <div id="imagePreviews" style="display: none;">
+                        <!-- Image previews will be inserted here -->
+                    </div>
+
+                    <div id="watermarkControls" class="watermark-controls" style="display: none;">
+                        <h4>Text Watermark Settings</h4>
+                        <div class="input-group">
+                            <label for="watermarkText">Watermark Text:</label>
+                            <input type="text" id="watermarkText" value="Hangga Tools" placeholder="Your watermark text" />
+                        </div>
+                        <div class="input-group">
+                            <label for="fontSize">Font Size (px):</label>
+                            <input type="number" id="fontSize" value="40" min="10" max="200" />
+                        </div>
+                        <div class="input-group">
+                            <label for="textColor">Text Color:</label>
+                            <input type="color" id="textColor" value="#FFFFFF" />
+                        </div>
+                        <div class="input-group">
+                            <label for="textPosition">Position:</label>
+                            <select id="textPosition">
+                                <option value="bottom-right">Bottom Right</option>
+                                <option value="top-left">Top Left</option>
+                                <option value="center">Center</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="textOpacity">Opacity:</label>
+                            <input type="range" id="textOpacity" min="0" max="1" step="0.01" value="0.7" />
+                        </div>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="applyWatermarkBtn" class="button button-primary" style="display: none;">Apply Watermark to All</button>
+                        <button id="downloadAllBtn" class="button button-primary" style="display: none;">Download All (ZIP)</button>
+                        <button id="clearAllBtn" class="button button-secondary">Clear All</button>
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/image-watermarker/index.html&text=Add%20watermarks%20to%20images%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/image-watermarker/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/image-watermarker/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing images...</p>
+    </div>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>
