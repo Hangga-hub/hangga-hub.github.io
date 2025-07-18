@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Converter - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Convert text to various cases like uppercase, lowercase, title case, camel case, and more with Hangga's free online Case Converter." />
+    <meta name="keywords" content="case converter, text case, uppercase, lowercase, title case, sentence case, camel case, pascal case, kebab case, snake case, online tool, free text converter, hangga tools" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="Case Converter - Hangga's Tool Hub" />
+    <meta property="og:description" content="Convert text to various cases like uppercase, lowercase, title case, camel case, and more with Hangga's free online Case Converter." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/case-converter/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="case-converter" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-font-size-2"></i></div>
+                <h1>Case Converter</h1>
+                <p class="subtitle">Convert your text to various cases instantly.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Convert Text Case</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label for="textInput">Text Input:</label>
+                        <textarea id="textInput" rows="10" placeholder="Type or paste your text here..."></textarea>
+                    </div>
+
+                    <div class="button-group case-buttons">
+                        <button id="uppercaseBtn" class="button button-secondary">UPPERCASE</button>
+                        <button id="lowercaseBtn" class="button button-secondary">lowercase</button>
+                        <button id="titlecaseBtn" class="button button-secondary">Title Case</button>
+                        <button id="sentencecaseBtn" class="button button-secondary">Sentence case</button>
+                        <button id="camelcaseBtn" class="button button-secondary">camelCase</button>
+                        <button id="pascalcaseBtn" class="button button-secondary">PascalCase</button>
+                        <button id="kebabcaseBtn" class="button button-secondary">kebab-case</button>
+                        <button id="snakecaseBtn" class="button button-secondary">snake_case</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="textOutput">Converted Text:</label>
+                        <textarea id="textOutput" rows="10" readonly placeholder="Converted text will appear here..."></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="copyBtn" class="button button-primary">Copy Converted Text</button>
+                        <button id="clearBtn" class="button button-secondary">Clear All</button>
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/case-converter/index.html&text=Convert%20text%20case%20easily%20with%20Hangga's%20Case%20Converter!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/case-converter/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/case-converter/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

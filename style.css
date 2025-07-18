@@ -219,7 +219,7 @@ main {
 .container.tool-page {
     max-width: 800px;
     margin: 2rem auto;
-    padding: 2rem 2.5rem;
+    padding: 4rem 2.5rem;
     background-color: #23232b;
     border-radius: 18px;
     box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
@@ -1865,4 +1865,225 @@ input[type="range"]::-moz-range-thumb:active {
     font-size: 0.9rem;
     color: var(--text);
     margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────
+    Word & Character Counter Specific Styles (Final Layout)
+────────────────────────────────────────────────────── */
+
+/* Apply Grid to the main panel content area */
+.tool-page .panel-content.grid-layout {
+    display: grid;
+    /* Define grid areas for explicit placement */
+    grid-template-areas:
+        "textarea-area"
+        "buttons-area"
+        "stats-area"
+        "message-area"
+        "share-area";
+    grid-template-columns: 1fr; /* Single column for main areas */
+    gap: 25px; /* Consistent spacing between major sections */
+    align-items: start; /* Align content to the top of their cells */
+    padding: 25px; /* Add padding to the panel content itself */
+    max-width: 900px; /* Constrain overall width similar to screenshot */
+    margin: 0 auto; /* Center the panel content within the tool-card */
+}
+
+/* Assign grid areas */
+.tool-page .textarea-container {
+    grid-area: textarea-area;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0; /* Managed by grid gap */
+}
+
+.tool-page .textarea-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+.tool-page textarea {
+    width: 100%;
+    height: 150px; /* Fixed height similar to screenshot */
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid var(--cyber-panel-border);
+    border-radius: 8px;
+    background-color: rgba(15, 15, 20, 0.7);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.1);
+    resize: vertical;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-page textarea:focus {
+    outline: none;
+    border-color: var(--cyber-neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 247, 0.4), inset 0 0 10px rgba(0, 255, 247, 0.2);
+}
+
+/* New container for the two rows of stats */
+.tool-page .stats-section {
+    grid-area: stats-area;
+    width: 100%; /* Take full width of parent grid-layout */
+    display: flex;
+    flex-direction: column; /* Stack the two rows vertically */
+    gap: 15px; /* Space between the two rows of stats */
+    background-color: rgba(15, 15, 20, 0.9); /* Background for the whole stats block */
+    border: 1px solid var(--cyber-panel-border);
+    border-radius: 12px;
+    padding: 20px; /* Padding inside the stats section */
+    box-shadow: 0 0 15px rgba(0, 255, 247, 0.2);
+}
+
+/* Each row within the stats section will be a grid */
+.tool-page .results-grid-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Exactly 4 columns */
+    gap: 15px; /* Space between items in a row */
+    width: 100%; /* Ensure it spans the full width */
+}
+
+.tool-page .result-item {
+    background-color: rgba(25, 25, 30, 0.8); /* Slightly darker background for each item */
+    padding: 15px 10px; /* Reduced padding for compactness */
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(0, 255, 247, 0.3); /* Subtle border */
+    box-shadow: 0 0 8px rgba(0, 255, 247, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px; /* Ensure consistent height for items */
+}
+
+.tool-page .result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 255, 247, 0.4);
+    background-color: rgba(20, 20, 25, 0.95);
+}
+
+.tool-page .result-item h3 {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+}
+
+.tool-page .result-item .result-value {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--cyber-neon-cyan);
+    text-shadow: 0 0 12px var(--cyber-neon-cyan), 0 0 25px rgba(0, 255, 247, 0.6);
+    margin: 0;
+    line-height: 1;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Animation for value updates - more subtle pulse */
+@keyframes pulseEffect {
+    0% {
+        transform: scale(1);
+        color: var(--cyber-neon-cyan);
+        text-shadow: 0 0 12px var(--cyber-neon-cyan);
+    }
+    50% {
+        transform: scale(1.03);
+        color: var(--pulse);
+        text-shadow: 0 0 18px var(--pulse), 0 0 30px rgba(255, 0, 204, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        color: var(--cyber-neon-cyan);
+        text-shadow: 0 0 12px var(--cyber-neon-cyan);
+    }
+}
+
+.result-value.animate-pulse-effect {
+    animation: pulseEffect 0.4s ease-out;
+}
+
+/* Button group styling */
+.tool-page .button-group.horizontal-buttons {
+    grid-area: buttons-area; /* Assign to its grid area */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center; /* Center buttons horizontally */
+    margin-bottom: 0; /* Managed by grid gap */
+}
+
+.tool-page .message-box {
+    grid-area: message-area;
+    margin-top: 0; /* Managed by grid gap */
+}
+
+.tool-page .share-buttons {
+    grid-area: share-area;
+    margin-top: 0; /* Managed by grid gap */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .tool-page .results-grid-row {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+    .tool-page .result-item {
+        padding: 12px 8px;
+        min-height: 90px;
+    }
+    .tool-page .result-item h3 {
+        font-size: 0.85rem;
+    }
+    .tool-page .result-item .result-value {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tool-page .results-grid-row {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+    .tool-page .result-item {
+        padding: 10px 5px;
+        min-height: 80px;
+    }
+    .tool-page .result-item h3 {
+        font-size: 0.8rem;
+    }
+    .tool-page .result-item .result-value {
+        font-size: 1.8rem;
+    }
+    .tool-page .button-group.horizontal-buttons {
+        flex-direction: column;
+        align-items: center; /* Center stacked buttons */
+    }
+    .tool-page .button-group.horizontal-buttons .button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .tool-page .results-grid-row {
+        grid-template-columns: 1fr; /* Stack items on very small screens */
+        gap: 15px;
+    }
+    .tool-page .result-item {
+        min-height: 90px;
+    }
+    .tool-page .result-item .result-value {
+        font-size: 2.2rem;
+    }
 }
