@@ -127,6 +127,12 @@
 
                     <div id="messageBox" class="message-box" style="display: none;"></div>
 
+                    <div class="button-group horizontal-buttons" style="margin-top: 20px; display: none;" id="downloadAllBtnContainer">
+                        <button id="downloadAllFaviconsBtn" class="button button-accent">
+                            <i class="ri-download-line"></i> Download All Favicons (.zip)
+                        </button>
+                    </div>
+
                     <div class="share-buttons">
                         <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/favicon-generator/index.html&text=Generate%20favicons%20easily%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
                         <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/favicon-generator/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
@@ -147,6 +153,10 @@
 
     <!-- Global script.js for navbar loading and other global functionalities -->
     <script src="../../script.js"></script>
+    <!-- JSZip Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- FileSaver.js Library (for saving the zip file) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <!-- Tool-specific script.js -->
     <script src="./script.js"></script>
 </body>
