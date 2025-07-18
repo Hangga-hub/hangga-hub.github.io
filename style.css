@@ -524,30 +524,28 @@ footer a:hover {
 @media (max-width: 768px) {
     nav.sticky {
         padding: 10px 15px;
-        /* Ensure items stack correctly on mobile */
-        flex-direction: column;
-        align-items: flex-start; /* Align items to the start when stacked */
+        /* Keep display: flex and justify-content: space-between from global styles */
+        align-items: center; /* Align title and toggle vertically */
+        /* Remove flex-direction: column; to keep title and toggle on one line */
     }
 
     nav.sticky h1 {
         font-size: 1.5rem;
-        width: 100%; /* Take full width on mobile */
-        text-align: center; /* Center the title on mobile */
-        margin-right: 0; /* Remove right margin on mobile */
-        margin-bottom: 10px; /* Add some space below the title */
-        display: none; /* Hide title by default on mobile */
+        /* Remove width: 100%; and text-align: center; from mobile media query */
+        margin-right: var(--spacing-sm); /* Maintain space between title and toggle */
+        margin-bottom: 0; /* Ensure no extra margin if on same line */
+        display: block; /* Always show title */
+        flex-grow: 1; /* Allow title to take available space */
     }
 
-    /* When the entire nav is active (menu opened), show the title */
-    nav.sticky.active h1 {
-        display: block; /* Show title when menu is active */
-    }
+    /* Removed nav.sticky.active h1 rule as title is always visible */
 
     #menuToggle {
         display: block; /* Show toggle button on mobile */
-        position: absolute; /* Position toggle button */
-        top: 15px; /* Adjust as needed */
-        right: 15px; /* Adjust as needed */
+        position: static; /* Make it participate in flex layout */
+        margin-left: auto; /* Push to the right */
+        top: unset; /* Remove absolute positioning properties */
+        right: unset; /* Remove absolute positioning properties */
     }
 
     .nav-links {
@@ -562,6 +560,7 @@ footer a:hover {
         z-index: 999;
         align-items: center; /* Center links when stacked */
         justify-content: center; /* Center links when stacked */
+        margin-top: 10px; /* Space between top row (title/toggle) and menu items */
     }
 
     /* When the entire nav is active (menu opened), show the nav links */
