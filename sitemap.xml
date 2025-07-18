@@ -1,57 +1,140 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<script src="chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame_ant/frame_ant.js"/>
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
 <url>
-  <loc>https://hangga-hub.github.io/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>1.00</priority>
+<loc>https://hangga-hub.github.io/</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>1.00</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/bmi-calculator/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/bmi-calculator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/json-validator/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/json-validator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/unit-converter/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/unit-converter/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/color-picker/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/color-picker/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/loan-calculator/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/loan-calculator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/qr-code-generator/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/csv-json-converter/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/csv-json-converter/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/image-converter/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
 <url>
-  <loc>https://hangga-hub.github.io/tools/image-converter/</loc>
-  <lastmod>2025-07-14T17:36:11+00:00</lastmod>
-  <priority>0.80</priority>
+<loc>https://hangga-hub.github.io/tools/image-resizer/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
 </url>
-
-
+<url>
+<loc>https://hangga-hub.github.io/tools/jpg-png-to-pdf/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/markdown-html-converter/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/case-converter/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/word-character-counter/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/base64-encoder-decoder/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/url-encoder-decoder/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/password-generator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/uuid-guid-generator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/favicon-generator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/lorem-ipsum-generator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/epoch-converter/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/css-formatter-minifier/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/javascript-formatter-minifier/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/image-watermarker/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/image-compressor/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/date-calculator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/percentage-calculator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/tip-calculator/index.html</loc>
+<lastmod>2025-07-18T12:08:45+00:00</lastmod>
+<priority>0.80</priority>
+</url>
 </urlset>
