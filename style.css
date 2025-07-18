@@ -9,7 +9,7 @@
     --accent: #00ffff; /* Primary accent color */
     --pulse: #ff00cc; /* Secondary accent color, often for glowing */
     --panel: rgba(15, 15, 20, 0.95); /* Slightly darker, more opaque panel background */
-    --max-content-width: 1400px; /* This variable is used for .tools-grid, but main's max-width is now higher */
+    --max-content-width: 1000px; /* This variable is used for .tools-grid, but main's max-width is now higher */
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Inter', sans-serif;
     --navbar-height: 70px;
@@ -350,6 +350,7 @@ main {
     font-family: var(--font-body);
     font-size: 1rem;
     box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.1);
+    resize: vertical; /* Allow vertical resizing for textareas */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -666,6 +667,7 @@ footer a:hover {
 }
 
 .pdf-settings .input-group input[type="text"],
+.pdf-settings .input-group input[type="number"],
 .pdf-settings .input-group select {
     flex-grow: 1;
     max-width: 250px;
@@ -946,4 +948,1262 @@ footer a:hover {
     .tool-page .result-item .result-value {
         font-size: 2.2rem;
     }
+}
+
+/* ──────────────────────────────────────────────────────
+    Home Page Specific Styles
+────────────────────────────────────────────────────── */
+/* Main Content Area */
+main {
+    max-width: 1000px; /* Increased max-width for more horizontal space */
+    margin: calc(var(--navbar-height) + 30px) auto 50px auto;
+    padding: 0 var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+/* --- Hero Section --- */
+#hero {
+    padding: var(--spacing-xl) 0 var(--spacing-sm) 0;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+#hero h1 {
+    font-size: 2.8rem; /* Slightly larger for impact */
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+    text-align: center;
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 20px var(--cyber-neon-yellow), 0 0 8px var(--cyber-neon-cyan); /* Stronger glow */
+    font-family: var(--font-heading);
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.25rem; /* Slightly larger for readability */
+    text-align: center;
+    line-height: 1.5;
+    color: var(--cyber-neon-cyan);
+    text-shadow: 0 0 10px var(--cyber-neon-cyan); /* Stronger glow */
+    max-width: 800px; /* Wider subtitle */
+    margin: 10px auto 40px auto; /* Increased bottom margin for "lower from subtitle" */
+    font-family: var(--font-body);
+}
+
+/* --- Featured Tools Section --- */
+#featured-tools {
+    margin-top: var(--spacing-lg); /* Add some space above featured tools */
+    margin-bottom: var(--spacing-lg);
+}
+
+#featured-tools h2 {
+    font-family: var(--font-heading);
+    font-size: 2.6rem; /* Larger heading */
+    color: var(--pulse);
+    text-align: center;
+    margin-bottom: var(--spacing-lg); /* More space below heading */
+    text-shadow: 0 0 18px var(--pulse), 0 0 8px var(--cyber-neon-pink); /* Enhanced glow */
+    letter-spacing: 1.5px;
+}
+
+.tools-grid {
+    display: grid;
+    /* Adjusted minmax to allow for 3-4 columns comfortably */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    padding: 0;
+    list-style: none;
+    max-width: var(--max-content-width); /* This will be 1400px, but main's max-width is 1600px */
+    margin: 0 auto;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* Tool Card */
+.tool-card {
+    background: linear-gradient(135deg, rgba(0,255,247,0.12) 0%, rgba(255,0,204,0.12) 100%), var(--cyber-panel-bg);
+    border: 2px solid var(--cyber-panel-border); /* Softer initial border */
+    box-shadow: 0 0 15px 2px var(--cyber-panel-shadow-cyan), 0 0 8px 1px var(--cyber-panel-shadow-pink); /* Softer initial shadow */
+    color: #e0e0e0;
+    padding: var(--spacing-md); /* Increased padding for more space inside cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    border-radius: 12px; /* Rounded corners for cards */
+    min-height: 280px; /* Ensure a consistent minimum height */
+}
+
+.tool-card:hover {
+    box-shadow: 0 0 40px 6px var(--cyber-neon-pink), 0 0 20px 3px var(--cyber-neon-cyan); /* Stronger hover glow */
+    border-color: var(--cyber-neon-pink);
+    transform: translateY(-8px); /* More pronounced lift on hover */
+}
+
+.tool-icon {
+    font-size: 3rem; /* Larger icon size for impact */
+    margin-bottom: var(--spacing-sm);
+    color: var(--accent);
+    text-shadow: 0 0 16px var(--cyber-neon-cyan), 0 0 6px var(--cyber-neon-pink); /* Stronger glow */
+}
+
+.tool-card h3 {
+    font-size: 1.6rem; /* Slightly larger title */
+    margin-bottom: var(--spacing-xs);
+    margin-top: 0;
+    letter-spacing: 1px;
+    color: var(--cyber-neon-yellow);
+    text-shadow: 0 0 10px var(--cyber-neon-yellow);
+    font-family: var(--font-heading);
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.tool-card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tool-card h3 a:hover {
+    color: var(--cyber-neon-pink);
+    text-shadow: 0 0 14px var(--cyber-neon-pink);
+}
+
+.tool-card p {
+    font-size: 1rem; /* Clearer description text */
+    margin-bottom: var(--spacing-md); /* More space below description */
+    flex-grow: 1;
+    color: #fff;
+    text-shadow: 0 0 8px var(--cyber-neon-cyan);
+}
+
+.tool-button {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+    color: #0a0a0a;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--cyber-neon-pink); /* Stronger button glow */
+    padding: 12px 28px; /* More generous padding */
+    font-size: 1.05rem; /* Slightly larger button text */
+    transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
+    margin-top: auto; /* Pushes button to the bottom of the card */
+    text-decoration: none;
+}
+
+.tool-button i {
+    margin-left: var(--spacing-xs);
+}
+
+.tool-button:hover {
+    background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+    box-shadow: 0 0 28px var(--cyber-neon-cyan); /* Stronger hover glow */
+    transform: scale(1.05); /* More pronounced lift on hover */
+}
+
+.container.tool-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 4rem 2.5rem;
+    background-color: #23232b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    border: 2px solid #00ffe7;
+}
+
+.tool-converter {
+    max-width: 900px; /* Adjusted to match main content width */
+    margin: 2rem auto;
+    background: #18181b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border: 2px solid #00ffe7;
+    position: relative;
+    z-index: 1;
+}
+/* Ensure elements inside .tool-converter are centered if they are flex items */
+.tool-converter .button-group,
+.tool-converter .share-buttons {
+    justify-content: center;
+}
+
+.tool-converter h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.7rem;
+    text-align: center; /* Centered */
+    color: #00ffe7;
+    text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
+    letter-spacing: 1px;
+}
+.tool-converter label {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: #ff00cc;
+    text-shadow: 0 0 4px #ff00cc;
+}
+.tool-converter input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1.5px solid #00ffe7;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    background: #23232b;
+    color: #fff;
+    box-shadow: 0 0 8px #00ffe7 inset;
+    outline: none;
+    transition: border 0.2s;
+}
+.tool-converter input:focus {
+    border: 1.5px solid #ff00cc;
+    box-shadow: 0 0 12px #ff00cc inset;
+}
+.neon-result {
+    display: block;
+    background: #23232b;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 600;
+    color: #00ffe7;
+    box-shadow: 0 0 16px #ff00cc, 0 0 8px #00ffe7;
+    border: 1.5px solid #ff00cc;
+    text-shadow: 0 0 6px #00ffe7, 0 0 2px #ff00cc;
+}
+.tool-button-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center; /* Centered */
+}
+.tool-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background-color: #ff00cc;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.tool-button:hover {
+    background-color: #ff6b8e;
+    transform: scale(1.05);
+}
+
+/* ──────────────────────────────────────────────────────
+    QR Code Generator Styles
+────────────────────────────────────────────────────── */
+    /* Reusing .tool-converter-card styles for consistency */
+.tool-converter-card {
+    max-width: 900px; /* Adjusted to match main content width */
+    margin: 2rem auto;
+    background: #18181b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    padding: 2rem 2rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    border: 2px solid #00ffe7;
+    position: relative;
+    z-index: 1;
+}
+.tool-converter-card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.7rem;
+    text-align: center; /* Centered */
+    color: #00ffe7;
+    text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
+    letter-spacing: 1px;
+}
+.tool-converter-card label {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: #ff00cc;
+    text-shadow: 0 0 4px #ff00cc;
+}
+.tool-converter-card input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1.5px solid #00ffe7;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    background: #23232b;
+    color: #fff;
+    box-shadow: 0 0 8px #00ffe7 inset;
+    outline: none;
+    transition: border 0.2s;
+}
+.tool-converter-card input:focus {
+    border: 1.5px solid #ff00cc;
+    box-shadow: 0 0 12px #ff00cc inset;
+}
+.result-card, .result-temp { /* Reusing these for general result display if needed */
+    display: block;
+    background: #23232b;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 600;
+    color: #00ffe7;
+    box-shadow: 0 0 16px #ff00cc, 0 0 8px #00ffe7;
+    border: 1.5px solid #ff00cc;
+    text-shadow: 0 0 6px #00ffe7, 0 0 2px #ff00cc;
+}
+.result-error {
+    color: #ff00cc;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    margin-top: 0.5rem;
+    text-shadow: 0 0 6px #ff00cc;
+}
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.share-buttons img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    filter: drop-shadow(0 0 6px #00ffe7) drop_shadow(0 0 2px #ff00cc);
+}
+.share-buttons img:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px #ff00cc) drop-shadow(0 0 6px #00ffe7);
+}
+
+/* Specific styles for the QR Code Generator buttons and output */
+.tool-converter-card .button-row {
+    display: flex;
+    justify-content: center; /* Centered */
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+.tool-converter-card button {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #00ffe7;
+    background: #00ffe7;
+    color: #18181b;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 16px #00ffe7;
+    transition: all 0.2s;
+}
+.tool-converter-card button:hover {
+    background: #ff00cc;
+    color: #fff;
+    border-color: #ff00cc;
+    box-shadow: 0 0 24px #ff00cc;
+    text-shadow: 0 0 6px #fff;
+}
+#qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #fff; /* QR code itself is black and white, so a white background is standard */
+    border-radius: 10px;
+    border: 2px solid #00ffe7;
+    box-shadow: 0 0 16px #ff00cc, 0 0 8px #00ffe7;
+    min-height: 200px; /* To reserve space for the QR code */
+}
+
+/* ──────────────────────────────────────────────────────
+    General Styles for All Tools
+───────────────────────────────────────────────────────── */
+/* Removed duplicated body and footer styles here */
+.container {
+    max-width: 900px; /* Adjusted to match main content width */
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #23232b;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+    border: 2px solid #00ffe7;
+}
+h2 {
+    margin-bottom: 1rem;
+    text-align: center; /* Centered */
+    color: #00ffe7;
+    text-shadow: 0 0 8px #00ffe7, 0 0 2px #ff00cc;
+    letter-spacing: 1px;
+}
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #00ffe7;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background-color: #333;
+    color: white;
+    box-shadow: 0 0 8px #00ffe7 inset;
+    outline: none;
+    transition: border 0.2s;
+}
+textarea:focus {
+    border: 1.5px solid #ff00cc;
+    box-shadow: 0 0 12px #ff00cc inset;
+}
+button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background-color: #ff00cc;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+button:hover {
+    background-color: #ff6b8e;
+    transform: scale(1.05);
+}
+.result {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #23232b;
+    color: #00ffe7;
+    text-shadow: 0 0 6px #ff00cc, 0 0 2px #ff00cc;
+    border: 1.5px solid #ff00cc;
+}
+.result.error {
+    background-color: #3a0842;
+    color: red;
+}
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.share-buttons img {
+    width: 32px;
+    height: 32px;
+    margin: 0 8px;
+}
+
+/* ──────────────────────────────────────────────────────
+    Specific Styles for Image Converter Tool
+───────────────────────────────────────────────────────── */
+/* Removed duplicated body and container styles here */
+.tool-ad-space {
+margin-bottom: 1.5rem;
+}
+.ad-note {
+color: #00ffe7;
+font-size: 0.9rem;
+margin-top: 0.5rem;
+}
+.neon-label, .neon-select, .neon-file-input, .neon-slider {
+display: block;
+margin-bottom: 1rem;
+color: #00ffe7;
+font-weight: bold;
+letter-spacing: 0.5px;
+}
+.neon-file-input, .neon-select {
+width: 100%;
+padding: 1rem;
+border-radius: 8px;
+border: 1.5px solid #00ffe7;
+background-color: #333;
+color: white;
+box-shadow: 0 0 8px #00ffe7 inset;
+outline: none;
+transition: border 0.2s, transform 0.2s;
+}
+.neon-file-input:hover, .neon-select:hover {
+border: 1.5px solid #ff00cc;
+transform: scale(1.02);
+}
+.neon-slider {
+width: calc(100% - 2rem);
+margin-left: 1rem;
+}
+.file-name-display {
+color: white;
+margin-bottom: 1rem;
+}
+.tool-button-row {
+display: flex;
+justify-content: center; /* Centered */
+}
+.tool-button {
+padding: 1rem 2rem;
+border-radius: 8px;
+background-color: #00ffe7;
+color: black;
+text-decoration: none;
+font-weight: bold;
+letter-spacing: 0.5px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.tool-button:hover {
+background-color: #ff00cc;
+transform: scale(1.05);
+}
+.hidden {
+display: none;
+}
+.tool-loading-indicator {
+margin-bottom: 1rem;
+text-align: center;
+}
+.tool-spinner {
+border: 4px solid rgba(255, 255, 255, 0.3);
+border-top: 4px solid #00ffe7;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+animation: spin 1s linear infinite;
+}
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+.tool-result-section {
+margin-top: 2rem;
+}
+.tool-preview-image {
+max-width: 100%;
+border-radius: 8px;
+box-shadow: 0 0 16px #00ffe7;
+margin-bottom: 1rem;
+}
+.tool-error-message {
+color: white;
+font-weight: bold;
+letter-spacing: 0.5px;
+text-align: center;
+}
+/* ──────────────────────────────────────────────────────
+    color picker tool styles
+───────────────────────────────────────────────────────── */
+
+label {
+display: block;
+margin-top: 1rem;
+font-weight: bold;
+color: #0af0e4;
+}
+
+input[type="text"] {
+width: 100%;
+padding: 0.9rem;
+border-radius: 4px;
+border: 2px solid var(--border);
+margin-top: 0.5rem;
+box-sizing: border-box;
+}
+
+.button-row {
+display: flex;
+gap: 1rem;
+margin: 1rem 0;
+justify-content: center; /* Centered */
+}
+
+
+.swatch-row {
+display: flex;
+gap: 0.5rem;
+flex-wrap: wrap;
+margin: 0.5rem 0;
+justify-content: center; /* Centered */
+}
+
+.swatch {
+width: 32px;
+height: 32px;
+border-radius: 4px;
+cursor: pointer;
+border: 2px solid var(--border);
+box-shadow: 0 0 6px rgba(255,255,255,0.2);
+}
+
+.preview-box {
+width: 100%;
+height: 100px;
+margin: 1rem 0;
+border-radius: 6px;
+border: 2px solid var(--border);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+}
+
+.gradient-builder {
+margin-bottom: 1rem;
+}
+
+.gradient-builder input {
+width: calc(50% - 8px);
+margin-right: 4px;
+padding: 0.5rem;
+border-radius: 4px;
+border: 1px solid var(--border);
+}
+
+#gradientCSS {
+background-color: white;
+padding: 1rem;
+border-radius: 6px;
+border: 2px solid var(--border);
+margin-top: 0.5rem;
+font-size: 0.9rem;
+white-space: pre-wrap;
+word-break: break-all;
+}
+
+/* ──────────────────────────────────────────────────────
+    Bmi Calculator Styles
+───────────────────────────────────────────────────────── */
+.container {
+    flex: 1;
+    padding: 2rem;
+    max-width: 900px; /* Adjusted to match main content width */
+    margin: 2rem auto;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00fff7, 0 0 8px 2px #ff00cc;
+    background-color: rgba(30, 30, 39, 0.9);
+}
+
+
+input[type="number"], select {
+    width: 100%; /* Ensure full width */
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #2c3e50;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.neon-select {
+    width: 100%;
+}
+
+/* ──────────────────────────────────────────────────────
+    Image Resizer Styles
+───────────────────────────────────────────────────────── */
+.tool-image-resizer {
+    /* No special background/border needed, .tool-card handles it */
+}
+
+/* File Drop Zone */
+.file-drop-zone {
+    border: 2px dashed var(--accent);
+    border-radius: 12px;
+    padding: 40px 20px; /* More padding for spaciousness */
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(0, 255, 255, 0.05); /* Very subtle accent background */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px; /* Space before controls */
+}
+
+.file-drop-zone:hover,
+.file-drop-zone.drag-over {
+    background-color: rgba(0, 255, 247, 0.15);
+    border-color: var(--pulse);
+    box-shadow: 0 0 15px rgba(255, 0, 204, 0.3);
+}
+
+.file-drop-zone p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.file-drop-zone p i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.file-drop-zone .upload-btn {
+    background-color: var(--pulse);
+    color: var(--button-text);
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.file-drop-zone .upload-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+/* Hidden input for actual file selection */
+#imageInput {
+    display: none;
+}
+
+/* Image Controls Section */
+#imageControls {
+    background: rgba(40, 40, 40, 0.7); /* Slightly darker panel */
+    border: 1px solid var(--cyber-panel-border);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+#imageControls h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.original-info {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+.original-info span {
+    font-weight: bold;
+    color: var(--pulse);
+}
+
+/* Input Groups for Dimensions and Output Settings */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between elements in a row */
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.input-group label {
+    flex-basis: 120px; /* Fixed width for labels */
+    min-width: 80px; /* Ensure label doesn't get too small */
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.input-group input[type="number"],
+.input-group select,
+.input-group input[type="color"] {
+    flex-grow: 1; /* Allow input/select to take remaining space */
+    max-width: 250px; /* Max width for single inputs */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.input-group input[type="number"]:focus,
+.input-group select:focus,
+.input-group input[type="color"]:focus {
+    outline: none;
+    border-color: var(--pulse);
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.input-group select {
+    appearance: none; /* Remove default arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2300ffff' d='M12 15l-5-5h10z'/%3E%3C/svg%3E"); /* Custom neon arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.unit-toggle {
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--accent);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.unit-toggle.active {
+    background-color: var(--accent);
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.unit-toggle:hover:not(.active) {
+    background-color: rgba(0, 255, 255, 0.25);
+    box-shadow: 0 0 5px var(--accent);
+}
+
+/* Quality Slider */
+input[type="range"] {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    height: 8px;
+    background: linear-gradient(to right, var(--pulse), var(--accent)); /* Neon gradient track */
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    margin-left: 0; /* Override default input margin */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pulse);
+    cursor: grab;
+    border: 2px solid var(--text);
+    box-shadow: 0 0 8px var(--pulse);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pulse);
+    cursor: grab;
+    border: 2px solid var(--text);
+    box-shadow: 0 0 8px var(--pulse);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:active,
+input[type="range"]::-moz-range-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* Checkbox Toggle */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+    color: var(--text);
+    margin-top: 15px; /* Space from dimensions */
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #333;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #555;
+    border-color: var(--pulse);
+    box-shadow: 0 0 8px rgba(255, 0, 204, 0.2);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--button-text);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Preview Area */
+.preview-area {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.preview-area #imagePreview {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--pulse);
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--pulse);
+    margin-bottom: 20px;
+}
+
+.preview-info {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin: 5px 0;
+}
+
+/* Buttons at the bottom of the card */
+.tool-image-resizer .tool-button {
+    width: 100%;
+    margin-top: 20px; /* Space from controls or preview */
+    font-size: 1.1rem;
+    padding: 15px 25px;
+}
+
+.tool-image-resizer .secondary-button {
+    background-color: transparent;
+    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    color: var(--text);
+    box-shadow: none;
+    margin-top: 15px; /* Slightly less margin than primary button */
+}
+
+.tool-image-resizer .secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    color: var(--accent);
+    transform: scale(1.02);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .file-drop-zone {
+        padding: 30px 15px;
+    }
+    .file-drop-zone p i {
+        font-size: 2rem;
+    }
+    #imageControls {
+        padding: 20px;
+    }
+    .input-group {
+        flex-direction: column; /* Stack inputs vertically */
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .input-group label,
+    .input-group input,
+    .input-group select,
+    .input-group .unit-toggle {
+        width: 100%; /* Full width for stacked elements */
+        max-width: unset;
+    }
+    .unit-toggle {
+        text-align: center;
+    }
+    .input-group input[type="color"] {
+        height: 40px; /* Ensure color picker is not too small */
+    }
+}
+
+/* ──────────────────────────────────────────────────────
+    NEW: JPG/PNG to PDF Converter Styles
+────────────────────────────────────────────────────── */
+.tool-image-to-pdf {
+    /* Inherits most styles from .tool-card */
+}
+
+.image-previews-container {
+    margin-top: var(--spacing-md);
+    background: rgba(40, 40, 40, 0.7);
+    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.image-previews-container h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.image-previews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Flexible grid for thumbnails */
+    gap: 15px; /* Space between thumbnails */
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    min-height: 120px; /* Ensure visibility even with no images */
+}
+
+.image-preview-item {
+    position: relative;
+    width: 100px; /* Fixed width for consistency */
+    height: 100px; /* Fixed height for consistency */
+    border: 2px solid var(--pulse);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: grab; /* Indicates draggable */
+    box-shadow: 0 0 10px rgba(255, 0, 204, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* For centering image */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview-item.dragging {
+    opacity: 0.7;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent);
+    cursor: grabbing;
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the item area */
+    display: block;
+}
+
+.image-preview-item .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--pulse);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.2s, transform 0.2s, background-color 0.2s;
+    z-index: 10; /* Ensure it's above the image */
+    box-shadow: 0 0 8px rgba(255, 0, 204, 0.6);
+}
+
+.image-preview-item .delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+/* PDF Settings Section */
+.pdf-settings {
+    background: rgba(40, 40, 40, 0.7);
+    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.pdf-settings h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.pdf-settings .input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.pdf-settings .input-group label {
+    flex-basis: 150px; /* Wider label for settings */
+    min-width: 100px;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.pdf-settings .input-group input[type="text"],
+.pdf-settings .input-group input[type="number"],
+.pdf-settings .input-group select {
+    flex-grow: 1;
+    max-width: 300px; /* Wider inputs for settings */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pdf-settings .input-group input:focus,
+.pdf-settings .input-group select:focus {
+    outline: none;
+    border-color: var(--pulse);
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.pdf-settings .input-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2300ffff' d='M12 15l-5-5h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+/* Buttons for PDF tool */
+.tool-image-to-pdf .tool-button {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    padding: 15px 25px;
+}
+
+.tool-image-to-pdf .secondary-button {
+    background-color: transparent;
+    border: 1px solid var(--cyber-panel-border); /* Use cyber-panel-border for consistency */
+    color: var(--text);
+    box-shadow: none;
+    margin-top: 15px;
+}
+
+.tool-image-to-pdf .secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    color: var(--accent);
+    transform: scale(1.02);
+}
+
+/* Responsive adjustments for JPG/PNG to PDF tool */
+@media (max-width: 768px) {
+    .image-previews-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller thumbnails on mobile */
+        gap: 10px;
+    }
+    .image-preview-item {
+        width: 80px;
+        height: 80px;
+    }
+    .image-preview-item .delete-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+    .pdf-settings .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .pdf-settings .input-group label,
+    .pdf-settings .input-group input,
+    .pdf-settings .input-group select {
+        width: 100%;
+        max-width: unset;
+    }
+}
+
+/* Progress Bar Styles */
+.conversion-progress {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    height: 15px;
+    margin-bottom: 10px;
+    border: 1px solid var(--accent);
+    box-shadow: inset 0 0 5px rgba(0, 255, 247, 0.3);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--pulse), var(--accent));
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+    box-shadow: 0 0 8px var(--pulse);
+}
+
+.conversion-progress p {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 0;
 }
