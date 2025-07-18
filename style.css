@@ -519,40 +519,35 @@ nav.sticky .dropdown-content li a:hover {
     #menuToggle {
         display: block; /* Show hamburger menu */
     }
-    /* Add to your existing style.css */
-
-/* Style for the dynamically created Home Button on sub-pages */
-.mobile-home-btn {
-    display: none; /* Hidden by default, shown by JS/CSS media query */
-    background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
-    color: #0a0a0a;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 0 15px var(--cyber-neon-pink);
-    padding: 8px 15px; 
-    font-size: 0.95rem; 
-    text-decoration: none;
-    transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
-    margin-left: auto; /* Push it to the right in the flex container (nav) */
-    white-space: nowrap; 
-}
-
-.mobile-home-btn:hover {
-    background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
-    box-shadow: 0 0 28px var(--cyber-neon-cyan);
-    transform: scale(1.05);
-}
-
-/* Ensure the main nav links are hidden when the mobile menu is NOT "show" */
-/* This is needed for standard mobile view on the homepage if the nav is not toggled open */
-@media (max-width: 768px) {
-    nav.sticky .nav-links:not(.show) {
-        /* We set this to display: none; for the collapsed state on mobile */
-        /* Note: When the JS hides .nav-links on sub-pages, it uses .style.display = 'none' directly */
-        display: none; 
+    /* Style for the dynamically created Home Button on sub-pages */
+    .mobile-home-btn {
+        display: none; /* Hidden by default, shown by JS/CSS media query */
+        background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+        color: #0a0a0a;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 15px var(--cyber-neon-pink);
+        padding: 8px 15px; 
+        font-size: 0.95rem; 
+        text-decoration: none;
+        transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
+        margin-left: auto; /* Push it to the right in the flex container (nav) */
+        white-space: nowrap; 
     }
-}
+
+    .mobile-home-btn:hover {
+        background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+        box-shadow: 0 0 28px var(--cyber-neon-cyan);
+        transform: scale(1.05);
+    }
+
+    /* Ensure the main nav links are hidden when the mobile menu is NOT "show" */
+    @media (max-width: 768px) {
+        nav.sticky .nav-links:not(.show) {
+            display: none; 
+        }
+    }
     nav.sticky .nav-links {
         position: fixed;
         top: var(--navbar-height);
@@ -866,16 +861,6 @@ body[data-category="frequency"] { --accent: #ffaa00; }
     background-color: #ff6b8e;
     transform: scale(1.05);
 }
-body {
-    background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
-    min-height: 100vh;
-    font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
-    letter-spacing: 0.5px;
-}
-footer {
-    color: #00ffe7 !important;
-    text-shadow: 0 0 6px #ff00cc;
-}
 
 /* ──────────────────────────────────────────────────────
     QR Code Generator Styles
@@ -959,22 +944,13 @@ footer {
     height: 28px;
     opacity: 0.85;
     transition: opacity 0.2s;
-    filter: drop-shadow(0 0 6px #00ffe7) drop-shadow(0 0 2px #ff00cc);
+    filter: drop-shadow(0 0 6px #00ffe7) drop_shadow(0 0 2px #ff00cc);
 }
 .share-buttons img:hover {
     opacity: 1;
     filter: drop-shadow(0 0 12px #ff00cc) drop-shadow(0 0 6px #00ffe7);
 }
-body {
-    background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
-    min-height: 100vh;
-    font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
-    letter-spacing: 0.5px;
-}
-footer {
-    color: #00ffe7 !important;
-    text-shadow: 0 0 6px #ff00cc;
-}
+
 /* Specific styles for the QR Code Generator buttons and output */
 .tool-converter-card .button-row {
     display: flex;
@@ -1018,12 +994,7 @@ footer {
 /* ──────────────────────────────────────────────────────
     General Styles for All Tools
 ───────────────────────────────────────────────────────── */
-body {
-    background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
-    min-height: 100vh;
-    font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
-    letter-spacing: 0.5px;
-}
+/* Removed duplicated body and footer styles here */
 .container {
     max-width: 600px;
     margin: 2rem auto;
@@ -1094,32 +1065,11 @@ button:hover {
     height: 32px;
     margin: 0 8px;
 }
-footer {
-    color: #00ffe7 !important;
-    text-shadow: 0 0 6px #ff00cc;
-    text-align: center;
-    padding-top: 1rem;
-}
 
 /* ──────────────────────────────────────────────────────
     Specific Styles for Image Converter Tool
 ───────────────────────────────────────────────────────── */
-    
-body {
-background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
-min-height: 100vh;
-font-family: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
-letter-spacing: 0.5px;
-}
-.container {
-max-width: 800px;
-margin: 2rem auto;
-padding: 1rem;
-background-color: #23232b;
-border-radius: 18px;
-box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
-border: 2px solid #00ffe7;
-}
+/* Removed duplicated body and container styles here */
 .tool-ad-space {
 margin-bottom: 1.5rem;
 }
@@ -1209,4 +1159,710 @@ color: white;
 font-weight: bold;
 letter-spacing: 0.5px;
 text-align: center;
+}
+/* ──────────────────────────────────────────────────────
+    color picker tool styles
+───────────────────────────────────────────────────────── */
+
+label {
+display: block;
+margin-top: 1rem;
+font-weight: bold;
+color: #0af0e4;
+}
+
+input[type="text"] {
+width: 100%;
+padding: 0.9rem;
+border-radius: 4px;
+border: 2px solid var(--border);
+margin-top: 0.5rem;
+box-sizing: border-box;
+}
+
+.button-row {
+display: flex;
+gap: 1rem;
+margin: 1rem 0;
+}
+
+
+.swatch-row {
+display: flex;
+gap: 0.5rem;
+flex-wrap: wrap;
+margin: 0.5rem 0;
+}
+
+.swatch {
+width: 32px;
+height: 32px;
+border-radius: 4px;
+cursor: pointer;
+border: 2px solid var(--border);
+box-shadow: 0 0 6px rgba(255,255,255,0.2);
+}
+
+.preview-box {
+width: 100%;
+height: 100px;
+margin: 1rem 0;
+border-radius: 6px;
+border: 2px solid var(--border);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+}
+
+.gradient-builder {
+margin-bottom: 1rem;
+}
+
+.gradient-builder input {
+width: calc(50% - 8px);
+margin-right: 4px;
+padding: 0.5rem;
+border-radius: 4px;
+border: 1px solid var(--border);
+}
+
+#gradientCSS {
+background-color: white;
+padding: 1rem;
+border-radius: 6px;
+border: 2px solid var(--border);
+margin-top: 0.5rem;
+font-size: 0.9rem;
+white-space: pre-wrap;
+word-break: break-all;
+}
+
+/* ──────────────────────────────────────────────────────
+    Bmi Calculator Styles
+───────────────────────────────────────────────────────── */
+.container {
+    flex: 1;
+    padding: 2rem;
+    max-width: 400px;
+    margin: 2rem auto;
+    border-radius: 18px;
+    box-shadow: 0 0 32px 4px #00fff7, 0 0 8px 2px #ff00cc;
+    background-color: rgba(30, 30, 39, 0.9);
+}
+
+
+input[type="number"], select {
+    width: calc(100% - 22px);
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #2c3e50;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.neon-select {
+    width: 100%;
+}
+
+/* ──────────────────────────────────────────────────────
+    Image Resizer Styles
+───────────────────────────────────────────────────────── */
+.tool-image-resizer {
+    /* No special background/border needed, .tool-card handles it */
+}
+
+/* File Drop Zone */
+.file-drop-zone {
+    border: 2px dashed var(--accent);
+    border-radius: 12px;
+    padding: 40px 20px; /* More padding for spaciousness */
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(0, 255, 255, 0.05); /* Very subtle accent background */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px; /* Space before controls */
+}
+
+.file-drop-zone:hover,
+.file-drop-zone.drag-over {
+    background-color: rgba(0, 255, 255, 0.15);
+    border-color: var(--pulse);
+    box-shadow: 0 0 15px rgba(255, 0, 204, 0.3);
+}
+
+.file-drop-zone p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.file-drop-zone p i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.file-drop-zone .upload-btn {
+    background-color: var(--pulse);
+    color: var(--button-text);
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.file-drop-zone .upload-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+/* Hidden input for actual file selection */
+#imageInput {
+    display: none;
+}
+
+/* Image Controls Section */
+#imageControls {
+    background: rgba(40, 40, 40, 0.7); /* Slightly darker panel */
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+#imageControls h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.original-info {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+.original-info span {
+    font-weight: bold;
+    color: var(--pulse);
+}
+
+/* Input Groups for Dimensions and Output Settings */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between elements in a row */
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.input-group label {
+    flex-basis: 120px; /* Fixed width for labels */
+    min-width: 80px; /* Ensure label doesn't get too small */
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.input-group input[type="number"],
+.input-group select,
+.input-group input[type="color"] {
+    flex-grow: 1; /* Allow input/select to take remaining space */
+    max-width: 250px; /* Max width for single inputs */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.input-group input[type="number"]:focus,
+.input-group select:focus,
+.input-group input[type="color"]:focus {
+    outline: none;
+    border-color: var(--pulse);
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.input-group select {
+    appearance: none; /* Remove default arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2300ffff' d='M12 15l-5-5h10z'/%3E%3C/svg%3E"); /* Custom neon arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.unit-toggle {
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--accent);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.unit-toggle.active {
+    background-color: var(--accent);
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.unit-toggle:hover:not(.active) {
+    background-color: rgba(0, 255, 255, 0.25);
+    box-shadow: 0 0 5px var(--accent);
+}
+
+/* Quality Slider */
+input[type="range"] {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    height: 8px;
+    background: linear-gradient(to right, var(--pulse), var(--accent)); /* Neon gradient track */
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    margin-left: 0; /* Override default input margin */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pulse);
+    cursor: grab;
+    border: 2px solid var(--text);
+    box-shadow: 0 0 8px var(--pulse);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pulse);
+    cursor: grab;
+    border: 2px solid var(--text);
+    box-shadow: 0 0 8px var(--pulse);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:active,
+input[type="range"]::-moz-range-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* Checkbox Toggle */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+    color: var(--text);
+    margin-top: 15px; /* Space from dimensions */
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #333;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #555;
+    border-color: var(--pulse);
+    box-shadow: 0 0 8px rgba(255, 0, 204, 0.2);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--button-text);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Preview Area */
+.preview-area {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.preview-area #imagePreview {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--pulse);
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--pulse);
+    margin-bottom: 20px;
+}
+
+.preview-info {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin: 5px 0;
+}
+
+/* Buttons at the bottom of the card */
+.tool-image-resizer .tool-button {
+    width: 100%;
+    margin-top: 20px; /* Space from controls or preview */
+    font-size: 1.1rem;
+    padding: 15px 25px;
+}
+
+.tool-image-resizer .secondary-button {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: none;
+    margin-top: 15px; /* Slightly less margin than primary button */
+}
+
+.tool-image-resizer .secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    color: var(--accent);
+    transform: scale(1.02);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .file-drop-zone {
+        padding: 30px 15px;
+    }
+    .file-drop-zone p i {
+        font-size: 2rem;
+    }
+    #imageControls {
+        padding: 20px;
+    }
+    .input-group {
+        flex-direction: column; /* Stack inputs vertically */
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .input-group label,
+    .input-group input,
+    .input-group select,
+    .input-group .unit-toggle {
+        width: 100%; /* Full width for stacked elements */
+        max-width: unset;
+    }
+    .unit-toggle {
+        text-align: center;
+    }
+    .input-group input[type="color"] {
+        height: 40px; /* Ensure color picker is not too small */
+    }
+}
+
+/* ──────────────────────────────────────────────────────
+    NEW: JPG/PNG to PDF Converter Styles
+────────────────────────────────────────────────────── */
+.tool-image-to-pdf {
+    /* Inherits most styles from .tool-card */
+}
+
+.image-previews-container {
+    margin-top: var(--spacing-md);
+    background: rgba(40, 40, 40, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.image-previews-container h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.image-previews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Flexible grid for thumbnails */
+    gap: 15px; /* Space between thumbnails */
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    min-height: 120px; /* Ensure visibility even with no images */
+}
+
+.image-preview-item {
+    position: relative;
+    width: 100px; /* Fixed width for consistency */
+    height: 100px; /* Fixed height for consistency */
+    border: 2px solid var(--pulse);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: grab; /* Indicates draggable */
+    box-shadow: 0 0 10px rgba(255, 0, 204, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* For centering image */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview-item.dragging {
+    opacity: 0.7;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent);
+    cursor: grabbing;
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the item area */
+    display: block;
+}
+
+.image-preview-item .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--pulse);
+    color: var(--button-text);
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.2s, transform 0.2s, background-color 0.2s;
+    z-index: 10; /* Ensure it's above the image */
+    box-shadow: 0 0 8px rgba(255, 0, 204, 0.6);
+}
+
+.image-preview-item .delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+}
+
+/* PDF Settings Section */
+.pdf-settings {
+    background: rgba(40, 40, 40, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.pdf-settings h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.pdf-settings .input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.pdf-settings .input-group label {
+    flex-basis: 150px; /* Wider label for settings */
+    min-width: 100px;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.pdf-settings .input-group input[type="text"],
+.pdf-settings .input-group input[type="number"],
+.pdf-settings .input-group select {
+    flex-grow: 1;
+    max-width: 300px; /* Wider inputs for settings */
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pdf-settings .input-group input:focus,
+.pdf-settings .input-group select:focus {
+    outline: none;
+    border-color: var(--pulse);
+    box-shadow: 0 0 10px var(--pulse);
+}
+
+.pdf-settings .input-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='%2300ffff' d='M12 15l-5-5h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+/* Buttons for PDF tool */
+.tool-image-to-pdf .tool-button {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    padding: 15px 25px;
+}
+
+.tool-image-to-pdf .secondary-button {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    box-shadow: none;
+    margin-top: 15px;
+}
+
+.tool-image-to-pdf .secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    color: var(--accent);
+    transform: scale(1.02);
+}
+
+/* Responsive adjustments for JPG/PNG to PDF tool */
+@media (max-width: 768px) {
+    .image-previews-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller thumbnails on mobile */
+        gap: 10px;
+    }
+    .image-preview-item {
+        width: 80px;
+        height: 80px;
+    }
+    .image-preview-item .delete-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
+    }
+    .pdf-settings .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .pdf-settings .input-group label,
+    .pdf-settings .input-group input,
+    .pdf-settings .input-group select {
+        width: 100%;
+        max-width: unset;
+    }
+}
+
+/* Progress Bar Styles */
+.conversion-progress {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    height: 15px;
+    margin-bottom: 10px;
+    border: 1px solid var(--accent);
+    box-shadow: inset 0 0 5px rgba(0, 255, 247, 0.3);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--pulse), var(--accent));
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+    box-shadow: 0 0 8px var(--pulse);
+}
+
+.conversion-progress p {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 0;
 }
