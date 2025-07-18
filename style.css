@@ -311,7 +311,7 @@ footer a:hover {
 }
 
 /* ──────────────────────────────────────────────────────
-    Navbar Improvements
+    Navbar Improvements (Fixed for Mobile)
 ────────────────────────────────────────────────────── */
 nav.sticky {
     position: fixed;
@@ -486,223 +486,114 @@ nav.sticky .dropdown-content li a:hover {
 }
 
 /* ──────────────────────────────────────────────────────
-    Responsive Adjustments
+    Responsive Adjustments (Fixed for Mobile)
 ────────────────────────────────────────────────────── */
-@media (max-width: 1400px) {
-    main {
-        max-width: 1200px; /* Re-apply max-width for main for this breakpoint */
-    }
-    .tools-grid {
-        /* Keep this minmax for 3-4 columns on larger screens within 1200px main */
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--spacing-md);
-    }
-}
-@media (max-width: 900px) {
-    main {
-        max-width: 700px;
-        padding: 0 var(--spacing-sm);
-    }
-    .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Likely 2-3 columns on tablets */
-        gap: var(--spacing-md);
-    }
-    #hero h1 {
-        font-size: 2.2rem;
-    }
-    #featured-tools h2 {
-        font-size: 1.8rem;
-        margin-bottom: var(--spacing-lg);
-    }
-
-    /* Mobile specific Navbar */
+@media (max-width: 768px) {
     #menuToggle {
-        display: block; /* Show hamburger menu */
-    }
-    /* Style for the dynamically created Home Button on sub-pages */
-    .mobile-home-btn {
-        display: none; /* Hidden by default, shown by JS/CSS media query */
-        background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
-        color: #0a0a0a;
-        font-weight: bold;
+        display: block;
+        background: none;
         border: none;
-        border-radius: 8px;
-        box-shadow: 0 0 15px var(--cyber-neon-pink);
-        padding: 8px 15px; 
-        font-size: 0.95rem; 
-        text-decoration: none;
-        transition: background 0.3s, box-shadow 0.3s ease, transform 0.2s ease;
-        margin-left: auto; /* Push it to the right in the flex container (nav) */
-        white-space: nowrap; 
+        color: var(--cyber-neon-cyan);
+        font-size: 2rem;
+        cursor: pointer;
+        z-index: 1001;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
     }
 
-    .mobile-home-btn:hover {
-        background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
-        box-shadow: 0 0 28px var(--cyber-neon-cyan);
-        transform: scale(1.05);
+    #menuToggle:hover {
+        color: var(--cyber-neon-pink);
+        background-color: rgba(0, 255, 247, 0.1);
     }
 
-    /* Ensure the main nav links are hidden when the mobile menu is NOT "show" */
-    @media (max-width: 768px) {
-        nav.sticky .nav-links:not(.show) {
-            display: none; 
-        }
-    }
     nav.sticky .nav-links {
         position: fixed;
         top: var(--navbar-height);
         right: 0;
         flex-direction: column;
         background-color: var(--panel);
-        width: 280px; /* Wider mobile menu */
+        width: 280px;
         max-width: 90%;
         height: calc(100vh - var(--navbar-height));
-        padding: var(--spacing-md) var(--spacing-sm); /* Adjusted padding */
+        padding: var(--spacing-md);
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
-        box-shadow: -5px 0 20px var(--accent); /* Stronger shadow */
+        box-shadow: -5px 0 20px rgba(0, 255, 247, 0.3);
         overflow-y: auto;
         align-items: flex-start;
-        border-left: 2px solid var(--accent); /* Border on mobile menu */
+        border-left: 2px solid var(--accent);
     }
+
     nav.sticky .nav-links.show {
         transform: translateX(0);
+        display: flex !important;
     }
+
     nav.sticky .nav-links li {
-        margin: var(--spacing-sm) 0; /* More vertical space between nav items */
         width: 100%;
+        margin: 0;
     }
+
+    nav.sticky .nav-links li a {
+        width: 100%;
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
     nav.sticky .dropdown-content {
-        position: static; /* Stack dropdown items vertically */
+        position: static;
+        display: none;
+        width: 100%;
         box-shadow: none;
         background: transparent;
         border: none;
-        padding-left: var(--spacing-md); /* Indent dropdown items */
-        padding-top: var(--spacing-xs);
-        padding-bottom: var(--spacing-xs);
-        min-width: 0;
-        border-radius: 0;
-        opacity: 1; /* Always visible when dropdown is open on mobile */
-        transform: translateY(0);
-        pointer-events: auto;
+        padding: 0;
+        margin: 0;
     }
+
+    nav.sticky .dropdown.open .dropdown-content {
+        display: block;
+    }
+
     nav.sticky .dropdown .dropbtn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 100%;
-        text-align: left;
-        justify-content: flex-start; /* Align text to left */
+        padding: 12px 20px;
     }
+
     nav.sticky .dropdown .dropbtn .ri-arrow-down-s-line {
-        margin-left: auto; /* Push arrow to the right */
-        transform: rotate(0deg); /* Initial state for mobile dropdown arrow */
         transition: transform 0.3s ease;
     }
-    nav.sticky .dropdown.open .dropbtn .ri-arrow-down-s-line {
-        transform: rotate(180deg); /* Rotate arrow when dropdown is open */
-    }
-}
-@media (max-width: 600px) {
-    body {
-        padding-top: var(--navbar-height);
-    }
-    main {
-        padding: 0 var(--spacing-sm);
-        margin: var(--spacing-md) auto;
-    }
-    .tools-grid {
-        grid-template-columns: 1fr; /* Single column on very small screens */
-        gap: var(--spacing-sm);
-    }
-    .tool-card {
-        padding: var(--spacing-sm);
-    }
-    #hero {
-        padding: var(--spacing-md) var(--spacing-sm);
-        margin-bottom: var(--spacing-md);
-    }
-    #hero h1 {
-        font-size: 1.8rem;
-    }
-    #hero .subtitle {
-        font-size: 1rem;
-    }
-    #featured-tools h2 {
-        font-size: 1.4rem;
-        margin-bottom: var(--spacing-md);
-    }
-    .ad-banner {
-        padding: var(--spacing-sm);
-        margin-top: var(--spacing-md);
-        font-size: 0.95rem;
-    }
-    footer {
-        padding: var(--spacing-sm);
-        font-size: 0.8rem;
-        margin-top: var(--spacing-md);
-    }
-}
-@media (max-width: 480px) {
-    html, body {
-        font-size: 14px;
-        overflow-x: hidden;
-    }
-    main {
-        padding: 0 var(--spacing-xs);
-        margin: var(--spacing-sm) auto;
-    }
-    .tool-card {
-        padding: var(--spacing-xs);
-    }
-    #hero h1 {
-        font-size: 1.6rem;
-    }
-    #hero .subtitle {
-        font-size: 0.9rem;
-    }
-    #featured-tools h2 {
-        font-size: 1.2rem;
-    }
-    /* Consolidate common element styles for small screens */
-    .container, .tool-card, .cyberpunk-panel { /* Assuming .cyberpunk-panel might be used on tool pages */
-        padding: var(--spacing-sm) !important;
-        border-radius: 12px !important;
-        box-shadow: 0 0 16px 2px #00fff7, 0 0 4px 1px #ff00cc;
-    }
-    .neon-title {
-        font-size: 1.1rem !important;
-        margin-bottom: 0.7rem !important;
-    }
-    .neon-label, label {
-        font-size: 0.98rem !important;
-    }
-    .neon-input, .neon-select, input, select {
-        font-size: 1rem !important;
-        padding: 0.4rem !important;
-        min-width: 0 !important;
-    }
-    .tool-button, button {
-        font-size: 1rem !important;
-        padding: 0.6rem 1rem !important;
-    }
-    .neon-result, #result {
-        font-size: 1rem !important;
-        padding: 0.7rem !important;
-        margin-top: 0.7rem !important;
-    }
-    .share-buttons, .neon-share {
-        gap: 0.7rem !important;
-        margin-top: 0.7rem !important;
-    }
-    .ad-banner {
-        padding: 8px !important;
-        font-size: 0.9rem !important;
-    }
-    footer {
-        padding: 0.5rem !important;
-        font-size: 0.75rem !important;
-        margin-top: 10px !important;
-    }
-}
 
+    nav.sticky .dropdown.open .dropbtn .ri-arrow-down-s-line {
+        transform: rotate(180deg);
+    }
+
+    nav.sticky .dropdown-content li a {
+        padding-left: 30px;
+        font-size: 0.9em;
+    }
+    
+    /* Ensure the main nav links are hidden when the mobile menu is NOT "show" */
+    nav.sticky .nav-links:not(.show) {
+        display: none; 
+    }
+    
+    /* Dropdown arrow indicator */
+    .dropdown .dropbtn::after {
+        content: "▼";
+        font-size: 0.7rem;
+        margin-left: 5px;
+        transition: transform 0.3s;
+    }
+    
+    .dropdown.open .dropbtn::after {
+        transform: rotate(180deg);
+    }
+}
 /* ──────────────────────────────────────────────────────
     Animations and Utility Classes
 ────────────────────────────────────────────────────── */
@@ -851,14 +742,14 @@ body[data-category="frequency"] { --accent: #ffaa00; }
 .tool-button {
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    background-color: #ff00cc;
+    background-color: #06d4f8;
     color: white;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
 }
 .tool-button:hover {
-    background-color: #ff6b8e;
+    background-color: #f54186;
     transform: scale(1.05);
 }
 
