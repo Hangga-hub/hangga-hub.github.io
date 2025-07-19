@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IP Subnet Calculator - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Perform IP network address calculations instantly with Hangga's free online IP Subnet Calculator. Find network, broadcast, host ranges, and subnet masks." />
+    <meta name="keywords" content="ip subnet calculator, subnetting, network address, broadcast address, cidr, subnet mask, ip calculator, free network tool, hangga tools, networking tools" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="IP Subnet Calculator - Hangga's Tool Hub" />
+    <meta property="og:description" content="Perform IP network address calculations instantly with Hangga's free online IP Subnet Calculator. Find network, broadcast, host ranges, and subnet masks." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/ip-subnet-calculator/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+
+    <style>
+        /* Specific styles for IP Subnet Calculator */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            margin-bottom: 5px;
+            font-family: var(--font-heading);
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="number"] {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 1rem;
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-group input[type="text"]:focus,
+        .input-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--pulse);
+            box-shadow: 0 0 12px var(--pulse);
+        }
+
+        #resultsContainer {
+            margin-top: 30px;
+            background-color: rgba(15, 15, 20, 0.95);
+            border: 1px solid var(--cyber-panel-border);
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 100px;
+            color: var(--text);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            overflow-x: auto; /* For long values */
+        }
+
+        #resultsContainer h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 5px var(--cyber-neon-cyan);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 1px dashed rgba(0, 255, 247, 0.2);
+            padding-bottom: 5px;
+        }
+
+        #resultsContainer p {
+            margin-bottom: 5px;
+            padding-left: 10px;
+            border-left: 2px solid rgba(238, 238, 238, 0.2);
+        }
+
+        #resultsContainer strong {
+            color: var(--cyber-neon-yellow);
+            display: inline-block;
+            min-width: 150px; /* Align keys */
+        }
+
+        /* Loading indicator */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 255, 247, 0.3);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #resultsContainer {
+                padding: 15px;
+            }
+            #resultsContainer h3 {
+                font-size: 1.1rem;
+            }
+            #resultsContainer p {
+                font-size: 0.9rem;
+            }
+            #resultsContainer strong {
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="ip-subnet-calculator" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-server-line"></i></div>
+                <h1>IP Subnet Calculator</h1>
+                <p class="subtitle">Perform network address calculations for IPv4 subnets.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Calculate Subnet Details</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="input-group">
+                        <label for="ipAddressInput">IP Address:</label>
+                        <input type="text" id="ipAddressInput" placeholder="e.g., 192.168.1.1" value="192.168.1.1" />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cidrInput">CIDR Prefix (0-32):</label>
+                        <input type="number" id="cidrInput" placeholder="e.g., 24" value="24" min="0" max="32" />
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="calculateBtn" class="button button-primary">Calculate</button>
+                        <button id="clearBtn" class="button button-secondary">Clear All</button>
+                    </div>
+
+                    <div id="resultsContainer">
+                        <p style="text-align: center; color: rgba(238,238,238,0.5);">Subnet details will appear here after calculation.</p>
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/ip-subnet-calculator/index.html&text=Calculate%20IP%20subnets%20easily%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/ip-subnet-calculator/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/ip-subnet-calculator/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Calculating subnet...</p>
+    </div>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

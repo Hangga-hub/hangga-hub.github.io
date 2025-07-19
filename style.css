@@ -1913,9 +1913,30 @@ input[type="range"]::-moz-range-thumb:active {
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center; /* Center buttons horizontally */
-    margin-bottom: 0; /* Managed by grid gap */
+    margin-bottom: 0; /* Managed by grid gap */    
 }
-
+.button{
+    background-color: #172b31;
+    border: 1px solid var(--border);
+    color: var(--text);
+    margin: 5px;
+    padding: auto;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 18px;
+    place-items: center;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
+    font-weight: 700;
+    box-shadow: 0 0 18px rgba(255, 0, 204, 0.6);
+}
+.button:hover {
+    background-color: #ff00d4;
+    padding: ;
+    margin: 0;
+}
 .tool-page .message-box {
     grid-area: message-area;
     margin-top: 0; /* Managed by grid gap */

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Merger/Splitter - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Merge multiple PDF files into one or split a single PDF into multiple documents directly in your browser with Hangga's free online PDF tool." />
+    <meta name="keywords" content="pdf merger, pdf splitter, merge pdf, split pdf, online pdf tool, free pdf tool, pdf-lib, hangga tools, document utility" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="PDF Merger/Splitter - Hangga's Tool Hub" />
+    <meta property="og:description" content="Merge multiple PDF files into one or split a single PDF into multiple documents directly in your browser with Hangga's free online PDF tool." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/pdf-merger-splitter/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+    <!-- pdf-lib.js for PDF manipulation -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <!-- JSZip for creating ZIP files (for multiple split PDFs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- FileSaver.js for saving blobs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <style>
+        /* Specific styles for PDF Merger/Splitter */
+        .file-list-container {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--cyber-panel-border);
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .file-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(238, 238, 238, 0.1);
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .file-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-list-item .file-name {
+            flex-grow: 1;
+            margin-right: 10px;
+            word-break: break-all;
+        }
+
+        .file-list-item .remove-btn {
+            background: none;
+            border: none;
+            color: var(--pulse);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .file-list-item .remove-btn:hover {
+            color: red;
+        }
+
+        #splitResults {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(15, 15, 20, 0.7);
+            border: 1px solid var(--cyber-panel-border);
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .split-result-item {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.2);
+        }
+
+        .split-result-item .file-name {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            word-break: break-all;
+        }
+
+        .split-result-item .button {
+            width: 100%;
+            padding: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Loading indicator */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 255, 247, 0.3);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .file-list-container {
+                max-height: 150px;
+            }
+            .file-list-item {
+                font-size: 0.85rem;
+            }
+            .file-list-item .remove-btn {
+                font-size: 1rem;
+            }
+            #splitResults {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            .split-result-item .file-name {
+                font-size: 0.8rem;
+            }
+            .split-result-item .button {
+                font-size: 0.75rem;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="pdf-merger-splitter" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-file-settings-line"></i></div>
+                <h1>PDF Merger/Splitter</h1>
+                <p class="subtitle">Merge multiple PDFs or split a single PDF into parts.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>PDF Merger</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label for="mergePdfUpload">Select PDF Files to Merge:</label>
+                        <input type="file" id="mergePdfUpload" accept="application/pdf" multiple class="hidden" />
+                        <button id="uploadMergeBtn" class="button button-primary">
+                            <i class="ri-upload-cloud-line"></i> Choose PDFs
+                        </button>
+                        <p id="mergeFileNameDisplay" style="margin-top: 10px; color: rgba(238,238,238,0.7); font-size: 0.9rem;"></p>
+                    </div>
+
+                    <div id="mergeFileList" class="file-list-container" style="display: none;">
+                        <!-- List of PDFs to merge will be inserted here -->
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="mergePdfBtn" class="button button-primary" style="display: none;">Merge PDFs</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-card panel" style="margin-top: 20px;">
+                <div class="panel-header">
+                    <h2>PDF Splitter</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label for="splitPdfUpload">Select PDF File to Split:</label>
+                        <input type="file" id="splitPdfUpload" accept="application/pdf" class="hidden" />
+                        <button id="uploadSplitBtn" class="button button-primary">
+                            <i class="ri-upload-cloud-line"></i> Choose PDF
+                        </button>
+                        <p id="splitFileNameDisplay" style="margin-top: 10px; color: rgba(238,238,238,0.7); font-size: 0.9rem;"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pageRanges">Page Ranges to Split (e.g., 1-5, 8, 10-12):</label>
+                        <input type="text" id="pageRanges" placeholder="e.g., 1-3, 5, 7-9" />
+                        <small style="color: rgba(238,238,238,0.6);">Enter comma-separated page numbers or ranges. Example: 1-5, 8, 10-12</small>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="splitPdfBtn" class="button button-primary" style="display: none;">Split PDF</button>
+                    </div>
+
+                    <div id="splitResults" style="display: none;">
+                        <!-- Split PDF download links will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group horizontal-buttons" style="margin-top: 20px;">
+                <button id="clearAllBtn" class="button button-secondary">Clear All</button>
+            </div>
+
+            <div id="messageBox" class="message-box" style="display: none;"></div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/pdf-merger-splitter/index.html&text=Merge%20or%20split%20PDFs%20easily%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/pdf-merger-splitter/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/pdf-merger-splitter/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing PDF...</p>
+    </div>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

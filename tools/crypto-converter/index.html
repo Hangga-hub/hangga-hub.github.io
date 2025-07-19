@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Converter - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Convert cryptocurrencies and fiat currencies in real-time with Hangga's free online Crypto Converter. Get instant price conversions for Bitcoin, Ethereum, USD, EUR, and more." />
+    <meta name="keywords" content="crypto converter, cryptocurrency converter, real-time crypto prices, bitcoin converter, ethereum converter, usd to btc, eur to eth, coingecko api, free crypto tool, hangga tools, finance tool" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="Crypto Converter - Hangga's Tool Hub" />
+    <meta property="og:description" content="Convert cryptocurrencies and fiat currencies in real-time with Hangga's free online Crypto Converter. Get instant price conversions for Bitcoin, Ethereum, USD, EUR, and more." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/crypto-converter/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+
+    <style>
+        /* Specific styles for Crypto Converter */
+        .currency-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .currency-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+
+        .currency-row label {
+            min-width: 80px; /* Align labels */
+            font-family: var(--font-heading);
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
+        }
+
+        .currency-row input[type="number"],
+        .currency-row select {
+            flex: 1;
+            min-width: 120px; /* Ensure inputs are not too small */
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            -webkit-appearance: none; /* Remove default select arrow on WebKit */
+            -moz-appearance: none; /* Remove default select arrow on Firefox */
+            appearance: none; /* Remove default select arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+        }
+
+        .currency-row input[type="number"]:focus,
+        .currency-row select:focus {
+            outline: none;
+            border-color: var(--pulse);
+            box-shadow: 0 0 12px var(--pulse);
+        }
+
+        #swapCurrenciesBtn {
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 50%; /* Make it circular */
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 0 auto; /* Center the button */
+        }
+
+        #swapCurrenciesBtn:hover {
+            background-color: var(--accent-hover);
+            transform: rotate(90deg);
+        }
+
+        .result-display {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(15, 15, 20, 0.7);
+            border: 1px solid var(--cyber-panel-border);
+            border-radius: 10px;
+            text-align: center;
+            color: var(--text);
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.3);
+        }
+
+        .result-display span {
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 8px var(--cyber-neon-yellow);
+        }
+
+        /* Loading indicator */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 255, 247, 0.3);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .currency-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            .currency-row label {
+                min-width: unset;
+                text-align: left;
+            }
+            .currency-row input[type="number"],
+            .currency-row select {
+                min-width: unset;
+                width: 100%;
+            }
+            #swapCurrenciesBtn {
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="crypto-converter" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-bit-coin-line"></i></div>
+                <h1>Crypto Converter</h1>
+                <p class="subtitle">Convert cryptocurrencies and fiat currencies in real-time.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Conversion</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="currency-input-group">
+                        <div class="currency-row">
+                            <label for="amountInput">Amount:</label>
+                            <input type="number" id="amountInput" placeholder="Enter amount" value="1" step="any" min="0" />
+                            <select id="fromCurrencySelect"></select>
+                        </div>
+                        <button id="swapCurrenciesBtn" title="Swap Currencies"><i class="ri-arrow-left-right-line"></i></button>
+                        <div class="currency-row">
+                            <label for="convertedAmountInput">Converted To:</label>
+                            <input type="text" id="convertedAmountInput" readonly placeholder="Result" />
+                            <select id="toCurrencySelect"></select>
+                        </div>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="convertBtn" class="button button-primary">Convert</button>
+                        <button id="clearBtn" class="button button-secondary">Clear All</button>
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/crypto-converter/index.html&text=Convert%20crypto%20in%20real-time%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/crypto-converter/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/crypto-converter/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Fetching prices...</p>
+    </div>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

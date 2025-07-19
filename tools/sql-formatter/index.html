@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL Formatter - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Format your SQL queries instantly for better readability with Hangga's free online SQL Formatter. Supports various SQL dialects." />
+    <meta name="keywords" content="sql formatter, sql beautifier, format sql, online sql formatter, free sql tool, sql-formatter library, hangga tools, developer tools" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="SQL Formatter - Hangga's Tool Hub" />
+    <meta property="og:description" content="Format your SQL queries instantly for better readability with Hangga's free online SQL Formatter. Supports various SQL dialects." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/sql-formatter/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+    <!-- sql-formatter library -->
+    <script src="https://unpkg.com/sql-formatter/dist/sql-formatter.min.js"></script>
+
+    <style>
+        /* Specific styles for SQL Formatter */
+        .sql-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sql-input-group label {
+            margin-bottom: 5px;
+            font-family: var(--font-heading);
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
+        }
+
+        .sql-input-group textarea {
+            width: 100%;
+            min-height: 250px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95rem;
+            color: var(--text);
+            resize: vertical;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sql-input-group textarea:focus {
+            outline: none;
+            border-color: var(--pulse);
+            box-shadow: 0 0 12px var(--pulse);
+        }
+
+        .options-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--cyber-panel-border);
+            border-radius: 8px;
+            align-items: center;
+        }
+
+        .options-group label {
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+
+        .options-group select {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 5px;
+            padding: 8px 10px;
+            color: var(--text);
+            font-size: 0.9rem;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 18px;
+        }
+
+        .options-group select:focus {
+            outline: none;
+            border-color: var(--pulse);
+            box-shadow: 0 0 8px var(--pulse);
+        }
+
+        /* Loading indicator */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 255, 247, 0.3);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .sql-input-group textarea {
+                min-height: 180px;
+            }
+            .options-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .options-group select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="sql-formatter" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-database-2-line"></i></div>
+                <h1>SQL Formatter</h1>
+                <p class="subtitle">Format your SQL queries for better readability.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Format SQL</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="sql-input-group">
+                        <label for="inputSql">Input SQL:</label>
+                        <textarea id="inputSql" placeholder="Paste your SQL query here...">SELECT * FROM users WHERE id = 1;</textarea>
+                    </div>
+
+                    <div class="options-group">
+                        <label for="sqlDialect">Dialect:</label>
+                        <select id="sqlDialect">
+                            <option value="sql">Standard SQL</option>
+                            <option value="mariadb">MariaDB</option>
+                            <option value="mysql">MySQL</option>
+                            <option value="postgresql">PostgreSQL</option>
+                            <option value="db2">DB2</option>
+                            <option value="plsql">PL/SQL</option>
+                            <option value="n1ql">N1QL</option>
+                            <option value="redshift">Redshift</option>
+                            <option value="spark">Spark</option>
+                            <option value="tsql">TSQL</option>
+                            <option value="hive">Hive</option>
+                            <option value="trino">Trino</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="formatSqlBtn" class="button button-primary">Format SQL</button>
+                        <button id="clearBtn" class="button button-secondary">Clear All</button>
+                    </div>
+
+                    <div class="sql-input-group" style="margin-top: 20px;">
+                        <label for="outputSql">Formatted SQL:</label>
+                        <textarea id="outputSql" readonly placeholder="Formatted SQL will appear here..."></textarea>
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/sql-formatter/index.html&text=Format%20SQL%20easily%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/sql-formatter/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/sql-formatter/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Formatting SQL...</p>
+    </div>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

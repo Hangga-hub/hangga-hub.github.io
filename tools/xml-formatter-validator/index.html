@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XML Formatter/Validator - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <meta name="description" content="Format and validate XML content instantly with Hangga's free online XML Formatter/Validator. A perfect complement to your JSON tools." />
+    <meta name="keywords" content="xml formatter, xml validator, xml beautifier, format xml, validate xml, online xml tool, free xml tool, fast-xml-parser, hangga tools, developer tools" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="XML Formatter/Validator - Hangga's Tool Hub" />
+    <meta property="og:description" content="Format and validate XML content instantly with Hangga's free online XML Formatter/Validator. A perfect complement to your JSON tools." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/xml-formatter-validator/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
+      crossorigin="anonymous">
+    </script>
+    <!-- fast-xml-parser library -->
+    <script src="https://cdn.jsdelivr.net/npm/fast-xml-parser@4.4.1/dist/fxp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xmldom/0.6.0/xmldom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xml-formatter/2.6.1/xml-formatter.min.js"></script>
+
+    <style>
+        /* Specific styles for XML Formatter/Validator */
+        .xml-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .xml-input-group label {
+            margin-bottom: 5px;
+            font-family: var(--font-heading);
+            color: var(--accent);
+            text-shadow: 0 0 5px var(--accent);
+        }
+
+        .xml-input-group textarea {
+            width: 100%;
+            min-height: 250px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95rem;
+            color: var(--text);
+            resize: vertical;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .xml-input-group textarea:focus {
+            outline: none;
+            border-color: var(--pulse);
+            box-shadow: 0 0 12px var(--pulse);
+        }
+
+        #validationResults {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(15, 15, 20, 0.7);
+            border: 1px solid var(--cyber-panel-border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        #validationResults.valid {
+            border-color: #0f0;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            color: #0f0;
+        }
+
+        #validationResults.invalid {
+            border-color: #f00;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            color: #f00;
+        }
+
+        #validationResults h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 5px var(--cyber-neon-cyan);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Loading indicator */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 255, 247, 0.3);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .xml-input-group textarea {
+                min-height: 180px;
+            }
+            #validationResults {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+            #validationResults h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder - script.js will load navbar.html into this div -->
+    <div id="navbar"></div>
+
+    <main class="tool-page">
+        <section id="xml-formatter-validator" class="tool-section">
+            <div class="tool-header">
+                <div class="tool-icon"><i class="ri-code-s-slash-line"></i></div>
+                <h1>XML Formatter/Validator</h1>
+                <p class="subtitle">Format and validate XML content for readability and correctness.</p>
+            </div>
+
+            <div class="tool-card panel">
+                <div class="panel-header">
+                    <h2>Input / Output</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="xml-input-group">
+                        <label for="inputXml">Input XML:</label>
+                        <textarea id="inputXml" placeholder="Paste your XML here..."></textarea>
+                    </div>
+
+                    <div class="button-group horizontal-buttons">
+                        <button id="formatBtn" class="button button-primary">Format XML</button>
+                        <button id="validateBtn" class="button button-secondary">Validate XML</button>
+                        <button id="clearBtn" class="button button-tertiary">Clear All</button>
+                    </div>
+
+                    <div class="xml-input-group" style="margin-top: 20px;">
+                        <label for="outputXml">Formatted XML:</label>
+                        <textarea id="outputXml" readonly placeholder="Formatted XML will appear here..."></textarea>
+                    </div>
+
+                    <div id="validationResults" style="display: none;">
+                        <!-- Validation results will be displayed here -->
+                    </div>
+
+                    <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                    <div class="share-buttons">
+                        <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/xml-formatter-validator/index.html&text=Format%20and%20validate%20XML%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/xml-formatter-validator/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/xml-formatter-validator/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing XML...</p>
+    </div>
+
+    <!-- Global script.js for navbar loading and other global functionalities -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>
