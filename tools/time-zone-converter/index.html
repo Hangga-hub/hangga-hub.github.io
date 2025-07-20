@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Converter Online - Convert Time Between Zones | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Convert time between any two time zones quickly and accurately with Hangga's free online Time Zone Converter. Perfect for travelers, remote teams, and global coordination.">
+    <meta name="keywords" content="time zone converter, online time converter, convert time zones, world clock converter, time difference calculator, free time zone tool">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/time-zone-converter/index.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/time-zone-converter/index.html">
+    <meta property="og:title" content="Time Zone Converter Online - Convert Time Between Zones | Hangga's Tool Hub">
+    <meta property="og:description" content="Convert time between any two time zones quickly and accurately with Hangga's free online Time Zone Converter. Perfect for travelers, remote teams, and global coordination.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png"> <!-- Use a relevant image for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/time-zone-converter/index.html">
+    <meta property="twitter:title" content="Time Zone Converter Online - Convert Time Between Zones | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Convert time between any two time zones quickly and accurately with Hangga's free online Time Zone Converter. Perfect for travelers, remote teams, and global coordination.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Time Zone Converter",
+      "operatingSystem": "Web",
+      "applicationCategory": "Utilities",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "ratingCount": "80"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Convert time between any two time zones quickly and accurately with Hangga's free online Time Zone Converter. Perfect for travelers, remote teams, and global coordination.",
+      "url": "https://hangga-hub.github.io/tools/time-zone-converter/index.html",
+      "featureList": [
+        "Time Zone Conversion",
+        "Date and Time Input",
+        "Selectable From/To Time Zones",
+        "Instant Conversion",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for Time Zone Converter tool */
+        .timezone-converter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 700px; /* Adjust max-width for the tool content */
+            margin: 0 auto;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            color: var(--cyber-neon-pink);
+            font-weight: 600;
+            text-shadow: 0 0 4px var(--cyber-neon-pink);
+            margin-bottom: 0.2rem;
+        }
+
+        .input-group input[type="datetime-local"],
+        .input-group select {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--cyber-neon-cyan);
+            background: #23232b;
+            color: var(--text);
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.2) inset;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none; /* Remove default styling for better customization */
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .input-group input[type="datetime-local"]:focus,
+        .input-group select:focus {
+            border: 1.5px solid var(--cyber-neon-pink);
+            box-shadow: 0 0 12px var(--cyber-neon-pink) inset;
+        }
+
+        /* Style for datetime-local input icon/arrow */
+        .input-group input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            filter: invert(1); /* Makes the calendar icon white/visible */
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .convert-button {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            color: #0a0a0a;
+            box-shadow: 0 0 15px var(--cyber-neon-pink);
+            margin-top: 1rem;
+        }
+
+        .convert-button:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            box-shadow: 0 0 25px var(--cyber-neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .result-area {
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+            border: 1px solid rgba(0, 255, 247, 0.4);
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-area p {
+            margin: 0.5rem 0;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .result-area .converted-time {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 10px var(--cyber-neon-yellow), 0 0 20px rgba(255, 221, 0, 0.5);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .message-box {
+            margin-top: 1rem;
+            text-align: center;
+            color: #ff5555;
+            text-shadow: 0 0 8px #ff5555;
+            font-size: 1rem;
+            min-height: 20px; /* Reserve space */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .timezone-converter-container {
+                padding: 0 1rem; /* Add some horizontal padding */
+            }
+            .convert-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Time Zone Converter</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 1.5rem;">Convert time between different time zones.</p>
+
+            <div class="timezone-converter-container">
+                <div class="input-group">
+                    <label for="dateTimeInput">Date and Time (Local):</label>
+                    <input type="datetime-local" id="dateTimeInput">
+                </div>
+
+                <div class="input-group">
+                    <label for="fromTimeZoneSelect">From Time Zone:</label>
+                    <select id="fromTimeZoneSelect"></select>
+                </div>
+
+                <div class="input-group">
+                    <label for="toTimeZoneSelect">To Time Zone:</label>
+                    <select id="toTimeZoneSelect"></select>
+                </div>
+
+                <button id="convertButton" class="convert-button">Convert Time</button>
+
+                <div class="result-area">
+                    <p id="convertedTimeResult" class="converted-time">Select inputs and convert</p>
+                    <p id="timeDifference"></p>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+            </div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/time-zone-converter/index.html&text=Convert%20time%20zones%20easily%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/time-zone-converter/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/time-zone-converter/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

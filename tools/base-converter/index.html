@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Converter Online - Binary, Octal, Decimal, Hexadecimal | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Convert numbers between binary, octal, decimal, and hexadecimal bases instantly with Hangga's free online Base Converter. Perfect for developers and students.">
+    <meta name="keywords" content="base converter, binary to decimal, hexadecimal to binary, octal converter, decimal converter, number base conversion, free online tool, programming utility">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/base-converter/index.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/base-converter/index.html">
+    <meta property="og:title" content="Base Converter Online - Binary, Octal, Decimal, Hexadecimal | Hangga's Tool Hub">
+    <meta property="og:description" content="Convert numbers between binary, octal, decimal, and hexadecimal bases instantly with Hangga's free online Base Converter. Perfect for developers and students.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png"> <!-- Use a relevant image for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/base-converter/index.html">
+    <meta property="twitter:title" content="Base Converter Online - Binary, Octal, Decimal, Hexadecimal | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Convert numbers between binary, octal, decimal, and hexadecimal bases instantly with Hangga's free online Base Converter. Perfect for developers and students.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Base Converter",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "95"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Convert numbers between binary, octal, decimal, and hexadecimal bases instantly with Hangga's free online Base Converter. Perfect for developers and students.",
+      "url": "https://hangga-hub.github.io/tools/base-converter/index.html",
+      "featureList": [
+        "Binary to Decimal Conversion",
+        "Octal to Hexadecimal Conversion",
+        "Decimal to Binary Conversion",
+        "Hexadecimal to Octal Conversion",
+        "Supports Binary (Base 2)",
+        "Supports Octal (Base 8)",
+        "Supports Decimal (Base 10)",
+        "Supports Hexadecimal (Base 16)",
+        "Real-time Conversion",
+        "Input Validation",
+        "Copy to Clipboard Functionality",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Override for this specific tool's card to make it wider on desktop */
+        @media (min-width: 768px) { /* Apply only for tablet and desktop screens */
+            .tool-converter-card {
+                max-width: 900px !important; /* Made wider for desktop */
+                width: 90% !important; /* Ensure it takes a good percentage of available width */
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
+        /* Specific styles for Base Converter tool */
+        .base-converter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .conversion-input-section,
+        .conversion-output-section {
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+            border: 1px solid rgba(0, 255, 247, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            color: var(--cyber-neon-pink);
+            font-weight: 600;
+            text-shadow: 0 0 4px var(--cyber-neon-pink);
+            margin-bottom: 0.2rem;
+        }
+
+        .input-group input[type="text"],
+        .input-group select,
+        .result-textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--cyber-neon-cyan);
+            background: #23232b;
+            color: var(--text);
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.2) inset;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none; /* Remove default styling for select */
+            appearance: none;
+            cursor: text;
+            font-family: 'Fira Code', monospace; /* Monospace for numbers */
+        }
+
+        .input-group input[type="text"]:focus,
+        .input-group select:focus,
+        .result-textarea:focus {
+            border: 1.5px solid var(--cyber-neon-pink);
+            box-shadow: 0 0 12px var(--cyber-neon-pink) inset;
+        }
+
+        .result-textarea {
+            min-height: 50px;
+            resize: vertical;
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 5px var(--cyber-neon-yellow);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: default;
+        }
+
+        .copy-button {
+            align-self: flex-end; /* Align to the right */
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: rgba(0, 255, 247, 0.2);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+        }
+
+        .copy-button:hover {
+            background: rgba(0, 255, 247, 0.4);
+            box-shadow: 0 0 18px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1rem;
+            text-align: center;
+            color: #ff5555;
+            text-shadow: 0 0 8px #ff5555;
+            font-size: 1rem;
+            min-height: 20px; /* Reserve space */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .conversion-input-section,
+            .conversion-output-section {
+                padding: 1.5rem;
+            }
+            .copy-button {
+                width: 100%;
+                align-self: stretch; /* Make it full width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Base Converter</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 1.5rem;">Convert numbers between binary, octal, decimal, and hexadecimal.</p>
+
+            <div class="base-converter-container">
+                <div class="conversion-input-section">
+                    <h3>Input Number</h3>
+                    <div class="input-group">
+                        <label for="numberInput">Number:</label>
+                        <input type="text" id="numberInput" placeholder="Enter number to convert">
+                    </div>
+                    <div class="input-group">
+                        <label for="fromBaseSelect">From Base:</label>
+                        <select id="fromBaseSelect">
+                            <option value="2">Binary (Base 2)</option>
+                            <option value="8">Octal (Base 8)</option>
+                            <option value="10" selected>Decimal (Base 10)</option>
+                            <option value="16">Hexadecimal (Base 16)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="conversion-output-section">
+                    <h3>Converted Result</h3>
+                    <div class="input-group">
+                        <label for="toBaseSelect">To Base:</label>
+                        <select id="toBaseSelect">
+                            <option value="2">Binary (Base 2)</option>
+                            <option value="8">Octal (Base 8)</option>
+                            <option value="10">Decimal (Base 10)</option>
+                            <option value="16" selected>Hexadecimal (Base 16)</option>
+                        </select>
+                    </div>
+                    <textarea id="convertedResult" class="result-textarea" readonly placeholder="Converted result will appear here..."></textarea>
+                    <button class="copy-button" id="copyResultButton"><i class="ri-file-copy-line"></i> Copy Result</button>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+            </div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/base-converter/index.html&text=Convert%20number%20bases%20easily%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/base-converter/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/base-converter/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

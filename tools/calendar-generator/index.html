@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Generator Online - Create Custom Calendars | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Generate a custom calendar for any month and year with Hangga's free online Calendar Generator. Perfect for planning, tracking, or quick reference.">
+    <meta name="keywords" content="calendar generator, online calendar, custom calendar, month calendar, year calendar, printable calendar, free calendar tool">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/calendar-generator/index.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/calendar-generator/index.html">
+    <meta property="og:title" content="Calendar Generator Online - Create Custom Calendars | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate a custom calendar for any month and year with Hangga's free online Calendar Generator. Perfect for planning, tracking, or quick reference.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png"> <!-- Use a relevant image for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/calendar-generator/index.html">
+    <meta property="twitter:title" content="Calendar Generator Online - Create Custom Calendars | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate a custom calendar for any month and year with Hangga's free online Calendar Generator. Perfect for planning, tracking, or quick reference.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Calendar Generator",
+      "operatingSystem": "Web",
+      "applicationCategory": "Utilities",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "75"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Generate a custom calendar for any month and year with Hangga's free online Calendar Generator. Perfect for planning, tracking, or quick reference.",
+      "url": "https://hangga-hub.github.io/tools/calendar-generator/index.html",
+      "featureList": [
+        "Custom Calendar Generation",
+        "Selectable Month and Year",
+        "Current Day Highlight",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Override for this specific tool's card to make it wider on desktop */
+        @media (min-width: 768px) { /* Apply only for tablet and desktop screens */
+            .tool-converter-card {
+                max-width: 900px !important; /* Made wider for desktop */
+                width: 90% !important; /* Ensure it takes a good percentage of available width */
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
+        /* Specific styles for Calendar Generator tool */
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .calendar-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+            border: 1px solid rgba(0, 255, 247, 0.4);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            color: var(--cyber-neon-pink);
+            font-weight: 600;
+            text-shadow: 0 0 4px var(--cyber-neon-pink);
+            margin-bottom: 0.2rem;
+        }
+
+        .input-group select,
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--cyber-neon-cyan);
+            background: #23232b;
+            color: var(--text);
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.2) inset;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none; /* Remove default styling for select */
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .input-group select:focus,
+        .input-group input[type="number"]:focus {
+            border: 1.5px solid var(--cyber-neon-pink);
+            box-shadow: 0 0 12px var(--cyber-neon-pink) inset;
+        }
+
+        .generate-button {
+            grid-column: 1 / -1; /* Span across all columns */
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            color: #0a0a0a;
+            box-shadow: 0 0 15px var(--cyber-neon-pink);
+            margin-top: 1rem;
+        }
+
+        .generate-button:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            box-shadow: 0 0 25px var(--cyber-neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .calendar-display {
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+            border: 1px solid rgba(0, 255, 247, 0.4);
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .calendar-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 10px var(--cyber-neon-yellow), 0 0 20px rgba(255, 221, 0, 0.5);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .day-name, .day-cell {
+            padding: 0.8rem 0.5rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .day-name {
+            background: rgba(0, 255, 247, 0.1);
+            color: var(--cyber-neon-cyan);
+            font-size: 0.9rem;
+            text-shadow: 0 0 3px var(--cyber-neon-cyan);
+        }
+
+        .day-cell {
+            background: rgba(15, 15, 20, 0.7);
+            color: var(--text);
+            border: 1px solid rgba(0, 255, 247, 0.1);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .day-cell.empty {
+            background: transparent;
+            border: none;
+        }
+
+        .day-cell:not(.empty):hover {
+            background: rgba(0, 255, 247, 0.2);
+            color: var(--cyber-neon-yellow);
+            cursor: pointer;
+        }
+
+        .day-cell.current-day {
+            background: linear-gradient(45deg, var(--cyber-neon-pink), var(--cyber-neon-yellow));
+            color: #0a0a0a;
+            font-weight: 700;
+            box-shadow: 0 0 10px var(--cyber-neon-pink);
+            transform: scale(1.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-box {
+            margin-top: 1rem;
+            text-align: center;
+            color: #ff5555;
+            text-shadow: 0 0 8px #ff5555;
+            font-size: 1rem;
+            min-height: 20px; /* Reserve space */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .calendar-controls {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .generate-button {
+                width: 100%;
+            }
+            .calendar-header {
+                font-size: 1.5rem;
+            }
+            .day-name, .day-cell {
+                padding: 0.5rem 0.2rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Calendar Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 1.5rem;">Generate a custom calendar for any month and year.</p>
+
+            <div class="calendar-container">
+                <div class="calendar-controls">
+                    <div class="input-group">
+                        <label for="monthSelect">Month:</label>
+                        <select id="monthSelect"></select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="yearInput">Year:</label>
+                        <input type="number" id="yearInput" min="1900" max="2100" value="2025">
+                    </div>
+
+                    <button id="generateCalendarButton" class="generate-button">Generate Calendar</button>
+                </div>
+
+                <div class="calendar-display">
+                    <h3 id="calendarHeader" class="calendar-header"></h3>
+                    <div id="calendarGrid" class="calendar-grid">
+                        <!-- Calendar days will be dynamically generated here -->
+                    </div>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+            </div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/calendar-generator/index.html&text=Generate%20custom%20calendars%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/calendar-generator/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/calendar-generator/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

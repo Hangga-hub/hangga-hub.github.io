@@ -1,4 +1,4 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.w3.org/2001/XMLSchema-instance">
 <!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
 <url>
 <loc>https://hangga-hub.github.io/</loc>
@@ -188,6 +188,51 @@
 <url>
 <loc>https://hangga-hub.github.io/tools/json-yaml-converter/index.html</loc>
 <lastmod>2025-07-19T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/text-to-speech/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/gradient-generator/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/age-calculator/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/time-zone-converter/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/random-number-dice-roller/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/calendar-generator/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/box-shadow-generator/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/base-converter/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://hangga-hub.github.io/tools/cron-generator-explainer/index.html</loc>
+<lastmod>2025-07-20T00:00:00+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 </urlset>

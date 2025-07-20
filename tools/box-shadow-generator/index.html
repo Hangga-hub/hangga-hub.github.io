@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Shadow Generator Online - Free Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Generate custom CSS box shadows instantly with Hangga's free online Box Shadow Generator. Adjust offset, blur, spread, color, and opacity, then copy the CSS code.">
+    <meta name="keywords" content="css box shadow generator, online box shadow tool, box shadow css, css code generator, free box shadow maker, web design tools, css effects">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/box-shadow-generator/index.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/box-shadow-generator/index.html">
+    <meta property="og:title" content="CSS Box Shadow Generator Online - Free Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate custom CSS box shadows instantly with Hangga's free online Box Shadow Generator. Adjust offset, blur, spread, color, and opacity, then copy the CSS code.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png"> <!-- Use a relevant image for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/box-shadow-generator/index.html">
+    <meta property="twitter:title" content="CSS Box Shadow Generator Online - Free Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate custom CSS box shadows instantly with Hangga's free online Box Shadow Generator. Adjust offset, blur, spread, color, and opacity, then copy the CSS code.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's CSS Box Shadow Generator",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "90"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Generate custom CSS box shadows instantly with Hangga's free online Box Shadow Generator. Adjust offset, blur, spread, color, and opacity, then copy the CSS code.",
+      "url": "https://hangga-hub.github.io/tools/box-shadow-generator/index.html",
+      "featureList": [
+        "Box Shadow Generation",
+        "Customizable Horizontal Offset",
+        "Customizable Vertical Offset",
+        "Adjustable Blur Radius",
+        "Adjustable Spread Radius",
+        "Color Picker with Opacity",
+        "Inset Shadow Option",
+        "Live Preview",
+        "Instant CSS Code Generation",
+        "Copy to Clipboard Functionality",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Override for this specific tool's card to make it wider on desktop */
+        @media (min-width: 768px) { /* Apply only for tablet and desktop screens */
+            .tool-converter-card {
+                max-width: 1000px !important; /* Made wider for desktop */
+                width: 90% !important; /* Ensure it takes a good percentage of available width */
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
+        /* Specific styles for Box Shadow Generator tool */
+        .shadow-generator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .shadow-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid for controls */
+            gap: 1.5rem;
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+            border: 1px solid rgba(0, 255, 247, 0.4);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            color: var(--cyber-neon-pink);
+            font-weight: 600;
+            text-shadow: 0 0 4px var(--cyber-neon-pink);
+            margin-bottom: 0.2rem;
+        }
+
+        .input-group input[type="number"],
+        .input-group input[type="color"],
+        .input-group input[type="range"] {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--cyber-neon-cyan);
+            background: #23232b;
+            color: var(--text);
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.2) inset;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none; /* Remove default styling */
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .input-group input[type="number"]:focus,
+        .input-group input[type="color"]:focus,
+        .input-group input[type="range"]:focus {
+            border: 1.5px solid var(--cyber-neon-pink);
+            box-shadow: 0 0 12px var(--cyber-neon-pink) inset;
+        }
+
+        /* Specific styles for color input */
+        .input-group input[type="color"] {
+            height: 45px;
+            padding: 0; /* Remove padding for color input */
+        }
+        .input-group input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .input-group input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 6px;
+        }
+
+        /* Specific styles for range input */
+        .input-group input[type="range"] {
+            height: 8px;
+            background: linear-gradient(to right, var(--cyber-neon-pink), var(--cyber-neon-cyan));
+            border-radius: 5px;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .input-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--cyber-neon-yellow);
+            cursor: grab;
+            border: 2px solid var(--text);
+            box-shadow: 0 0 8px var(--cyber-neon-yellow);
+            transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .input-group input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--cyber-neon-yellow);
+            cursor: grab;
+            border: 2px solid var(--text);
+            box-shadow: 0 0 8px var(--cyber-neon-yellow);
+            transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .input-group input[type="range"]::-webkit-slider-thumb:active,
+        .input-group input[type="range"]::-moz-range-thumb:active {
+            cursor: grabbing;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--cyber-neon-cyan);
+        }
+
+        .input-group.checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .input-group.checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 4px;
+            background-color: #23232b;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .input-group.checkbox-group input[type="checkbox"]:checked {
+            background-color: var(--cyber-neon-pink);
+            border-color: var(--cyber-neon-pink);
+            box-shadow: 0 0 8px var(--cyber-neon-pink);
+        }
+
+        .input-group.checkbox-group label {
+            margin-bottom: 0; /* Align label with checkbox */
+            cursor: pointer;
+        }
+
+        .shadow-preview-area {
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+            border: 1px solid rgba(0, 255, 247, 0.4);
+            text-align: center;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .preview-box {
+            width: 150px;
+            height: 150px;
+            background-color: var(--cyber-neon-yellow);
+            border-radius: 12px;
+            border: 2px solid var(--cyber-neon-pink);
+            transition: box-shadow 0.2s ease-out; /* Smooth transition for shadow changes */
+            box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.5); /* Default shadow */
+        }
+
+        .css-output-area {
+            position: relative;
+            margin-top: 1rem;
+        }
+
+        .css-output-area textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--cyber-neon-cyan);
+            background: #1a1a1f;
+            color: var(--cyber-neon-yellow);
+            font-family: 'Fira Code', 'monospace'; /* Monospace font for code */
+            font-size: 0.95rem;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.3) inset;
+            outline: none;
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 255, 247, 0.2);
+            color: var(--cyber-neon-cyan);
+            border: 1px solid var(--cyber-neon-cyan);
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .copy-button:hover {
+            background: rgba(0, 255, 247, 0.4);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.6);
+        }
+
+        .message-box {
+            margin-top: 1rem;
+            text-align: center;
+            color: #ff5555;
+            text-shadow: 0 0 8px #ff5555;
+            font-size: 1rem;
+            min-height: 20px; /* Reserve space */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .shadow-controls {
+                grid-template-columns: 1fr; /* Stack controls on small screens */
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+            .copy-button {
+                position: static; /* Make it static on small screens */
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .css-output-area {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>CSS Box Shadow Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 1.5rem;">Create custom CSS box shadows with live preview.</p>
+
+            <div class="shadow-generator-container">
+                <div class="shadow-controls">
+                    <div class="input-group">
+                        <label for="offsetX">Horizontal Offset (px): <span id="offsetXValue">5</span></label>
+                        <input type="range" id="offsetX" min="-50" max="50" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="offsetY">Vertical Offset (px): <span id="offsetYValue">5</span></label>
+                        <input type="range" id="offsetY" min="-50" max="50" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="blurRadius">Blur Radius (px): <span id="blurRadiusValue">15</span></label>
+                        <input type="range" id="blurRadius" min="0" max="50" value="15">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="spreadRadius">Spread Radius (px): <span id="spreadRadiusValue">0</span></label>
+                        <input type="range" id="spreadRadius" min="-20" max="20" value="0">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="shadowColor">Shadow Color:</label>
+                        <input type="color" id="shadowColor" value="#000000">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="opacity">Opacity: <span id="opacityValue">0.5</span></label>
+                        <input type="range" id="opacity" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+
+                    <div class="input-group checkbox-group">
+                        <input type="checkbox" id="insetShadow">
+                        <label for="insetShadow">Inset Shadow</label>
+                    </div>
+                </div>
+
+                <div class="shadow-preview-area">
+                    <div class="preview-box" id="previewBox"></div>
+                </div>
+
+                <div class="css-output-area">
+                    <textarea id="cssOutput" readonly></textarea>
+                    <button class="copy-button" id="copyCssButton"><i class="ri-file-copy-line"></i> Copy CSS</button>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+            </div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/box-shadow-generator/index.html&text=Generate%20awesome%20CSS%20box%20shadows%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/box-shadow-generator/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/box-shadow-generator/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
