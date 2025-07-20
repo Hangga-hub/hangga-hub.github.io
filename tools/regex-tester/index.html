@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regex Tester - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <meta name="description" content="Live test and explain regex patterns with Hangga's Regex Tester. Validate and understand your regular expressions instantly." />
+    <meta name="keywords" content="regex tester, regular expression, regex, live test, regex explanation, online regex tool, Hangga utilities, web tools" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="Regex Tester - Hangga's Tool Hub" />
+    <meta property="og:description" content="Live test and explain regex patterns with Hangga's Regex Tester. Validate and understand your regular expressions instantly." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/regex-tester/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <section class="tool-converter-card">
+            <h2><i class="ri-braces-line"></i> Regex Tester</h2>
+            <p class="subtitle">Live test and explain regular expression patterns.</p>
+
+            <div class="input-group">
+                <label for="regexPattern">Regex Pattern:</label>
+                <input type="text" id="regexPattern" placeholder="/your_regex_pattern/" value="^(\d{3})-(\d{3})-(\d{4})$" />
+                <div class="checkbox-group">
+                    <label class="checkbox-container">Global
+                        <input type="checkbox" id="flagGlobal" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">Case-insensitive
+                        <input type="checkbox" id="flagCaseInsensitive">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">Multiline
+                        <input type="checkbox" id="flagMultiline">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="testString">Test String:</label>
+                <textarea id="testString" rows="8" placeholder="Enter text to test your regex against...">123-456-7890
+Another number: 987-654-3210
+Not a number: abc-def-ghij</textarea>
+            </div>
+
+            <div class="button-row">
+                <button class="primary" id="testRegexBtn">Test Regex</button>
+                <button class="secondary" id="clearBtn">Clear</button>
+            </div>
+
+            <div class="neon-result" id="resultArea">
+                <p>Matches will appear here.</p>
+            </div>
+
+            <div class="explanation-area">
+                <h3>Regex Explanation:</h3>
+                <div id="regexExplanation" class="explanation-content">
+                    <p>Explanation of the regex pattern will be displayed here.</p>
+                </div>
+            </div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/regex-tester/index.html&text=Test%20and%20explain%20regex%20patterns%20with%20Hangga's%20Regex%20Tester!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/regex-tester/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/regex-tester/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

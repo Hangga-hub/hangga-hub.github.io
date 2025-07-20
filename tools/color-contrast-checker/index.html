@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Contrast Checker - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <meta name="description" content="Check WCAG color contrast ratios for accessibility. Ensure your text and background colors meet compliance standards." />
+    <meta name="keywords" content="color contrast, wcag, accessibility, contrast checker, web accessibility, a11y, Hangga utilities" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="Color Contrast Checker - Hangga's Tool Hub" />
+    <meta property="og:description" content="Check WCAG color contrast ratios for accessibility. Ensure your text and background colors meet compliance standards." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/color-contrast-checker/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <section class="tool-converter-card color-contrast-checker">
+            <h2><i class="ri-contrast-line"></i> Color Contrast Checker</h2>
+            <p class="subtitle">Ensure WCAG compliance for web accessibility.</p>
+
+            <div class="input-group">
+                <label for="foregroundColor">Foreground Color (Text):</label>
+                <input type="text" id="foregroundColor" placeholder="#FFFFFF or rgb(255,255,255)" value="#FFFFFF" />
+                <input type="color" id="foregroundColorPicker" value="#FFFFFF" />
+            </div>
+
+            <div class="input-group">
+                <label for="backgroundColor">Background Color:</label>
+                <input type="text" id="backgroundColor" placeholder="#000000 or rgb(0,0,0)" value="#000000" />
+                <input type="color" id="backgroundColorPicker" value="#000000" />
+            </div>
+
+            <div class="button-row">
+                <button class="primary" id="swapColorsBtn">Swap Colors <i class="ri-swap-line"></i></button>
+                <button class="secondary" id="clearBtn">Clear</button>
+            </div>
+
+            <div class="preview-area">
+                <h3>Preview:</h3>
+                <div id="colorPreview" class="color-preview">
+                    <p id="previewTextNormal" class="normal-text">Normal Text Example</p>
+                    <p id="previewTextLarge" class="large-text">Large Text Example</p>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h3>Contrast Ratio:</h3>
+                <p id="contrastRatio" class="neon-result">-- : 1</p>
+
+                <h3>WCAG Compliance:</h3>
+                <div class="compliance-results">
+                    <div class="compliance-item">
+                        <h4>Normal Text (AA)</h4>
+                        <p id="normalTextAA" class="status-badge"></p>
+                    </div>
+                    <div class="compliance-item">
+                        <h4>Large Text (AA)</h4>
+                        <p id="largeTextAA" class="status-badge"></p>
+                    </div>
+                    <div class="compliance-item">
+                        <h4>Normal Text (AAA)</h4>
+                        <p id="normalTextAAA" class="status-badge"></p>
+                    </div>
+                    <div class="compliance-item">
+                        <h4>Large Text (AAA)</h4>
+                        <p id="largeTextAAA" class="status-badge"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="message-box" id="messageBox" style="display: none;"></div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/color-contrast-checker/index.html&text=Check%20color%20contrast%20for%20accessibility%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/color-contrast-checker/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/color-contrast-checker/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Global script.js -->
+    <script src="../../script.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

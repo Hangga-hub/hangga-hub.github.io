@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JWT Decoder - Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <!-- Corrected path for global style.css -->
+    <link rel="stylesheet" href="../../style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <meta name="description" content="Decode JSON Web Tokens (JWT) safely and inspect their header, payload, and signature online." />
+    <meta name="keywords" content="jwt decoder, json web token, decode jwt, jwt online, security tools, web development, Hangga utilities" />
+    <meta name="author" content="Hangga" />
+    <meta property="og:title" content="JWT Decoder - Hangga's Tool Hub" />
+    <meta property="og:description" content="Decode JSON Web Tokens (JWT) safely and inspect their header, payload, and signature online." />
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/jwt-decoder/index.html" />
+    <meta name="robots" content="index,follow" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <section class="tool-converter-card">
+            <h2><i class="ri-lock-unlock-line"></i> JWT Decoder</h2>
+            <p class="subtitle">Decode JSON Web Tokens (JWT) safely.</p>
+
+            <div class="input-group">
+                <label for="jwtInput">Encoded JWT:</label>
+                <textarea id="jwtInput" rows="8" placeholder="Enter your JWT here..."></textarea>
+            </div>
+
+            <div class="button-row">
+                <button class="primary" id="decodeBtn">Decode JWT</button>
+                <button class="secondary" id="clearBtn">Clear</button>
+            </div>
+
+            <div class="result-section">
+                <h3>Decoded Header:</h3>
+                <pre id="headerOutput" class="decoded-output"></pre>
+
+                <h3>Decoded Payload:</h3>
+                <pre id="payloadOutput" class="decoded-output"></pre>
+
+                <h3>Signature Status:</h3>
+                <p id="signatureStatus" class="decoded-status"></p>
+            </div>
+
+            <div class="button-row">
+                <button class="secondary" id="copyHeaderBtn">Copy Header</button>
+                <button class="secondary" id="copyPayloadBtn">Copy Payload</button>
+            </div>
+
+            <div class="message-box" id="messageBox" style="display: none;"></div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/jwt-decoder/index.html&text=Decode%20JWTs%20safely%20with%20Hangga's%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/jwt-decoder/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/jwt-decoder/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </section>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Global script.js -->
+    <script src="../../script.js"></script>
+    <!-- js-base64 library for Base64 decoding -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-base64/3.7.5/base64.min.js"></script>
+    <!-- Tool-specific script.js -->
+    <script src="./script.js"></script>
+</body>
+</html>

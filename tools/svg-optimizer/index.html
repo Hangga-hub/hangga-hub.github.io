@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Optimizer/Editor | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <meta name="description" content="Optimize and edit SVG files by removing unnecessary data, editing attributes, and reducing file size.">
+    <meta name="keywords" content="svg optimizer, svg editor, svg minifier, svg cleaner, vector graphics">
+    <style>
+        /* Add to style.css if not already present */
+        #svgPreview {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            box-shadow: 0 0 15px var(--cyber-neon-cyan);
+            margin: 0 auto;
+            display: block;
+            background: white;
+            padding: 10px;
+        }
+
+        #svgPreview svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-container input {
+            margin-right: 10px;
+        }
+
+        /* For the optimization options section */
+        .optimization-options {
+            background: rgba(30, 30, 40, 0.7);
+            border: 1px solid var(--cyber-panel-border);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .optimization-options h4 {
+            margin-top: 0;
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 8px var(--cyber-neon-cyan);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <section class="tool-converter-card">
+            <h2>SVG Optimizer/Editor</h2>
+            <p class="subtitle">Upload or paste SVG code to optimize and edit</p>
+            
+            <div class="input-group">
+                <label for="svgInput">Upload SVG File:</label>
+                <input type="file" id="svgInput" accept=".svg" class="neon-file-input">
+            </div>
+            
+            <div class="input-group">
+                <label>Or paste SVG code:</label>
+                <textarea id="svgCode" placeholder="Paste your SVG code here..." spellcheck="false"></textarea>
+            </div>
+            
+            <div class="input-group">
+                <label>Optimization Options:</label>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="removeComments" checked>
+                    <label for="removeComments" class="checkmark">Remove comments</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="removeMetadata" checked>
+                    <label for="removeMetadata" class="checkmark">Remove metadata</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="removeEmptyAttrs" checked>
+                    <label for="removeEmptyAttrs" class="checkmark">Remove empty attributes</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="collapseGroups" checked>
+                    <label for="collapseGroups" class="checkmark">Collapse groups</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="removeUnusedNS" checked>
+                    <label for="removeUnusedNS" class="checkmark">Remove unused namespaces</label>
+                </div>
+            </div>
+            
+            <div class="button-group horizontal-buttons">
+                <button id="optimizeBtn" class="tool-button">Optimize SVG</button>
+                <button id="downloadBtn" class="secondary-button" disabled>Download SVG</button>
+                <button id="copyBtn" class="secondary-button" disabled>Copy to Clipboard</button>
+                <button id="clearBtn" class="secondary-button">Clear</button>
+            </div>
+            
+            <div class="result-card hidden" id="resultSection">
+                <h3>Optimized SVG</h3>
+                <div class="preview-area">
+                    <div id="svgPreview"></div>
+                </div>
+                <div class="stats-section">
+                    <div class="results-grid-row">
+                        <div class="result-item">
+                            <h3>Original Size</h3>
+                            <p class="result-value" id="originalSize">0 KB</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Optimized Size</h3>
+                            <p class="result-value" id="optimizedSize">0 KB</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Reduction</h3>
+                            <p class="result-value" id="reduction">0%</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Elements</h3>
+                            <p class="result-value" id="elementCount">0</p>
+                        </div>
+                    </div>
+                </div>
+                <textarea id="optimizedSvg" class="hidden" readonly></textarea>
+            </div>
+            
+            <div class="share-buttons">
+                <p>Share this tool:</p>
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/svg-optimizer/index.html&text=Check%20out%20this%20awesome%20SVG%20Optimizer%20tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/svg-optimizer/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/svg-optimizer/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

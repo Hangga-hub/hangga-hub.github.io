@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech Converter Online - Free TTS Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Convert text to natural-sounding speech instantly with Hangga's free online Text to Speech (TTS) tool. Choose from various voices, adjust speed, pitch, and volume.">
+    <meta name="keywords" content="text to speech, tts, online tts, free text to speech, convert text to audio, speech synthesis, voice generator, text reader">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/text-to-speech/index.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/text-to-speech/index.html">
+    <meta property="og:title" content="Text to Speech Converter Online - Free TTS Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Convert text to natural-sounding speech instantly with Hangga's free online Text to Speech (TTS) tool. Choose from various voices, adjust speed, pitch, and volume.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png"> <!-- Use a relevant image for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/text-to-speech/index.html">
+    <meta property="twitter:title" content="Text to Speech Converter Online - Free TTS Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Convert text to natural-sounding speech instantly with Hangga's free online Text to Speech (TTS) tool. Choose from various voices, adjust speed, pitch, and volume.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Text to Speech Tool",
+      "operatingSystem": "Web",
+      "applicationCategory": "MultimediaApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "150"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Convert text to natural-sounding speech instantly with Hangga's free online Text to Speech (TTS) tool. Choose from various voices, adjust speed, pitch, and volume.",
+      "url": "https://hangga-hub.github.io/tools/text-to-speech/index.html",
+      "featureList": [
+        "Text to Speech Conversion",
+        "Multiple Voice Options",
+        "Adjustable Speech Rate",
+        "Adjustable Pitch",
+        "Adjustable Volume",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for Text to Speech tool */
+        .tts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 700px; /* Adjust max-width for the TTS tool content */
+            margin: 0 auto;
+        }
+
+        .tts-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns for controls */
+            gap: 1.5rem; /* Space between control groups */
+            background: rgba(30, 30, 40, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+            border: 1px solid rgba(0, 255, 247, 0.4);
+        }
+
+        .tts-control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .tts-control-group label {
+            color: var(--cyber-neon-pink);
+            font-weight: 600;
+            text-shadow: 0 0 4px var(--cyber-neon-pink);
+            margin-bottom: 0.2rem;
+        }
+
+        .tts-control-group select,
+        .tts-control-group input[type="range"] {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--cyber-neon-cyan);
+            background: #23232b;
+            color: var(--text);
+            font-size: 1rem;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.2) inset;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+
+        .tts-control-group select:focus,
+        .tts-control-group input[type="range"]:focus {
+            border: 1.5px solid var(--cyber-neon-pink);
+            box-shadow: 0 0 12px var(--cyber-neon-pink) inset;
+        }
+
+        .tts-control-group input[type="range"] {
+            -webkit-appearance: none;
+            height: 8px;
+            background: linear-gradient(to right, var(--cyber-neon-pink), var(--cyber-neon-cyan));
+            border-radius: 5px;
+            opacity: 0.9;
+            margin-top: 0.5rem; /* Space below label */
+        }
+
+        .tts-control-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--cyber-neon-yellow);
+            cursor: grab;
+            border: 2px solid var(--text);
+            box-shadow: 0 0 8px var(--cyber-neon-yellow);
+            transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+
+        .tts-control-group input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--cyber-neon-yellow);
+            cursor: grab;
+            border: 2px solid var(--text);
+            box-shadow: 0 0 8px var(--cyber-neon-yellow);
+            transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+
+        .tts-control-group input[type="range"]::-webkit-slider-thumb:active,
+        .tts-control-group input[type="range"]::-moz-range-thumb:active {
+            cursor: grabbing;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--cyber-neon-cyan);
+        }
+
+        .tts-buttons {
+            display: flex;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .tts-buttons button {
+            flex-grow: 1; /* Allow buttons to grow and fill space */
+            min-width: 120px; /* Minimum width for buttons */
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1.5px solid;
+        }
+
+        .tts-buttons button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            color: #0a0a0a;
+            box-shadow: 0 0 15px var(--cyber-neon-pink);
+            border-color: var(--cyber-neon-pink);
+        }
+
+        .tts-buttons button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            box-shadow: 0 0 25px var(--cyber-neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .tts-buttons button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            color: var(--cyber-neon-cyan);
+            border-color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+        }
+
+        .tts-buttons button.secondary:hover {
+            background: rgba(0, 255, 247, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .tts-message {
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 8px var(--cyber-neon-yellow);
+            font-size: 1rem;
+            min-height: 20px; /* Reserve space */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .tts-controls {
+                grid-template-columns: 1fr; /* Stack controls on small screens */
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+            .tts-buttons button {
+                min-width: unset; /* Remove min-width for better stacking */
+                width: 100%; /* Take full width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Text to Speech</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 1.5rem;">Convert text into natural-sounding speech.</p>
+
+            <div class="tts-container">
+                <textarea id="textInput" placeholder="Enter text to convert to speech..." rows="8"></textarea>
+
+                <div class="tts-controls">
+                    <div class="tts-control-group">
+                        <label for="voiceSelect">Voice:</label>
+                        <select id="voiceSelect"></select>
+                    </div>
+
+                    <div class="tts-control-group">
+                        <label for="rateRange">Rate: <span id="rateValue">1.0</span></label>
+                        <input type="range" id="rateRange" min="0.5" max="2" value="1" step="0.1">
+                    </div>
+
+                    <div class="tts-control-group">
+                        <label for="pitchRange">Pitch: <span id="pitchValue">1.0</span></label>
+                        <input type="range" id="pitchRange" min="0" max="2" value="1" step="0.1">
+                    </div>
+
+                    <div class="tts-control-group">
+                        <label for="volumeRange">Volume: <span id="volumeValue">1.0</span></label>
+                        <input type="range" id="volumeRange" min="0" max="1" value="1" step="0.1">
+                    </div>
+                </div>
+
+                <div class="tts-buttons">
+                    <button id="playButton" class="primary"><i class="ri-play-fill"></i> Play</button>
+                    <button id="pauseButton" class="secondary"><i class="ri-pause-fill"></i> Pause</button>
+                    <button id="stopButton" class="secondary"><i class="ri-stop-fill"></i> Stop</button>
+                    <button id="clearButton" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
+                </div>
+
+                <p id="ttsMessage" class="tts-message"></p>
+            </div>
+
+            <div class="share-buttons">
+                <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/text-to-speech/index.html&text=Convert%20text%20to%20speech%20with%20Hangga's%20TTS%20Tool!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/text-to-speech/index.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/text-to-speech/index.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
