@@ -6,6 +6,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const livePreviewFrame = document.getElementById('livePreviewFrame');
     const copyButtons = document.querySelectorAll('.copy-button');
     const messageBox = document.getElementById('messageBox');
+    const boilerplates = {
+        html: `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        </head>
+        <body>
+
+        </body>
+        </html>`,
+            css: `* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }`,
+            js: `document.addEventListener('DOMContentLoaded', () => {
+        console.log('Boilerplate ready!');
+        });`
+        };
+
 
     function updatePreview() {
         const html = htmlCodeInput.value;
@@ -29,6 +50,36 @@ document.addEventListener('DOMContentLoaded', () => {
     [htmlCodeInput, cssCodeInput, jsCodeInput].forEach(input => {
         input.addEventListener('input', updatePreview);
     });
+    function handleShortcut(input, type) {
+    input.addEventListener('keyup', (e) => {
+        const value = input.value;
+        const cursorPos = input.selectionStart;
+
+        // Look behind two characters for "!!"
+        if (value.slice(cursorPos - 2, cursorPos) === '!!') {
+            const before = value.slice(0, cursorPos - 2);
+            const after = value.slice(cursorPos);
+            const newValue = before + boilerplates[type] + after;
+
+            input.value = newValue;
+
+            // Move cursor to end of inserted boilerplate
+            const newCursorPos = before.length + boilerplates[type].length;
+            input.setSelectionRange(newCursorPos, newCursorPos);
+
+            updatePreview();
+
+            messageBox.textContent = `Inserted ${type.toUpperCase()} boilerplate!`;
+            messageBox.classList.remove('error');
+            messageBox.classList.add('show');
+            setTimeout(() => messageBox.classList.remove('show'), 2000);
+        }
+    });
+}
+
+handleShortcut(htmlCodeInput, 'html');
+handleShortcut(cssCodeInput, 'css');
+handleShortcut(jsCodeInput, 'js');
 
     const exampleButtons = document.querySelectorAll('.example-buttons button');
     exampleButtons.forEach(button => {
