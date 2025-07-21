@@ -16,23 +16,22 @@
   <meta property="og:image" content="https://hangga-hub.github.io/og-unit-converter.png" />
   <meta property="og:url" content="https://hangga-hub.github.io/unit-converter" />
   <meta name="robots" content="index,follow" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
   <style>
+    /* General styles for the tool card */
     .tool-converter-card {
-    max-width: 420px;
-    margin: 2rem auto;
-    background: #18181b;
-    border-radius: 18px;
-    box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
-    padding: 2rem 2rem 1.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    border: 2px solid #00ffe7;
-    position: relative;
-    z-index: 1;
+        max-width: 600px;
+        background: #18181b;
+        border-radius: 18px;
+        box-shadow: 0 0 32px 4px #00ffe7, 0 0 8px 2px #ff00cc;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        border: 2px solid #00ffe7;
+        position: relative;
+        z-index: 1;
     }
     .tool-converter-card h2 {
-        margin-bottom: 0.5rem;
         font-size: 1.7rem;
         text-align: center;
         color: #00ffe7;
@@ -41,7 +40,6 @@
     }
     .tool-converter-card label {
         font-weight: 600;
-        margin-bottom: 0.2rem;
         color: #ff00cc;
         text-shadow: 0 0 4px #ff00cc;
     }
@@ -51,7 +49,6 @@
         padding: 0.5rem;
         border-radius: 8px;
         border: 1.5px solid #00ffe7;
-        margin-bottom: 0.5rem;
         font-size: 1rem;
         background: #23232b;
         color: #fff;
@@ -92,16 +89,16 @@
         gap: 1rem;
         margin-top: 1rem;
     }
-    .share-buttons img {
-        width: 28px;
-        height: 28px;
-        opacity: 0.85;
-        transition: opacity 0.2s;
+    .share-buttons a {
+        color: #00ffe7; /* Icon color */
+        font-size: 28px;
         filter: drop-shadow(0 0 6px #00ffe7) drop-shadow(0 0 2px #ff00cc);
+        transition: all 0.2s ease-in-out;
     }
-    .share-buttons img:hover {
-        opacity: 1;
+    .share-buttons a:hover {
+        color: #ff00cc; /* Hover color */
         filter: drop-shadow(0 0 12px #ff00cc) drop-shadow(0 0 6px #00ffe7);
+        transform: scale(1.1);
     }
     body {
         background: linear-gradient(135deg, #18181b 60%, #ff00cc 100%);
@@ -134,9 +131,9 @@
       <input type="number" id="inputValue" placeholder="Enter value" />
       <div id="result"></div>
       <div class="share-buttons">
-          <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/bmi-calculator&text=Try%20this%20BMI%20Calculator%20by%20Hangga!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/bmi-calculator" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/bmi-calculator" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+          <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/unit-converter&text=Check%20out%20this%20awesome%20Unit%20Converter%20by%20Hangga!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/unit-converter" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/unit-converter" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
       </div>
     </div>
   </main>
@@ -144,29 +141,5 @@
     <p>Made with ❤️ by Hangga</p>
   </footer>
   <script src="script.js"></script>
-  <script>
-    // Populate category options dynamically for maintainability
-    const categories = [
-      { value: "length", label: "📏 Length" },
-      { value: "weight", label: "⚖️ Weight" },
-      { value: "temperature", label: "🌡️ Temperature" },
-      { value: "time", label: "🕑 Time" },
-      { value: "speed", label: "🧭 Speed" },
-      { value: "area", label: "📐 Area" },
-      { value: "volume", label: "🧪 Volume" },
-      { value: "data", label: "💾 Data" },
-      { value: "energy", label: "⚡ Energy" },
-      { value: "pressure", label: "� Pressure" },
-      { value: "power", label: "🔋 Power" },
-      { value: "frequency", label: "🎵 Frequency" }
-    ];
-    const categorySelect = document.getElementById('category');
-    categories.forEach(cat => {
-      const opt = document.createElement('option');
-      opt.value = cat.value;
-      opt.textContent = cat.label;
-      categorySelect.appendChild(opt);
-    });
-  </script>
 </body>
 </html>

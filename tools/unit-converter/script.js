@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-  setupUnitOptions();
+  setupUnitOptions(); // Call this to set up initial options and listeners
 });
 
 // 🧠 Converter Engine
@@ -74,84 +74,137 @@ const units = {
     KiB: 1024,
     MiB: 1048576,
     GiB: 1073741824,
-    TiB: 1099511627776,
-    KB: 1000,
-    MB: 1000000,
-    GB: 1000000000,
-    TB: 1000000000000
+    TiB: 1099511627776
   },
   energy: {
     J: 1,
     kJ: 1000,
-    MJ: 1e6,
-    GJ: 1e9,
     cal: 4.184,
     kcal: 4184,
     Wh: 3600,
-    kWh: 3600000
+    kWh: 3.6e6
   },
   power: {
     W: 1,
     kW: 1000,
     MW: 1e6,
-    GW: 1e9,
-    'BTU/s': 0.293071,
-    'BTU/min': 17.5845,
-    'BTU/hr': 1055.06,
-    HP: 745.7
+    hp: 745.7
   },
   volume: {
-    ml: 0.001,
-    l: 1,
-    'm³': 1000,
-    'in³': 0.0163871,
-    'ft³': 28.3168,
-    gallon: 3.78541
+    'cm³': 0.000001,
+    'm³': 1,
+    L: 0.001,
+    mL: 0.000001,
+    'in³': 0.0000163871,
+    'ft³': 0.0283168,
+    gallon: 0.00378541
   },
-  temperature: {} // handled separately
+  frequency: { // New category for frequency
+    Hz: 1,
+    kHz: 1000,
+    MHz: 1000000,
+    GHz: 1000000000
+  },
+  image_conversion: { // New category for image unit conversion (cm to pixel)
+    // Conversion from cm to pixel is dependent on DPI/PPI.
+    // Assuming a standard web DPI of 96 pixels per inch (1 inch = 2.54 cm).
+    // 1 cm = (96 pixels / 1 inch) * (1 inch / 2.54 cm) = 37.7952755906 pixels
+    cm: 1, // Base unit for internal calculation in cm
+    px: 1 / 37.7952755906 // 1 pixel in cm at 96 DPI
+  }
+};
+
+const categoryMap = {
+  length: "📏 Length",
+  weight: "⚖️ Weight",
+  temperature: "🌡️ Temperature",
+  time: "🕑 Time",
+  speed: "🧭 Speed",
+  area: "📐 Area",
+  volume: "🧪 Volume",
+  data: "💾 Data",
+  energy: "⚡ Energy",
+  pressure: "💧 Pressure",
+  power: "🔋 Power",
+  frequency: "📡 Frequency", // Add new category
+  image_conversion: "🖼️ Image Conversion (cm/px)" // Add new category
 };
 
 function setupUnitOptions() {
-  const category = document.getElementById("category");
-  category.addEventListener("change", updateUnits);
-  updateUnits(); // Initial
+  const categorySelect = document.getElementById("category");
+  const fromUnitSelect = document.getElementById("fromUnit");
+  const toUnitSelect = document.getElementById("toUnit");
+  const inputValue = document.getElementById("inputValue");
 
-  // Add event listeners for conversion
-  document.querySelector(".tool-button")?.addEventListener("click", convertUnit);
-  document.getElementById("inputValue")?.addEventListener("input", convertUnit);
-  document.getElementById("fromUnit")?.addEventListener("change", convertUnit);
-  document.getElementById("toUnit")?.addEventListener("change", convertUnit);
+  // Populate category options dynamically
+  categorySelect.innerHTML = Object.entries(categoryMap)
+    .map(([value, label]) => `<option value="${value}">${label}</option>`)
+    .join("");
+
+  // Set up initial unit options based on the first category
+  updateUnitOptions();
+
+  // Add event listeners for changes that should trigger conversion
+  categorySelect.addEventListener("change", () => {
+    updateUnitOptions(); // Update units first
+    convertUnit();      // Then convert
+  });
+  fromUnitSelect.addEventListener("change", convertUnit);
+  toUnitSelect.addEventListener("change", convertUnit);
+  inputValue.addEventListener("input", convertUnit);
 }
 
-function updateUnits() {
-  const type = document.getElementById("category").value;
-  document.body.setAttribute("data-category", type);
+function updateUnitOptions() {
+  const selectedCategory = document.getElementById("category").value;
+  const fromUnitSelect = document.getElementById("fromUnit");
+  const toUnitSelect = document.getElementById("toUnit");
 
-  const from = document.getElementById("fromUnit");
-  const to = document.getElementById("toUnit");
+  // Clear existing options
+  fromUnitSelect.innerHTML = "";
+  toUnitSelect.innerHTML = "";
 
-  from.innerHTML = '';
-  to.innerHTML = '';
+  const currentUnits = units[selectedCategory];
+  if (selectedCategory === "temperature") {
+    // Temperature has fixed options
+    ["celsius", "fahrenheit", "kelvin"].forEach((unit) => {
+      const option1 = document.createElement("option");
+      option1.value = unit;
+      option1.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+      fromUnitSelect.appendChild(option1);
 
-  if (type === "temperature") {
-    const tempUnits = ["C", "F", "K"];
-    tempUnits.forEach(u => {
-      from.innerHTML += `<option value="${u}">${u}</option>`;
-      to.innerHTML += `<option value="${u}">${u}</option>`;
+      const option2 = document.createElement("option");
+      option2.value = unit;
+      option2.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+      toUnitSelect.appendChild(option2);
     });
-  } else {
-    Object.keys(units[type]).forEach(u => {
-      from.innerHTML += `<option value="${u}">${u}</option>`;
-      to.innerHTML += `<option value="${u}">${u}</option>`;
-    });
+  } else if (currentUnits) {
+    // Populate unit options based on the selected category
+    for (const unit in currentUnits) {
+      const option1 = document.createElement("option");
+      option1.value = unit;
+      option1.textContent = unit;
+      fromUnitSelect.appendChild(option1);
+
+      const option2 = document.createElement("option");
+      option2.value = unit;
+      option2.textContent = unit;
+      toUnitSelect.appendChild(option2);
+    }
   }
+  // Trigger a conversion after updating units, in case the selected units changed
+  convertUnit();
 }
 
 function formatNumber(num) {
-  // Show up to 4 significant digits, no trailing zeros
-  if (num === 0) return "0";
-  // Use Intl.NumberFormat for up to 4 significant digits, no trailing zeros
-  return Number.parseFloat(num.toPrecision(4)).toString();
+  // Handle cases where num is very small or very large by using exponential notation
+  if (Math.abs(num) < 0.000001 && num !== 0) { // Small numbers, but not zero
+    return num.toExponential(4);
+  }
+  if (Math.abs(num) > 1000000000) { // Large numbers
+    return num.toExponential(4);
+  }
+  // For other numbers, use toPrecision for up to 4 significant digits and remove trailing zeros
+  return parseFloat(num.toPrecision(4)).toString();
 }
 
 function convertUnit() {
@@ -161,8 +214,17 @@ function convertUnit() {
   const val = parseFloat(document.getElementById("inputValue").value);
   const result = document.getElementById("result");
 
+  // Clear previous result or error messages
+  result.innerHTML = '';
+
   if (isNaN(val)) {
     result.innerHTML = '<span class="result-error">Please enter a valid number.</span>';
+    return;
+  }
+
+  // Handle cases where units might not be loaded yet (e.g., initial state)
+  if (!from || !to) {
+    result.innerHTML = '<span class="result-error">Please select units.</span>';
     return;
   }
 
@@ -176,18 +238,44 @@ function convertUnit() {
     return;
   }
 
+  // General unit conversion
   const base = val * units[type][from];
   const converted = base / units[type][to];
-  result.innerHTML = `<span class="result-card">🧮 <b>${formatNumber(val)}</b> ${from} = <b>${formatNumber(converted)}</b> ${to}</span>`;
+  let resultHtml = `<span class="result-card">🧮 <b>${formatNumber(val)}</b> ${from} = <b>${formatNumber(converted)}</b> ${to}</span>`;
+
+  if (type === "image_conversion") {
+    resultHtml += `<p style="font-size:0.8em; color:#aaa; margin-top: 0.5em;">Note: CM to Pixel conversion assumes 96 DPI. Actual pixel values may vary based on screen resolution or image DPI.</p>`;
+  }
+
+  result.innerHTML = resultHtml;
 }
 
 function convertTemperature(val, from, to) {
-  let celsius;
-  if (from === "C") celsius = val;
-  else if (from === "F") celsius = (val - 32) * 5 / 9;
-  else if (from === "K") celsius = val - 273.15;
+  let baseCelsius;
 
-  if (to === "C") return celsius;
-  if (to === "F") return celsius * 9 / 5 + 32;
-  if (to === "K") return celsius + 273.15;
+  // Convert to Celsius first
+  if (from === "celsius") {
+    baseCelsius = val;
+  } else if (from === "fahrenheit") {
+    baseCelsius = (val - 32) * 5 / 9;
+  } else if (from === "kelvin") {
+    baseCelsius = val - 273.15;
+  } else {
+    // Should not happen if dropdowns are correctly populated
+    console.error("Unknown 'from' temperature unit:", from);
+    return NaN;
+  }
+
+  // Convert from Celsius to target
+  if (to === "celsius") {
+    return baseCelsius;
+  } else if (to === "fahrenheit") {
+    return (baseCelsius * 9 / 5) + 32;
+  } else if (to === "kelvin") {
+    return baseCelsius + 273.15;
+  } else {
+    // Should not happen if dropdowns are correctly populated
+    console.error("Unknown 'to' temperature unit:", to);
+    return NaN;
+  }
 }
