@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS/JS Code Playground - Online Editor | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in editors -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Experiment with HTML, CSS, and JavaScript code in a live online playground. Get instant visual feedback and easily share your creations with Hangga's free tool.">
+    <meta name="keywords" content="html editor, css editor, javascript editor, code playground, online code editor, live preview, codepen alternative, web development tool, free coding tool">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/code-playground/index.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/code-playground/index.html">
+    <meta property="og:title" content="HTML/CSS/JS Code Playground - Online Editor | Hangga's Tool Hub">
+    <meta property="og:description" content="Experiment with HTML, CSS, and JavaScript code in a live online playground. Get instant visual feedback and easily share your creations with Hangga's free tool.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png"> <!-- Use a relevant image for social sharing -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/code-playground/index.html">
+    <meta property="twitter:title" content="HTML/CSS/JS Code Playground - Online Editor | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Experiment with HTML, CSS, and JavaScript code in a live online playground. Get instant visual feedback and easily share your creations with Hangga's free tool.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's HTML/CSS/JS Code Playground",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "120"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Experiment with HTML, CSS, and JavaScript code in a live online playground. Get instant visual feedback and easily share your creations.",
+      "url": "https://hangga-hub.github.io/tools/code-playground/index.html",
+      "featureList": [
+        "HTML Editor",
+        "CSS Editor",
+        "JavaScript Editor",
+        "Live Code Preview",
+        "Real-time Updates",
+        "Copy to Clipboard Functionality",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        .playground-wrapper {
+        padding: 1.5rem;
+        max-width: 100%;
+        width: 80%;
+        margin: 0 auto;
+        }
+
+        .playground-header {
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        }
+
+        .playground-header h2 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+        }
+
+        .playground-header .subtitle {
+        font-size: 1.2rem;
+        }
+
+        .quick-start-examples {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+        background-color: rgba(30, 30, 40, 0.8);
+        border-radius: 10px;
+        border: 1px solid var(--cyber-neon-cyan);
+        box-shadow: 0 0 15px rgba(0, 255, 247, 0.3);
+        }
+
+        .quick-start-examples h3 {
+        color: var(--cyber-neon-yellow);
+        margin-top: 0;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+        }
+
+        .example-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        }
+
+        .example-buttons button {
+        background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+        color: #0a0a0a;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 255, 247, 0.5);
+        }
+
+        .example-buttons button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(255, 0, 204, 0.8);
+        }
+
+        .playground-content-area {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 2rem;
+        }
+
+        .code-editors-container,
+        .preview-area {
+        flex: 1;
+        min-width: 0;
+        }
+
+        .editor-group {
+        border-radius: 10px;
+        min-height: 200px;
+        }
+
+        .editor-group label {
+        padding: 1rem 1.5rem;
+        font-size: 1.15rem;
+        display: block;
+        }
+
+        .code-textarea {
+        padding: 1.5rem;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        width: 100%;
+        }
+
+        .preview-area {
+        min-height: 450px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        background: white;
+        }
+
+        .preview-area label {
+        padding: 1rem 1.5rem;
+        font-size: 1.15rem;
+        display: block;
+        }
+
+        .live-preview-iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+        border: none;
+        }
+
+        .message-box {
+        margin-top: 2rem;
+        padding: 1rem 2rem;
+        }
+
+        .share-buttons {
+        margin-top: 2.5rem;
+        gap: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+  <div class="playground-wrapper">
+    <div class="playground-header">
+      <h2>HTML/CSS/JS Playground</h2>
+      <p class="subtitle">Write code and see live results, just like CodePen.</p>
+    </div>
+
+    <div class="quick-start-examples">
+      <h3>Quick Start Examples:</h3>
+      <div class="example-buttons">
+        <button data-example="basic">Basic HTML</button>
+        <button data-example="css">CSS Animation</button>
+        <button data-example="js">JS Clock</button>
+      </div>
+    </div>
+
+    <div class="playground-content-area">
+      <div class="code-editors-container">
+        <div class="editor-group">
+          <label for="htmlCode">HTML</label>
+          <textarea id="htmlCode" class="code-textarea" spellcheck="false"></textarea>
+          <button class="copy-button" data-target="htmlCode"><i class="ri-file-copy-line"></i> Copy</button>
+        </div>
+
+        <div class="editor-group">
+          <label for="cssCode">CSS</label>
+          <textarea id="cssCode" class="code-textarea" spellcheck="false"></textarea>
+          <button class="copy-button" data-target="cssCode"><i class="ri-file-copy-line"></i> Copy</button>
+        </div>
+
+        <div class="editor-group">
+          <label for="jsCode">JavaScript</label>
+          <textarea id="jsCode" class="code-textarea" spellcheck="false"></textarea>
+          <button class="copy-button" data-target="jsCode"><i class="ri-file-copy-line"></i> Copy</button>
+        </div>
+      </div>
+
+      <div class="preview-area">
+        <label>Live Preview</label>
+        <iframe id="livePreviewFrame" class="live-preview-iframe"></iframe>
+      </div>
+    </div>
+
+    <p id="messageBox" class="message-box"></p>
+
+    <div class="share-buttons">
+      <a href="#" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+      <a href="#" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+      <a href="#" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+    </div>
+  </div>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
