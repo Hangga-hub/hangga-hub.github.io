@@ -7,25 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyButtons = document.querySelectorAll('.copy-button');
     const messageBox = document.getElementById('messageBox');
     const boilerplates = {
-        html: `<!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-        </head>
-        <body>
+    html: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
 
-        </body>
-        </html>`,
-            css: `* {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }`,
-            js: `document.addEventListener('DOMContentLoaded', () => {
-        console.log('Boilerplate ready!');
-        });`
-        };
+</body>
+</html>`,
+    css: `* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}`,
+    js: `document.addEventListener('DOMContentLoaded', () => {
+  console.log('Boilerplate ready!');
+});`
+};
+
 
 
     function updatePreview() {
@@ -180,6 +181,76 @@ updateClock();`;
             }, 2000);
         });
     });
+
+    // Function to display messages
+    function showMessage(text, isError = false) {
+        messageBox.textContent = text;
+        messageBox.classList.remove('show', 'error');
+        if (isError) {
+            messageBox.classList.add('error');
+        }
+        messageBox.classList.add('show');
+        setTimeout(() => messageBox.classList.remove('show'), 2000);
+    }
+
+    // Add event listeners for copy buttons
+    copyButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const targetId = button.dataset.target;
+            const targetInput = document.getElementById(targetId);
+
+            if (!targetInput) {
+                showMessage(`Error: Target input for ${targetId} not found.`, true);
+                return;
+            }
+
+            const textToCopy = targetInput.value;
+
+            // Try modern Clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    showMessage(`${targetId.toUpperCase().replace('CODE', '')} code copied to clipboard!`);
+                } catch (err) {
+                    console.error('Failed to copy using Clipboard API:', err);
+                    // Fallback to older method if modern API fails or is not permitted
+                    copyFallback(targetInput, targetId);
+                }
+            } else {
+                // Fallback for older browsers or non-HTTPS environments
+                copyFallback(targetInput, targetId);
+            }
+        });
+    });
+
+    function copyFallback(targetInput, targetId) {
+        // Create a temporary textarea element
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = targetInput.value;
+        tempTextArea.style.position = 'fixed'; // Avoid scrolling to bottom
+        tempTextArea.style.left = '-9999px'; // Move off-screen
+        tempTextArea.style.top = '0';
+        document.body.appendChild(tempTextArea);
+
+        // Select the text
+        tempTextArea.focus();
+        tempTextArea.select();
+
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showMessage(`${targetId.toUpperCase().replace('CODE', '')} code copied to clipboard! (Fallback)`);
+            } else {
+                showMessage(`Failed to copy ${targetId.toUpperCase().replace('CODE', '')} code. Please copy manually.`, true);
+                console.warn('Fallback copy command was not successful.');
+            }
+        } catch (err) {
+            showMessage(`Failed to copy ${targetId.toUpperCase().replace('CODE', '')} code. Please copy manually.`, true);
+            console.error('Error during fallback copy:', err);
+        } finally {
+            document.body.removeChild(tempTextArea); // Clean up the temporary textarea
+        }
+    }
 
     updatePreview();
 });
