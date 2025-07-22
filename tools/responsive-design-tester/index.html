@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Tester - View Site in Device Frames | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Test your website's responsiveness across various device sizes and resolutions with Hangga's free online Responsive Design Tester. View your site in different mobile, tablet, and desktop frames.">
+    <meta name="keywords" content="responsive design tester, website responsiveness, mobile friendly test, device frames, screen size tester, web design tools, online tool, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/responsive-design-tester/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/responsive-design-tester/index.html">
+    <meta property="og:title" content="Responsive Design Tester - View Site in Device Frames | Hangga's Tool Hub">
+    <meta property="og:description" content="Test your website's responsiveness across various device sizes and resolutions with Hangga's free online Responsive Design Tester. View your site in different mobile, tablet, and desktop frames.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/responsive-design-tester/index.html">
+    <meta property="twitter:title" content="Responsive Design Tester - View Site in Device Frames | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Test your website's responsiveness across various device sizes and resolutions with Hangga's free online Responsive Design Tester. View your site in different mobile, tablet, and desktop frames.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Responsive Design Tester",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "88"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Test website responsiveness across various device sizes and resolutions.",
+      "url": "https://hangga-hub.github.io/tools/responsive-design-tester/index.html",
+      "featureList": [
+        "Responsive Testing",
+        "Device Emulation",
+        "Custom Resolution Input",
+        "Mobile, Tablet, Desktop Presets",
+        "Live Website Preview",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Responsive Design Tester tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px; /* Wider to accommodate iframe */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .responsive-tester-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .input-section {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .input-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .input-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .device-presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .device-presets button {
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .device-presets button:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .device-presets button.active {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .custom-size-inputs {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .custom-size-inputs .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .iframe-container {
+            flex-grow: 1; /* Allow iframe container to take available space */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000; /* Dark background for contrast */
+            border: 3px solid var(--cyber-neon-pink);
+            border-radius: 12px;
+            overflow: hidden; /* Hide overflow from iframe */
+            min-height: 400px; /* Minimum height for visibility */
+            margin-top: 2.5rem;
+            position: relative; /* For loading indicator */
+            box-shadow: 0 0 25px rgba(255, 0, 204, 0.5);
+        }
+
+        #responsiveIframe {
+            border: none;
+            background-color: #fff; /* Default background for iframe content */
+            transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.3);
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--cyber-neon-cyan);
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 10;
+            pointer-events: none; /* Allow clicks to pass through */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .loading-overlay.show {
+            opacity: 1;
+        }
+
+        .loading-overlay i {
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .input-section {
+                padding: 1.5rem;
+            }
+            .input-section h3, .output-section h3 {
+                font-size: 1.5rem;
+            }
+            .custom-size-inputs {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .device-presets {
+                justify-content: center;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Responsive Design Tester</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">View your website in different device frames to test responsiveness.</p>
+
+            <div class="responsive-tester-container">
+                <div class="input-section">
+                    <h3>Website URL</h3>
+                    <div class="form-group">
+                        <label for="websiteUrl">Enter URL:</label>
+                        <input type="text" id="websiteUrl" placeholder="https://example.com">
+                    </div>
+                    <div class="button-group">
+                        <button id="loadUrlBtn" class="primary"><i class="ri-play-line"></i> Load URL</button>
+                        <button id="refreshBtn" class="secondary"><i class="ri-refresh-line"></i> Refresh</button>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Device Presets</h3>
+                    <div class="device-presets">
+                        <button data-width="375" data-height="667">iPhone 8 (375x667)</button>
+                        <button data-width="414" data-height="896">iPhone XR (414x896)</button>
+                        <button data-width="768" data-height="1024">iPad (768x1024)</button>
+                        <button data-width="1024" data-height="768">iPad Landscape (1024x768)</button>
+                        <button data-width="1280" data-height="800">Laptop (1280x800)</button>
+                        <button data-width="1920" data-height="1080">Desktop (1920x1080)</button>
+                    </div>
+                    <h3 style="margin-top: 2rem;">Custom Size</h3>
+                    <div class="custom-size-inputs">
+                        <div class="form-group">
+                            <label for="customWidth">Width (px):</label>
+                            <input type="number" id="customWidth" value="992" min="100" max="2560">
+                        </div>
+                        <div class="form-group">
+                            <label for="customHeight">Height (px):</label>
+                            <input type="number" id="customHeight" value="768" min="100" max="1440">
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button id="applyCustomSizeBtn" class="primary"><i class="ri-aspect-ratio-line"></i> Apply Custom Size</button>
+                    </div>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+
+                <div class="iframe-container">
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <i class="ri-loader-4-line"></i> Loading...
+                    </div>
+                    <iframe id="responsiveIframe" src="" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
