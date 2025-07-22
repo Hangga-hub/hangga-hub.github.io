@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy Generator - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Generate a simple privacy policy for your website or app quickly and easily with Hangga's free online Privacy Policy Generator.">
+    <meta name="keywords" content="privacy policy generator, online privacy policy, free privacy policy, website privacy, data privacy, GDPR, CCPA, privacy policy template, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/privacy-policy-generator/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/privacy-policy-generator/index.html">
+    <meta property="og:title" content="Privacy Policy Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate a simple privacy policy for your website or app quickly and easily with Hangga's free online Privacy Policy Generator.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/privacy-policy-generator/index.html">
+    <meta property="twitter:title" content="Privacy Policy Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate a simple privacy policy for your website or app quickly and easily with Hangga's free online Privacy Policy Generator.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Privacy Policy Generator",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "ratingCount": "30"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Generate simple privacy policies for websites and apps.",
+      "url": "https://hangga-hub.github.io/tools/privacy-policy-generator/index.html",
+      "featureList": [
+        "Customizable Privacy Policy",
+        "Data Collection Options",
+        "Data Usage Options",
+        "Third-Party Disclosure Options",
+        "User Rights Information",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Privacy Policy Generator tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px; /* Slightly wider for more content */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .policy-generator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        .input-section {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .input-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .input-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: 'Fira Code', monospace; /* For policy output */
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .checkbox-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 4px;
+            margin-right: 10px;
+            background-color: #1a1a1f;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked {
+            background-color: var(--cyber-neon-pink);
+            border-color: var(--cyber-neon-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 204, 0.6);
+        }
+
+        .checkbox-group input[type="checkbox"]:checked::before {
+            content: '\2713'; /* Checkmark character */
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #0a0a0a;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .input-section {
+                padding: 1.5rem;
+            }
+            .input-section h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Privacy Policy Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Quickly generate a basic privacy policy for your website or application.</p>
+
+            <div class="policy-generator-container">
+                <div class="input-section">
+                    <h3>Your Information</h3>
+                    <div class="form-group">
+                        <label for="companyName">Company/Organization Name:</label>
+                        <input type="text" id="companyName" placeholder="e.g., Hangga's Tool Hub" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="websiteName">Website/App Name:</label>
+                        <input type="text" id="websiteName" placeholder="e.g., Hangga's Tool Hub" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="websiteURL">Website/App URL:</label>
+                        <input type="text" id="websiteURL" placeholder="e.g., example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Contact Email Address (for privacy inquiries):</label>
+                        <input type="email" id="contactEmail" placeholder="e.g., support@example.com" required>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Data Collection</h3>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="collectPersonalData" checked> Personal Identifiable Information (Name, Email, Address, etc.)</label>
+                        <label><input type="checkbox" id="collectUsageData" checked> Usage Data (Pages visited, time spent, IP address, browser type)</label>
+                        <label><input type="checkbox" id="collectCookies" checked> Cookies and Tracking Technologies</label>
+                        <label><input type="checkbox" id="collectSensitiveData"> Sensitive Personal Data (Health, Biometrics, Financial - *Use with caution*)</label>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>How Data Is Used</h3>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="useProvideService" checked> To provide and maintain our service</label>
+                        <label><input type="checkbox" id="useImproveService" checked> To improve, personalize, and expand our service</label>
+                        <label><input type="checkbox" id="useMarketing" checked> For marketing and promotional purposes</label>
+                        <label><input type="checkbox" id="useAnalytics" checked> For analytics and understanding user behavior</label>
+                        <label><input type="checkbox" id="useSecurity" checked> For security and fraud prevention</label>
+                        <label><input type="checkbox" id="useLegal" checked> To comply with legal obligations</label>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>Data Disclosure</h3>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="discloseServiceProviders" checked> To third-party service providers (e.g., hosting, analytics, payment processors)</label>
+                        <label><input type="checkbox" id="discloseBusinessTransfer"> For business transfers (e.g., merger, acquisition)</label>
+                        <label><input type="checkbox" id="discloseLegal" checked> For legal reasons (e.g., subpoena, court order)</label>
+                        <label><input type="checkbox" id="discloseAffiliates"> To affiliates or subsidiaries</label>
+                        <label><input type="checkbox" id="disclosePartners"> To business partners</label>
+                    </div>
+                </div>
+
+                <div class="input-section">
+                    <h3>User Rights & Contact</h3>
+                    <div class="form-group">
+                        <label for="dataRetention">Data Retention Period (e.g., "As long as necessary", "5 years", "Until account deletion"):</label>
+                        <input type="text" id="dataRetention" value="As long as necessary for the purposes outlined in this Privacy Policy." placeholder="e.g., As long as necessary">
+                    </div>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="userRightsAccess" checked> Right to Access Personal Data</label>
+                        <label><input type="checkbox" id="userRightsRectification" checked> Right to Rectification (Correction)</label>
+                        <label><input type="checkbox" id="userRightsErasure" checked> Right to Erasure (Right to be forgotten)</label>
+                        <label><input type="checkbox" id="userRightsRestrict" checked> Right to Restrict Processing</label>
+                        <label><input type="checkbox" id="userRightsPortability" checked> Right to Data Portability</label>
+                        <label><input type="checkbox" id="userRightsObject" checked> Right to Object to Processing</label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="generatePolicyBtn" class="primary"><i class="ri-file-shield-line"></i> Generate Policy</button>
+                    <button id="clearFormBtn" class="secondary"><i class="ri-eraser-line"></i> Clear Form</button>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+
+                <div class="input-section">
+                    <h3>Generated Privacy Policy</h3>
+                    <div class="form-group">
+                        <label for="policyOutput">Review and Copy:</label>
+                        <textarea id="policyOutput" readonly placeholder="Your generated privacy policy will appear here..."></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="copyPolicyBtn" class="primary"><i class="ri-file-copy-line"></i> Copy Policy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
