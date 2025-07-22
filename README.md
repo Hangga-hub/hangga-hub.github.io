@@ -1,1 +1,1 @@
-# Tools
+This repository contains a collection of free online tools hosted on [Hangga's Tool Hub](https://hangga-hub.github.io/). These tools are designed to be helpful for various tasks.
