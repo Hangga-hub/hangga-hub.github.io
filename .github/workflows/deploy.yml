@@ -15,4 +15,4 @@ jobs:
         run: npm install -g surge
 
       - name: Deploy to Surge
-        run: surge ./Tool-central hangga-tools.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./hangga-hub.github.io hangga-tools.surge.sh --token ${{ secrets.SURGE_TOKEN }}
