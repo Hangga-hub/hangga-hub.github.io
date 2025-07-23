@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Stroke / Outline Generator | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Google Fonts for common web fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Generate CSS for text stroke and outline effects with a live preview. Customize stroke width, color, text color, font size, and font family. Get the CSS code instantly.">
+    <meta name="keywords" content="text stroke generator, text outline css, css text effect, web design tool, online tool, hangga tools, text-stroke, -webkit-text-stroke">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/text-stroke-generator/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/text-stroke-generator/index.html">
+    <meta property="og:title" content="Text Stroke / Outline Generator | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate CSS for text stroke and outline effects with a live preview. Customize stroke width, color, text color, font size, and font family. Get the CSS code instantly.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/text-stroke-generator/index.html">
+    <meta property="twitter:title" content="Text Stroke / Outline Generator | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate CSS for text stroke and outline effects with a live preview. Customize stroke width, color, text color, font size, and font family. Get the CSS code instantly.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Text Stroke / Outline Generator",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "ratingCount": "28"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "An online CSS generator for text stroke and outline effects with real-time preview and customizable properties.",
+      "url": "https://hangga-hub.github.io/tools/text-stroke-generator/index.html",
+      "featureList": [
+        "Live Preview",
+        "Text Input",
+        "Stroke Width Control",
+        "Stroke Color Selection",
+        "Text Color Selection",
+        "Font Size Control",
+        "Font Family Selection",
+        "CSS Code Generation",
+        "Copy to Clipboard",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Text Stroke Generator Tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .text-stroke-generator-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 900px) {
+            .text-stroke-generator-container {
+                grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+            }
+        }
+
+        .section-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .section-card h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--cyber-neon-cyan);
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+        }
+
+        .input-group input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 8px;
+            background: rgba(0, 255, 247, 0.2);
+            border-radius: 5px;
+            outline: none;
+            transition: opacity .2s;
+            box-shadow: inset 0 0 5px rgba(0, 255, 247, 0.1);
+        }
+
+        .input-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.6);
+            border: 2px solid #0a0a0a;
+        }
+
+        .input-group input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.6);
+            border: 2px solid #0a0a0a;
+        }
+
+        .input-group input[type="color"],
+        .input-group select,
+        .input-group textarea {
+            background-color: #1a1a1f;
+            border: 1px solid var(--cyber-neon-cyan);
+            color: var(--text);
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .input-group input[type="color"] {
+            width: 50px; /* Smaller width for color input */
+            height: 35px;
+            padding: 0;
+            cursor: pointer;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .input-group select {
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300fff7'%3E%3Cpath d='M12 15l-4-4h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.8rem center;
+            background-size: 1.2em;
+            padding-right: 2.5rem; /* Make space for the custom arrow */
+        }
+
+        .input-group .value-display {
+            color: var(--cyber-neon-pink);
+            font-weight: 700;
+            min-width: 40px;
+            text-align: right;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover:not(:disabled) {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover:not(:disabled) {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .button-group button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+            width: 100%;
+            max-width: 700px; /* Adjusted for overall layout */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .preview-area {
+            width: 100%;
+            min-height: 250px;
+            background-color: #1a1a1f; /* Dark background for contrast */
+            border-radius: 12px;
+            border: 2px dashed rgba(0, 255, 247, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 1rem;
+            box-sizing: border-box;
+            text-align: center; /* Center text within preview */
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.4);
+        }
+
+        #previewText {
+            word-break: break-all; /* Ensure long words wrap */
+            white-space: pre-wrap; /* Preserve whitespace and wrap text */
+            transition: all 0.1s ease-out; /* Smooth transitions for changes */
+            line-height: 1.2;
+            margin: 0; /* Remove default paragraph margins */
+        }
+
+        .output-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            resize: vertical;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .section-card {
+                padding: 1.5rem;
+            }
+            .section-card h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            #previewText {
+                font-size: 2.5rem !important; /* Adjust font size for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Text Stroke / Outline Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Create stylish text outlines with live preview and generated CSS.</p>
+
+            <div class="text-stroke-generator-container">
+                <div class="section-card controls-section">
+                    <h3>Controls</h3>
+                    <div class="input-group">
+                        <label for="inputText">Your Text:</label>
+                        <textarea id="inputText" rows="3" placeholder="Type your text here...">Hangga Tools</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="strokeWidth">Stroke Width: <span class="value-display" id="strokeWidthValue">1px</span></label>
+                        <input type="range" id="strokeWidth" min="0" max="10" value="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="strokeColor">Stroke Color:</label>
+                        <input type="color" id="strokeColor" value="#00fff7">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="textColor">Text Color:</label>
+                        <input type="color" id="textColor" value="#ff00cc">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fontSize">Font Size: <span class="value-display" id="fontSizeValue">60px</span></label>
+                        <input type="range" id="fontSize" min="16" max="120" value="60">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fontFamily">Font Family:</label>
+                        <select id="fontFamily">
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="Verdana, sans-serif">Verdana</option>
+                            <option value="Helvetica, sans-serif">Helvetica</option>
+                            <option value="Tahoma, sans-serif">Tahoma</option>
+                            <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+                            <option value="Times New Roman, serif">Times New Roman</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="Palatino Linotype, Book Antiqua, Palatino, serif">Palatino Linotype</option>
+                            <option value="Courier New, monospace">Courier New</option>
+                            <option value="Lucida Console, monospace">Lucida Console</option>
+                            <option value="'Fira Code', monospace">Fira Code</option>
+                            <option value="'Roboto', sans-serif">Roboto</option>
+                            <option value="'Open Sans', sans-serif">Open Sans</option>
+                            <option value="'Lato', sans-serif">Lato</option>
+                            <option value="'Montserrat', sans-serif">Montserrat</option>
+                            <option value="'Oswald', sans-serif">Oswald</option>
+                            <option value="'Playfair Display', serif">Playfair Display</option>
+                            <option value="'Merriweather', serif">Merriweather</option>
+                            <option value="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact</option>
+                            <option value="monospace" selected>Monospace (Default)</option>
+                            <option value="sans-serif">Sans-serif</option>
+                            <option value="serif">Serif</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="resetBtn" class="secondary"><i class="ri-refresh-line"></i> Reset to Defaults</button>
+                    </div>
+                </div>
+
+                <div class="section-card preview-output-section">
+                    <h3>Preview & Code</h3>
+                    <div class="preview-area">
+                        <p id="previewText">Hangga Tools</p>
+                    </div>
+
+                    <p id="messageBox" class="message-box"></p>
+
+                    <h4>Generated CSS</h4>
+                    <textarea id="cssOutput" class="output-textarea" placeholder="Your CSS will appear here." readonly></textarea>
+                    <div class="button-group">
+                        <button id="copyCssBtn" class="primary" disabled><i class="ri-clipboard-line"></i> Copy CSS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

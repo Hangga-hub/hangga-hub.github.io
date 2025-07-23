@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism Generator | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in output -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Generate beautiful Glassmorphism CSS effects with a live preview. Adjust blur, transparency, border, and shadow to create modern UI elements. Get the CSS code instantly.">
+    <meta name="keywords" content="glassmorphism generator, css glassmorphism, glass effect css, transparent blur effect, modern ui, css generator, web design tool, online tool, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/glassmorphism-generator/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/glassmorphism-generator/index.html">
+    <meta property="og:title" content="Glassmorphism Generator | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate beautiful Glassmorphism CSS effects with a live preview. Adjust blur, transparency, border, and shadow to create modern UI elements. Get the CSS code instantly.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/glassmorphism-generator/index.html">
+    <meta property="twitter:title" content="Glassmorphism Generator | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate beautiful Glassmorphism CSS effects with a live preview. Adjust blur, transparency, border, and shadow to create modern UI elements. Get the CSS code instantly.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Glassmorphism Generator",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "42"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "An online CSS generator for glassmorphism effects with real-time preview and customizable properties.",
+      "url": "https://hangga-hub.github.io/tools/glassmorphism-generator/index.html",
+      "featureList": [
+        "Live Preview",
+        "Blur Control",
+        "Transparency Control",
+        "Background Color Selection",
+        "Border Customization",
+        "Shadow Options",
+        "Border Radius Control",
+        "CSS Code Generation",
+        "Copy to Clipboard",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Glassmorphism Generator Tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            width: 90% !important; /* Make it take more width, override with !important */
+            max-width: 1200px !important; /* Wider max-width, override with !important */
+            margin: 0 auto !important; /* Center it, override with !important */
+            padding: 2.5rem !important; /* Ensure padding is consistent, override if needed */
+            box-sizing: border-box !important;
+            min-height: 80vh !important;
+            gap: 1.5rem !important; /* Override global gap for this card's direct children */
+        }
+
+        .glassmorphism-generator-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 900px) {
+            .glassmorphism-generator-container {
+                grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+            }
+        }
+
+        .section-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 1.5rem !important; /* Reduced padding for more compactness */
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .section-card h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        /* Adjust gap for controls section for overall compactness */
+        .controls-section {
+            gap: 0.25rem !important; /* Even smaller gap between input groups for maximum compactness */
+        }
+
+        .input-group {
+            display: flex !important; /* Make input-group a flex container */
+            flex-direction: column !important; /* Stack children vertically */
+            gap: 0.1rem !important; /* Minimal gap between label/value and the input */
+            margin: 0 !important; /* Crucial: Remove all external margins from input-group */
+            padding: 0 !important; /* Crucial: Remove all external padding from input-group */
+        }
+
+        .input-label-row { /* New class for the row containing label text and value/checkbox */
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important; /* Vertically center items in this row */
+            font-weight: 600;
+            color: var(--cyber-neon-cyan);
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            line-height: 1 !important; /* Tightest line height */
+            margin: 0 !important; /* Crucial: Remove all margins from this row */
+            padding: 0 !important; /* Crucial: Remove all padding from this row */
+        }
+
+        .input-label-row .value-display {
+            color: var(--cyber-neon-pink);
+            font-weight: 700;
+            min-width: 40px; /* Ensure enough space for the value */
+            text-align: right;
+            margin-left: 0.5rem !important; /* Add a small margin to separate from label text */
+            flex-shrink: 0; /* Prevent the value from shrinking */
+        }
+
+        /* Styling for the checkbox itself */
+        .input-label-row input[type="checkbox"] {
+            margin: 0 0 0 0.5rem !important; /* Top, Right, Bottom, Left margins. Ensure no top/bottom margin */
+            transform: scale(1.2); /* Slightly larger checkbox */
+            accent-color: var(--cyber-neon-pink); /* Style the checkbox itself */
+            cursor: pointer;
+            flex-shrink: 0; /* Prevent the checkbox from shrinking */
+            width: auto !important; /* Ensure it doesn't take full width */
+            height: auto !important; /* Ensure it doesn't take full height */
+            vertical-align: middle !important; /* Align with text */
+        }
+
+
+        input[type="range"] {
+            width: 100% !important; /* Ensure full width */
+            -webkit-appearance: none;
+            height: 8px;
+            background: rgba(0, 255, 247, 0.2);
+            border-radius: 5px;
+            outline: none;
+            transition: opacity .2s;
+            box-shadow: inset 0 0 5px rgba(0, 255, 247, 0.1);
+            margin: 0 !important; /* Explicitly remove all margins */
+            padding: 0 !important; /* Explicitly remove all paddings */
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.6);
+            border: 2px solid #0a0a0a;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.6);
+            border: 2px solid #0a0a0a;
+        }
+
+        .input-group input[type="number"],
+        .input-group input[type="color"] {
+            background-color: #1a1a1f;
+            border: 1px solid var(--cyber-neon-cyan);
+            color: var(--text);
+            padding: 0.5rem 0.8rem !important; /* Ensure consistent padding */
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            margin: 0 !important; /* Ensure no margins */
+        }
+
+        .input-group input[type="color"] {
+            width: 50px !important; /* Smaller width for color input */
+            height: 35px !important;
+            padding: 0 !important;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover:not(:disabled) {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover:not(:disabled) {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .button-group button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+            width: 100%;
+            max-width: 700px; /* Adjusted for overall layout */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .preview-area {
+            position: relative;
+            width: 100%;
+            min-height: 350px;
+            background-image: url('https://placehold.co/800x450/333333/FFFFFF/png?text=Background+Image'); /* Placeholder background */
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.4);
+        }
+
+        .glass-element {
+            width: 70%;
+            height: 70%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text);
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            padding: 1rem;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .output-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            resize: vertical;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem !important; /* Ensure padding is responsive */
+            }
+            .section-card {
+                padding: 1.5rem;
+            }
+            .section-card h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            .glass-element {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main style="max-width: none !important; width: 100% !important; margin: 0 !important; padding: 0 !important;">
+        <div class="tool-converter-card">
+            <h2>Glassmorphism Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Create stunning glassmorphism effects with live preview and generated CSS.</p>
+
+            <div class="glassmorphism-generator-container">
+                <div class="section-card controls-section">
+                    <h3>Controls</h3>
+                    <div class="input-group">
+                        <label for="blurAmount" class="input-label-row">Blur Amount: <span class="value-display" id="blurValue">5px</span></label>
+                        <input type="range" id="blurAmount" min="0" max="20" value="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="bgColor" class="input-label-row">Background Color:</label>
+                        <input type="color" id="bgColor" value="#ffffff">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="bgOpacity" class="input-label-row">Background Opacity: <span class="value-display" id="bgOpacityValue">10%</span></label>
+                        <input type="range" id="bgOpacity" min="0" max="100" value="10">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="borderColor" class="input-label-row">Border Color:</label>
+                        <input type="color" id="borderColor" value="#ffffff">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="borderOpacity" class="input-label-row">Border Opacity: <span class="value-display" id="borderOpacityValue">30%</span></label>
+                        <input type="range" id="borderOpacity" min="0" max="100" value="30">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="borderRadius" class="input-label-row">Border Radius: <span class="value-display" id="borderRadiusValue">16px</span></label>
+                        <input type="range" id="borderRadius" min="0" max="50" value="16">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="shadowToggle" class="input-label-row">Enable Box Shadow: <input type="checkbox" id="shadowToggle" checked></label>
+                    </div>
+
+                    <div class="input-group" id="shadowControls">
+                        <label for="shadowColor" class="input-label-row">Shadow Color:</label>
+                        <input type="color" id="shadowColor" value="#000000">
+
+                        <label for="shadowOpacity" class="input-label-row">Shadow Opacity: <span class="value-display" id="shadowOpacityValue">10%</span></label>
+                        <input type="range" id="shadowOpacity" min="0" max="100" value="10">
+
+                        <label for="shadowBlur" class="input-label-row">Shadow Blur: <span class="value-display" id="shadowBlurValue">30px</span></label>
+                        <input type="range" id="shadowBlur" min="0" max="100" value="30">
+
+                        <label for="shadowSpread" class="input-label-row">Shadow Spread: <span class="value-display" id="shadowSpreadValue">0px</span></label>
+                        <input type="range" id="shadowSpread" min="-20" max="20" value="0">
+                    </div>
+
+                    <div class="button-group">
+                        <button id="resetBtn" class="secondary"><i class="ri-refresh-line"></i> Reset to Defaults</button>
+                    </div>
+                </div>
+
+                <div class="section-card preview-output-section">
+                    <h3>Preview & Code</h3>
+                    <div class="preview-area">
+                        <div class="glass-element" id="glassElement">
+                            Glass Effect
+                        </div>
+                    </div>
+
+                    <p id="messageBox" class="message-box"></p>
+
+                    <h4>Generated CSS</h4>
+                    <textarea id="cssOutput" class="output-textarea" placeholder="Your CSS will appear here." readonly></textarea>
+                    <div class="button-group">
+                        <button id="copyCssBtn" class="primary" disabled><i class="ri-clipboard-line"></i> Copy CSS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

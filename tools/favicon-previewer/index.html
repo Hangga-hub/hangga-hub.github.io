@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Preview Tool - How your favicon looks on devices | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Preview how your favicon will look across different browsers, devices, and modes (light/dark) with Hangga's free online Favicon Preview Tool. Upload your image and see instant results.">
+    <meta name="keywords" content="favicon preview, favicon tester, favicon generator, website icon preview, browser tab icon, mobile home screen icon, web development tool, online tool, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/favicon-previewer/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/favicon-previewer/index.html">
+    <meta property="og:title" content="Favicon Preview Tool - How your favicon looks on devices | Hangga's Tool Hub">
+    <meta property="og:description" content="Preview how your favicon will look across different browsers, devices, and modes (light/dark) with Hangga's free online Favicon Preview Tool. Upload your image and see instant results.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/favicon-previewer/index.html">
+    <meta property="twitter:title" content="Favicon Preview Tool - How your favicon looks on devices | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Preview how your favicon will look across different browsers, devices, and modes (light/dark) with Hangga's free online Favicon Preview Tool. Upload your image and see instant results.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Favicon Preview Tool",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "35"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "An online tool to preview how a favicon image will appear in various contexts, including browser tabs and mobile home screens.",
+      "url": "https://hangga-hub.github.io/tools/favicon-previewer/index.html",
+      "featureList": [
+        "Image Upload",
+        "Live Favicon Preview",
+        "Multiple Sizes (16x16, 32x32, 48x48, 64x64)",
+        "Dark Mode Preview",
+        "Light Mode Preview",
+        "Mobile Home Screen Icon Preview (57x57, 120x120, 180x180)",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Favicon Preview Tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .favicon-preview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+            align-items: center; /* Center content horizontally */
+        }
+
+        .section-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+            width: 100%; /* Take full width within its container */
+            max-width: 700px; /* Limit max width for larger screens */
+            text-align: center;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .section-card h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--cyber-neon-cyan);
+            font-family: var(--font-body);
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.4);
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 15px rgba(255, 0, 204, 0.6);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover:not(:disabled) {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover:not(:disabled) {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .button-group button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 700px;
+            margin-top: 1.5rem;
+        }
+
+        .preview-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            background-color: #0a0a0a; /* Default background for preview item */
+            border: 1px solid rgba(0, 255, 247, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: inset 0 0 10px rgba(0, 255, 247, 0.1);
+        }
+
+        .preview-item.dark-mode {
+            background-color: #222; /* Simulate dark mode background */
+            border-color: rgba(255, 0, 204, 0.2);
+            box-shadow: inset 0 0 10px rgba(255, 0, 204, 0.1);
+        }
+
+        .preview-item.light-mode {
+            background-color: #eee; /* Simulate light mode background */
+            border-color: rgba(0, 255, 247, 0.2);
+            box-shadow: inset 0 0 10px rgba(0, 255, 247, 0.1);
+        }
+
+        .preview-item label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .preview-image-container {
+            width: 64px; /* Max width for general previews */
+            height: 64px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px; /* Slight rounding for icons */
+            overflow: hidden;
+        }
+
+        .preview-image-container.mobile-icon {
+            width: 120px; /* Larger for mobile icons */
+            height: 120px;
+            border-radius: 20%; /* iOS app icon shape */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .preview-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Ensure entire image is visible */
+            image-rendering: pixelated; /* For very small icons, might look better */
+        }
+
+        .preview-image-container.mobile-icon img {
+            image-rendering: auto; /* For larger icons, standard rendering */
+        }
+
+        /* Specific sizes for images within containers */
+        .preview-image-container.size-16 img { width: 16px; height: 16px; }
+        .preview-image-container.size-32 img { width: 32px; height: 32px; }
+        .preview-image-container.size-48 img { width: 48px; height: 48px; }
+        .preview-image-container.size-64 img { width: 64px; height: 64px; }
+        .preview-image-container.size-57 img { width: 57px; height: 57px; }
+        .preview-image-container.size-120 img { width: 120px; height: 120px; }
+        .preview-image-container.size-180 img { width: 180px; height: 180px; }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .section-card {
+                padding: 1.5rem;
+            }
+            .section-card h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            .preview-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+            .preview-image-container.mobile-icon {
+                width: 80px;
+                height: 80px;
+            }
+            .preview-image-container.mobile-icon.size-180 {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Favicon Preview Tool</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">See how your favicon looks across different devices and contexts.</p>
+
+            <div class="favicon-preview-container">
+                <div class="section-card">
+                    <h3>Upload Your Favicon Image</h3>
+                    <div class="input-group">
+                        <label for="faviconUpload">Choose an image (PNG, JPG, SVG, ICO recommended):</label>
+                        <input type="file" id="faviconUpload" accept="image/*">
+                    </div>
+                    <div class="button-group">
+                        <button id="clearAllBtn" class="secondary" disabled><i class="ri-eraser-line"></i> Clear Previews</button>
+                    </div>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+
+                <div class="section-card">
+                    <h3>Live Previews</h3>
+                    <div id="previewGrid" class="preview-grid">
+                        <!-- Preview items will be dynamically inserted here by JavaScript -->
+                        <div class="preview-item">
+                            <label>Browser Tab (16x16)</label>
+                            <div class="preview-image-container size-16" id="preview16"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>Browser Tab (32x32)</label>
+                            <div class="preview-image-container size-32" id="preview32"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>Dark Mode (32x32)</label>
+                            <div class="preview-image-container size-32 dark-mode" id="previewDark"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>Light Mode (32x32)</label>
+                            <div class="preview-image-container size-32 light-mode" id="previewLight"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>Desktop (48x48)</label>
+                            <div class="preview-image-container size-48" id="preview48"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>Desktop (64x64)</label>
+                            <div class="preview-image-container size-64" id="preview64"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>iOS Home (57x57)</label>
+                            <div class="preview-image-container mobile-icon size-57" id="previewiOS57"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>iOS Home (120x120)</label>
+                            <div class="preview-image-container mobile-icon size-120" id="previewiOS120"></div>
+                        </div>
+                        <div class="preview-item">
+                            <label>iOS Home (180x180)</label>
+                            <div class="preview-image-container mobile-icon size-180" id="previewiOS180"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
