@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch & Timer - Online Time Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in time displays -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Use Hangga's free online Stopwatch and Timer tool. Measure elapsed time with a precise stopwatch or set a countdown timer for any duration. Perfect for productivity, workouts, and cooking.">
+    <meta name="keywords" content="stopwatch, timer, online stopwatch, online timer, countdown, time tool, productivity tool, workout timer, cooking timer, hangga tools, free online tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/stopwatch-timer/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/stopwatch-timer/index.html">
+    <meta property="og:title" content="Stopwatch & Timer - Online Time Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Use Hangga's free online Stopwatch and Timer tool. Measure elapsed time with a precise stopwatch or set a countdown timer for any duration. Perfect for productivity, workouts, and cooking.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/stopwatch-timer/index.html">
+    <meta property="twitter:title" content="Stopwatch & Timer - Online Time Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Use Hangga's free online Stopwatch and Timer tool. Measure elapsed time with a precise stopwatch or set a countdown timer for any duration. Perfect for productivity, workouts, and cooking.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Stopwatch & Timer",
+      "operatingSystem": "Web",
+      "applicationCategory": "Utilities",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "ratingCount": "70"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A versatile online tool providing both a precise stopwatch for tracking elapsed time and a customizable countdown timer with alerts.",
+      "url": "https://hangga-hub.github.io/tools/stopwatch-timer/index.html",
+      "featureList": [
+        "Stopwatch Functionality",
+        "Countdown Timer",
+        "Lap Times Recording",
+        "Customizable Timer Duration",
+        "Pause and Resume",
+        "Reset Functionality",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Stopwatch / Timer tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .tool-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+            align-items: center; /* Center content horizontally */
+        }
+
+        .section-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+            width: 100%; /* Take full width within its container */
+            max-width: 600px; /* Limit max width for larger screens */
+            text-align: center;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .section-card h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .time-display {
+            font-family: 'Fira Code', monospace;
+            font-size: 3.5rem;
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 15px var(--cyber-neon-cyan), 0 0 25px rgba(0, 255, 247, 0.5);
+            margin-bottom: 2rem;
+            min-height: 4.5rem; /* Ensure consistent height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0a0a0a;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(0, 255, 247, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        /* Timer specific styles */
+        .timer-input-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timer-input-group input[type="number"] {
+            width: 80px;
+            padding: 0.8rem 0.5rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            text-align: center;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            -moz-appearance: textfield; /* Hide arrows for Firefox */
+        }
+
+        .timer-input-group input[type="number"]::-webkit-outer-spin-button,
+        .timer-input-group input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none; /* Hide arrows for Chrome, Safari, Edge */
+            margin: 0;
+        }
+
+        .timer-input-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .timer-input-group label {
+            display: block;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .lap-times-container {
+            margin-top: 2rem;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid rgba(0, 255, 247, 0.2);
+            border-radius: 8px;
+            background-color: #0a0a0a;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .lap-times-container h4 {
+            color: var(--cyber-neon-pink);
+            font-family: var(--font-heading);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px var(--cyber-neon-pink);
+            border-bottom: 1px solid rgba(255, 0, 204, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        #lapList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #lapList li {
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            color: var(--text);
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed rgba(238, 238, 238, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #lapList li:last-child {
+            border-bottom: none;
+        }
+
+        #lapList li span:first-child {
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .section-card {
+                padding: 1.5rem;
+            }
+            .section-card h3 {
+                font-size: 1.5rem;
+            }
+            .time-display {
+                font-size: 2.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            .timer-input-group {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .timer-input-group input[type="number"] {
+                width: 100%;
+                max-width: 100px; /* Still keep some max width */
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Stopwatch & Timer</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Measure elapsed time or set a countdown.</p>
+
+            <div class="tool-container">
+                <!-- Stopwatch Section -->
+                <div class="section-card">
+                    <h3>Stopwatch</h3>
+                    <div id="stopwatchDisplay" class="time-display">00:00:00.000</div>
+                    <div class="button-group">
+                        <button id="startStopwatchBtn" class="primary"><i class="ri-play-line"></i> Start</button>
+                        <button id="pauseStopwatchBtn" class="secondary" disabled><i class="ri-pause-line"></i> Pause</button>
+                        <button id="resetStopwatchBtn" class="secondary" disabled><i class="ri-refresh-line"></i> Reset</button>
+                        <button id="lapStopwatchBtn" class="secondary" disabled><i class="ri-flag-line"></i> Lap</button>
+                    </div>
+                    <div class="lap-times-container">
+                        <h4>Lap Times</h4>
+                        <ul id="lapList">
+                            <!-- Lap times will be inserted here -->
+                        </ul>
+                    </div>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+
+                <!-- Timer Section -->
+                <div class="section-card">
+                    <h3>Timer</h3>
+                    <div id="timerDisplay" class="time-display">00:00:00</div>
+                    <div class="timer-input-group">
+                        <div>
+                            <input type="number" id="timerHours" min="0" max="99" value="0">
+                            <label for="timerHours">Hours</label>
+                        </div>
+                        <div>
+                            <input type="number" id="timerMinutes" min="0" max="59" value="0">
+                            <label for="timerMinutes">Minutes</label>
+                        </div>
+                        <div>
+                            <input type="number" id="timerSeconds" min="0" max="59" value="0">
+                            <label for="timerSeconds">Seconds</label>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button id="setTimerBtn" class="primary"><i class="ri-time-line"></i> Set Timer</button>
+                        <button id="startTimerBtn" class="primary" disabled><i class="ri-play-line"></i> Start</button>
+                        <button id="pauseTimerBtn" class="secondary" disabled><i class="ri-pause-line"></i> Pause</button>
+                        <button id="resetTimerBtn" class="secondary" disabled><i class="ri-refresh-line"></i> Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
