@@ -1,0 +1,14 @@
+{
+  "hosting": [
+    {
+      "target": "main-site",
+      "public": "./",
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    },
+    {
+      "target": "alt-site",
+      "public": "./",
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    }
+  ]
+}
