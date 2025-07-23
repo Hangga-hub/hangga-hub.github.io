@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cURL Command Generator - Convert HTTP Request to cURL | Hangga's Tool Hub</title>
+    <title>Tailwind CSS Class Generator / Previewer | Hangga's Tool Hub</title>
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
@@ -11,23 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- SEO Meta Tags for this tool -->
-    <meta name="description" content="Generate cURL commands from HTTP request details (method, URL, headers, body) with Hangga's free online cURL Command Generator. Perfect for developers and API testing.">
-    <meta name="keywords" content="curl command generator, http to curl, curl converter, generate curl, api testing, web development tool, online curl tool, hangga tools">
+    <meta name="description" content="Generate and live preview Tailwind CSS classes on an HTML element. Quickly test styles and get the ready-to-use HTML code with Hangga's free online tool.">
+    <meta name="keywords" content="tailwind css generator, tailwind preview, tailwind class tester, generate tailwind html, tailwind online tool, css utility, web development tool, hangga tools">
     <meta name="author" content="Hangga">
-    <link rel="canonical" href="https://hangga-hub.github.io/tools/curl-command-generator/index.html">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/tailwind-class-generator/index.html">
 
     <!-- Open Graph / Facebook for this tool -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hangga-hub.github.io/tools/curl-command-generator/index.html">
-    <meta property="og:title" content="cURL Command Generator - Convert HTTP Request to cURL | Hangga's Tool Hub">
-    <meta property="og:description" content="Generate cURL commands from HTTP request details (method, URL, headers, body) with Hangga's free online cURL Command Generator. Perfect for developers and API testing.">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/tailwind-class-generator/index.html">
+    <meta property="og:title" content="Tailwind CSS Class Generator / Previewer | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate and live preview Tailwind CSS classes on an HTML element. Quickly test styles and get the ready-to-use HTML code with Hangga's free online tool.">
     <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Twitter for this tool -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/curl-command-generator/index.html">
-    <meta property="twitter:title" content="cURL Command Generator - Convert HTTP Request to cURL | Hangga's Tool Hub">
-    <meta property="twitter:description" content="Generate cURL commands from HTTP request details (method, URL, headers, body) with Hangga's free online cURL Command Generator. Perfect for developers and API testing.">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/tailwind-class-generator/index.html">
+    <meta property="twitter:title" content="Tailwind CSS Class Generator / Previewer | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate and live preview Tailwind CSS classes on an HTML element. Quickly test styles and get the ready-to-use HTML code with Hangga's free online tool.">
     <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Schema.org Structured Data for this tool -->
@@ -35,27 +35,25 @@
     {
       "@context": "http://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Hangga's cURL Command Generator",
+      "name": "Hangga's Tailwind CSS Class Generator / Previewer",
       "operatingSystem": "Web",
       "applicationCategory": "DeveloperTool",
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "42"
+        "ratingValue": "4.7",
+        "ratingCount": "38"
       },
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "An online tool to convert HTTP request details into a cURL command for easy testing and debugging.",
-      "url": "https://hangga-hub.github.io/tools/curl-command-generator/index.html",
+      "description": "An online tool to generate and live preview Tailwind CSS classes on an HTML element, providing ready-to-use HTML code.",
+      "url": "https://hangga-hub.github.io/tools/tailwind-class-generator/index.html",
       "featureList": [
-        "HTTP Method Selection",
-        "URL Input",
-        "Header Input",
-        "Request Body Input",
-        "cURL Command Generation",
+        "Tailwind Class Input",
+        "Live Preview",
+        "HTML Code Generation",
         "Copy to Clipboard",
         "Free to Use",
         "Online Tool"
@@ -78,7 +76,7 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
     <style>
-        /* Specific styles for the cURL Command Generator */
+        /* Specific styles for the Tailwind CSS Class Generator */
         .tool-converter-card {
             display: flex;
             flex-direction: column;
@@ -88,7 +86,7 @@
             min-height: 80vh;
         }
 
-        .curl-generator-container {
+        .tailwind-generator-container {
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -136,11 +134,10 @@
             font-family: var(--font-body);
         }
 
-        .input-field,
         .input-textarea,
-        .output-textarea,
-        .input-select {
+        .output-textarea {
             width: 100%;
+            min-height: 120px;
             padding: 0.8rem 1rem;
             border: 1px solid var(--cyber-neon-cyan);
             border-radius: 8px;
@@ -149,33 +146,17 @@
             font-family: 'Fira Code', monospace;
             font-size: 0.95rem;
             box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            resize: vertical;
             transition: all 0.3s ease;
             box-sizing: border-box;
             line-height: 1.5;
         }
 
-        .input-textarea,
-        .output-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .input-field:focus,
         .input-textarea:focus,
-        .output-textarea:focus,
-        .input-select:focus {
+        .output-textarea:focus {
             outline: none;
             border-color: var(--cyber-neon-pink);
             box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
-        }
-
-        .input-select {
-            appearance: none; /* Remove default arrow */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300fff7'%3E%3Cpath d='M12 15.707l-4.707-4.707A1 1 0 006 12v0a1 1 0 001.707.707L12 17.414l4.293-4.293A1 1 0 0018 12v0a1 1 0 00-1.707-.707L12 15.707z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.8rem center;
-            background-size: 1.2em;
-            padding-right: 2.5rem; /* Make space for the custom arrow */
         }
 
         .button-group {
@@ -259,6 +240,28 @@
             text-shadow: 0 0 12px var(--cyber-neon-pink);
         }
 
+        .preview-area {
+            width: 100%;
+            max-width: 700px;
+            min-height: 200px;
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            overflow: hidden; /* Ensure content stays within borders */
+            background-color: #1a1a1f; /* Dark background for preview */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem; /* Padding around the iframe */
+            box-sizing: border-box;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #1a1a1f; /* Match parent background */
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .tool-converter-card {
@@ -283,43 +286,19 @@
 
     <main>
         <div class="tool-converter-card">
-            <h2>cURL Command Generator</h2>
-            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Convert HTTP request details into a cURL command.</p>
+            <h2>Tailwind CSS Class Generator / Previewer</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Apply Tailwind classes and see a live preview.</p>
 
-            <div class="curl-generator-container">
+            <div class="tailwind-generator-container">
                 <div class="section-card">
-                    <h3>HTTP Request Details</h3>
+                    <h3>Enter Tailwind Classes</h3>
                     <div class="input-group">
-                        <label for="httpMethod">Method:</label>
-                        <select id="httpMethod" class="input-select">
-                            <option value="GET">GET</option>
-                            <option value="POST">POST</option>
-                            <option value="PUT">PUT</option>
-                            <option value="DELETE">DELETE</option>
-                            <option value="PATCH">PATCH</option>
-                            <option value="HEAD">HEAD</option>
-                            <option value="OPTIONS">OPTIONS</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="requestUrl">URL:</label>
-                        <input type="text" id="requestUrl" class="input-field" placeholder="e.g., https://api.example.com/data">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="requestHeaders">Headers (one per line, e.g., Content-Type: application/json):</label>
-                        <textarea id="requestHeaders" class="input-textarea" placeholder="Authorization: Bearer YOUR_TOKEN
-X-Custom-Header: Value"></textarea>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="requestBody">Request Body (for POST, PUT, PATCH):</label>
-                        <textarea id="requestBody" class="input-textarea" placeholder='{"key": "value", "number": 123}'></textarea>
+                        <label for="tailwindClasses">Add Tailwind classes (space-separated):</label>
+                        <textarea id="tailwindClasses" class="input-textarea" placeholder="e.g., bg-blue-500 text-white p-4 rounded-lg shadow-xl hover:bg-blue-600 transition duration-300"></textarea>
                     </div>
 
                     <div class="button-group">
-                        <button id="generateCurlBtn" class="primary"><i class="ri-terminal-box-line"></i> Generate cURL</button>
+                        <button id="applyClassesBtn" class="primary"><i class="ri-brush-line"></i> Apply & Preview</button>
                         <button id="clearAllBtn" class="secondary"><i class="ri-eraser-line"></i> Clear All</button>
                     </div>
                 </div>
@@ -327,10 +306,17 @@ X-Custom-Header: Value"></textarea>
                 <p id="messageBox" class="message-box"></p>
 
                 <div class="section-card">
-                    <h3>Generated cURL Command</h3>
-                    <textarea id="curlOutput" class="output-textarea" placeholder="Your cURL command will appear here..." readonly></textarea>
+                    <h3>Live Preview</h3>
+                    <div class="preview-area">
+                        <iframe id="previewIframe" class="preview-iframe" title="Tailwind CSS Preview"></iframe>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3>Generated HTML</h3>
+                    <textarea id="htmlOutput" class="output-textarea" placeholder="Generated HTML will appear here." readonly></textarea>
                     <div class="button-group">
-                        <button id="copyOutputBtn" class="secondary" disabled><i class="ri-clipboard-line"></i> Copy Command</button>
+                        <button id="copyOutputBtn" class="secondary" disabled><i class="ri-clipboard-line"></i> Copy HTML</button>
                     </div>
                 </div>
             </div>
