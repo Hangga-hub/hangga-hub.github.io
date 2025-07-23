@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /htdocs
+          server-dir: /htdocs/
 
   rfgd-deploy:
     name: Deploy to hanggatools.rf.gd
@@ -46,4 +46,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /hanggatools.rf.gd
+          server-dir: /hanggatools.rf.gd/
