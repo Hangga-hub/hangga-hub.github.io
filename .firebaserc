@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "hangga-hub"
+  },
+  "targets": {
+    "hangga-hub": {
+      "hosting": {
+        "main-site": [
+          "hangga-hub"
+        ],
+        "alt-site": [
+          "hanggatools"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
