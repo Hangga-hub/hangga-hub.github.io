@@ -431,6 +431,8 @@ nav.sticky .dropdown-content {
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none; /* Prevent interaction when hidden */
+    max-height: calc(100vh - var(--navbar-height) - 20px); /* Limit height to viewport */
+    overflow-y: auto; /* Enable scrolling for dropdown content */
 }
 
 /* For desktop: Show dropdown on hover */
@@ -520,7 +522,7 @@ nav.sticky .dropdown-content li a:hover {
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
         box-shadow: -5px 0 20px rgba(0, 255, 247, 0.3);
-        overflow-y: auto;
+        overflow-y: auto; /* Enable scrolling for the main mobile menu */
         align-items: flex-start;
         border-left: 2px solid var(--accent);
     }
@@ -550,6 +552,8 @@ nav.sticky .dropdown-content li a:hover {
         border: none;
         padding: 0;
         margin: 0;
+        max-height: none; /* Remove max-height for nested dropdowns in mobile menu */
+        overflow-y: visible; /* Allow content to push parent scroll */
     }
 
     nav.sticky .dropdown.open .dropdown-content {
