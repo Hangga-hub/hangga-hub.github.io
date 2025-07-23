@@ -46,4 +46,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /hanggatools.rf.gd/
+          server-dir: /hanggatools.rf.gd/htdocs/
