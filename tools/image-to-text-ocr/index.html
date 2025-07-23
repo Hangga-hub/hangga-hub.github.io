@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Text (OCR) - Extract Text from Images | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in output -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Convert images to text using Optical Character Recognition (OCR). Upload JPG, PNG, or other image formats and extract editable text instantly with Hangga's free online tool.">
+    <meta name="keywords" content="image to text, OCR, optical character recognition, extract text from image, image converter, online OCR, free OCR, JPG to text, PNG to text, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/image-to-text-ocr/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/image-to-text-ocr/index.html">
+    <meta property="og:title" content="Image to Text (OCR) - Extract Text from Images | Hangga's Tool Hub">
+    <meta property="og:description" content="Convert images to text using Optical Character Recognition (OCR). Upload JPG, PNG, or other image formats and extract editable text instantly with Hangga's free online tool.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/image-to-text-ocr/index.html">
+    <meta property="twitter:title" content="Image to Text (OCR) - Extract Text from Images | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Convert images to text using Optical Character Recognition (OCR). Upload JPG, PNG, or other image formats and extract editable text instantly with Hangga's free online tool.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Image to Text (OCR)",
+      "operatingSystem": "Web",
+      "applicationCategory": "Utilities",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "55"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "An online tool to extract text from images (JPG, PNG, etc.) using Optical Character Recognition (OCR).",
+      "url": "https://hangga-hub.github.io/tools/image-to-text-ocr/index.html",
+      "featureList": [
+        "Image to Text Conversion",
+        "Optical Character Recognition (OCR)",
+        "Supports JPG, PNG, BMP, TIFF",
+        "Copy Extracted Text",
+        "Live Preview",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Image to Text (OCR) tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .ocr-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+            align-items: center; /* Center content horizontally */
+        }
+
+        .section-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+            width: 100%; /* Take full width within its container */
+            max-width: 700px; /* Limit max width for larger screens */
+            text-align: center;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .section-card h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .file-input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .file-input-group input[type="file"] {
+            display: none; /* Hide default file input */
+        }
+
+        .custom-file-upload {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .custom-file-upload:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .image-preview-container {
+            margin-top: 1.5rem;
+            border: 1px dashed rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1f;
+            overflow: hidden;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 300px; /* Limit preview height */
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.2);
+        }
+
+        .image-placeholder {
+            color: var(--text);
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover:not(:disabled) {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover:not(:disabled) {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .button-group button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .output-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            resize: vertical;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .output-textarea:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+            height: 20px;
+            border: 1px solid var(--cyber-neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+            display: none; /* Hidden by default */
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--cyber-neon-cyan), var(--cyber-neon-pink));
+            border-radius: 5px;
+            text-align: center;
+            color: #0a0a0a;
+            font-weight: bold;
+            line-height: 20px;
+            transition: width 0.1s ease-out;
+        }
+        .progress-bar-container.show {
+            display: block;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .section-card {
+                padding: 1.5rem;
+            }
+            .section-card h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            .custom-file-upload {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Image to Text (OCR)</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Extract editable text from images using Optical Character Recognition.</p>
+
+            <div class="ocr-container">
+                <div class="section-card">
+                    <h3>Upload Image</h3>
+                    <div class="file-input-group">
+                        <label for="imageUpload" class="custom-file-upload">
+                            <i class="ri-image-add-line"></i> Choose Image
+                        </label>
+                        <input type="file" id="imageUpload" accept="image/*">
+                    </div>
+                    <div class="image-preview-container">
+                        <img id="imagePreview" src="#" alt="Image Preview" class="image-preview" style="display: none;">
+                        <p id="imagePlaceholder" class="image-placeholder">No image selected</p>
+                    </div>
+                    <div class="button-group">
+                        <button id="recognizeBtn" class="primary" disabled><i class="ri-file-text-line"></i> Extract Text</button>
+                        <button id="clearBtn" class="secondary" disabled><i class="ri-eraser-line"></i> Clear All</button>
+                    </div>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+
+                <div class="section-card">
+                    <h3>Extracted Text</h3>
+                    <div class="progress-bar-container" id="progressBarContainer">
+                        <div class="progress-bar" id="progressBar">0%</div>
+                    </div>
+                    <textarea id="extractedText" class="output-textarea" placeholder="Extracted text will appear here..." readonly></textarea>
+                    <div class="button-group">
+                        <button id="copyTextBtn" class="secondary" disabled><i class="ri-clipboard-line"></i> Copy Text</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="https://unpkg.com/tesseract.js@4.1.0/dist/tesseract.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

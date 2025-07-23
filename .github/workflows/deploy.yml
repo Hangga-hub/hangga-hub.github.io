@@ -1,4 +1,4 @@
-name: Deploy to Surge
+name: Deploy to Surge & InfinityFree
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  deploy:
+  surge-deploy:
+    name: Deploy to Surge.sh
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,3 +17,17 @@ jobs:
 
       - name: Deploy to Surge
         run: surge ./ hangga-tools.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+
+  infinityfree-deploy:
+    name: Deploy to InfinityFree via FTP
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Upload to InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
