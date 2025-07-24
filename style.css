@@ -64,7 +64,7 @@ body {
 
 /* Main Content Area */
 main {
-    max-width: 1000px; /* Increased max-width for more horizontal space */
+    max-width: 1150px; /* ADJUSTMENT: Reduced max-width for less overall width */
     margin: calc(var(--navbar-height) + 30px) auto 50px auto;
     padding: 0 var(--spacing-md);
     width: 100%;
@@ -120,16 +120,23 @@ main {
 
 .tools-grid {
     display: grid;
-    /* Adjusted minmax to allow for 3-4 columns comfortably */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Adjusted minmax to allow for 4 columns comfortably on large screens */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Default for smaller screens */
     gap: var(--spacing-md);
     padding: 0;
     list-style: none;
-    max-width: var(--max-content-width); /* This will be 1400px, but main's max-width is 1600px */
+    max-width: 100%; /* Take full width of main container */
     margin: 0 auto;
     box-sizing: border-box;
     justify-content: center;
-    align-items: stretch;
+    align-items: stretch; /* Ensures all grid items in a row stretch to the height of the tallest item */
+}
+
+/* Media query for 4 columns on wider screens */
+@media (min-width: 1024px) { /* ADJUSTMENT: Changed breakpoint to 1024px for 4 columns */
+    .tools-grid {
+        grid-template-columns: repeat(4, 1fr); /* ADJUSTMENT: Explicitly force equal width 1fr columns */
+    }
 }
 
 /* Tool Card */
@@ -145,7 +152,7 @@ main {
     align-items: flex-start;
     transition: all 0.3s ease;
     border-radius: 12px; /* Rounded corners for cards */
-    min-height: 280px; /* Ensure a consistent minimum height */
+    min-height: 360px; /* ADJUSTMENT: Increased significantly for more consistent height across cards */
 }
 
 .tool-card:hover {
@@ -185,7 +192,7 @@ main {
 .tool-card p {
     font-size: 1rem; /* Clearer description text */
     margin-bottom: var(--spacing-md); /* More space below description */
-    flex-grow: 1;
+    flex-grow: 1; /* Allows paragraph to take up available space */
     color: #fff;
     text-shadow: 0 0 8px var(--cyber-neon-cyan);
 }
@@ -1182,7 +1189,7 @@ input[type="number"], select {
 
 .file-drop-zone:hover,
 .file-drop-zone.drag-over {
-    background-color: rgba(0, 255, 255, 0.15);
+    background-color: rgba(0, 255, 247, 0.15);
     border-color: var(--pulse);
     box-shadow: 0 0 15px rgba(255, 0, 204, 0.3);
 }
@@ -1304,7 +1311,7 @@ input[type="number"], select {
 }
 
 .unit-toggle {
-    background-color: rgba(0, 255, 255, 0.1);
+    background-color: rgba(0, 255, 247, 0.1);
     color: var(--accent);
     padding: 8px 12px;
     border-radius: 8px;
@@ -1323,7 +1330,7 @@ input[type="number"], select {
 }
 
 .unit-toggle:hover:not(.active) {
-    background-color: rgba(0, 255, 255, 0.25);
+    background-color: rgba(0, 255, 247, 0.25);
     box-shadow: 0 0 5px var(--accent);
 }
 

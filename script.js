@@ -8,19 +8,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Determine the base path for assets, robustly handling GitHub Pages subdirectories.
-    // This logic aims to get the "root" of your project (e.g., "/your-repo-name/")
+    // Determine the base path for assets. This is crucial for GitHub Pages
+    // where the site might be hosted in a subdirectory (e.g., /repo-name/).
+    // This logic aims to get the "root" of your project (e.g., "/your-repo-name/" or just "/")
     let basePath = window.location.pathname;
-    // If the current path ends with /index.html or a tool's index.html, remove it
-    if (basePath.endsWith('/index.html')) {
+
+    // Remove the HTML file name from the path if present (e.g., /index.html, /index2.html)
+    const htmlFileMatch = basePath.match(/\/[^/]+\.html$/);
+    if (htmlFileMatch) {
         basePath = basePath.substring(0, basePath.lastIndexOf('/'));
     }
-    // If it's a tool sub-page (e.g., /tools/bmi-calculator), go up one more level
-    // to get to the project root (e.g., /your-repo-name)
+
+    // If it's a tool sub-page (e.g., /tools/bmi-calculator), go up to the project root
+    // (assuming tools are directly under the repo root or a fixed /tools/ directory)
+    // This ensures basePath correctly points to the root of the application.
     if (basePath.includes('/tools/')) {
-        // Find the index of '/tools/' and take everything before it
         basePath = basePath.substring(0, basePath.indexOf('/tools/'));
     }
+
     // Ensure basePath starts with a slash and ends without one (unless it's just '/')
     if (basePath === '') {
         basePath = '/';
@@ -32,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Construct the absolute URL to navbar.html
+    // Assuming 'components' is always directly under the determined basePath
     const navbarPath = window.location.origin + basePath + "/components/navbar.html";
 
     console.log("Attempting to fetch navbar from:", navbarPath);
@@ -118,56 +124,43 @@ document.addEventListener("DOMContentLoaded", () => {
         highlightActiveNavLink();
     }; // End of initializeNavbarInteractions function
 
-    // --- Highlight Active Nav Link (can be called independently) ---
+    // --- Highlight Active Nav Link ---
     const highlightActiveNavLink = () => {
-        // Normalize current pathname for comparison
-        let currentPathname = window.location.pathname;
-        // Remove trailing slash unless it's the root '/'
-        if (currentPathname.endsWith('/') && currentPathname.length > 1) {
-            currentPathname = currentPathname.slice(0, -1);
-        }
-        // Remove /index.html if present
-        if (currentPathname.endsWith('/index.html')) {
-            currentPathname = currentPathname.replace('/index.html', '');
-        }
-        // Handle root path specifically, so it matches '/'
-        if (currentPathname === '') {
-            currentPathname = '/';
-        }
-
-        const allLinks = document.querySelectorAll("nav.sticky a"); // Select all links within the navbar
+        const currentPathname = window.location.pathname;
+        const allLinks = document.querySelectorAll("nav.sticky a");
 
         allLinks.forEach(link => {
-            let linkPathname = new URL(link.href).pathname;
-            // Normalize link pathname similarly
-            if (linkPathname.endsWith('/') && linkPathname.length > 1) {
-                linkPathname = linkPathname.slice(0, -1);
-            }
-            if (linkPathname.endsWith('/index.html')) {
-                linkPathname = linkPathname.replace('/index.html', '');
-            }
-            if (linkPathname === '') {
-                linkPathname = '/';
-            }
-
             link.classList.remove("active"); // Remove active class from all links first
 
-            // Compare normalized paths
-            if (currentPathname === linkPathname) {
+            let linkHref = new URL(link.href).pathname; // Get pathname from link's href
+
+            // Special handling for root and index files for active state
+            if (linkHref === '/' || linkHref === '/index.html') {
+                if (currentPathname === '/' || currentPathname === '/index.html') {
+                    link.classList.add("active");
+                }
+            } else if (linkHref === '/index2.html') {
+                if (currentPathname === '/index2.html') {
+                    link.classList.add("active");
+                }
+            } else if (currentPathname.startsWith(linkHref) && linkHref !== '/') {
+                // For other tool links, check if current path starts with the link's path
+                // and ensure it's not just the root link (which is handled above)
                 link.classList.add("active");
+            }
+
+            // Also highlight the dropdown button if a child link is active
+            if (link.classList.contains("active")) {
                 const parentDropdown = link.closest(".dropdown");
                 if (parentDropdown) {
                     const dropbtn = parentDropdown.querySelector(".dropbtn");
                     if (dropbtn) {
-                        dropbtn.classList.add("active"); // Also highlight the dropdown button
+                        dropbtn.classList.add("active");
                     }
                 }
             }
         });
     };
-
-    // --- Handle window resize (for switching between mobile/desktop views) ---
-    window.addEventListener('resize', initializeNavbarInteractions);
 
     // --- Fetch and Inject Navbar (Main Execution Flow) ---
     fetch(navbarPath)
