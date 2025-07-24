@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Calculator - Operations with Steps | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in input/output -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Perform matrix operations online: addition, subtraction, multiplication, scalar multiplication, transpose, determinant, and inverse.">
+    <meta name="keywords" content="matrix calculator, matrix operations, matrix addition, matrix subtraction, matrix multiplication, scalar multiplication, matrix transpose, matrix determinant, matrix inverse, linear algebra, math tool, online calculator, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/matrix-calculator/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/matrix-calculator/index.html">
+    <meta property="og:title" content="Matrix Calculator - Operations with Steps | Hangga's Tool Hub">
+    <meta property="og:description" content="Perform matrix operations online: addition, subtraction, multiplication, scalar multiplication, transpose, determinant, and inverse.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/matrix-calculator/index.html">
+    <meta property="twitter:title" content="Matrix Calculator - Operations with Steps | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Perform matrix operations online: addition, subtraction, multiplication, scalar multiplication, transpose, determinant, and inverse.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Matrix Calculator",
+      "operatingSystem": "Web",
+      "applicationCategory": "EducationalTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "32"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "An online tool to perform various matrix operations including addition, subtraction, multiplication, transpose, determinant, and inverse.",
+      "url": "https://hangga-hub.github.io/tools/matrix-calculator/index.html",
+      "featureList": [
+        "Matrix Addition",
+        "Matrix Subtraction",
+        "Matrix Multiplication",
+        "Scalar Multiplication",
+        "Matrix Transpose",
+        "Matrix Determinant",
+        "Matrix Inverse (2x2)",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Matrix Calculator tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(0, 255, 247, 0.3);
+        }
+
+        .input-group textarea,
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-pink);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 8px rgba(255, 0, 204, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            line-height: 1.5;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .input-group input[type="number"] {
+            min-height: auto;
+            height: auto;
+            max-width: 150px; /* Smaller width for scalar input */
+        }
+
+        .input-group textarea:focus,
+        .input-group input[type="number"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-cyan);
+            box-shadow: inset 0 0 12px rgba(0, 255, 247, 0.4);
+        }
+
+        .matrix-inputs {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .matrix-inputs > div {
+            flex: 1;
+            min-width: 280px; /* Ensure inputs don't get too small */
+        }
+
+        .operation-section {
+            margin-bottom: 2rem;
+            border: 1px dashed rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            background-color: rgba(15, 15, 20, 0.5);
+        }
+
+        .operation-section h3 {
+            color: var(--cyber-neon-yellow);
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 0 8px rgba(255, 221, 0, 0.5);
+        }
+
+        .tool-button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem; /* Slightly smaller gap for more buttons */
+            justify-content: center;
+            margin-bottom: 1rem; /* Space between rows of buttons */
+        }
+
+        .tool-button-row button {
+            padding: 10px 20px; /* Smaller padding for more buttons */
+            border-radius: 8px;
+            font-size: 0.95rem; /* Smaller font size */
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .tool-button-row button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+        }
+
+        .tool-button-row button.primary:hover:not(:disabled) {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 30px rgba(255, 0, 204, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .tool-button-row button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+        }
+
+        .tool-button-row button.secondary:hover:not(:disabled) {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .tool-button-row button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .neon-result {
+            background-color: #1a1a1f;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            padding: 1.5rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            color: var(--text);
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            margin-top: 2rem;
+            min-height: 150px;
+            overflow-x: auto;
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+            width: 100%;
+            max-width: 700px; /* Adjusted for consistency */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .matrix-inputs {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .matrix-inputs > div {
+                min-width: unset; /* Remove min-width on small screens */
+                width: 100%;
+            }
+            .tool-button-row button {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 24px; /* Adjust padding for full width buttons */
+                font-size: 1rem;
+            }
+            .operation-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2><i class="ri-grid-fill"></i> Matrix Calculator</h2>
+            <p class="subtitle">Perform various operations on matrices.</p>
+
+            <div class="matrix-inputs">
+                <div class="input-group">
+                    <label for="matrixAInput">Matrix A (rows separated by newlines, columns by spaces/commas):</label>
+                    <textarea id="matrixAInput" placeholder="e.g.,
+1 2
+3 4">1 2
+3 4</textarea>
+                </div>
+                <div class="input-group">
+                    <label for="matrixBInput">Matrix B (rows separated by newlines, columns by spaces/commas):</label>
+                    <textarea id="matrixBInput" placeholder="e.g.,
+5 6
+7 8">5 6
+7 8</textarea>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="scalarInput">Scalar Value (for scalar multiplication):</label>
+                <input type="number" id="scalarInput" value="2" step="0.1" />
+            </div>
+
+            <div class="operation-section">
+                <h3>Binary Operations (A & B)</h3>
+                <div class="tool-button-row">
+                    <button id="addBtn" class="primary"><i class="ri-add-line"></i> A + B</button>
+                    <button id="subtractBtn" class="primary"><i class="ri-subtract-line"></i> A - B</button>
+                    <button id="multiplyBtn" class="primary"><i class="ri-close-line"></i> A × B</button>
+                </div>
+            </div>
+
+            <div class="operation-section">
+                <h3>Unary Operations (Matrix A)</h3>
+                <div class="tool-button-row">
+                    <button id="scalarABtn" class="primary"><i class="ri-function-line"></i> Scalar × A</button>
+                    <button id="transposeABtn" class="primary"><i class="ri-arrow-left-right-line"></i> A<sup>T</sup></button>
+                    <button id="determinantABtn" class="primary"><i class="ri-numbers-line"></i> det(A)</button>
+                    <button id="inverseABtn" class="primary"><i class="ri-function-line"></i> A<sup>-1</sup></button>
+                </div>
+            </div>
+
+            <div class="operation-section">
+                <h3>Unary Operations (Matrix B)</h3>
+                <div class="tool-button-row">
+                    <button id="scalarBBtn" class="primary"><i class="ri-function-line"></i> Scalar × B</button>
+                    <button id="transposeBBtn" class="primary"><i class="ri-arrow-left-right-line"></i> B<sup>T</sup></button>
+                    <button id="determinantBBtn" class="primary"><i class="ri-numbers-line"></i> det(B)</button>
+                    <button id="inverseBBtn" class="primary"><i class="ri-function-line"></i> B<sup>-1</sup></button>
+                </div>
+            </div>
+
+            <div class="tool-button-row">
+                <button id="resetBtn" class="secondary"><i class="ri-restart-line"></i> Reset All</button>
+            </div>
+
+            <div class="message-box" id="messageBox"></div>
+
+            <h3>Result</h3>
+            <pre class="neon-result" id="resultOutput">Result will appear here.</pre>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

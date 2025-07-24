@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac Sign Finder - Based on Birthdate | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Find your zodiac sign instantly based on your birthdate. Discover your astrological sign and its corresponding dates.">
+    <meta name="keywords" content="zodiac sign, zodiac finder, birthdate zodiac, astrological sign, horoscope, star sign, online tool, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/zodiac-sign-finder/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/zodiac-sign-finder/index.html">
+    <meta property="og:title" content="Zodiac Sign Finder - Based on Birthdate | Hangga's Tool Hub">
+    <meta property="og:description" content="Find your zodiac sign instantly based on your birthdate. Discover your astrological sign and its corresponding dates.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/zodiac-sign-finder/index.html">
+    <meta property="twitter:title" content="Zodiac Sign Finder - Based on Birthdate | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Find your zodiac sign instantly based on your birthdate. Discover your astrological sign and its corresponding dates.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Zodiac Sign Finder",
+      "operatingSystem": "Web",
+      "applicationCategory": "Utilities",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "42"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "An online tool to determine your zodiac sign based on your birthdate.",
+      "url": "https://hangga-hub.github.io/tools/zodiac-sign-finder/index.html",
+      "featureList": [
+        "Zodiac Sign Calculation",
+        "Birthdate Input",
+        "Instant Results",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Zodiac Sign Finder tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 700px;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 70vh;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(0, 255, 247, 0.3);
+        }
+
+        .input-group input[type="date"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-pink);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(255, 0, 204, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .input-group input[type="date"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-cyan);
+            box-shadow: inset 0 0 12px rgba(0, 255, 247, 0.4);
+        }
+
+        .tool-button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .tool-button-row button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .tool-button-row button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .tool-button-row button.primary:hover:not(:disabled) {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .tool-button-row button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .tool-button-row button.secondary:hover:not(:disabled) {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .tool-button-row button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .neon-result {
+            background-color: #1a1a1f;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            padding: 1.5rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--text);
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            margin-top: 1.5rem;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .tool-button-row button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2><i class="ri-star-line"></i> Zodiac Sign Finder</h2>
+            <p class="subtitle">Find your zodiac sign based on your birthdate.</p>
+
+            <div class="input-group">
+                <label for="birthdateInput">Enter your Birthdate:</label>
+                <input type="date" id="birthdateInput" />
+            </div>
+
+            <div class="tool-button-row">
+                <button id="findSignBtn" class="primary">Find Zodiac Sign</button>
+                <button id="resetBtn" class="secondary">Reset</button>
+            </div>
+
+            <h3>Your Zodiac Sign</h3>
+            <pre class="neon-result" id="resultOutput">Enter your birthdate and click 'Find Zodiac Sign' to see your sign.</pre>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

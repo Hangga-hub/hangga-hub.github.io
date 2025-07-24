@@ -2024,7 +2024,7 @@ input[type="range"]::-moz-range-thumb:active {
 .tool-converter-card button, 
 button.primary {
     padding: 16px 36px !important;
-    margin: 1.8rem 0 1.2rem 0 !important;
+    margin: 15px;
     letter-spacing: 0.8px;
 }
 

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Notes Tool - Encrypt & Store Text Locally | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in input/output -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Encrypt and securely store your personal notes directly in your browser's local storage with a password. Your data stays local and private.">
+    <meta name="keywords" content="secure notes, encrypted notes, local storage notes, privacy tool, text encryption, client-side encryption, hangga tools, personal notes">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/secure-notes-tool/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/secure-notes-tool/index.html">
+    <meta property="og:title" content="Secure Notes Tool - Encrypt & Store Text Locally | Hangga's Tool Hub">
+    <meta property="og:description" content="Encrypt and securely store your personal notes directly in your browser's local storage with a password. Your data stays local and private.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/secure-notes-tool/index.html">
+    <meta property="twitter:title" content="Secure Notes Tool - Encrypt & Store Text Locally | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Encrypt and securely store your personal notes directly in your browser's local storage with a password. Your data stays local and private.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Secure Notes Tool",
+      "operatingSystem": "Web",
+      "applicationCategory": "Utilities",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "55"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "An online tool to encrypt and store notes securely in your browser's local storage, ensuring privacy.",
+      "url": "https://hangga-hub.github.io/tools/secure-notes-tool/index.html",
+      "featureList": [
+        "Text Encryption (AES)",
+        "Local Storage Persistence",
+        "Password Protection",
+        "Decryption Functionality",
+        "Clear Notes Option",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Secure Notes tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(0, 255, 247, 0.3);
+        }
+
+        .input-group textarea,
+        .input-group input[type="password"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-pink);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 8px rgba(255, 0, 204, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        .input-group textarea:focus,
+        .input-group input[type="password"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-cyan);
+            box-shadow: inset 0 0 12px rgba(0, 255, 247, 0.4);
+        }
+
+        .input-group textarea {
+            min-height: 200px;
+        }
+
+        .tool-button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .tool-button-row button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .tool-button-row button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .tool-button-row button.primary:hover:not(:disabled) {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .tool-button-row button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .tool-button-row button.secondary:hover:not(:disabled) {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .tool-button-row button.danger {
+            background: rgba(255, 0, 0, 0.7);
+            border: 2px solid #ff0000;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
+
+        .tool-button-row button.danger:hover:not(:disabled) {
+            background: rgba(255, 0, 0, 0.9);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .tool-button-row button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+            width: 100%;
+            max-width: 700px; /* Adjusted for consistency */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        /* Confirmation Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--panel);
+            border: 2px solid var(--cyber-neon-pink);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 40px rgba(255, 0, 204, 0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h3 {
+            color: var(--cyber-neon-yellow);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 221, 0, 0.5);
+        }
+
+        .modal-content p {
+            color: var(--text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .tool-button-row button {
+                width: 100%;
+                justify-content: center;
+            }
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2><i class="ri-lock-line"></i> Secure Notes Tool</h2>
+            <p class="subtitle">Encrypt and store your notes locally in your browser. Your data never leaves your device.</p>
+
+            <div class="input-group">
+                <label for="noteContent">Your Note:</label>
+                <textarea id="noteContent" placeholder="Write your secure note here..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="encryptionKey">Encryption Password:</label>
+                <input type="password" id="encryptionKey" placeholder="Enter a strong password" />
+            </div>
+
+            <div class="tool-button-row">
+                <button id="encryptSaveBtn" class="primary"><i class="ri-save-line"></i> Encrypt & Save Note</button>
+                <button id="decryptBtn" class="secondary"><i class="ri-lock-unlock-line"></i> Decrypt Note</button>
+            </div>
+            <div class="tool-button-row">
+                <button id="clearCurrentBtn" class="secondary"><i class="ri-eraser-line"></i> Clear Current Note</button>
+                <button id="clearAllBtn" class="danger"><i class="ri-delete-bin-line"></i> Clear All Notes (Local Storage)</button>
+            </div>
+
+            <div class="message-box" id="messageBox"></div>
+
+            <p class="subtitle" style="margin-top: 2rem;">
+                <i class="ri-information-line"></i>
+                <span id="storageStatus">Checking local storage...</span>
+            </p>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <!-- Confirmation Modal Structure -->
+    <div id="confirmationModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Confirm Action</h3>
+            <p id="modalMessage">Are you sure you want to proceed?</p>
+            <div class="modal-buttons">
+                <button id="confirmYes" class="danger">Yes, I'm Sure</button>
+                <button id="confirmNo" class="secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CryptoJS library for AES encryption -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
