@@ -12,7 +12,7 @@
     --max-content-width: 1000px; /* This variable is used for .tools-grid, but main's max-width is now higher */
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Inter', sans-serif;
-    --navbar-height: 70px;
+    --navbar-height: 85px; /* ADJUSTMENT: Increased navbar height */
     --accent-hover: #008888;
     --button-bg: var(--pulse);
     --button-text: #000;
@@ -325,25 +325,32 @@ nav.sticky {
     top: 0;
     left: 0;
     right: 0;
-    height: var(--navbar-height);
+    height: var(--navbar-height); /* Uses the updated height variable */
     padding: 0 var(--spacing-md); /* Consistent horizontal padding */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--panel); /* Use refined panel color */
+    background-color: var(--panel); /* Base background color */
     backdrop-filter: blur(12px); /* Slightly stronger blur */
     box-shadow: 0 0 40px 8px var(--cyber-neon-cyan), 0 0 20px 4px var(--cyber-neon-pink), 0 4px 15px rgba(0,0,0,0.8); /* Enhanced shadow */
-    animation: navbarGlow 2.5s infinite alternate;
+    animation: navbarGlow 2.5s infinite alternate; /* Applies the glow and pulse animation */
     z-index: 1000;
     border-bottom: 2px solid var(--accent); /* Thicker bottom border */
 }
 
+/* ADJUSTMENT: Enhanced navbarGlow animation for background pulsing */
 @keyframes navbarGlow {
-    from {
+    0% {
         box-shadow: 0 0 35px 7px var(--cyber-neon-cyan), 0 0 18px 3.5px var(--cyber-neon-pink), 0 4px 12px rgba(0,0,0,0.7);
+        background-color: rgba(15, 15, 20, 0.95); /* Start with base panel background */
     }
-    to {
+    50% {
         box-shadow: 0 0 45px 9px var(--cyber-neon-pink), 0 0 22px 4.5px var(--cyber-neon-cyan), 0 4px 18px rgba(0,0,0,0.8);
+        background-color: rgba(25, 20, 30, 0.98); /* Slightly darker/more saturated for pulse effect */
+    }
+    100% {
+        box-shadow: 0 0 35px 7px var(--cyber-neon-cyan), 0 0 18px 3.5px var(--cyber-neon-pink), 0 4px 12px rgba(0,0,0,0.7);
+        background-color: rgba(15, 15, 20, 0.95); /* Return to base */
     }
 }
 
@@ -518,13 +525,13 @@ nav.sticky .dropdown-content li a:hover {
 
     nav.sticky .nav-links {
         position: fixed;
-        top: var(--navbar-height);
+        top: var(--navbar-height); /* Uses the updated height variable */
         right: 0;
         flex-direction: column;
         background-color: var(--panel);
         width: 280px;
         max-width: 90%;
-        height: calc(100vh - var(--navbar-height));
+        height: calc(100vh - var(--navbar-height)); /* Adjusts height based on new navbar height */
         padding: var(--spacing-md);
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
