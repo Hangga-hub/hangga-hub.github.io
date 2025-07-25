@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (currentPathname === '/' || currentPathname === '/index.html') {
                     link.classList.add("active");
                 }
-            } else if (linkHref === '/index2.html') {
+            } else if (linkHref.includes('/index2.html')) {
                 if (currentPathname === '/index2.html') {
                     link.classList.add("active");
                 }
