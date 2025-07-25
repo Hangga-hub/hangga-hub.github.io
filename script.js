@@ -47,7 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.querySelector(".nav-links");
         const dropdowns = document.querySelectorAll(".dropdown");
-        const dropbtns = document.querySelectorAll(".dropdown .dropbtn");
+        const dropbtns = document.querySelectorAll(".dropdown > .dropbtn"); // Only top-level dropdown buttons
+        const subDropdowns = document.querySelectorAll(".sub-dropdown"); // All sub-dropdowns
+        const subDropbtns = document.querySelectorAll(".sub-dropdown > .sub-dropbtn"); // All sub-dropdown buttons
+
 
         // 1. Mobile Menu Toggle (Hamburger Icon)
         if (menuToggle && navLinks) {
@@ -59,14 +62,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const isExpanded = navLinks.classList.contains("show");
                 menuToggle.setAttribute("aria-expanded", isExpanded);
                 
-                // Close all dropdowns when toggling the main menu
+                // Close all dropdowns and sub-dropdowns when toggling the main menu
                 dropdowns.forEach(openDropdown => {
                     openDropdown.classList.remove("open");
+                });
+                subDropdowns.forEach(openSubDropdown => {
+                    openSubDropdown.classList.remove("open");
                 });
             });
         }
 
-        // 2. Dropdown Toggle for Mobile
+        // 2. Top-level Dropdown Toggle for Mobile
         dropbtns.forEach(btn => {
             btn.addEventListener("click", (e) => {
                 const currentIsMobile = window.innerWidth <= 768;
@@ -76,14 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    // Close other dropdowns first
+                    // Close other top-level dropdowns and all sub-dropdowns
                     dropdowns.forEach(otherDropdown => {
                         if (otherDropdown !== parentDropdown) {
                             otherDropdown.classList.remove("open");
                         }
                     });
+                    subDropdowns.forEach(openSubDropdown => {
+                        openSubDropdown.classList.remove("open"); // Close all sub-dropdowns
+                    });
 
-                    // Toggle current dropdown
+                    // Toggle current top-level dropdown
                     if (parentDropdown) {
                         parentDropdown.classList.toggle("open");
                     }
@@ -91,7 +100,32 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // 3. Close menu when clicking outside
+        // 3. Sub-dropdown Toggle for Mobile
+        subDropbtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const currentIsMobile = window.innerWidth <= 768;
+                const parentSubDropdown = btn.closest(".sub-dropdown");
+
+                if (currentIsMobile) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Close other sub-dropdowns within the same parent dropdown
+                    parentSubDropdown.closest(".dropdown-content").querySelectorAll(".sub-dropdown").forEach(otherSubDropdown => {
+                        if (otherSubDropdown !== parentSubDropdown) {
+                            otherSubDropdown.classList.remove("open");
+                        }
+                    });
+
+                    // Toggle current sub-dropdown
+                    if (parentSubDropdown) {
+                        parentSubDropdown.classList.toggle("open");
+                    }
+                }
+            });
+        });
+
+        // 4. Close menu when clicking outside
         document.addEventListener("click", (e) => {
             const navbarNav = document.querySelector('nav.sticky');
             const isClickInsideNav = navbarNav && navbarNav.contains(e.target);
@@ -104,15 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 dropdowns.forEach(openDropdown => {
                     openDropdown.classList.remove("open");
                 });
+                subDropdowns.forEach(openSubDropdown => {
+                    openSubDropdown.classList.remove("open");
+                });
             }
         });
 
-        // 4. Handle window resize
+        // 5. Handle window resize
         const handleResize = () => {
             if (window.innerWidth > 768) {
                 // Desktop view - ensure menu is visible and reset states
-                if (navLinks) navLinks.classList.remove("show");
+                if (navLinks) navLinks.classList.remove("show"); // Remove 'show' class on desktop
                 dropdowns.forEach(dropdown => dropdown.classList.remove("open"));
+                subDropdowns.forEach(subDropdown => subDropdown.classList.remove("open")); // Close sub-dropdowns on desktop
                 menuToggle.setAttribute("aria-expanded", "false");
             }
         };
@@ -120,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', handleResize);
         handleResize(); // Initialize on load
 
-        // 5. Highlight Active Nav Link
+        // 6. Highlight Active Nav Link
         highlightActiveNavLink();
     }; // End of initializeNavbarInteractions function
 
@@ -151,11 +189,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Also highlight the dropdown button if a child link is active
             if (link.classList.contains("active")) {
+                // Highlight parent top-level dropdown button
                 const parentDropdown = link.closest(".dropdown");
                 if (parentDropdown) {
                     const dropbtn = parentDropdown.querySelector(".dropbtn");
                     if (dropbtn) {
                         dropbtn.classList.add("active");
+                    }
+                }
+
+                // Highlight parent sub-dropdown button
+                const parentSubDropdown = link.closest(".sub-dropdown");
+                if (parentSubDropdown) {
+                    const subDropbtn = parentSubDropdown.querySelector(".sub-dropbtn");
+                    if (subDropbtn) {
+                        subDropbtn.classList.add("active");
                     }
                 }
             }
