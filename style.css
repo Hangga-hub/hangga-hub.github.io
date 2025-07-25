@@ -340,6 +340,7 @@ nav.sticky {
     animation: navbarGlow 2.5s infinite alternate;
     z-index: 1000;
     border-bottom: 2px solid var(--accent);
+    overflow: visible; /* ADDED: Ensure content is not clipped by the navbar itself */
 }
 
 @keyframes navbarGlow {
@@ -464,7 +465,7 @@ nav.sticky .dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
+    /* REMOVED: left: 0; */ /* This was causing left alignment */
     background-color: var(--panel);
     backdrop-filter: blur(15px);
     min-width: 220px;
@@ -510,6 +511,8 @@ nav.sticky .dropdown-content::-webkit-scrollbar-thumb:hover {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
+        right: 0; /* ADDED: Align to the right for desktop */
+        left: unset; /* ADDED: Ensure left property is not overriding */
     }
 }
 
@@ -602,10 +605,12 @@ nav.sticky .dropdown-content li a:hover {
         border: none;
         padding: 0;
         margin: 0;
-        max-height: none;
-        overflow-y: visible;
+        max-height: calc(100vh - var(--navbar-height) - 10px); /* MODIFIED: Set a max height for dropdown content */
+        overflow-y: auto; /* MODIFIED: Make dropdown content scrollable on mobile */
         border-radius: 0;
         margin-left: 10px;
+        right: unset; /* Ensure right property is not overriding on mobile */
+        left: 0; /* Align to left on mobile */
     }
 
     nav.sticky .dropdown.open .dropdown-content {
@@ -1858,7 +1863,7 @@ input[type="range"]::-moz-range-thumb:active {
 /* New container for the two rows of stats */
 .tool-page .stats-section {
     grid-area: stats-area;
-    width: 100%; /* Take full width of parent grid-layout */
+    width: 100%;
     display: flex;
     flex-direction: column; /* Stack the two rows vertically */
     gap: 15px; /* Space between the two rows of stats */
@@ -2135,3 +2140,4 @@ label + select {
 .pdf-settings .input-group {
     margin: 1.5rem 0 !important;
 }
+
