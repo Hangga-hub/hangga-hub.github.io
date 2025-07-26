@@ -41,6 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
+     * Scrolls the window down to the search results section.
+     */
+    const scrollToResults = () => {
+        const resultsSection = document.querySelector('.search-results-section');
+        if (resultsSection) {
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    /**
      * Fetches anime/manga information from the Jikan API based on the title.
      */
     const searchAnimeManga = async () => {
@@ -88,17 +98,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     searchResultsDiv.appendChild(card);
                 });
+                scrollToResults(); // Scroll down after results are displayed
             } else if (response.ok && data.data && data.data.length === 0) {
                 showMessage(resultsMessageBox, 'No anime or manga found for that title. Please try a different search term.', false);
+                scrollToResults(); // Scroll down even if no results
             }
             else {
                 const errorMessage = data.message || 'Failed to retrieve information. Please try again.';
                 showMessage(resultsMessageBox, `Error: ${errorMessage}`, true);
+                scrollToResults(); // Scroll down on error
             }
         } catch (error) {
             console.error('Error fetching anime/manga data:', error);
             loadingSpinner.style.display = 'none'; // Hide spinner on error
             showMessage(resultsMessageBox, 'An error occurred while fetching data. Please check your network connection or try again later.', true);
+            scrollToResults(); // Scroll down on error
         }
     };
 
