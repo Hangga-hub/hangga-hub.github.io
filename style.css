@@ -928,7 +928,7 @@ body[data-category="frequency"] { --accent: #ffaa00; }
 ───────────────────────────────────────────────────────── */
 /* Removed duplicated body and footer styles here */
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 2rem auto;
     padding: 1rem;
     background-color: #23232b;
