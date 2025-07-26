@@ -1,4 +1,4 @@
-// script.js - Universal navbar loader with responsive interactions
+// script.js – Host-compatible navbar loader with dynamic path resolution
 
 document.addEventListener("DOMContentLoaded", () => {
     const navbarContainer = document.getElementById("navbar");
@@ -7,35 +7,34 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Normalize and detect base path
-    let basePath = window.location.pathname;
-    const htmlMatch = basePath.match(/\/[^/]+\.html$/);
-    if (htmlMatch) {
-        basePath = basePath.substring(0, basePath.lastIndexOf('/'));
-    }
-    if (basePath.includes('/tools/')) {
-        basePath = basePath.substring(0, basePath.indexOf('/tools/'));
-    }
-    if (!basePath.startsWith('/')) basePath = '/' + basePath;
-    if (!basePath.endsWith('/')) basePath += '/';
+    // Get current directory dynamically
+    const pathname = window.location.pathname;
+    const currentDir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+    const navbarPath = `${currentDir}components/navbar.html`;
 
-    const fullPath = `${window.location.origin}${basePath}components/navbar.html`;
-    console.log("Attempting navbar fetch from:", fullPath);
+    console.log("Fetching navbar from:", navbarPath);
 
-    const loadNavbar = (path) =>
-        fetch(path)
-            .then(res => {
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                return res.text();
-            });
+    fetch(navbarPath)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.text();
+        })
+        .then(html => {
+            navbarContainer.innerHTML = html;
+            initializeNavbarInteractions();
+        })
+        .catch(error => {
+            console.error("Navbar load failed:", error);
+            navbarContainer.innerHTML = "<nav class='error-nav'><p>Navigation unavailable</p></nav>";
+        });
 
+    // Initialize navbar interactions
     const initializeNavbarInteractions = () => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.querySelector(".nav-links");
         const dropdowns = document.querySelectorAll(".dropdown");
         const dropbtns = document.querySelectorAll(".dropdown .dropbtn");
 
-        // Mobile toggle
         if (menuToggle && navLinks) {
             menuToggle.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -45,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Dropdown toggle
         dropbtns.forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -58,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Close on outside click
         document.addEventListener("click", (e) => {
             const nav = document.querySelector("nav.sticky");
             if (!nav?.contains(e.target)) {
@@ -68,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Resize resets
         window.addEventListener("resize", () => {
             if (window.innerWidth > 768) {
                 navLinks?.classList.remove("show");
@@ -80,34 +76,25 @@ document.addEventListener("DOMContentLoaded", () => {
         highlightActiveNavLink();
     };
 
+    // Highlight active nav link
     const highlightActiveNavLink = () => {
-        const path = window.location.pathname;
+        const currentPath = window.location.pathname;
         document.querySelectorAll("nav.sticky a").forEach(link => {
             link.classList.remove("active");
-            const href = new URL(link.href).pathname;
-            const isExactMatch = path === href;
-            const isRootMatch = (href === '/' || href === '/index.html') && (path === '/' || path === '/index.html');
-            const isDeepMatch = href !== '/' && path.startsWith(href);
+            const hrefPath = new URL(link.href).pathname;
 
-            if (isExactMatch || isRootMatch || isDeepMatch) {
+            const matchRoot = hrefPath === "/" || hrefPath === "/index.html";
+            const matchIndex2 = hrefPath.includes("/index2.html") && currentPath === "/index2.html";
+            const matchSubpath = currentPath.startsWith(hrefPath) && hrefPath !== "/";
+
+            if (
+                (matchRoot && (currentPath === "/" || currentPath === "/index.html")) ||
+                matchIndex2 ||
+                matchSubpath
+            ) {
                 link.classList.add("active");
-                const dropdown = link.closest(".dropdown");
-                dropdown?.querySelector(".dropbtn")?.classList.add("active");
+                link.closest(".dropdown")?.querySelector(".dropbtn")?.classList.add("active");
             }
         });
     };
-
-    loadNavbar(fullPath)
-        .catch(() => {
-            console.warn("Fallback attempt to root");
-            return loadNavbar(`${window.location.origin}/components/navbar.html`);
-        })
-        .then(html => {
-            navbarContainer.innerHTML = html;
-            initializeNavbarInteractions();
-        })
-        .catch(error => {
-            console.error("Navbar load error:", error);
-            navbarContainer.innerHTML = "<nav class='error-nav'><p>Navigation unavailable</p></nav>";
-        });
 });
