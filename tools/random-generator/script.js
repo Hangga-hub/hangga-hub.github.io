@@ -78,12 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
         resetOutputs();
 
         try {
-            const apiUrl = 'https://api.quotable.io/random';
+            // New API endpoint for DummyJSON quotes
+            const apiUrl = 'https://dummyjson.com/quotes/random';
             const response = await fetch(apiUrl);
             const data = await response.json();
 
-            if (response.ok && data.content && data.author) {
-                quoteContent.textContent = `"${data.content}"`;
+            // DummyJSON API returns 'quote' and 'author'
+            if (response.ok && data.quote && data.author) {
+                quoteContent.textContent = `"${data.quote}"`;
                 quoteContent.style.display = 'block';
                 quoteAuthor.textContent = `- ${data.author}`;
                 quoteAuthor.style.display = 'block';
