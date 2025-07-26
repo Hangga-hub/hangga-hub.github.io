@@ -1,89 +1,254 @@
-// tools/animal-image-generator/script.js
+// tools/barcode-product-lookup/script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const getDogImageBtn = document.getElementById('getDogImageBtn');
-    const getCatImageBtn = document.getElementById('getCatImageBtn');
-    const clearImageBtn = document.getElementById('clearImageBtn');
-    const imageDisplay = document.getElementById('imageDisplay');
-    const messageBox = document.getElementById('messageBox');
+    const barcodeInput = document.getElementById('barcodeInput');
+    const lookupBtn = document.getElementById('lookupBtn');
+    const clearManualBtn = document.getElementById('clearManualBtn');
+    const messageBox = document.getElementById('messageBox'); // For manual input messages
+
+    const startScannerBtn = document.getElementById('startScannerBtn');
+    const stopScannerBtn = document.getElementById('stopScannerBtn');
+    const scannerArea = document.getElementById('scannerArea');
+    const interactiveViewport = document.getElementById('interactive');
+    const scannerPlaceholder = document.getElementById('scannerPlaceholder');
+    const scannerMessageBox = document.getElementById('scannerMessageBox'); // For scanner messages
+
+    const productResultDiv = document.getElementById('productResult');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const resultsMessageBox = document.getElementById('resultsMessageBox'); // For product lookup messages
+
+    // Product output elements
+    const productImage = document.getElementById('productImage');
+    const productName = document.getElementById('productName');
+    const productBarcode = document.getElementById('productBarcode');
+    const productBrand = document.getElementById('productBrand');
+    const productCategory = document.getElementById('productCategory');
+    const productDescription = document.getElementById('productDescription');
+
+    let scannerRunning = false;
 
     /**
-     * Displays a message in the message box.
+     * Displays a message in a specified message box.
+     * @param {HTMLElement} element - The message box HTML element.
      * @param {string} message - The message to display.
      * @param {boolean} isError - True if the message is an error, false otherwise.
      */
-    const showMessage = (message, isError = false) => {
-        messageBox.textContent = message;
-        messageBox.classList.remove('error');
+    const showMessage = (element, message, isError = false) => {
+        element.textContent = message;
+        element.classList.remove('error');
         if (isError) {
-            messageBox.classList.add('error');
+            element.classList.add('error');
         }
-        messageBox.classList.add('show');
+        element.classList.add('show');
         setTimeout(() => {
-            messageBox.classList.remove('show');
+            element.classList.remove('show');
         }, 3000); // Message disappears after 3 seconds
     };
 
     /**
-     * Resets the image display and shows the initial message.
+     * Resets all product output fields and messages.
      */
-    const resetOutputs = () => {
-        imageDisplay.innerHTML = '<p style="color: var(--text); opacity: 0.7;">Click a button above to generate an image.</p>';
+    const resetProductOutputs = () => {
+        productImage.src = 'https://placehold.co/150x150/333333/FFFFFF?text=Product';
+        productImage.classList.add('hidden');
+        productName.textContent = '';
+        productBarcode.innerHTML = '<strong>Barcode:</strong> N/A';
+        productBrand.innerHTML = '<strong>Brand:</strong> N/A';
+        productCategory.innerHTML = '<strong>Category:</strong> N/A';
+        productDescription.innerHTML = '<strong>Description:</strong> N/A';
+        productResultDiv.classList.add('hidden');
+        resultsMessageBox.classList.remove('show');
+        resultsMessageBox.textContent = '';
+        loadingSpinner.style.display = 'none';
     };
 
-    // Initialize the display
-    resetOutputs();
+    /**
+     * Simulates a product lookup based on a barcode.
+     * In a real application, this would call an external product API (e.g., Open Food Facts).
+     * @param {string} barcode - The barcode to look up.
+     */
+    const lookupProduct = async (barcode) => {
+        resetProductOutputs();
+        showMessage(resultsMessageBox, `Looking up product for barcode: ${barcode}...`, false);
+        loadingSpinner.style.display = 'block';
 
-    // Event listener for "Get Dog Image" button
-    getDogImageBtn.addEventListener('click', async () => {
-        showMessage('Fetching a random dog image...');
-        resetOutputs();
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        loadingSpinner.style.display = 'none';
+
+        // Mock data for demonstration
+        const mockProducts = {
+            "049000050186": {
+                name: "Coca-Cola Classic",
+                brand: "Coca-Cola",
+                category: "Beverages",
+                description: "Refreshing carbonated soft drink.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Coca-Cola_bottle_cap_logo.svg/1200px-Coca-Cola_bottle_cap_logo.svg.png" // Placeholder image
+            },
+            "012345678905": {
+                name: "Organic Whole Milk",
+                brand: "Happy Cow Dairy",
+                category: "Dairy & Eggs",
+                description: "Fresh organic whole milk, 1 gallon.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Milk_bottle_with_milk.jpg/800px-Milk_bottle_with_milk.jpg"
+            },
+            "9780321765723": { // Example ISBN barcode
+                name: "The Lord of the Rings: The Fellowship of the Ring",
+                brand: "HarperCollins",
+                category: "Books",
+                description: "The first volume in J.R.R. Tolkien's epic fantasy series.",
+                image: "https://upload.wikimedia.org/wikipedia/en/e/e9/The_Fellowship_of_the_Ring_cover.gif"
+            }
+        };
+
+        const product = mockProducts[barcode];
+
+        if (product) {
+            productName.textContent = product.name;
+            productBarcode.innerHTML = `<strong>Barcode:</strong> ${barcode}`;
+            productBrand.innerHTML = `<strong>Brand:</strong> ${product.brand}`;
+            productCategory.innerHTML = `<strong>Category:</strong> ${product.category}`;
+            productDescription.innerHTML = `<strong>Description:</strong> ${product.description}`;
+            
+            if (product.image) {
+                productImage.src = product.image;
+                productImage.classList.remove('hidden');
+            } else {
+                productImage.classList.add('hidden'); // Hide if no valid image
+            }
+
+            productResultDiv.classList.remove('hidden');
+            showMessage(resultsMessageBox, 'Product found!', false);
+            productResultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            showMessage(resultsMessageBox, 'Product not found for this barcode. Try a different one.', true);
+        }
+    };
+
+    /**
+     * Initializes and starts the barcode scanner.
+     */
+    const startScanner = async () => {
+        if (scannerRunning) {
+            showMessage(scannerMessageBox, 'Scanner is already running.', false);
+            return;
+        }
+
+        resetProductOutputs(); // Clear any previous product results
+        barcodeInput.value = ''; // Clear manual input
+
+        scannerPlaceholder.classList.add('hidden');
+        interactiveViewport.classList.remove('hidden');
+        startScannerBtn.classList.add('hidden');
+        stopScannerBtn.classList.remove('hidden');
+        showMessage(scannerMessageBox, 'Starting scanner... Please grant camera access.', false);
 
         try {
-            const apiUrl = 'https://dog.ceo/api/breeds/image/random';
-            const response = await fetch(apiUrl);
-            const data = await response.json();
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: interactiveViewport, // Or '#interactive.viewport'
+                    constraints: {
+                        width: { min: 640 },
+                        height: { min: 480 },
+                        facingMode: "environment", // Use rear camera if available
+                        aspectRatio: { min: 1, max: 2 }
+                    }
+                },
+                decoder: {
+                    readers: ["ean_reader", "ean_8_reader", "upc_reader", "upc_e_reader", "code_128_reader", "code_39_reader"] // Specify barcode types
+                }
+            }, function(err) {
+                if (err) {
+                    console.error("Quagga initialization error:", err);
+                    showMessage(scannerMessageBox, `Error starting scanner: ${err.message}. Make sure you have a camera and grant permission.`, true);
+                    stopScanner(); // Attempt to stop if init fails
+                    return;
+                }
+                Quagga.start();
+                scannerRunning = true;
+                showMessage(scannerMessageBox, 'Scanner started. Point your camera at a barcode.', false);
+            });
 
-            if (response.ok && data.status === 'success' && data.message) {
-                imageDisplay.innerHTML = `<img src="${data.message}" alt="Random Dog" onerror="this.onerror=null;this.src='https://placehold.co/600x400/333333/FFFFFF?text=Image+Not+Available';">`;
-                showMessage('Dog image loaded!', false);
-            } else {
-                showMessage('Failed to retrieve a dog image. Please try again.', true);
-            }
+            Quagga.onDetected(function(result) {
+                if (result.codeResult && result.codeResult.code) {
+                    const barcode = result.codeResult.code;
+                    showMessage(scannerMessageBox, `Barcode detected: ${barcode}`, false);
+                    barcodeInput.value = barcode; // Populate manual input
+                    stopScanner(); // Stop scanner after successful detection
+                    lookupProduct(barcode); // Perform product lookup
+                }
+            });
+
+            Quagga.onProcessed(function(result) {
+                // Draw detection boxes (optional, for debugging/visual feedback)
+                const drawingCtx = Quagga.canvas.ctx.overlay;
+                const drawingCanvas = Quagga.canvas.dom.overlay;
+
+                drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.width), parseInt(drawingCanvas.height));
+
+                if (result) {
+                    if (result.boxes) {
+                        result.boxes.filter(function (box) {
+                            return box !== result.box;
+                        }).forEach(function (box) {
+                            Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: "green", lineWidth: 2 });
+                        });
+                    }
+
+                    if (result.box) {
+                        Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: "#00F", lineWidth: 2 });
+                    }
+
+                    if (result.codeResult && result.codeResult.code) {
+                        Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: 'red', lineWidth: 3 });
+                    }
+                }
+            });
+
         } catch (error) {
-            console.error('Error fetching dog image:', error);
-            showMessage('An error occurred while fetching the dog image. Please check your network connection or try again later.', true);
+            console.error("Error accessing camera:", error);
+            showMessage(scannerMessageBox, `Failed to access camera: ${error.message}. Please ensure camera permissions are granted.`, true);
+            stopScanner();
+        }
+    };
+
+    /**
+     * Stops the barcode scanner.
+     */
+    const stopScanner = () => {
+        if (scannerRunning) {
+            Quagga.stop();
+            scannerRunning = false;
+            interactiveViewport.classList.add('hidden');
+            scannerPlaceholder.classList.remove('hidden');
+            startScannerBtn.classList.remove('hidden');
+            stopScannerBtn.classList.add('hidden');
+            showMessage(scannerMessageBox, 'Scanner stopped.', false);
+        }
+    };
+
+    // Event Listeners
+    lookupBtn.addEventListener('click', () => {
+        const barcode = barcodeInput.value.trim();
+        if (barcode) {
+            lookupProduct(barcode);
+        } else {
+            showMessage(messageBox, 'Please enter a barcode.', true);
         }
     });
 
-    // Event listener for "Get Cat Image" button
-    getCatImageBtn.addEventListener('click', async () => {
-        showMessage('Fetching a random cat image...');
-        resetOutputs();
-
-        try {
-            const apiUrl = 'https://api.thecatapi.com/v1/images/search';
-            // Note: TheCatAPI has a free tier but recommends an API key for higher rate limits.
-            // For this simple tool, it might work without one for casual use.
-            // If you experience issues, consider signing up for a free key and adding it to headers.
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-
-            if (response.ok && data.length > 0 && data[0].url) {
-                imageDisplay.innerHTML = `<img src="${data[0].url}" alt="Random Cat" onerror="this.onerror=null;this.src='https://placehold.co/600x400/333333/FFFFFF?text=Image+Not+Available';">`;
-                showMessage('Cat image loaded!', false);
-            } else {
-                showMessage('Failed to retrieve a cat image. Please try again.', true);
-            }
-        } catch (error) {
-            console.error('Error fetching cat image:', error);
-            showMessage('An error occurred while fetching the cat image. Please check your network connection or try again later.', true);
-        }
+    clearManualBtn.addEventListener('click', () => {
+        barcodeInput.value = '';
+        showMessage(messageBox, 'Manual input cleared.', false);
+        resetProductOutputs();
     });
 
-    // Event listener for "Clear Image" button
-    clearImageBtn.addEventListener('click', () => {
-        resetOutputs();
-        showMessage('', false); // Clear any active message
-    });
+    startScannerBtn.addEventListener('click', startScanner);
+    stopScannerBtn.addEventListener('click', stopScanner);
+
+    // Initial state setup
+    resetProductOutputs();
 });

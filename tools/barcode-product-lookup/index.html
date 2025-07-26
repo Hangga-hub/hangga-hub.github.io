@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog/Cat Image Generator - Online Tool | Hangga's Tool Hub</title>
+    <title>Barcode Product Lookup - Online Tool | Hangga's Tool Hub</title>
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../style.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remix-icon-font.min.css" rel="stylesheet">
     <!-- Fira Code for monospace text in code outputs -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- SEO Meta Tags for this tool -->
-    <meta name="description" content="Generate random dog and cat images instantly with Hangga's free online tool. Get a new furry friend picture every time!">
-    <meta name="keywords" content="random dog image, random cat image, dog generator, cat generator, pet photos, free tool, online tool, hangga tools">
+    <meta name="description" content="Scan or manually enter barcodes to look up product information instantly with Hangga's free online Barcode Product Lookup tool.">
+    <meta name="keywords" content="barcode lookup, product lookup, barcode scanner, UPC, EAN, product information, free barcode tool, online tool, hangga tools">
     <meta name="author" content="Hangga">
-    <link rel="canonical" href="https://hangga-hub.github.io/tools/animal-image-generator/index.html">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/barcode-product-lookup/index.html">
 
     <!-- Open Graph / Facebook for this tool -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hangga-hub.github.io/tools/animal-image-generator/index.html">
-    <meta property="og:title" content="Dog/Cat Image Generator - Online Tool | Hangga's Tool Hub">
-    <meta property="og:description" content="Generate random dog and cat images instantly with Hangga's free online tool. Get a new furry friend picture every time!">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/barcode-product-lookup/index.html">
+    <meta property="og:title" content="Barcode Product Lookup - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Scan or manually enter barcodes to look up product information instantly with Hangga's free online Barcode Product Lookup tool.">
     <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Twitter for this tool -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/animal-image-generator/index.html">
-    <meta property="twitter:title" content="Dog/Cat Image Generator - Online Tool | Hangga's Tool Hub">
-    <meta property="twitter:description" content="Generate random dog and cat images instantly with Hangga's free online tool. Get a new furry friend picture every time!">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/barcode-product-lookup/index.html">
+    <meta property="twitter:title" content="Barcode Product Lookup - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Scan or manually enter barcodes to look up product information instantly with Hangga's free online Barcode Product Lookup tool.">
     <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Schema.org Structured Data for this tool -->
@@ -35,29 +35,31 @@
     {
       "@context": "http://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Hangga's Dog/Cat Image Generator",
+      "name": "Hangga's Barcode Product Lookup",
       "operatingSystem": "Web",
       "applicationCategory": "DeveloperTool",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.7",
-        "ratingCount": "30"
+        "ratingCount": "15"
       },
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "Generate random images of dogs and cats.",
-      "url": "https://hangga-hub.github.io/tools/animal-image-generator/index.html",
+      "description": "Scans or manually inputs barcodes to retrieve product information.",
+      "url": "https://hangga-hub.github.io/tools/barcode-product-lookup/index.html",
       "featureList": [
-        "Random Dog Image",
-        "Random Cat Image",
+        "Barcode Scanner",
+        "Product Information",
+        "UPC Lookup",
+        "EAN Lookup",
         "Free to Use",
         "Online Tool"
       ],
       "screenshot": "https://hangga-hub.github.io/og-preview.png",
-      "softwareRequirements": "Modern Web Browser",
+      "softwareRequirements": "Modern Web Browser, Camera (for scanning)",
       "publisher": {
         "@type": "Organization",
         "name": "Hangga's Tool Hub"
@@ -74,22 +76,22 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
     <style>
-        /* Specific styles for the Dog/Cat Image Generator tool */
+        /* Specific styles for the Barcode Product Lookup tool */
         .tool-converter-card {
-            max-width: 700px; /* Adjusted for image content */
+            max-width: 800px; /* Wider for scanner and results */
             padding: 2.5rem;
             box-sizing: border-box;
-            min-height: 60vh;
+            min-height: 70vh;
         }
 
-        .image-generator-container {
+        .barcode-lookup-container {
             display: flex;
             flex-direction: column;
             gap: 2rem;
             flex-grow: 1;
         }
 
-        .input-section {
+        .input-section, .scanner-section, .result-section {
             background: var(--panel);
             border: 2px solid var(--cyber-neon-cyan);
             border-radius: 12px;
@@ -98,11 +100,11 @@
             transition: all 0.3s ease;
         }
 
-        .input-section:hover {
+        .input-section:hover, .scanner-section:hover, .result-section:hover {
             box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
         }
 
-        .input-section h3 {
+        .input-section h3, .scanner-section h3, .result-section h3 {
             font-family: var(--font-heading);
             color: var(--cyber-neon-pink);
             text-shadow: 0 0 8px var(--cyber-neon-pink);
@@ -111,6 +113,39 @@
             font-size: 1.8rem;
             border-bottom: 1px solid rgba(255, 0, 204, 0.3);
             padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
         }
 
         .button-group {
@@ -185,24 +220,121 @@
             text-shadow: 0 0 12px var(--cyber-neon-pink);
         }
 
-        .result-section .image-display {
+        .scanner-area {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Limit scanner width */
+            margin: 0 auto;
+            border: 2px dashed var(--cyber-neon-yellow);
+            border-radius: 12px;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 250px; /* Minimum height for scanner area */
             background-color: #000;
-            border: 2px solid var(--cyber-neon-pink);
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 25px rgba(255, 0, 204, 0.6);
-            min-height: 300px; /* Ensure visibility even if no media */
         }
 
-        .result-section .image-display img {
-            max-width: 100%;
+        #interactive.viewport {
+            width: 100%;
+            height: auto; /* Adjust height based on video aspect ratio */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #interactive.viewport video {
+            width: 100%;
             height: auto;
             display: block;
-            border-radius: 10px;
+        }
+
+        #interactive.viewport canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scanner-placeholder {
+            color: var(--text);
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .product-result-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-pink);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(255, 0, 204, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .product-result-card:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 204, 0.6);
+            transform: translateY(-5px);
+            border-color: var(--cyber-neon-cyan);
+        }
+
+        .product-result-card h4 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 8px var(--cyber-neon-yellow);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+        }
+
+        .product-result-card p {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+
+        .product-result-card p strong {
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .product-image {
+            max-width: 150px;
+            height: auto;
+            float: right; /* Float image to the right */
+            margin-left: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--cyber-neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.4);
+        }
+
+        /* Clearfix for floated image */
+        .product-details::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid rgba(0, 255, 247, 0.2);
+            border-top: 4px solid var(--cyber-neon-cyan);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive adjustments */
@@ -210,15 +342,23 @@
             .tool-converter-card {
                 padding: 1.5rem;
             }
-            .input-section {
+            .input-section, .scanner-section, .result-section {
                 padding: 1.5rem;
             }
-            .input-section h3 {
+            .input-section h3, .scanner-section h3, .result-section h3 {
                 font-size: 1.5rem;
             }
             .button-group button {
                 width: 100%;
                 justify-content: center;
+            }
+            .product-result-card {
+                padding: 1.5rem;
+            }
+            .product-image {
+                float: none; /* Remove float on small screens */
+                margin: 0 auto 1rem auto; /* Center image */
+                display: block;
             }
         }
     </style>
@@ -229,25 +369,50 @@
 
     <main>
         <div class="tool-converter-card">
-            <h2>Dog/Cat Image Generator</h2>
-            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Get a random image of a dog or a cat!</p>
+            <h2>Barcode Product Lookup</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Scan or manually enter a barcode to find product information.</p>
 
-            <div class="image-generator-container">
+            <div class="barcode-lookup-container">
                 <div class="input-section">
-                    <h3>Generate a Furry Friend</h3>
+                    <h3>Manual Barcode Entry</h3>
+                    <div class="form-group">
+                        <label for="barcodeInput">Barcode (UPC/EAN):</label>
+                        <input type="text" id="barcodeInput" placeholder="e.g., 049000050186" required>
+                    </div>
                     <div class="button-group">
-                        <button id="getDogImageBtn" class="primary"><i class="ri-dog-line"></i> Get Dog Image</button>
-                        <button id="getCatImageBtn" class="primary"><i class="ri-cat-line"></i> Get Cat Image</button>
-                        <button id="clearImageBtn" class="secondary"><i class="ri-eraser-line"></i> Clear Image</button>
+                        <button id="lookupBtn" class="primary"><i class="ri-search-line"></i> Lookup Barcode</button>
+                        <button id="clearManualBtn" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
                     </div>
                     <p id="messageBox" class="message-box"></p>
                 </div>
 
-                <div class="input-section result-section">
-                    <h3>Generated Image</h3>
-                    <div id="imageDisplay" class="image-display">
-                        <p style="color: var(--text); opacity: 0.7;">Click a button above to generate an image.</p>
+                <div class="input-section scanner-section">
+                    <h3>Scan Barcode</h3>
+                    <div class="button-group">
+                        <button id="startScannerBtn" class="primary"><i class="ri-qr-scan-line"></i> Start Scanner</button>
+                        <button id="stopScannerBtn" class="secondary hidden"><i class="ri-stop-circle-line"></i> Stop Scanner</button>
                     </div>
+                    <div class="scanner-area" id="scannerArea">
+                        <div id="interactive" class="viewport hidden"></div>
+                        <p class="scanner-placeholder" id="scannerPlaceholder">Click "Start Scanner" to begin.</p>
+                    </div>
+                    <p id="scannerMessageBox" class="message-box"></p>
+                </div>
+
+                <div class="input-section result-section">
+                    <h3>Product Details</h3>
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                    <div id="productResult" class="product-result-card hidden">
+                        <div class="product-details">
+                            <img id="productImage" src="https://placehold.co/150x150/333333/FFFFFF?text=Product" alt="Product Image" class="product-image hidden" onerror="this.onerror=null;this.src='https://placehold.co/150x150/333333/FFFFFF?text=Product';">
+                            <h4 id="productName"></h4>
+                            <p id="productBarcode"><strong>Barcode:</strong> N/A</p>
+                            <p id="productBrand"><strong>Brand:</strong> N/A</p>
+                            <p id="productCategory"><strong>Category:</strong> N/A</p>
+                            <p id="productDescription"><strong>Description:</strong> N/A</p>
+                        </div>
+                    </div>
+                    <p id="resultsMessageBox" class="message-box"></p>
                 </div>
             </div>
         </div>
@@ -261,6 +426,8 @@
         <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
     </footer>
 
+    <!-- QuaggaJS library for barcode scanning -->
+    <script src="https://unpkg.com/quagga@0.12.1/dist/quagga.min.js"></script>
     <script src="../../script.js"></script>
     <script src="script.js"></script>
 </body>

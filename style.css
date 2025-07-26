@@ -2149,6 +2149,24 @@ label + select {
     margin: 1.5rem 0 !important;
 }
 
+
+.result-section {
+    background: var(--panel);
+    border: 2px solid var(--cyber-neon-cyan);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+    transition: all 0.3s ease;
+}
+.generator-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-grow: 1;
+}
+
+
+
 /* Specific styles for the Privacy Policy Generator tool */
 .tool-converter-card {
     display: flex;

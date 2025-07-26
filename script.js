@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Dynamically resolve path to navbar.html based on current location
     const currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const navbarPath = `/components/navbar.html`;
+    const navbarPath = "../../components/navbar.html";
 
     console.log("Fetching navbar from:", navbarPath);
 
