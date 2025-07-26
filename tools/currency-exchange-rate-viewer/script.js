@@ -159,18 +159,24 @@ document.addEventListener('DOMContentLoaded', () => {
         resetOutputs(); // Clear previous results
 
         try {
-            // Fetch exchange rates from exchangerate.host
-            const apiUrl = `https://api.exchangerate.host/latest?base=${fromCurrency}`;
+            // Fetch exchange rates from freecurrencyapi.com
+            const apiKey = 'fca_live_woR6onAGdDYUKTF6gvikX4nAS6nW5Nzoa1Rkmfo1'; // Your FreecurrencyAPI.com API Key
+            const apiUrl = `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&base_currency=${fromCurrency}`;
             const response = await fetch(apiUrl);
             const data = await response.json();
 
-            if (response.ok && data.rates) {
-                const rate = data.rates[toCurrency];
+            if (response.ok && data.data) { // FreecurrencyAPI uses 'data' key for rates
+                const rate = data.data[toCurrency];
                 if (rate) {
                     const convertedAmount = amount * rate;
                     convertedAmountOutput.textContent = `${convertedAmount.toFixed(2)} ${toCurrency}`;
-                    lastUpdatedOutput.textContent = new Date(data.date).toLocaleString();
+                    // FreecurrencyAPI does not provide a 'date' field directly in the 'latest' endpoint,
+                    // so we'll use the current date/time as a fallback for "Last Updated".
+                    lastUpdatedOutput.textContent = new Date().toLocaleString();
                     showMessage('Conversion successful!', false);
+
+                    // Scroll to the converted amount output
+                    convertedAmountOutput.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
                     // Display popular rates against the base currency
                     popularRatesGrid.innerHTML = ''; // Clear previous popular rates
@@ -185,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const ratesToShow = popularTargets.filter(code => code !== fromCurrency);
 
                     ratesToShow.forEach(targetCode => {
-                        const targetRate = data.rates[targetCode];
+                        const targetRate = data.data[targetCode]; // Access rates via data.data
                         if (targetRate) {
                             const rateItem = document.createElement('div');
                             rateItem.className = 'rate-item';
@@ -207,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     resetOutputs();
                 }
             } else {
-                showMessage('Failed to retrieve exchange rates. Please try again later.', true);
+                showMessage('Failed to retrieve exchange rates. Please check your API key or try again later.', true);
                 resetOutputs();
             }
         } catch (error) {

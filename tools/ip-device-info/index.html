@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address & Device Info - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Automatically detect your public IP address, geographical location (country, city, region), ISP, timezone, and more with Hangga's free online IP Address & Device Info tool.">
+    <meta name="keywords" content="IP address, device info, geolocation, public IP, ISP, internet service provider, timezone, city, country, region, free IP tool, online tool, hangga tools, my IP">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/ip-device-info/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/ip-device-info/index.html">
+    <meta property="og:title" content="IP Address & Device Info - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Automatically detect your public IP address, geographical location (country, city, region), ISP, timezone, and more with Hangga's free online IP Address & Device Info tool.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/ip-device-info/index.html">
+    <meta property="twitter:title" content="IP Address & Device Info - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Automatically detect your public IP address, geographical location (country, city, region), ISP, timezone, and more with Hangga's free online IP Address & Device Info tool.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's IP Address & Device Info",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "60"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Automatically detect and display your public IP address and device information.",
+      "url": "https://hangga-hub.github.io/tools/ip-device-info/index.html",
+      "featureList": [
+        "IP Address Detection",
+        "Geolocation Lookup",
+        "ISP Information",
+        "Timezone Detection",
+        "City and Country Info",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the IP Address & Device Info tool */
+        .tool-converter-card {
+            max-width: 700px; /* Adjusted for this tool's content */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 70vh;
+        }
+
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Slightly smaller gap for more info cards */
+            flex-grow: 1;
+        }
+
+        .info-section {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .info-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .info-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column on small screens */
+            gap: 1rem; /* Gap between info items */
+        }
+
+        @media (min-width: 600px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
+            }
+        }
+
+        .info-card {
+            background-color: #1a1a1f; /* Darker background for individual info cards */
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            color: var(--text);
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 80px; /* Ensure consistent height */
+        }
+
+        .info-card strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: var(--cyber-neon-yellow);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-shadow: 0 0 4px var(--cyber-neon-yellow);
+        }
+
+        .info-value {
+            font-family: 'Fira Code', monospace; /* Monospace for IP/coordinates */
+            color: var(--cyber-neon-pink);
+            font-size: 1.1rem;
+            word-break: break-all; /* Break long strings */
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid rgba(0, 255, 247, 0.2);
+            border-top: 4px solid var(--cyber-neon-cyan);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .info-section {
+                padding: 1.5rem;
+            }
+            .info-section h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>IP Address & Device Info</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Automatically detect your IP address, location, ISP, and more.</p>
+
+            <div class="info-container">
+                <div class="info-section">
+                    <h3>Your Public IP Details</h3>
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                    <div id="infoGrid" class="info-grid">
+                        <div class="info-card">
+                            <strong>IP Address:</strong>
+                            <span id="ipAddressOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Country:</strong>
+                            <span id="countryOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>City:</strong>
+                            <span id="cityOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Region:</strong>
+                            <span id="regionOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Postal Code:</strong>
+                            <span id="postalOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Latitude, Longitude:</strong>
+                            <span id="coordsOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Timezone:</strong>
+                            <span id="timezoneOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>ISP / Organization:</strong>
+                            <span id="ispOutput" class="info-value">Detecting...</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button id="refreshBtn" class="primary"><i class="ri-refresh-line"></i> Refresh Info</button>
+                    </div>
+                    <p id="messageBox" class="message-box"></p>
+                </div>
+
+                <div class="info-section">
+                    <h3>Your Device Details</h3>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <strong>Browser:</strong>
+                            <span id="browserOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Operating System:</strong>
+                            <span id="osOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Device Type:</strong>
+                            <span id="deviceTypeOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Screen Resolution:</strong>
+                            <span id="resolutionOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Language:</strong>
+                            <span id="languageOutput" class="info-value">Detecting...</span>
+                        </div>
+                        <div class="info-card full-width-card"> <!-- Added a class for full width on smaller screens -->
+                            <strong>User Agent:</strong>
+                            <span id="userAgentOutput" class="info-value">Detecting...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

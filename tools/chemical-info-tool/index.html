@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Exchange Rate Viewer - Online Tool | Hangga's Tool Hub</title>
+    <title>Chemical Info Tool - Online Tool | Hangga's Tool Hub</title>
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
@@ -11,23 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- SEO Meta Tags for this tool -->
-    <meta name="description" content="View live currency exchange rates and convert between different currencies instantly with Hangga's free online Currency Exchange Rate Viewer.">
-    <meta name="keywords" content="currency converter, exchange rates, live rates, foreign exchange, money converter, free tool, online tool, hangga tools, exchangerate.host API">
+    <meta name="description" content="Look up chemical information like molecular weight, formula, and structure for any chemical name using Hangga's free online Chemical Info Tool powered by PubChem.">
+    <meta name="keywords" content="chemical info, molecular weight, chemical formula, chemical structure, PubChem, chemistry tool, free chemical tool, online tool, hangga tools">
     <meta name="author" content="Hangga">
-    <link rel="canonical" href="https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/chemical-info-tool/index.html">
 
     <!-- Open Graph / Facebook for this tool -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html">
-    <meta property="og:title" content="Currency Exchange Rate Viewer - Online Tool | Hangga's Tool Hub">
-    <meta property="og:description" content="View live currency exchange rates and convert between different currencies instantly with Hangga's free online Currency Exchange Rate Viewer.">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/chemical-info-tool/index.html">
+    <meta property="og:title" content="Chemical Info Tool - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Look up chemical information like molecular weight, formula, and structure for any chemical name using Hangga's free online Chemical Info Tool powered by PubChem.">
     <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Twitter for this tool -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html">
-    <meta property="twitter:title" content="Currency Exchange Rate Viewer - Online Tool | Hangga's Tool Hub">
-    <meta property="twitter:description" content="View live currency exchange rates and convert between different currencies instantly with Hangga's free online Currency Exchange Rate Viewer.">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/chemical-info-tool/index.html">
+    <meta property="twitter:title" content="Chemical Info Tool - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Look up chemical information like molecular weight, formula, and structure for any chemical name using Hangga's free online Chemical Info Tool powered by PubChem.">
     <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Schema.org Structured Data for this tool -->
@@ -35,25 +35,27 @@
     {
       "@context": "http://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Hangga's Currency Exchange Rate Viewer",
+      "name": "Hangga's Chemical Info Tool",
       "operatingSystem": "Web",
       "applicationCategory": "DeveloperTool",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.7",
-        "ratingCount": "25"
+        "ratingCount": "20"
       },
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "View live exchange rates and convert currencies.",
-      "url": "https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html",
+      "description": "Looks up chemical properties and structures from PubChem.",
+      "url": "https://hangga-hub.github.io/tools/chemical-info-tool/index.html",
       "featureList": [
-        "Live Exchange Rates",
-        "Currency Conversion",
-        "Multiple Currencies",
+        "Chemical Lookup",
+        "Molecular Weight",
+        "Molecular Formula",
+        "Chemical Structure",
+        "PubChem API",
         "Free to Use",
         "Online Tool"
       ],
@@ -75,15 +77,15 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
     <style>
-        /* Specific styles for the Currency Exchange Rate Viewer tool */
+        /* Specific styles for the Chemical Info Tool */
         .tool-converter-card {
-            max-width: 800px; /* Wider for more content */
+            max-width: 700px; /* Adjusted for this tool's content */
             padding: 2.5rem;
             box-sizing: border-box;
-            min-height: 70vh;
+            min-height: 60vh;
         }
 
-        .currency-container {
+        .chemical-info-container {
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -127,8 +129,7 @@
             text-shadow: 0 0 4px var(--cyber-neon-cyan);
         }
 
-        .form-group input[type="number"],
-        .form-group select {
+        .form-group input[type="text"] {
             width: 100%;
             padding: 0.8rem 1rem;
             border: 1px solid var(--cyber-neon-cyan);
@@ -142,38 +143,10 @@
             box-sizing: border-box;
         }
 
-        .form-group input[type="number"]:focus,
-        .form-group select:focus {
+        .form-group input[type="text"]:focus {
             outline: none;
             border-color: var(--cyber-neon-pink);
             box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
-        }
-
-        .currency-inputs {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-end; /* Align items to the bottom */
-        }
-
-        .currency-inputs > div {
-            flex: 1;
-        }
-
-        .currency-inputs .swap-button {
-            background: none;
-            border: none;
-            color: var(--cyber-neon-cyan);
-            font-size: 2rem;
-            padding: 0.5rem;
-            cursor: pointer;
-            transition: color 0.2s ease, transform 0.2s ease;
-            align-self: center; /* Center vertically within flex container */
-            margin-bottom: 0.5rem; /* Adjust margin to align with inputs */
-        }
-
-        .currency-inputs .swap-button:hover {
-            color: var(--cyber-neon-pink);
-            
         }
 
         .button-group {
@@ -248,62 +221,68 @@
             text-shadow: 0 0 12px var(--cyber-neon-pink);
         }
 
-        .result-section .result-card {
-            margin-bottom: 1rem;
-            text-align: left;
-            padding: 1.2rem;
-            font-size: 1.1rem;
-        }
-
-        .result-section .result-card strong {
-            color: var(--cyber-neon-yellow);
-            text-shadow: 0 0 8px var(--cyber-neon-yellow);
-        }
-
-        #convertedAmountOutput {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            color: var(--cyber-neon-pink);
-            text-shadow: 0 0 10px var(--cyber-neon-pink);
+        .result-section {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
         }
 
-        .rates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
+        .chemical-result-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-pink);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(255, 0, 204, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 500px;
+            text-align: left; /* Align text within result card to left */
         }
 
-        .rate-item {
-            background: rgba(25, 25, 30, 0.8);
-            border: 1px solid rgba(0, 255, 247, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 255, 247, 0.1);
-            transition: all 0.2s ease;
+        .chemical-result-card:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 204, 0.6);
+            transform: translateY(-5px);
+            border-color: var(--cyber-neon-cyan);
         }
 
-        .rate-item:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .rate-item .currency-code {
-            font-family: var(--font-heading);
-            color: var(--cyber-neon-cyan);
-            text-shadow: 0 0 5px var(--cyber-neon-cyan);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .rate-item .exchange-value {
-            color: var(--text);
+        .chemical-result-card p {
             font-size: 1rem;
-            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+
+        .chemical-result-card p strong {
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid var(--cyber-neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.4);
+            margin-top: 1rem;
+            background-color: white; /* White background for chemical structure */
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid rgba(0, 255, 247, 0.2);
+            border-top: 4px solid var(--cyber-neon-cyan);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive adjustments */
@@ -321,19 +300,8 @@
                 width: 100%;
                 justify-content: center;
             }
-            .currency-inputs {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .currency-inputs .swap-button {
-                margin: 1rem auto; /* Center swap button when stacked */
-                transform: rotate(90deg); /* Keep it rotated for vertical layout */
-            }
-            #convertedAmountOutput {
-                font-size: 1.6rem;
-            }
-            .rates-grid {
-                grid-template-columns: 1fr; /* Stack rates on small screens */
+            .chemical-result-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -344,54 +312,33 @@
 
     <main>
         <div class="tool-converter-card">
-            <h2>Currency Exchange Rate Viewer</h2>
-            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">View live exchange rates and convert between currencies.</p>
+            <h2>Chemical Info Tool</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Look up molecular weight, formula, and structure for chemical compounds.</p>
 
-            <div class="currency-container">
+            <div class="chemical-info-container">
                 <div class="input-section">
-                    <h3>Convert Currencies</h3>
+                    <h3>Enter Chemical Name</h3>
                     <div class="form-group">
-                        <label for="amountInput">Amount:</label>
-                        <input type="number" id="amountInput" value="1" min="0.01" step="0.01" required>
-                    </div>
-                    <div class="currency-inputs">
-                        <div class="form-group">
-                            <label for="fromCurrencySelect">From Currency:</label>
-                            <select id="fromCurrencySelect" required>
-                                <!-- Options populated by JS -->
-                            </select>
-                        </div>
-                        <button id="swapCurrenciesBtn" class="swap-button" title="Swap Currencies"><i class="ri-arrow-left-right-line"></i></button>
-                        <div class="form-group">
-                            <label for="toCurrencySelect">To Currency:</label>
-                            <select id="toCurrencySelect" required>
-                                <!-- Options populated by JS -->
-                            </select>
-                        </div>
+                        <label for="chemicalNameInput">Chemical Name:</label>
+                        <input type="text" id="chemicalNameInput" placeholder="e.g., Caffeine, Water, Ethanol" required>
                     </div>
                     <div class="button-group">
-                        <button id="convertBtn" class="primary"><i class="ri-exchange-line"></i> Convert</button>
-                        <button id="clearFormBtn" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
+                        <button id="searchBtn" class="primary"><i class="ri-flask-line"></i> Search Chemical</button>
+                        <button id="clearBtn" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
                     </div>
                     <p id="messageBox" class="message-box"></p>
                 </div>
 
                 <div class="input-section result-section">
-                    <h3>Conversion Result</h3>
-                    <p id="convertedAmountOutput">N/A</p>
-                    <div class="form-group">
-                        <div class="result-card">
-                            <strong>Last Updated:</strong> <span id="lastUpdatedOutput">N/A</span>
-                        </div>
+                    <h3>Chemical Details</h3>
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                    <div id="chemicalResult" class="chemical-result-card hidden">
+                        <p id="molecularWeightOutput"><strong>Molecular Weight:</strong> N/A</p>
+                        <p id="molecularFormulaOutput"><strong>Molecular Formula:</strong> N/A</p>
+                        <p><strong>Structure:</strong></p>
+                        <img id="structureOutput" src="" alt="Chemical Structure" class="structure-image hidden" onerror="this.onerror=null;this.src='https://placehold.co/300x200/FFFFFF/333333?text=No+Structure';">
                     </div>
-                </div>
-
-                <div class="input-section result-section">
-                    <h3>Popular Exchange Rates (vs. Base Currency)</h3>
-                    <div id="popularRatesGrid" class="rates-grid">
-                        <p id="noRatesMessage" style="color: var(--text); opacity: 0.7; grid-column: 1 / -1; text-align: center;">Select currencies and convert to see rates.</p>
-                        <!-- Popular rates will be dynamically loaded here -->
-                    </div>
+                    <p id="resultsMessageBox" class="message-box"></p>
                 </div>
             </div>
         </div>

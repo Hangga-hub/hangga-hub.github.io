@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Exchange Rate Viewer - Online Tool | Hangga's Tool Hub</title>
+    <title>Random Advice Generator - Online Tool | Hangga's Tool Hub</title>
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
@@ -11,23 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- SEO Meta Tags for this tool -->
-    <meta name="description" content="View live currency exchange rates and convert between different currencies instantly with Hangga's free online Currency Exchange Rate Viewer.">
-    <meta name="keywords" content="currency converter, exchange rates, live rates, foreign exchange, money converter, free tool, online tool, hangga tools, exchangerate.host API">
+    <meta name="description" content="Get random pieces of advice and wisdom with Hangga's free online Random Advice Generator using the Advice Slip API.">
+    <meta name="keywords" content="random advice, advice generator, daily wisdom, life tips, advice slip API, free advice tool, online tool, hangga tools">
     <meta name="author" content="Hangga">
-    <link rel="canonical" href="https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/random-activity-generator/index.html">
 
     <!-- Open Graph / Facebook for this tool -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html">
-    <meta property="og:title" content="Currency Exchange Rate Viewer - Online Tool | Hangga's Tool Hub">
-    <meta property="og:description" content="View live currency exchange rates and convert between different currencies instantly with Hangga's free online Currency Exchange Rate Viewer.">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/random-activity-generator/index.html">
+    <meta property="og:title" content="Random Advice Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Get random pieces of advice and wisdom with Hangga's free online Random Advice Generator using the Advice Slip API.">
     <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Twitter for this tool -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html">
-    <meta property="twitter:title" content="Currency Exchange Rate Viewer - Online Tool | Hangga's Tool Hub">
-    <meta property="twitter:description" content="View live currency exchange rates and convert between different currencies instantly with Hangga's free online Currency Exchange Rate Viewer.">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/random-activity-generator/index.html">
+    <meta property="twitter:title" content="Random Advice Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Get random pieces of advice and wisdom with Hangga's free online Random Advice Generator using the Advice Slip API.">
     <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
 
     <!-- Schema.org Structured Data for this tool -->
@@ -35,25 +35,25 @@
     {
       "@context": "http://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Hangga's Currency Exchange Rate Viewer",
+      "name": "Hangga's Random Advice Generator",
       "operatingSystem": "Web",
       "applicationCategory": "DeveloperTool",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.7",
-        "ratingCount": "25"
+        "ratingCount": "20"
       },
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "View live exchange rates and convert currencies.",
-      "url": "https://hangga-hub.github.io/tools/currency-exchange-rate-viewer/index.html",
+      "description": "Suggests random pieces of advice.",
+      "url": "https://hangga-hub.github.io/tools/random-activity-generator/index.html",
       "featureList": [
-        "Live Exchange Rates",
-        "Currency Conversion",
-        "Multiple Currencies",
+        "Random Advice",
+        "Advice Slip API",
+        "Daily Wisdom",
         "Free to Use",
         "Online Tool"
       ],
@@ -75,15 +75,15 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
     <style>
-        /* Specific styles for the Currency Exchange Rate Viewer tool */
+        /* Specific styles for the Random Activity Generator tool */
         .tool-converter-card {
-            max-width: 800px; /* Wider for more content */
+            max-width: 700px; /* Adjusted for this tool's content */
             padding: 2.5rem;
             box-sizing: border-box;
-            min-height: 70vh;
+            min-height: 60vh;
         }
 
-        .currency-container {
+        .activity-generator-container {
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -127,8 +127,8 @@
             text-shadow: 0 0 4px var(--cyber-neon-cyan);
         }
 
-        .form-group input[type="number"],
-        .form-group select {
+        .form-group select,
+        .form-group input[type="number"] {
             width: 100%;
             padding: 0.8rem 1rem;
             border: 1px solid var(--cyber-neon-cyan);
@@ -140,40 +140,20 @@
             box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
             transition: all 0.3s ease;
             box-sizing: border-box;
+            -webkit-appearance: none; /* Remove default arrow on select */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292%22%20height%3D%22292%22%3E%3Cpath%20fill%3D%22%2300fff7%22%20d%3D%22M287%2C69.4a17.6%2C17.6%2C0%2C0%2C0%2C-13.2%2C-6.8H18.2C6.9%2C62.6%2C0%2C69.5%2C0%2C80.8s6.9%2C18.2%2C18.2%2C18.2h255.6c11.3%2C0%2C18.2%2C-6.9%2C18.2%2C-18.2S298.3%2C69.4%2C287%2C69.4z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 0.8rem top 50%;
+            background-size: 0.65em auto;
         }
 
-        .form-group input[type="number"]:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group input[type="number"]:focus {
             outline: none;
             border-color: var(--cyber-neon-pink);
             box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
-        }
-
-        .currency-inputs {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-end; /* Align items to the bottom */
-        }
-
-        .currency-inputs > div {
-            flex: 1;
-        }
-
-        .currency-inputs .swap-button {
-            background: none;
-            border: none;
-            color: var(--cyber-neon-cyan);
-            font-size: 2rem;
-            padding: 0.5rem;
-            cursor: pointer;
-            transition: color 0.2s ease, transform 0.2s ease;
-            align-self: center; /* Center vertically within flex container */
-            margin-bottom: 0.5rem; /* Adjust margin to align with inputs */
-        }
-
-        .currency-inputs .swap-button:hover {
-            color: var(--cyber-neon-pink);
-            
         }
 
         .button-group {
@@ -248,62 +228,69 @@
             text-shadow: 0 0 12px var(--cyber-neon-pink);
         }
 
-        .result-section .result-card {
-            margin-bottom: 1rem;
-            text-align: left;
-            padding: 1.2rem;
-            font-size: 1.1rem;
+        .result-section {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .result-section .result-card strong {
+        .activity-result-card {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-pink);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(255, 0, 204, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .activity-result-card:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 204, 0.6);
+            transform: translateY(-5px);
+            border-color: var(--cyber-neon-cyan);
+        }
+
+        .activity-result-card h4 {
+            font-family: var(--font-heading);
             color: var(--cyber-neon-yellow);
             text-shadow: 0 0 8px var(--cyber-neon-yellow);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
         }
 
-        #convertedAmountOutput {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            color: var(--cyber-neon-pink);
-            text-shadow: 0 0 10px var(--cyber-neon-pink);
-            text-align: center;
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .rates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .rate-item {
-            background: rgba(25, 25, 30, 0.8);
-            border: 1px solid rgba(0, 255, 247, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 255, 247, 0.1);
-            transition: all 0.2s ease;
-        }
-
-        .rate-item:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .rate-item .currency-code {
-            font-family: var(--font-heading);
-            color: var(--cyber-neon-cyan);
-            text-shadow: 0 0 5px var(--cyber-neon-cyan);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .rate-item .exchange-value {
-            color: var(--text);
+        .activity-result-card p {
             font-size: 1rem;
-            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .activity-result-card p strong {
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid rgba(0, 255, 247, 0.2);
+            border-top: 4px solid var(--cyber-neon-cyan);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Responsive adjustments */
@@ -321,19 +308,11 @@
                 width: 100%;
                 justify-content: center;
             }
-            .currency-inputs {
-                flex-direction: column;
-                align-items: stretch;
+            .activity-result-card {
+                padding: 1.5rem;
             }
-            .currency-inputs .swap-button {
-                margin: 1rem auto; /* Center swap button when stacked */
-                transform: rotate(90deg); /* Keep it rotated for vertical layout */
-            }
-            #convertedAmountOutput {
-                font-size: 1.6rem;
-            }
-            .rates-grid {
-                grid-template-columns: 1fr; /* Stack rates on small screens */
+            .activity-result-card h4 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -344,54 +323,26 @@
 
     <main>
         <div class="tool-converter-card">
-            <h2>Currency Exchange Rate Viewer</h2>
-            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">View live exchange rates and convert between currencies.</p>
+            <h2>Random Advice Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Get suggestions for random pieces of advice!</p>
 
-            <div class="currency-container">
+            <div class="activity-generator-container">
                 <div class="input-section">
-                    <h3>Convert Currencies</h3>
-                    <div class="form-group">
-                        <label for="amountInput">Amount:</label>
-                        <input type="number" id="amountInput" value="1" min="0.01" step="0.01" required>
-                    </div>
-                    <div class="currency-inputs">
-                        <div class="form-group">
-                            <label for="fromCurrencySelect">From Currency:</label>
-                            <select id="fromCurrencySelect" required>
-                                <!-- Options populated by JS -->
-                            </select>
-                        </div>
-                        <button id="swapCurrenciesBtn" class="swap-button" title="Swap Currencies"><i class="ri-arrow-left-right-line"></i></button>
-                        <div class="form-group">
-                            <label for="toCurrencySelect">To Currency:</label>
-                            <select id="toCurrencySelect" required>
-                                <!-- Options populated by JS -->
-                            </select>
-                        </div>
-                    </div>
+                    <h3>Get Your Advice</h3>
                     <div class="button-group">
-                        <button id="convertBtn" class="primary"><i class="ri-exchange-line"></i> Convert</button>
-                        <button id="clearFormBtn" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
+                        <button id="generateBtn" class="primary"><i class="ri-lightbulb-line"></i> Get Advice</button>
+                        <button id="clearBtn" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
                     </div>
                     <p id="messageBox" class="message-box"></p>
                 </div>
 
                 <div class="input-section result-section">
-                    <h3>Conversion Result</h3>
-                    <p id="convertedAmountOutput">N/A</p>
-                    <div class="form-group">
-                        <div class="result-card">
-                            <strong>Last Updated:</strong> <span id="lastUpdatedOutput">N/A</span>
-                        </div>
+                    <h3>Your Random Advice</h3>
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                    <div id="activityResult" class="activity-result-card hidden">
+                        <h4 id="activityOutput"></h4>
                     </div>
-                </div>
-
-                <div class="input-section result-section">
-                    <h3>Popular Exchange Rates (vs. Base Currency)</h3>
-                    <div id="popularRatesGrid" class="rates-grid">
-                        <p id="noRatesMessage" style="color: var(--text); opacity: 0.7; grid-column: 1 / -1; text-align: center;">Select currencies and convert to see rates.</p>
-                        <!-- Popular rates will be dynamically loaded here -->
-                    </div>
+                    <p id="resultsMessageBox" class="message-box"></p>
                 </div>
             </div>
         </div>
