@@ -1,154 +1,113 @@
-// script.js - Simplified navbar interactions
+// script.js - Universal navbar loader with responsive interactions
 
 document.addEventListener("DOMContentLoaded", () => {
     const navbarContainer = document.getElementById("navbar");
-
     if (!navbarContainer) {
-        console.error("Error: Navbar container (#navbar) not found.");
+        console.error("Navbar container not found.");
         return;
     }
 
-    // Determine base path for assets
+    // Normalize and detect base path
     let basePath = window.location.pathname;
-    const htmlFileMatch = basePath.match(/\/[^/]+\.html$/);
-    if (htmlFileMatch) {
+    const htmlMatch = basePath.match(/\/[^/]+\.html$/);
+    if (htmlMatch) {
         basePath = basePath.substring(0, basePath.lastIndexOf('/'));
     }
     if (basePath.includes('/tools/')) {
         basePath = basePath.substring(0, basePath.indexOf('/tools/'));
     }
-    if (basePath === '') {
-        basePath = '/';
-    } else if (!basePath.startsWith('/')) {
-        basePath = '/' + basePath;
-    }
-    if (basePath.endsWith('/') && basePath.length > 1) {
-        basePath = basePath.slice(0, -1);
-    }
+    if (!basePath.startsWith('/')) basePath = '/' + basePath;
+    if (!basePath.endsWith('/')) basePath += '/';
 
-    const navbarPath = window.location.origin + basePath + "/components/navbar.html";
-    console.log("Fetching navbar from:", navbarPath);
+    const fullPath = `${window.location.origin}${basePath}components/navbar.html`;
+    console.log("Attempting navbar fetch from:", fullPath);
 
-    // Initialize navbar interactions
+    const loadNavbar = (path) =>
+        fetch(path)
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return res.text();
+            });
+
     const initializeNavbarInteractions = () => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.querySelector(".nav-links");
         const dropdowns = document.querySelectorAll(".dropdown");
         const dropbtns = document.querySelectorAll(".dropdown .dropbtn");
 
-        // Mobile menu toggle
+        // Mobile toggle
         if (menuToggle && navLinks) {
             menuToggle.addEventListener("click", (e) => {
                 e.stopPropagation();
                 navLinks.classList.toggle("show");
-                const isExpanded = navLinks.classList.contains("show");
-                menuToggle.setAttribute("aria-expanded", isExpanded);
-                
-                // Close all dropdowns when toggling main menu
-                dropdowns.forEach(dropdown => dropdown.classList.remove("open"));
+                menuToggle.setAttribute("aria-expanded", navLinks.classList.contains("show"));
+                dropdowns.forEach(d => d.classList.remove("open"));
             });
         }
 
-        // Dropdown toggle for mobile
+        // Dropdown toggle
         dropbtns.forEach(btn => {
             btn.addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                
-                const parentDropdown = btn.closest(".dropdown");
-                if (!parentDropdown) return;
-
-                // On mobile, toggle the dropdown
-                if (window.innerWidth <= 768) {
-                    // Close other dropdowns
-                    dropdowns.forEach(otherDropdown => {
-                        if (otherDropdown !== parentDropdown) {
-                            otherDropdown.classList.remove("open");
-                        }
-                    });
-                    // Toggle current dropdown
-                    parentDropdown.classList.toggle("open");
+                const parent = btn.closest(".dropdown");
+                if (window.innerWidth <= 768 && parent) {
+                    dropdowns.forEach(d => d !== parent && d.classList.remove("open"));
+                    parent.classList.toggle("open");
                 }
             });
         });
 
-        // Close menu when clicking outside
+        // Close on outside click
         document.addEventListener("click", (e) => {
-            const navbarNav = document.querySelector('nav.sticky');
-            const isClickInsideNav = navbarNav && navbarNav.contains(e.target);
-
-            if (!isClickInsideNav) {
-                if (navLinks && navLinks.classList.contains("show")) {
-                    navLinks.classList.remove("show");
-                    menuToggle.setAttribute("aria-expanded", "false");
-                }
-                dropdowns.forEach(dropdown => dropdown.classList.remove("open"));
+            const nav = document.querySelector("nav.sticky");
+            if (!nav?.contains(e.target)) {
+                navLinks?.classList.remove("show");
+                menuToggle?.setAttribute("aria-expanded", false);
+                dropdowns.forEach(d => d.classList.remove("open"));
             }
         });
 
-        // Handle window resize
-        const handleResize = () => {
+        // Resize resets
+        window.addEventListener("resize", () => {
             if (window.innerWidth > 768) {
-                // Desktop view - close mobile menu and dropdowns
-                if (navLinks) navLinks.classList.remove("show");
-                if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
-                dropdowns.forEach(dropdown => dropdown.classList.remove("open"));
+                navLinks?.classList.remove("show");
+                menuToggle?.setAttribute("aria-expanded", false);
+                dropdowns.forEach(d => d.classList.remove("open"));
             }
-        };
+        });
 
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        // Highlight active nav link
         highlightActiveNavLink();
     };
 
-    // Highlight active nav link
     const highlightActiveNavLink = () => {
-        const currentPathname = window.location.pathname;
-        const allLinks = document.querySelectorAll("nav.sticky a");
-
-        allLinks.forEach(link => {
+        const path = window.location.pathname;
+        document.querySelectorAll("nav.sticky a").forEach(link => {
             link.classList.remove("active");
-            let linkHref = new URL(link.href).pathname;
+            const href = new URL(link.href).pathname;
+            const isExactMatch = path === href;
+            const isRootMatch = (href === '/' || href === '/index.html') && (path === '/' || path === '/index.html');
+            const isDeepMatch = href !== '/' && path.startsWith(href);
 
-            if (linkHref === '/' || linkHref === '/index.html') {
-                if (currentPathname === '/' || currentPathname === '/index.html') {
-                    link.classList.add("active");
-                }
-            } else if (linkHref.includes('/index2.html')) {
-                if (currentPathname === '/index2.html') {
-                    link.classList.add("active");
-                }
-            } else if (currentPathname.startsWith(linkHref) && linkHref !== '/') {
+            if (isExactMatch || isRootMatch || isDeepMatch) {
                 link.classList.add("active");
-            }
-
-            // Highlight dropdown button if child link is active
-            if (link.classList.contains("active")) {
-                const parentDropdown = link.closest(".dropdown");
-                if (parentDropdown) {
-                    const dropbtn = parentDropdown.querySelector(".dropbtn");
-                    if (dropbtn) dropbtn.classList.add("active");
-                }
+                const dropdown = link.closest(".dropdown");
+                dropdown?.querySelector(".dropbtn")?.classList.add("active");
             }
         });
     };
 
-    // Fetch and inject navbar
-    fetch(navbarPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
+    loadNavbar(fullPath)
+        .catch(() => {
+            console.warn("Fallback attempt to root");
+            return loadNavbar(`${window.location.origin}/components/navbar.html`);
         })
         .then(html => {
             navbarContainer.innerHTML = html;
             initializeNavbarInteractions();
         })
         .catch(error => {
-            console.error("Failed to load navbar:", error);
-            navbarContainer.innerHTML = "<nav class='error-nav'><p>Navigation temporarily unavailable</p></nav>";
+            console.error("Navbar load error:", error);
+            navbarContainer.innerHTML = "<nav class='error-nav'><p>Navigation unavailable</p></nav>";
         });
 });
