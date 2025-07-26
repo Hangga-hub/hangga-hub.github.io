@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Info Viewer - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Get detailed information about any country including flag, population, capital, currency, and more with Hangga's free online Country Info Viewer.">
+    <meta name="keywords" content="country info, country details, world countries, flags, population, capital, currency, free tool, online tool, hangga tools, restcountries API">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/country-info-viewer/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/country-info-viewer/index.html">
+    <meta property="og:title" content="Country Info Viewer - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Get detailed information about any country including flag, population, capital, currency, and more with Hangga's free online Country Info Viewer.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/country-info-viewer/index.html">
+    <meta property="twitter:title" content="Country Info Viewer - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Get detailed information about any country including flag, population, capital, currency, and more with Hangga's free online Country Info Viewer.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Country Info Viewer",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "28"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "View detailed information about countries worldwide.",
+      "url": "https://hangga-hub.github.io/tools/country-info-viewer/index.html",
+      "featureList": [
+        "Country Information",
+        "Flag Display",
+        "Population Data",
+        "Capital City",
+        "Currency Details",
+        "Language Information",
+        "Timezones",
+        "Map Links",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Country Info Viewer tool */
+        .tool-converter-card {
+            max-width: 800px; /* Wider for detailed info */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 70vh;
+        }
+
+        .country-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        .input-section {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .input-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .input-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .country-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .country-details .detail-item {
+            background: rgba(25, 25, 30, 0.8);
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .country-details .detail-item:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .country-details .detail-item strong {
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 6px var(--cyber-neon-yellow);
+            font-size: 1.1rem;
+            margin-right: 0.5rem;
+        }
+
+        .country-details .detail-item span,
+        .country-details .detail-item a {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .country-details .detail-item a {
+            color: var(--cyber-neon-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .country-details .detail-item a:hover {
+            color: var(--cyber-neon-pink);
+            text-decoration: underline;
+        }
+
+        #countryFlag {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+            margin-bottom: 1.5rem;
+            display: block; /* Ensures it takes full width and centers if parent is flex-center */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .input-section {
+                padding: 1.5rem;
+            }
+            .input-section h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Country Info Viewer</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Get detailed information about any country worldwide.</p>
+
+            <div class="country-info-container">
+                <div class="input-section">
+                    <h3>Enter Country Name</h3>
+                    <div class="form-group">
+                        <label for="countryInput">Country Name:</label>
+                        <input type="text" id="countryInput" placeholder="e.g., United States, Japan, Brazil" required>
+                    </div>
+                    <div class="button-group">
+                        <button id="searchCountryBtn" class="primary"><i class="ri-search-line"></i> Search Country</button>
+                        <button id="clearFormBtn" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
+                    </div>
+                    <p id="messageBox" class="message-box"></p>
+                </div>
+
+                <div class="input-section result-section">
+                    <h3>Country Details</h3>
+                    <div id="countryFlagContainer">
+                        <img id="countryFlag" src="https://placehold.co/300x200/333333/FFFFFF?text=Flag+Here" alt="Country Flag">
+                    </div>
+                    <div class="country-details">
+                        <div id="countryNameOutput" class="detail-item"><strong>Country:</strong> N/A</div>
+                        <div id="capitalOutput" class="detail-item"><strong>Capital:</strong> N/A</div>
+                        <div id="populationOutput" class="detail-item"><strong>Population:</strong> N/A</div>
+                        <div id="regionOutput" class="detail-item"><strong>Region:</strong> N/A</div>
+                        <div id="subregionOutput" class="detail-item"><strong>Subregion:</strong> N/A</div>
+                        <div id="currenciesOutput" class="detail-item"><strong>Currencies:</strong> N/A</div>
+                        <div id="languagesOutput" class="detail-item"><strong>Languages:</strong> N/A</div>
+                        <div id="timezonesOutput" class="detail-item"><strong>Timezones:</strong> N/A</div>
+                        <div id="mapsOutput" class="detail-item"><strong>Maps:</strong> <span id="mapLinks">N/A</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

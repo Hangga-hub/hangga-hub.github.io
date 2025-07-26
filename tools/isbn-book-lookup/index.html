@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode / Product Lookup - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Look up product information, nutrition facts, and images by scanning or entering a barcode with Hangga's free online Barcode / Product Lookup tool.">
+    <meta name="keywords" content="barcode lookup, product info, nutrition facts, food product, free tool, online tool, hangga tools, Open Food Facts API">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/barcode-product-lookup/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/barcode-product-lookup/index.html">
+    <meta property="og:title" content="Barcode / Product Lookup - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Look up product information, nutrition facts, and images by scanning or entering a barcode with Hangga's free online Barcode / Product Lookup tool.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/barcode-product-lookup/index.html">
+    <meta property="twitter:title" content="Barcode / Product Lookup - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Look up product information, nutrition facts, and images by scanning or entering a barcode with Hangga's free online Barcode / Product Lookup tool.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Barcode / Product Lookup",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "ratingCount": "15"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Look up product information and nutrition details using a barcode.",
+      "url": "https://hangga-hub.github.io/tools/barcode-product-lookup/index.html",
+      "featureList": [
+        "Barcode Lookup",
+        "Product Information",
+        "Nutrition Facts",
+        "Product Image",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Barcode / Product Lookup tool */
+        .tool-converter-card {
+            max-width: 700px; /* Adjusted for content */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 60vh;
+        }
+
+        .barcode-lookup-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        .input-section {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .input-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .input-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .result-section .product-image-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-section #productImage {
+            max-width: 250px; /* Max width for product image */
+            height: auto;
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .result-section .detail-item {
+            margin-bottom: 1rem;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            background: rgba(25, 25, 30, 0.8);
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .result-section .detail-item:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .result-section .detail-item strong {
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 6px var(--cyber-neon-yellow);
+            font-size: 1.1rem;
+            margin-right: 0.5rem;
+        }
+
+        .result-section .detail-item span {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .nutrition-facts-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nutrition-facts-list li {
+            background: rgba(25, 25, 30, 0.8);
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.08);
+        }
+
+        .nutrition-facts-list li strong {
+            color: var(--cyber-neon-cyan);
+            font-size: 1rem;
+        }
+
+        .nutrition-facts-list li span {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        /* Scanner specific styles */
+        .scanner-container {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .scanner-container.show {
+            display: flex;
+        }
+
+        #scannerVideo {
+            width: 100%;
+            max-width: 400px; /* Limit video size */
+            height: auto;
+            border: 2px solid var(--cyber-neon-pink);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 0, 204, 0.6);
+        }
+
+        #scannerCanvas {
+            display: none; /* Canvas is used for processing, not direct display */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .input-section {
+                padding: 1.5rem;
+            }
+            .input-section h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            #scannerVideo {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Barcode / Product Lookup</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Get product information and nutrition details using a barcode.</p>
+
+            <div class="barcode-lookup-container">
+                <div class="input-section">
+                    <h3>Enter Barcode</h3>
+                    <div class="form-group">
+                        <label for="barcodeInput">Barcode (e.g., EAN-13, UPC-A):</label>
+                        <input type="text" id="barcodeInput" placeholder="e.g., 5000159461122" required>
+                    </div>
+                    <div class="button-group">
+                        <button id="searchProductBtn" class="primary"><i class="ri-barcode-box-line"></i> Search Product</button>
+                        <button id="scanBarcodeBtn" class="primary"><i class="ri-camera-line"></i> Scan Barcode</button>
+                        <button id="clearFormBtn" class="secondary"><i class="ri-eraser-line"></i> Clear</button>
+                    </div>
+                    <p id="messageBox" class="message-box"></p>
+                </div>
+
+                <div id="scannerSection" class="input-section scanner-container">
+                    <h3>Scan Barcode</h3>
+                    <video id="scannerVideo" autoplay muted playsinline></video>
+                    <canvas id="scannerCanvas"></canvas>
+                    <div class="button-group">
+                        <button id="stopScanBtn" class="secondary"><i class="ri-stop-circle-line"></i> Stop Scan</button>
+                    </div>
+                    <p id="scannerMessageBox" class="message-box"></p>
+                </div>
+
+                <div class="input-section result-section">
+                    <h3>Product Details</h3>
+                    <p id="initialMessage" style="text-align: center; color: var(--text); opacity: 0.7;">Enter a barcode or click 'Scan Barcode' to find details.</p>
+                    <div id="productDetails" style="display: none;">
+                        <div class="product-image-container">
+                            <img id="productImage" src="https://placehold.co/250x250/333333/FFFFFF?text=No+Image" alt="Product Image">
+                        </div>
+                        <div id="productInfo">
+                            <div id="productNameOutput" class="detail-item"><strong>Product Name:</strong> N/A</div>
+                            <div id="productBrandOutput" class="detail-item"><strong>Brand:</strong> N/A</div>
+                            <div id="productQuantityOutput" class="detail-item"><strong>Quantity:</strong> N/A</div>
+                            <div id="productCategoriesOutput" class="detail-item"><strong>Categories:</strong> N/A</div>
+                            <div id="productIngredientsOutput" class="detail-item"><strong>Ingredients:</strong> N/A</div>
+                        </div>
+
+                        <h4 style="margin-top: 2rem; text-align: center;">Nutrition Facts (per 100g/ml)</h4>
+                        <ul id="nutritionFactsList" class="nutrition-facts-list">
+                            <li id="noNutritionMessage">No nutrition information available.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

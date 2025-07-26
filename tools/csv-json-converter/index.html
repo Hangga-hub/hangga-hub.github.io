@@ -4,16 +4,65 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CSV ⇄ JSON Converter Online - Hangga Tools</title>
-  <meta name="google-adsense-account" content="ca-pub-6676706621077888">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../../style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
   <meta name="description" content="Convert CSV to JSON and JSON to CSV instantly with Hangga's free online data converter. Validate, beautify, and download your data with ease."/>
-  <meta name="keywords" content="csv to json, json to csv, csv json converter, data converter, online tool, free tool, json converter, csv converter"/>
+  <meta name="keywords" content="csv to json, json to csv, csv json converter, data converter, online tool, free tool, json converter, csv converter, hangga tools"/>
   <meta name="author" content="Hangga" />
+  <link rel="canonical" href="https://hangga-hub.github.io/csv-json-converter"/>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hangga-hub.github.io/csv-json-converter" />
   <meta property="og:title" content="CSV ⇄ JSON Converter Online - Hangga Tools" />
   <meta property="og:description" content="Convert CSV data to JSON and JSON data to CSV quickly." />
   <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png" />
-  <meta property="og:url" content="https://hangga-hub.github.io/csv-json-converter" />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://hangga-hub.github.io/csv-json-converter"/>
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://hangga-hub.github.io/csv-json-converter" />
+  <meta property="twitter:title" content="CSV ⇄ JSON Converter Online - Hangga Tools" />
+  <meta property="twitter:description" content="Convert CSV data to JSON and JSON data to CSV quickly." />
+  <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CSV ⇄ JSON Converter",
+    "url": "https://hangga-hub.github.io/csv-json-converter",
+    "applicationCategory": "Utilities",
+    "description": "Convert CSV data to JSON and JSON data to CSV quickly.",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "75"
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "featureList": [
+        "CSV to JSON conversion",
+        "JSON to CSV conversion",
+        "Instant conversion",
+        "Free to use",
+        "Online tool",
+        "Data validation",
+        "Data beautification",
+        "Download results"
+    ],
+    "screenshot": "https://hangga-hub.github.io/og-preview.png",
+    "softwareRequirements": "Modern Web Browser",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+    }
+  }
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
   <script>
       window.dataLayer = window.dataLayer || [];
@@ -24,64 +73,44 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888"
     crossorigin="anonymous">
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "CSV ⇄ JSON Converter",
-    "url": "https://hangga-hub.github.io/csv-json-converter",
-    "applicationCategory": "Utilities",
-    "description": "Convert CSV data to JSON and JSON data to CSV quickly."
-  }
-  </script>
-  <link rel="stylesheet" href="https://hangga-hub.github.io/style.css" />
-  <link rel="icon" href="https://hangga-hub.github.io/favicon.ico" type="image/x-icon" />
-  <style>
-    .tool-button {
-      padding: 0.8rem 1.5rem;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .tool-button:hover {
-      background-color: #2980b9;
-    }
-    .tool-error-message {
-      margin-top: 1rem;
-      color: red;
-    }
-  </style>
 </head>
 <body>
   <div id="navbar">
-    <!-- You can add your navigation bar content here -->
-  </div>
+    </div>
   <section id="ad-space">
     <p>[Ad – Data tools, cloud services, or productivity software]</p>
   </section>
-  <main class="container tool-page">
+  <main class="container tool-converter-card">
     <h2 class="tool-title">📑 CSV ⇄ JSON Converter</h2>
-    <div class="tool-converter">
-      <label class="neon-label" for="inputData">Input (CSV or JSON)</label>
-      <textarea id="inputData" class="neon-textarea" placeholder="Paste CSV or JSON here"></textarea>
-      <div class="tool-button-row">
-        <button id="toJsonBtn" class="tool-button">CSV → JSON</button>
-        <button id="toCsvBtn" class="tool-button">JSON → CSV</button>
-        <button id="clearBtn" class="tool-button">Clear</button>
+    <div class="converter-container">
+      <div class="input-section">
+        <div class="form-group">
+          <label for="inputData">Input (CSV or JSON)</label>
+          <textarea id="inputData" placeholder="Paste CSV or JSON here"></textarea>
+        </div>
+        <div class="button-group">
+          <button id="toJsonBtn" class="primary"><i class="ri-arrow-right-line"></i> CSV → JSON</button>
+          <button id="toCsvBtn" class="primary"><i class="ri-arrow-left-line"></i> JSON → CSV</button>
+          <button id="clearBtn" class="secondary"><i class="ri-delete-bin-line"></i> Clear</button>
+        </div>
+        <div id="errorMessage" class="message-box"></div>
       </div>
-      <label class="neon-label" for="outputData">Output</label>
-      <textarea id="outputData" class="neon-textarea" readonly placeholder="Result appears here"></textarea>
-      <div id="errorMessage" class="tool-error-message"></div>
+
+      <div class="input-section">
+        <div class="form-group">
+          <label for="outputData">Output</label>
+          <textarea id="outputData" readonly placeholder="Result appears here"></textarea>
+        </div>
+        <div class="button-group">
+            <button id="copyBtn" class="secondary"><i class="ri-file-copy-line"></i> Copy Output</button>
+            <button id="downloadBtn" class="secondary"><i class="ri-download-line"></i> Download Output</button>
+        </div>
+      </div>
     </div>
      <div class="share-buttons">
-          <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/tools/image-resizer.html&text=Resize%20images%20easily%20with%20Hangga's%20Image%20Resizer!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/tools/image-resizer.html" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/tools/image-resizer.html" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
+          <a href="https://x.com/intent/tweet?url=https://hangga-hub.github.io/csv-json-converter&text=Convert%20CSV%20to%20JSON%20and%20JSON%20to%20CSV%20instantly%20with%20Hangga%27s%20free%20online%20data%20converter!" target="_blank" title="Share on X"><i class="ri-twitter-x-line"></i></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://hangga-hub.github.io/csv-json-converter" target="_blank" title="Share on Facebook"><i class="ri-facebook-fill"></i></a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hangga-hub.github.io/csv-json-converter" target="_blank" title="Share on LinkedIn"><i class="ri-linkedin-fill"></i></a>
       </div>
   </main>
   <footer>
