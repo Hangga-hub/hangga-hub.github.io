@@ -16,7 +16,7 @@ jobs:
         run: npm install -g surge
 
       - name: Deploy to Surge
-        run: surge ./ hangga-tools.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./ https://hangga-tools.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
   ctws-deploy:
     name: Deploy to hanggatools.ct.ws
