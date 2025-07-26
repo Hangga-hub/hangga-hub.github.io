@@ -1,5 +1,3 @@
-// script.js – Host-compatible navbar loader with dynamic path resolution
-
 document.addEventListener("DOMContentLoaded", () => {
     const navbarContainer = document.getElementById("navbar");
     if (!navbarContainer) {
@@ -7,9 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Get current directory dynamically
-    const pathname = window.location.pathname;
-    const currentDir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+    // Dynamically resolve path to navbar.html based on current location
+    const currentDir = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const navbarPath = `${currentDir}components/navbar.html`;
 
     console.log("Fetching navbar from:", navbarPath);
@@ -28,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             navbarContainer.innerHTML = "<nav class='error-nav'><p>Navigation unavailable</p></nav>";
         });
 
-    // Initialize navbar interactions
+    // Your existing interaction logic stays the same
     const initializeNavbarInteractions = () => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.querySelector(".nav-links");
@@ -76,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         highlightActiveNavLink();
     };
 
-    // Highlight active nav link
     const highlightActiveNavLink = () => {
         const currentPath = window.location.pathname;
         document.querySelectorAll("nav.sticky a").forEach(link => {
