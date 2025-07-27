@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearImageBtn = document.getElementById('clearImageBtn');
     const imageDisplay = document.getElementById('imageDisplay');
     const messageBox = document.getElementById('messageBox');
+    const resultSection = document.querySelector('.result-section');
 
     /**
      * Displays a message in the message box.
@@ -31,6 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         imageDisplay.innerHTML = '<p style="color: var(--text); opacity: 0.7;">Click a button above to generate an image.</p>';
     };
 
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (resultSection) {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     // Initialize the display
     resetOutputs();
 
@@ -47,12 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok && data.status === 'success' && data.message) {
                 imageDisplay.innerHTML = `<img src="${data.message}" alt="Random Dog" onerror="this.onerror=null;this.src='https://placehold.co/600x400/333333/FFFFFF?text=Image+Not+Available';">`;
                 showMessage('Dog image loaded!', false);
+                scrollToResults();
             } else {
                 showMessage('Failed to retrieve a dog image. Please try again.', true);
+                scrollToResults();
             }
         } catch (error) {
             console.error('Error fetching dog image:', error);
             showMessage('An error occurred while fetching the dog image. Please check your network connection or try again later.', true);
+            scrollToResults();
         }
     });
 
@@ -72,12 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok && data.length > 0 && data[0].url) {
                 imageDisplay.innerHTML = `<img src="${data[0].url}" alt="Random Cat" onerror="this.onerror=null;this.src='https://placehold.co/600x400/333333/FFFFFF?text=Image+Not+Available';">`;
                 showMessage('Cat image loaded!', false);
+                scrollToResults();
             } else {
                 showMessage('Failed to retrieve a cat image. Please try again.', true);
+                scrollToResults();
             }
         } catch (error) {
             console.error('Error fetching cat image:', error);
             showMessage('An error occurred while fetching the cat image. Please check your network connection or try again later.', true);
+            scrollToResults();
         }
     });
 

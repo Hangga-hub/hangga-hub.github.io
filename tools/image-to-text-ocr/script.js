@@ -38,6 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
+     * Scrolls the window down to the result output section.
+     */
+    function scrollToResults() {
+        const outputSection = document.getElementById('extractedText');
+        if (outputSection) {
+            // Scroll to the parent card to include the "Extracted Text" heading
+            outputSection.closest('.section-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    /**
      * Updates the state of the Recognize button based on image selection and worker readiness.
      */
     function updateRecognizeButtonState() {
@@ -187,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
             clearBtn.disabled = false;
             progressBarContainer.classList.remove("show");
             updateRecognizeButtonState(); // Ensure button state is correct after process
+            scrollToResults(); // Scroll to show the result
         }
     });
 

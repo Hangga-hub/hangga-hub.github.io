@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapsOutput = document.getElementById('mapsOutput');
     const mapLinks = document.getElementById('mapLinks');
     const messageBox = document.getElementById('messageBox');
+    const resultSection = document.querySelector('.result-section');
 
     /**
      * Displays a message in the message box.
@@ -32,6 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             messageBox.classList.remove('show');
         }, 3000); // Message disappears after 3 seconds
+    };
+
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (resultSection) {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
 
     /**
@@ -122,17 +132,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 showMessage('Country data loaded!', false);
+                scrollToResults();
             } else if (response.status === 404) {
                 showMessage(`Country "${countryName}" not found. Please check the spelling.`, true);
                 resetOutputs();
+                scrollToResults();
             } else {
                 showMessage('Failed to retrieve country information. Please try again later.', true);
                 resetOutputs();
+                scrollToResults();
             }
         } catch (error) {
             console.error('Error fetching country data:', error);
             showMessage('An error occurred while fetching country data. Please check your network connection or try again later.', true);
             resetOutputs();
+            scrollToResults();
         }
     });
 

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Previewer - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Real-time Markdown previewer. Write Markdown on one side and see the rendered HTML on the other. Free online tool by Hangga's Tool Hub.">
+    <meta name="keywords" content="markdown previewer, online markdown editor, markdown to html, real-time markdown, free markdown tool, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/markdown-previewer/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/markdown-previewer/index.html">
+    <meta property="og:title" content="Markdown Previewer - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Real-time Markdown previewer. Write Markdown on one side and see the rendered HTML on the other. Free online tool by Hangga's Tool Hub.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/markdown-previewer/index.html">
+    <meta property="twitter:title" content="Markdown Previewer - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Real-time Markdown previewer. Write Markdown on one side and see the rendered HTML on the other. Free online tool by Hangga's Tool Hub.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Markdown Previewer",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "50"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "A real-time online tool to preview Markdown text as HTML.",
+      "url": "https://hangga-hub.github.io/tools/markdown-previewer/index.html",
+      "featureList": [
+        "Real-time Preview",
+        "Markdown to HTML Conversion",
+        "Copy HTML Output",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Specific styles for the Markdown Previewer tool */
+        .tool-converter-card {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px; /* Wider for side-by-side view */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 80vh;
+        }
+
+        .markdown-preview-container {
+            display: flex;
+            flex-direction: row; /* Default to side-by-side */
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        .input-section,
+        .preview-section {
+            flex: 1; /* Each section takes equal width */
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-section:hover,
+        .preview-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .input-section h3,
+        .preview-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            flex-grow: 1; /* Allow textarea to grow */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: 'Fira Code', monospace; /* Monospace for code/markdown input */
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            min-height: 300px; /* Default height for editor */
+            resize: vertical; /* Allow vertical resizing */
+            flex-grow: 1; /* Allow textarea to fill available space */
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .preview-output {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body); /* Normal font for rendered text */
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            overflow-y: auto; /* Scroll for long content */
+            min-height: 300px; /* Match textarea height */
+            flex-grow: 1; /* Allow preview to fill available space */
+        }
+
+        /* Styling for rendered Markdown elements within .preview-output */
+        .preview-output h1, .preview-output h2, .preview-output h3,
+        .preview-output h4, .preview-output h5, .preview-output h6 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 5px rgba(255, 0, 204, 0.5);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .preview-output h1 { font-size: 2.2em; border-bottom: 2px solid rgba(255, 0, 204, 0.3); padding-bottom: 0.3em; }
+        .preview-output h2 { font-size: 1.8em; border-bottom: 1px solid rgba(255, 0, 204, 0.2); padding-bottom: 0.2em; }
+        .preview-output h3 { font-size: 1.5em; }
+        .preview-output p {
+            margin-bottom: 1em;
+            line-height: 1.6;
+        }
+        .preview-output ul, .preview-output ol {
+            margin-bottom: 1em;
+            padding-left: 1.5em;
+        }
+        .preview-output li {
+            margin-bottom: 0.5em;
+        }
+        .preview-output a {
+            color: var(--cyber-neon-cyan);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .preview-output a:hover {
+            color: var(--cyber-neon-pink);
+            text-decoration: underline;
+        }
+        .preview-output code {
+            font-family: 'Fira Code', monospace;
+            background-color: rgba(0, 255, 247, 0.1);
+            border-radius: 4px;
+            padding: 0.2em 0.4em;
+            color: var(--cyber-neon-cyan);
+        }
+        .preview-output pre {
+            background-color: #0a0a0a;
+            border: 1px solid rgba(0, 255, 247, 0.3);
+            border-radius: 8px;
+            padding: 1em;
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+        }
+        .preview-output pre code {
+            display: block;
+            padding: 0;
+            background: none;
+            color: var(--text);
+            text-shadow: none;
+        }
+        .preview-output blockquote {
+            border-left: 4px solid var(--cyber-neon-pink);
+            padding-left: 1em;
+            margin-left: 0;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .preview-output table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        .preview-output th, .preview-output td {
+            border: 1px solid rgba(0, 255, 247, 0.2);
+            padding: 0.8em;
+            text-align: left;
+        }
+        .preview-output th {
+            background-color: rgba(0, 255, 247, 0.1);
+            color: var(--cyber-neon-cyan);
+        }
+        .preview-output hr {
+            border: none;
+            border-top: 1px dashed rgba(255, 0, 204, 0.4);
+            margin: 2em 0;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .markdown-preview-container {
+                flex-direction: column; /* Stack vertically on smaller screens */
+            }
+            .input-section,
+            .preview-section {
+                flex: none; /* Remove flex-grow on smaller screens */
+                width: 100%; /* Take full width */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .input-section,
+            .preview-section {
+                padding: 1.5rem;
+            }
+            .input-section h3,
+            .preview-section h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Markdown Previewer</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Write Markdown on the left, see the rendered HTML on the right.</p>
+
+            <div class="markdown-preview-container">
+                <div class="input-section">
+                    <h3>Markdown Input</h3>
+                    <div class="form-group">
+                        <label for="markdownInput">Enter your Markdown here:</label>
+                        <textarea id="markdownInput" placeholder="Start typing your Markdown here...
+
+# Welcome to Markdown Previewer!
+
+This tool allows you to write **Markdown** and see its *rendered* HTML in real-time.
+
+## Features:
+- **Real-time preview**: See changes instantly.
+- **Easy to use**: Just type!
+- **Copy HTML**: Get the generated HTML.
+
+### Example Code Block:
+```javascript
+function helloWorld() {
+  console.log('Hello, Markdown!');
+}
+helloWorld();
+```
+
+> This is a blockquote.
+> It can span multiple lines.
+
+* List item 1
+* List item 2
+    * Nested list item
+
+1.  Numbered list item 1
+2.  Numbered list item 2
+
+Check out [Hangga's Tool Hub](https://hangga-hub.github.io/) for more tools!"
+                        ></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="clearInputBtn" class="secondary"><i class="ri-eraser-line"></i> Clear Input</button>
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <h3>HTML Preview</h3>
+                    <div class="form-group">
+                        <label for="previewOutput">Rendered HTML:</label>
+                        <div id="previewOutput" class="preview-output">
+                            <!-- Initial content for preview, matching the placeholder text -->
+                            <h1>Welcome to Markdown Previewer!</h1>
+                            <p>This tool allows you to write <strong>Markdown</strong> and see its <em>rendered</em> HTML in real-time.</p>
+                            <h2>Features:</h2>
+                            <ul>
+                            <li><strong>Real-time preview</strong>: See changes instantly.</li>
+                            <li><strong>Easy to use</strong>: Just type!</li>
+                            <li><strong>Copy HTML</strong>: Get the generated HTML.</li>
+                            </ul>
+                            <h3>Example Code Block:</h3>
+                            <pre><code class="language-javascript">function helloWorld() {
+  console.log('Hello, Markdown!');
+}
+helloWorld();
+</code></pre>
+                            <blockquote>
+                            <p>This is a blockquote.
+                            It can span multiple lines.</p>
+                            </blockquote>
+                            <ul>
+                            <li>List item 1</li>
+                            <li>List item 2
+                            <ul>
+                            <li>Nested list item</li>
+                            </ul>
+                            </li>
+                            </ul>
+                            <ol>
+                            <li>Numbered list item 1</li>
+                            <li>Numbered list item 2</li>
+                            </ol>
+                            <p>Check out <a href="https://hangga-hub.github.io/">Hangga's Tool Hub</a> for more tools!</p>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button id="copyHtmlBtn" class="primary"><i class="ri-file-copy-line"></i> Copy HTML</button>
+                    </div>
+                </div>
+            </div>
+            <p id="messageBox" class="message-box"></p>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

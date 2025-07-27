@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearBtn = document.getElementById("clearBtn");
     const copyResultsBtn = document.getElementById("copyResultsBtn");
     const messageBox = document.getElementById("messageBox");
+    const outputSection = document.querySelector('.output-section');
 
     // --- Data Pools ---
     const firstNames = ["Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Judy", "Kevin", "Linda", "Mike", "Nancy", "Oscar", "Pamela", "Quinn", "Rachel", "Steve", "Tina", "Ursula", "Victor", "Wendy", "Xavier", "Yara", "Zack"];
@@ -40,6 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
             messageBox.classList.remove("show");
             messageBox.textContent = ""; // Clear text after hiding
         }, 3000);
+    }
+
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    function scrollToResults() {
+        if (outputSection) {
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     /**
@@ -143,11 +153,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Input validation
         if (isNaN(numRecords) || numRecords < 1 || numRecords > 100) {
             showMessage("Please enter a number of records between 1 and 100.", true);
+            scrollToResults();
             return;
         }
 
         if (!genNames && !genEmails && !genAddresses && !genCreditCards) {
             showMessage("Please select at least one data type to generate.", true);
+            scrollToResults();
             return;
         }
 
@@ -203,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         generatedDataOutput.dataset.rawData = rawDataForCopy; // Store raw data for copying
 
         showMessage(`Generated ${numRecords} records.`);
+        scrollToResults();
     }
 
     /**

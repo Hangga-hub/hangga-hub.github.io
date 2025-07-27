@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cityOutput = document.getElementById('cityOutput');
     const ispOutput = document.getElementById('ispOutput');
     const messageBox = document.getElementById('messageBox');
+    const resultSection = document.querySelector('.result-section');
 
     /**
      * Displays a message in the message box.
@@ -36,6 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
         countryOutput.innerHTML = '<strong>Country:</strong> N/A';
         cityOutput.innerHTML = '<strong>City:</strong> N/A';
         ispOutput.innerHTML = '<strong>ISP:</strong> N/A';
+    };
+
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (resultSection) {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
 
     /**
@@ -97,6 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching IP data:', error);
             showMessage('An error occurred while fetching IP data. Please check your network connection or try again later.', true);
             resetOutputs(); // Clear outputs on error
+        } finally {
+            scrollToResults(); // Scroll to the results section after the operation
         }
     });
 

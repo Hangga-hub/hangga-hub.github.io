@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsMessageBox = document.getElementById('resultsMessageBox');
     const userProfileDiv = document.getElementById('userProfile');
     const loadingSpinner = document.getElementById('loadingSpinner');
+    const resultSection = document.querySelector('.result-section');
 
     // Output elements for user details
     const userAvatar = document.getElementById('userAvatar');
@@ -52,6 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (resultSection) {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    /**
      * Fetches a random user profile from the Random User API.
      */
     const generateUser = async () => {
@@ -87,14 +97,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 userProfileDiv.classList.remove('hidden'); // Show the profile card
                 showMessage(messageBox, 'User generated successfully!', false);
+                scrollToResults();
             } else {
                 showMessage(resultsMessageBox, 'Failed to generate a user. Please try again.', true);
                 console.error('Random User API response unexpected:', data);
+                scrollToResults();
             }
         } catch (error) {
             console.error('Error fetching user data:', error);
             loadingSpinner.style.display = 'none'; // Hide spinner on error
             showMessage(resultsMessageBox, 'An error occurred while fetching data. Please check your network connection or try again later.', true);
+            scrollToResults();
         }
     };
 

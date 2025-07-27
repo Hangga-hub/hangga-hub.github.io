@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const apodExplanation = document.getElementById('apodExplanation');
     const apodCopyright = document.getElementById('apodCopyright');
     const messageBox = document.getElementById('messageBox');
+    const resultSection = document.querySelector('.result-section');
 
     // NASA APOD API requires a key. DEMO_KEY is for testing.
     // For production, you should get your own API key from https://api.nasa.gov/
@@ -56,6 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${year}-${month}-${day}`;
     };
 
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (resultSection) {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     // Set initial date input to today's date and set max date
     const today = new Date();
     dateInput.value = formatDate(today);
@@ -100,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.code === 400 && data.msg.includes('date must be between')) {
                     // Specific error for date out of range from NASA API
                     showMessage(`Error: ${data.msg}. Please select a date within the valid range.`, true);
+                    scrollToResults();
                     return;
                 }
                 if (data.media_type === 'image') {
@@ -118,16 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 apodCopyright.textContent = data.copyright ? `© ${data.copyright}` : '';
 
                 showMessage('Picture loaded successfully!', false);
+                scrollToResults();
             } else {
                 // Handle general API errors (e.g., rate limiting, invalid key)
                 const errorMessage = data.msg || 'Failed to retrieve APOD. Please check the date or try again later.';
                 showMessage(`Error: ${errorMessage}`, true);
                 resetOutputs();
+                scrollToResults();
             }
         } catch (error) {
             console.error('Error fetching APOD data:', error);
             showMessage('An error occurred while fetching APOD data. Please check your network connection or try again later.', true);
             resetOutputs();
+            scrollToResults();
         }
     });
 

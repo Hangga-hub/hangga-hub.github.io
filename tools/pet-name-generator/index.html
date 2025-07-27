@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Name Generator - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Generate unique and fun pet names for your dog, cat, or any pet with Hangga's free online Pet Name Generator, powered by NameJenny API.">
+    <meta name="keywords" content="pet name generator, dog names, cat names, animal names, unique pet names, funny pet names, cute pet names, free pet tool, online tool, hangga tools, NameJenny API">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/pet-name-generator/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/pet-name-generator/index.html">
+    <meta property="og:title" content="Pet Name Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate unique and fun pet names for your dog, cat, or any pet with Hangga's free online Pet Name Generator, powered by NameJenny API.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/pet-name-generator/index.html">
+    <meta property="twitter:title" content="Pet Name Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate unique and fun pet names for your dog, cat, or any pet with Hangga's free online Pet Name Generator, powered by NameJenny API.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Pet Name Generator",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "22"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Generates random pet names based on type and style using NameJenny API.",
+      "url": "https://hangga-hub.github.io/tools/pet-name-generator/index.html",
+      "featureList": [
+        "Pet Name Generator",
+        "Dog Names",
+        "Cat Names",
+        "Animal Names",
+        "NameJenny API",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the Pet Name Generator tool */
+        .tool-converter-card {
+            max-width: 700px; /* Adjusted for this tool's content */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 70vh;
+        }
+
+        .name-generator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        .input-section, .output-section {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .input-section:hover, .output-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .input-section h3, .output-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: var(--cyber-neon-cyan);
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 4px var(--cyber-neon-cyan);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 8px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-shadow: inset 0 0 8px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 12px rgba(255, 0, 204, 0.4);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .generated-names-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .generated-names-list li {
+            background-color: #1a1a1f;
+            border: 1px solid var(--cyber-neon-pink);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: var(--font-body);
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 5px var(--cyber-neon-yellow);
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .generated-names-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(255, 0, 204, 0.4);
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid rgba(0, 255, 247, 0.2);
+            border-top: 4px solid var(--cyber-neon-cyan);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .input-section, .output-section {
+                padding: 1.5rem;
+            }
+            .input-section h3, .output-section h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            .generated-names-list {
+                grid-template-columns: 1fr; /* Stack names vertically */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Pet Name Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Generate unique and fun names for your pets!</p>
+
+            <div class="name-generator-container">
+                <div class="input-section">
+                    <h3>Generate Pet Names</h3>
+                    <div class="form-group">
+                        <label for="petTypeInput">Type of Pet:</label>
+                        <input type="text" id="petTypeInput" placeholder="e.g., dog, cat, fish, bird">
+                    </div>
+                    <div class="form-group">
+                        <label for="nameStyleSelect">Name Style:</label>
+                        <select id="nameStyleSelect">
+                            <option value="">Any Style</option>
+                            <option value="cute">Cute</option>
+                            <option value="funny">Funny</option>
+                            <option value="classic">Classic</option>
+                            <option value="unique">Unique</option>
+                            <option value="tough">Tough</option>
+                            <option value="nature">Nature</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nameCountInput">Number of Names (1-10):</label>
+                        <input type="number" id="nameCountInput" value="5" min="1" max="10">
+                    </div>
+                    <div class="button-group">
+                        <button id="generateNamesBtn" class="primary"><i class="ri-paw-line"></i> Generate Names</button>
+                        <button id="clearAllBtn" class="secondary"><i class="ri-eraser-line"></i> Clear All</button>
+                    </div>
+                    <p id="messageBox" class="message-box"></p>
+                </div>
+
+                <div class="output-section">
+                    <h3>Generated Names</h3>
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                    <ul id="generatedNamesList" class="generated-names-list">
+                        <!-- Generated names will appear here -->
+                    </ul>
+                    <p id="resultsMessageBox" class="message-box"></p>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

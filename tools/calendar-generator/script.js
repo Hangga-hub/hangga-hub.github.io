@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendarHeader = document.getElementById('calendarHeader');
     const calendarGrid = document.getElementById('calendarGrid');
     const messageBox = document.getElementById('messageBox');
+    const calendarDisplay = document.querySelector('.calendar-display');
 
     const monthNames = [
         "January", "February", "March", "April", "May", "June",
@@ -26,6 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const today = new Date();
     monthSelect.value = today.getMonth();
     yearInput.value = today.getFullYear();
+
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (calendarDisplay) {
+            calendarDisplay.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
 
     // Function to generate the calendar grid
     function generateCalendar() {
@@ -79,7 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event listener for the generate button
-    generateCalendarButton.addEventListener('click', generateCalendar);
+    generateCalendarButton.addEventListener('click', () => {
+        generateCalendar();
+        scrollToResults();
+    });
 
     // Initial calendar generation on page load
     generateCalendar();

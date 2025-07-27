@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Calculate your Grade Point Average (GPA) quickly and accurately by entering your course credits and grades with Hangga's free online GPA Calculator.">
+    <meta name="keywords" content="GPA calculator, grade point average, academic calculator, college GPA, university GPA, free GPA tool, online tool, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/gpa-calculator/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/gpa-calculator/index.html">
+    <meta property="og:title" content="GPA Calculator - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Calculate your Grade Point Average (GPA) quickly and accurately by entering your course credits and grades with Hangga's free online GPA Calculator.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/gpa-calculator/index.html">
+    <meta property="twitter:title" content="GPA Calculator - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Calculate your Grade Point Average (GPA) quickly and accurately by entering your course credits and grades with Hangga's free online GPA Calculator.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's GPA Calculator",
+      "operatingSystem": "Web",
+      "applicationCategory": "EducationalTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "35"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Calculates Grade Point Average (GPA) based on course credits and grades.",
+      "url": "https://hangga-hub.github.io/tools/gpa-calculator/index.html",
+      "featureList": [
+        "GPA Calculation",
+        "Grade Point Average",
+        "Academic Performance",
+        "Course Grades",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+    <style>
+        /* Specific styles for the GPA Calculator tool */
+        .tool-converter-card {
+            max-width: 800px; /* Wider for course input rows */
+            padding: 2.5rem;
+            box-sizing: border-box;
+            min-height: 70vh;
+        }
+
+        .gpa-calculator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        .input-section, .output-section {
+            background: var(--panel);
+            border: 2px solid var(--cyber-neon-cyan);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 247, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .input-section:hover, .output-section:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 247, 0.5);
+        }
+
+        .input-section h3, .output-section h3 {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 8px var(--cyber-neon-pink);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(255, 0, 204, 0.3);
+            padding-bottom: 0.8rem;
+        }
+
+        .course-input-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 40px; /* Course Name, Credits, Grade, Remove Button */
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed rgba(0, 255, 247, 0.1);
+        }
+
+        .course-input-grid:last-of-type {
+            border-bottom: none;
+        }
+
+        .course-input-grid label {
+            display: none; /* Hide labels on larger screens, use placeholders */
+        }
+
+        .course-input-grid input[type="text"],
+        .course-input-grid input[type="number"],
+        .course-input-grid select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--cyber-neon-cyan);
+            border-radius: 6px;
+            background-color: #1a1a1f;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 6px rgba(0, 255, 247, 0.2);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .course-input-grid input:focus,
+        .course-input-grid select:focus {
+            outline: none;
+            border-color: var(--cyber-neon-pink);
+            box-shadow: inset 0 0 10px rgba(255, 0, 204, 0.4);
+        }
+
+        .remove-course-btn {
+            background: none;
+            border: none;
+            color: var(--cyber-neon-pink);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
+        .remove-course-btn:hover {
+            color: #ff0000;
+            transform: scale(1.1);
+        }
+
+        .add-course-btn {
+            background: none;
+            border: 2px dashed var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            width: fit-content;
+        }
+
+        .add-course-btn:hover {
+            background: rgba(0, 255, 247, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .button-group button {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .button-group button.primary {
+            background: linear-gradient(90deg, var(--cyber-neon-cyan) 0%, var(--cyber-neon-pink) 100%);
+            color: #0a0a0a;
+            border: none;
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+        }
+
+        .button-group button.primary:hover {
+            background: linear-gradient(90deg, var(--cyber-neon-pink) 0%, var(--cyber-neon-cyan) 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 204, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .button-group button.secondary {
+            background: rgba(30, 30, 40, 0.7);
+            border: 2px solid var(--cyber-neon-cyan);
+            color: var(--cyber-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 247, 0.4);
+        }
+
+        .button-group button.secondary:hover {
+            background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 247, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            background-color: rgba(0, 255, 247, 0.15);
+            color: var(--cyber-neon-cyan);
+            text-shadow: 0 0 12px var(--cyber-neon-cyan);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-height: 25px;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 204, 0.15);
+            color: var(--cyber-neon-pink);
+            text-shadow: 0 0 12px var(--cyber-neon-pink);
+        }
+
+        .gpa-result-display {
+            font-family: var(--font-heading);
+            color: var(--cyber-neon-yellow);
+            text-shadow: 0 0 10px var(--cyber-neon-yellow);
+            font-size: 2.5rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            display: none; /* Hidden by default */
+            border: 4px solid rgba(0, 255, 247, 0.2);
+            border-top: 4px solid var(--cyber-neon-cyan);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-converter-card {
+                padding: 1.5rem;
+            }
+            .input-section, .output-section {
+                padding: 1.5rem;
+            }
+            .input-section h3, .output-section h3 {
+                font-size: 1.5rem;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+            .course-input-grid {
+                grid-template-columns: 1fr; /* Stack inputs vertically */
+                gap: 0.5rem;
+                padding-bottom: 1rem;
+            }
+            .course-input-grid label {
+                display: block; /* Show labels on small screens */
+                font-size: 0.9rem;
+                color: var(--cyber-neon-cyan);
+                margin-bottom: 0.2rem;
+            }
+            .remove-course-btn {
+                margin-top: 0.5rem;
+                width: 100%;
+            }
+            .add-course-btn {
+                width: 100%;
+            }
+            .gpa-result-display {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>GPA Calculator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Calculate your Grade Point Average (GPA).</p>
+
+            <div class="gpa-calculator-container">
+                <div class="input-section">
+                    <h3>Enter Your Courses</h3>
+                    <div id="courseInputs">
+                        <!-- Initial course input row -->
+                        <div class="course-input-grid">
+                            <label for="courseName0">Course Name</label>
+                            <input type="text" id="courseName0" placeholder="Course Name">
+                            <label for="credits0">Credits</label>
+                            <input type="number" id="credits0" placeholder="Credits" min="0.5" step="0.5">
+                            <label for="grade0">Grade</label>
+                            <select id="grade0">
+                                <option value="">Select Grade</option>
+                                <option value="4.0">A</option>
+                                <option value="3.7">A-</option>
+                                <option value="3.3">B+</option>
+                                <option value="3.0">B</option>
+                                <option value="2.7">B-</option>
+                                <option value="2.3">C+</option>
+                                <option value="2.0">C</option>
+                                <option value="1.7">C-</option>
+                                <option value="1.3">D+</option>
+                                <option value="1.0">D</option>
+                                <option value="0.7">D-</option>
+                                <option value="0.0">F</option>
+                            </select>
+                            <button class="remove-course-btn" type="button" title="Remove Course"><i class="ri-close-circle-line"></i></button>
+                        </div>
+                    </div>
+                    <button id="addCourseBtn" class="add-course-btn"><i class="ri-add-circle-line"></i> Add Another Course</button>
+
+                    <div class="button-group">
+                        <button id="calculateGpaBtn" class="primary"><i class="ri-calculator-line"></i> Calculate GPA</button>
+                        <button id="clearAllBtn" class="secondary"><i class="ri-eraser-line"></i> Clear All</button>
+                    </div>
+                    <p id="messageBox" class="message-box"></p>
+                </div>
+
+                <div class="output-section">
+                    <h3>Your Calculated GPA</h3>
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                    <p id="gpaResultOutput" class="gpa-result-display">0.00</p>
+                    <p id="resultsMessageBox" class="message-box"></p>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

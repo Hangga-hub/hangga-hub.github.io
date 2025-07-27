@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const htmlOutput = document.getElementById("htmlOutput");
     const copyOutputBtn = document.getElementById("copyOutputBtn");
     const messageBox = document.getElementById("messageBox");
+    const previewSection = document.querySelector('.preview-area');
 
     // Default HTML content for the iframe preview
     const defaultIframeContent = `
@@ -63,6 +64,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
+     * Scrolls the window down to the result preview section.
+     */
+    function scrollToResults() {
+        if (previewSection) {
+            // Scroll to the parent card to include the "Live Preview" heading
+            previewSection.closest('.section-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    /**
      * Updates the iframe preview and generates the HTML output.
      */
     function updatePreviewAndHtml() {
@@ -86,10 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 htmlOutput.value = generatedHtml;
                 copyOutputBtn.disabled = false;
                 showMessage("Classes applied and HTML generated!");
+                scrollToResults();
             } else {
                 showMessage("Error: Could not find the styled element in the preview.", true);
                 htmlOutput.value = "Error generating HTML.";
                 copyOutputBtn.disabled = true;
+                scrollToResults();
             }
         };
 

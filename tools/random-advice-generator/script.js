@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsMessageBox = document.getElementById('resultsMessageBox');
     const activityResultDiv = document.getElementById('activityResult');
     const loadingSpinner = document.getElementById('loadingSpinner');
+    const resultSection = document.querySelector('.result-section');
 
     // Output element for the advice
     const activityOutput = document.getElementById('activityOutput');
@@ -46,6 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (resultSection) {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    /**
      * Fetches a random advice from the Advice Slip API.
      */
     const generateAdvice = async () => {
@@ -70,15 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 activityOutput.textContent = data.slip.advice;
                 activityResultDiv.classList.remove('hidden'); // Show the result card
                 showMessage(messageBox, 'Advice generated!', false);
+                scrollToResults();
             } else {
                 // This usually happens if there's an issue with the API response
                 showMessage(resultsMessageBox, 'Failed to retrieve advice. Please try again.', true);
                 console.error('Advice Slip API response unexpected:', data);
+                scrollToResults();
             }
         } catch (error) {
             console.error('Error fetching advice data:', error);
             loadingSpinner.style.display = 'none'; // Hide spinner on error
             showMessage(resultsMessageBox, 'An error occurred while fetching data. Please check your network connection or try again later.', true);
+            scrollToResults();
         }
     };
 

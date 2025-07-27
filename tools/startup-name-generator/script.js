@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearBtn = document.getElementById("clearBtn");
     const copyResultsBtn = document.getElementById("copyResultsBtn");
     const messageBox = document.getElementById("messageBox");
+    const outputSection = document.querySelector('.output-section');
 
     // Define word lists for name generation
     const commonPrefixes = ["Syn", "Omni", "Core", "Aero", "Bio", "Cyber", "Data", "Eco", "Flex", "Giga", "Hyper", "Infra", "Kilo", "Meta", "Nano", "Opti", "Pico", "Quantum", "Revo", "Spectra", "Tera", "Ultra", "Velo", "Xeno", "Zeta"];
@@ -38,6 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
             messageBox.classList.remove("show");
             messageBox.textContent = ""; // Clear text after hiding
         }, 3000);
+    }
+
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    function scrollToResults() {
+        if (outputSection) {
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     /**
@@ -141,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Input validation
         if (isNaN(numNames) || numNames < 1 || numNames > 20) {
             showMessage("Please enter a number of names to generate between 1 and 20.", true);
+            scrollToResults();
             return;
         }
 
@@ -160,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (generatedSet.size === 0) {
             showMessage("Could not generate names with the given criteria. Try different keywords or styles.", true);
+            scrollToResults();
             return;
         }
 
@@ -170,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         showMessage(`Generated ${generatedSet.size} startup names.`);
+        scrollToResults();
     }
 
     /**

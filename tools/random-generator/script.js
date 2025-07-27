@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const quoteAuthor = document.getElementById('quoteAuthor');
     const initialMessage = document.getElementById('initialMessage');
     const messageBox = document.getElementById('messageBox');
+    const outputSection = document.querySelector('.result-section'); // Change this line
 
     /**
      * Displays a message in the message box.
@@ -43,6 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
         initialMessage.style.display = 'block';
     };
 
+    /**
+     * Scrolls the window down to the result output section.
+     */
+    const scrollToResults = () => {
+        if (outputSection) {
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     // Initialize the display
     resetOutputs();
 
@@ -63,12 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 jokePunchline.style.display = 'block';
                 initialMessage.style.display = 'none';
                 showMessage('Joke loaded!', false);
+                scrollToResults(); // Scroll down after displaying joke
             } else {
                 showMessage('Failed to retrieve a joke. Please try again.', true);
+                scrollToResults(); // Scroll down even on failure to show message
             }
         } catch (error) {
             console.error('Error fetching joke:', error);
             showMessage('An error occurred while fetching the joke. Please check your network connection or try again later.', true);
+            scrollToResults(); // Scroll down on error
         }
     });
 
@@ -91,12 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 quoteAuthor.style.display = 'block';
                 initialMessage.style.display = 'none';
                 showMessage('Quote loaded!', false);
+                scrollToResults(); // Scroll down after displaying quote
             } else {
                 showMessage('Failed to retrieve a quote. Please try again.', true);
+                scrollToResults(); // Scroll down even on failure to show message
             }
         } catch (error) {
             console.error('Error fetching quote:', error);
             showMessage('An error occurred while fetching the quote. Please check your network connection or try again later.', true);
+            scrollToResults(); // Scroll down on error
         }
     });
 

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hexCodesOutput = document.getElementById('hexCodesOutput');
     const copyHexBtn = document.getElementById('copyHexBtn');
     const messageBox = document.getElementById('messageBox');
+    const outputSection = document.querySelector('.output-section');
 
     // --- Configuration ---
     const MAX_PALETTE_COLORS = 20; // Maximum number of colors to display in the palette
@@ -49,6 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
+    // --- Helper function to scroll to results ---
+    function scrollToResults() {
+        if (outputSection) {
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
     // --- Function to convert RGB to HEX ---
     function rgbToHex(r, g, b) {
         return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
@@ -76,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!imgElement || !imgElement.src || imgElement.src === '#') {
             showMessage("No image loaded for extraction.", true);
+            scrollToResults();
             return;
         }
 
@@ -126,14 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (palette.length === 0) {
                     showMessage("No distinct colors could be extracted from the image. It might be a monochrome image or too small.", true);
+                    scrollToResults();
                     return;
                 }
 
                 displayPalette(palette);
                 showMessage(`Extracted ${palette.length} dominant colors.`, false);
+                scrollToResults();
             } catch (error) {
                 console.error("Error processing image data on canvas:", error);
                 showMessage("Error extracting colors. The image might be corrupted or too complex for processing.", true);
+                scrollToResults();
             } finally {
                 extractPaletteBtn.disabled = true; // Disable after extraction
                 copyHexBtn.disabled = false; // Enable copy button
@@ -142,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         img.onerror = () => {
             showMessage("Failed to load image into canvas. Please ensure it's a valid image file and not corrupted.", true);
+            scrollToResults();
             extractPaletteBtn.disabled = true;
             copyHexBtn.disabled = true;
         };
