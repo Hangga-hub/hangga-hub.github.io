@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const xMax2DInput = document.getElementById("xMax2D");
     const plot2DBtn = document.getElementById("plot2DBtn");
     const reset2DBtn = document.getElementById("reset2DBtn");
-    const graph2DCanvas = document.getElementById("graph2DCanvas");
-    const ctx = graph2DCanvas.getContext("2d");
+    const graph1DCanvas = document.getElementById("graph1DCanvas");
+    const ctx = graph1DCanvas.getContext("2d");
 
     const defaultFunction2D = "Math.sin(x)";
     const defaultXMin2D = -10;
@@ -52,23 +52,23 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        ctx.clearRect(0, 0, graph2DCanvas.width, graph2DCanvas.height); // Clear canvas
+        ctx.clearRect(0, 0, graph1DCanvas.width, graph1DCanvas.height); // Clear canvas
         ctx.beginPath();
         ctx.strokeStyle = '#00fff7'; // Neon Cyan
         ctx.lineWidth = 2;
 
-        const scaleX = graph2DCanvas.width / (xMax - xMin);
-        const scaleY = graph2DCanvas.height / (xMax - xMin); // Assuming square aspect ratio for simplicity
-        const centerX = graph2DCanvas.width / 2;
-        const centerY = graph2DCanvas.height / 2;
+        const scaleX = graph1DCanvas.width / (xMax - xMin);
+        const scaleY = graph1DCanvas.height / (xMax - xMin); // Assuming square aspect ratio for simplicity
+        const centerX = graph1DCanvas.width / 2;
+        const centerY = graph1DCanvas.height / 2;
 
         // Draw Axes
         ctx.strokeStyle = '#555';
         ctx.lineWidth = 1;
         ctx.moveTo(0, centerY);
-        ctx.lineTo(graph2DCanvas.width, centerY); // X-axis
+        ctx.lineTo(graph1DCanvas.width, centerY); // X-axis
         ctx.moveTo(centerX, 0);
-        ctx.lineTo(centerX, graph2DCanvas.height); // Y-axis
+        ctx.lineTo(centerX, graph1DCanvas.height); // Y-axis
         ctx.stroke();
 
         ctx.beginPath();
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let firstPoint = true;
 
-        for (let i = 0; i < graph2DCanvas.width; i++) {
+        for (let i = 0; i < graph1DCanvas.width; i++) {
             const x = (i / scaleX) + xMin; // Convert canvas X to function X
             let y;
             try {
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         ctx.stroke();
         showMessage("2D graph plotted successfully!");
-        graph2DCanvas.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        graph1DCanvas.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     /**
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function2DInput.value = defaultFunction2D;
         xMin2DInput.value = defaultXMin2D;
         xMax2DInput.value = defaultXMax2D;
-        ctx.clearRect(0, 0, graph2DCanvas.width, graph2DCanvas.height);
+        ctx.clearRect(0, 0, graph1DCanvas.width, graph1DCanvas.height);
         showMessage("2D graph inputs reset.");
     }
 

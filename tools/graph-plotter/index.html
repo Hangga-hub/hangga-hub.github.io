@@ -221,7 +221,7 @@
             height: auto; /* Maintain aspect ratio */
         }
 
-        #graph2DCanvas {
+        #graph1DCanvas {
             width: 500px; /* Default for 2D */
             height: 500px;
         }
@@ -286,7 +286,7 @@
                 width: 100%;
                 justify-content: center;
             }
-            #graph2DCanvas, #graph3DCanvas {
+            #graph1DCanvas, #graph3DCanvas {
                 width: 100%; /* Make canvases full width on small screens */
                 height: 300px; /* Adjust height for mobile */
             }
@@ -299,7 +299,7 @@
 
     <main>
         <div class="tool-converter-card">
-            <h2><i class="ri-line-chart-line"></i> Graph Plotter</h2>
+            <h1><i class="ri-line-chart-line"></i> Graph Plotter</h1>
             <p class="subtitle">Visualize 2D functions and 3D surfaces.</p>
 
             <div class="disclaimer">
@@ -363,7 +363,7 @@
             <div class="graph-container">
                 <div class="graph-section">
                     <h3>2D Graph</h3>
-                    <canvas id="graph2DCanvas" width="500" height="500"></canvas>
+                    <canvas id="graph1DCanvas" width="500" height="500"></canvas>
                 </div>
                 <div class="graph-section">
                     <h3>3D Graph (Drag to Rotate)</h3>

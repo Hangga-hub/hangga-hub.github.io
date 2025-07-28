@@ -73,6 +73,12 @@ main {
 
 }
 
+h1{
+    color: var(--cyber-neon-cyan);
+    text-shadow: 0 0 10px var(--cyber-neon-cyan);
+    text-align: center;
+    margin: auto;
+}
 /* --- Hero Section --- */
 #hero {
     padding: var(--spacing-xl) 0 var(--spacing-sm) 0;
