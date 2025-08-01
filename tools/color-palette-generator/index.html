@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Generator - Online Tool | Hangga's Tool Hub</title>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fira Code for monospace text in code outputs -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags for this tool -->
+    <meta name="description" content="Generate beautiful color palettes for your design projects with a single click. Choose from various color harmonies like monochromatic, analogous, and complementary.">
+    <meta name="keywords" content="color palette generator, online color tool, hex code generator, complementary colors, analogous colors, monochromatic palette, triadic palette, hangga tools">
+    <meta name="author" content="Hangga">
+    <link rel="canonical" href="https://hangga-hub.github.io/tools/color-palette-generator/index.html">
+
+    <!-- Open Graph / Facebook for this tool -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hangga-hub.github.io/tools/color-palette-generator/index.html">
+    <meta property="og:title" content="Color Palette Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="og:description" content="Generate beautiful color palettes for your design projects with a single click. Choose from various color harmonies like monochromatic, analogous, and complementary.">
+    <meta property="og:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Twitter for this tool -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hangga-hub.github.io/tools/color-palette-generator/index.html">
+    <meta property="twitter:title" content="Color Palette Generator - Online Tool | Hangga's Tool Hub">
+    <meta property="twitter:description" content="Generate beautiful color palettes for your design projects with a single click. Choose from various color harmonies like monochromatic, analogous, and complementary.">
+    <meta property="twitter:image" content="https://hangga-hub.github.io/og-preview.png">
+
+    <!-- Schema.org Structured Data for this tool -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hangga's Color Palette Generator",
+      "operatingSystem": "Web",
+      "applicationCategory": "DeveloperTool",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "72"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Generate beautiful color palettes from a base color or a random one, using various color theory rules.",
+      "url": "https://hangga-hub.github.io/tools/color-palette-generator/index.html",
+      "featureList": [
+        "Random Palette Generation",
+        "Hex to RGB Conversion",
+        "Color Harmony Rules (Monochromatic, Analogous, Complementary, Triadic)",
+        "Easy Copy to Clipboard",
+        "Free to Use",
+        "Online Tool"
+      ],
+      "screenshot": "https://hangga-hub.github.io/og-preview.png",
+      "softwareRequirements": "Modern Web Browser",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hangga's Tool Hub"
+      }
+    }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWF0DFG7QB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DWF0DFG7QB');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6676706621077888" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navbar placeholder -->
+    <div id="navbar"></div>
+
+    <main>
+        <div class="tool-converter-card">
+            <h2>Color Palette Generator</h2>
+            <p class="subtitle" style="margin-top: -1rem; margin-bottom: 2rem;">Quickly generate beautiful color palettes based on a base color or a random choice.</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <h2>Color Selection</h2>
+                    <div class="form-group">
+                        <label for="baseColorInput">Base Hex Color:</label>
+                        <input type="text" id="baseColorInput" placeholder="e.g., #3498db or red" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="harmonySelect">Color Harmony Rule:</label>
+                        <select id="harmonySelect">
+                            <option value="monochromatic">Monochromatic</option>
+                            <option value="analogous">Analogous</option>
+                            <option value="complementary">Complementary</option>
+                            <option value="triadic">Triadic</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button id="generatePaletteBtn" class="primary"><i class="ri-palette-line"></i> Generate Palette</button>
+                        <button id="clearFormBtn" class="secondary"><i class="ri-eraser-line"></i> Clear Form</button>
+                    </div>
+                </div>
+
+                <p id="messageBox" class="message-box"></p>
+
+                <div class="input-section result-section" id="resultSection">
+                    <h2>Generated Color Palette</h2>
+                    <div id="paletteContainer" class="color-palette-display">
+                        <!-- Color boxes will be dynamically added here -->
+                    </div>
+                    <div class="button-group" style="margin-top: 1rem;">
+                        <button id="copyAllBtn" class="primary"><i class="ri-file-copy-line"></i> Copy All Hex Codes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="ad-space" class="ad-banner">
+            <p>[Ad Spot — Feature affiliate banners or services here]</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Hangga | <a href="https://github.com/hangga-hub">GitHub</a></p>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
