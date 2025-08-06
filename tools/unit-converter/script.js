@@ -68,21 +68,35 @@ const units = {
     psi: 6894.76,
     atm: 101325
   },
-  data: {
+  digital_storage: {
     bit: 0.125,
     byte: 1,
-    KiB: 1024,
-    MiB: 1048576,
-    GiB: 1073741824,
-    TiB: 1099511627776
+    KB: 1024,       // Kilobyte (2^10)
+    MB: 1024 ** 2,  // Megabyte (2^20)
+    GB: 1024 ** 3,  // Gigabyte (2^30)
+    TB: 1024 ** 4,  // Terabyte (2^40)
+    PB: 1024 ** 5,  // Petabyte (2^50)
   },
+  data_transfer_rate: {
+    'bit/s': 1,
+    'byte/s': 8,
+    Kbps: 1000,
+    Mbps: 1000 * 1000,
+    Gbps: 1000 * 1000 * 1000,
+    KBps: 8 * 1024,
+    MBps: 8 * 1024 * 1024,
+    GBps: 8 * 1024 * 1024 * 1024
+  },
+
   energy: {
     J: 1,
     kJ: 1000,
     cal: 4.184,
     kcal: 4184,
     Wh: 3600,
-    kWh: 3.6e6
+    kWh: 3.6e6,
+    BTU: 1055.056,
+    eV: 1.60218e-19, // Electronvolts
   },
   power: {
     W: 1,
@@ -122,7 +136,8 @@ const categoryMap = {
   speed: "🧭 Speed",
   area: "📐 Area",
   volume: "🧪 Volume",
-  data: "💾 Data",
+  data_transfer_rate: "📡 Data Transfer Rate",
+  digital_storage: "💾 Data",
   energy: "⚡ Energy",
   pressure: "💧 Pressure",
   power: "🔋 Power",
